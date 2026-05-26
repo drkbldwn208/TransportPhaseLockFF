@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+csim_filter_results.csv
+csim_frequency_response.csv
+csim_filter_results.png
+ssr8_fir_decimator_prj/

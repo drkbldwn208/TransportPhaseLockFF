@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"rfdc_iq_derotator": {
+			"proto_instances": {
+			}
+		}
+	}
+}

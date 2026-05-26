@@ -1,0 +1,104 @@
+{
+  "0": {
+    "basicblocks": 12,
+    "calls": "4",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 147,
+    "instructions": 213,
+    "loads": {
+      "G": 1,
+      "L": 5
+    },
+    "name": "rfdc_iq_derotator",
+    "stores": {
+      "G": 2,
+      "L": 5
+    },
+    "total_instructions": 4725
+  },
+  "1": {
+    "basicblocks": 19,
+    "calls": "2 2",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 57,
+    "instructions": 279,
+    "loads": {
+      "G": 1,
+      "L": 12
+    },
+    "name": "sincos_q15",
+    "stores": {
+      "L": 13
+    },
+    "total_instructions": 2135
+  },
+  "2": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 41,
+    "instructions": 28,
+    "name": "q30_to_q15",
+    "total_instructions": 261
+  },
+  "3": {
+    "basicblocks": 1,
+    "calls": "8 6 7",
+    "file": "rfdc_iq_derotator.pp.0.cpp",
+    "fileloc": 0,
+    "instructions": 4,
+    "name": "",
+    "total_instructions": 359
+  },
+  "4": {
+    "basicblocks": 4,
+    "calls": "1 5 5",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 112,
+    "instructions": 128,
+    "loads": {
+      "L": 7
+    },
+    "name": "rotate_one_sample",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 3655
+  },
+  "5": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 26,
+    "instructions": 40,
+    "name": "round_saturate_to_i16",
+    "total_instructions": 342
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 9,
+    "instructions": 2,
+    "name": "__cxx_global_var_init.2",
+    "total_instructions": 17
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 18,
+    "instructions": 21,
+    "name": "__cxx_global_var_init.3",
+    "total_instructions": 321
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rfdc_iq_derotator.h",
+    "fileloc": 45,
+    "instructions": 2,
+    "name": "__cxx_global_var_init.1",
+    "total_instructions": 17
+  }
+}
