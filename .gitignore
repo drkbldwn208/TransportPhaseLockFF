@@ -4,6 +4,7 @@
 *.str
 .Xil/
 *.pb
+*.xpr
 
 #Vivado generated folders
 *.cache/
