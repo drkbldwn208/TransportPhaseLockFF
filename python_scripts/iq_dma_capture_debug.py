@@ -9,6 +9,7 @@ overlay exposes:
 """
 
 import time
+import gc
 
 import numpy as np
 from pynq import allocate
@@ -42,12 +43,25 @@ def setup_iq_buffer(duration_s, sample_rate_hz):
     return allocate(shape=(samples, 2), dtype=np.int64)
 
 
-def execute_iq_capture(overlay, dma_buffer, enable_derotation=True):
+def release_buffer(dma_buffer):
+    """Release a PYNQ BO promptly in notebook workflows."""
+
+    try:
+        dma_buffer.freebuffer()
+    except AttributeError:
+        pass
+    gc.collect()
+
+
+def execute_iq_capture(overlay, dma_buffer, enable_derotation=True, toggle_enable=True):
     sample_count = int(dma_buffer.shape[0])
     dma = overlay.axi_dma_3
     gpio = overlay.axi_gpio_13
 
-    gpio.channel1.write(0, mask=0x1)
+    if toggle_enable:
+        gpio.channel1.write(0, mask=0x1)
+    else:
+        gpio.channel1.write(1 if enable_derotation else 0, mask=0x1)
     gpio.channel2.write(sample_count, mask=0xFFFFFFFF)
 
     dma_buffer[:] = 0
@@ -64,8 +78,9 @@ def execute_iq_capture(overlay, dma_buffer, enable_derotation=True):
     dma.recvchannel.transfer(dma_buffer)
     print("DMA armed")
 
-    time.sleep(0.001)
-    gpio.channel1.write(1 if enable_derotation else 0, mask=0x1)
+    if toggle_enable:
+        time.sleep(0.001)
+        gpio.channel1.write(1 if enable_derotation else 0, mask=0x1)
     dma.recvchannel.wait()
     dma_buffer.invalidate()
 
@@ -83,3 +98,88 @@ def split_iq_columns(dma_buffer):
     q_data = dma_buffer[:, 0]
     i_data = dma_buffer[:, 1]
     return i_data, q_data
+
+
+def capture_iq_chunks_to_hdf5(
+    overlay,
+    output_path,
+    total_samples,
+    sample_rate_hz,
+    chunk_samples=262_144,
+    enable_derotation=True,
+    compression="gzip",
+    compression_opts=4,
+):
+    """Capture a long trace without allocating one giant contiguous buffer.
+
+    XRT/PYNQ buffers are physically contiguous BOs.  A 30 MB allocation can fail
+    after a notebook has allocated and freed several buffers because the memory
+    pool is fragmented.  This function keeps the live BO small and streams each
+    chunk into an HDF5 dataset.
+    """
+
+    import h5py
+
+    total_samples = int(total_samples)
+    chunk_samples = int(chunk_samples)
+    if total_samples <= 0:
+        raise ValueError("total_samples must be positive")
+    if chunk_samples <= 0:
+        raise ValueError("chunk_samples must be positive")
+
+    gpio = overlay.axi_gpio_13
+    gpio.channel1.write(1 if enable_derotation else 0, mask=0x1)
+
+    with h5py.File(output_path, "w") as h5:
+        dset = h5.create_dataset(
+            "iq",
+            shape=(total_samples, 2),
+            dtype=np.int64,
+            chunks=(min(chunk_samples, total_samples), 2),
+            compression=compression,
+            compression_opts=compression_opts,
+        )
+        h5.attrs["sample_rate_hz"] = float(sample_rate_hz)
+        h5.attrs["column0"] = "Q_lower_64_bits"
+        h5.attrs["column1"] = "I_upper_64_bits"
+
+        offset = 0
+        while offset < total_samples:
+            this_chunk = min(chunk_samples, total_samples - offset)
+            print(f"capturing {offset}:{offset + this_chunk} / {total_samples}")
+
+            dma_buffer = allocate(shape=(this_chunk, 2), dtype=np.int64)
+            try:
+                execute_iq_capture(
+                    overlay,
+                    dma_buffer,
+                    enable_derotation=enable_derotation,
+                    toggle_enable=False,
+                )
+                dset[offset : offset + this_chunk, :] = np.asarray(dma_buffer)
+                h5.flush()
+            finally:
+                release_buffer(dma_buffer)
+
+            offset += this_chunk
+
+    return output_path
+
+
+def capture_iq_duration_to_hdf5(
+    overlay,
+    output_path,
+    duration_s,
+    sample_rate_hz,
+    chunk_samples=262_144,
+    enable_derotation=True,
+):
+    total_samples = int(round(duration_s * sample_rate_hz))
+    return capture_iq_chunks_to_hdf5(
+        overlay=overlay,
+        output_path=output_path,
+        total_samples=total_samples,
+        sample_rate_hz=sample_rate_hz,
+        chunk_samples=chunk_samples,
+        enable_derotation=enable_derotation,
+    )
