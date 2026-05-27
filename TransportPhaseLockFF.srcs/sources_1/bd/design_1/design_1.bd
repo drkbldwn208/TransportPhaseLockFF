@@ -7796,6 +7796,9 @@
           "Filter_Architecture": {
             "value": "Systolic_Multiply_Accumulate"
           },
+          "M_DATA_Has_TREADY": {
+            "value": "true"
+          },
           "Output_Rounding_Mode": {
             "value": "Truncate_LSBs"
           },
@@ -7849,6 +7852,9 @@
           },
           "Filter_Architecture": {
             "value": "Systolic_Multiply_Accumulate"
+          },
+          "M_DATA_Has_TREADY": {
+            "value": "true"
           },
           "Output_Rounding_Mode": {
             "value": "Truncate_LSBs"
@@ -8207,7 +8213,7 @@
             "value": "0"
           },
           "c_include_sg": {
-            "value": "1"
+            "value": "0"
           },
           "c_m_axi_s2mm_data_width": {
             "value": "128"
@@ -8220,21 +8226,6 @@
           }
         },
         "interface_ports": {
-          "M_AXI_SG": {
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "mode": "Master",
-            "address_space_ref": "Data_SG",
-            "base_address": {
-              "minimum": "0x00000000",
-              "maximum": "0x0003FFFFFFFFFFFF",
-              "width": "50"
-            },
-            "parameters": {
-              "master_id": {
-                "value": "5"
-              }
-            }
-          },
           "M_AXI_S2MM": {
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
             "mode": "Master",
@@ -8690,12 +8681,6 @@
           "smartconnect_0/S03_AXI"
         ]
       },
-      "axi_dma_3_M_AXI_SG": {
-        "interface_ports": [
-          "axi_dma_3/M_AXI_SG",
-          "smartconnect_0/S04_AXI"
-        ]
-      },
       "axi_interconnect_0_M00_AXI": {
         "interface_ports": [
           "axi_interconnect_0/M00_AXI",
@@ -9116,12 +9101,6 @@
           "ErrorSignalSignExten_0/s_axis_tvalid"
         ]
       },
-      "axi_dma_3_s2mm_introut": {
-        "ports": [
-          "axi_dma_3/s2mm_introut",
-          "zynq_ultra_ps_e_0/pl_ps_irq0"
-        ]
-      },
       "axi_gpio_0_gpio_io_o": {
         "ports": [
           "axi_gpio_0/gpio_io_o",
@@ -9264,9 +9243,9 @@
           "rfdc_iq_derotator_0/ap_rst_n",
           "ssr8_fir_decimator_0/ap_rst_n",
           "ssr8_fir_decimator_1/ap_rst_n",
-          "axis_tlast_gen_iq_0/aresetn",
           "axis_round_saturate_0/rst_n",
-          "axis_round_saturate_1/rst_n"
+          "axis_round_saturate_1/rst_n",
+          "axis_tlast_gen_iq_0/aresetn"
         ]
       },
       "rst_ps8_0_99M_peripheral_aresetn": {
@@ -9363,10 +9342,10 @@
           "fir_compiler_0/aclk",
           "fir_compiler_1/aclk",
           "ssr8_fir_decimator_1/ap_clk",
-          "axis_tlast_gen_iq_0/aclk",
           "axi_dma_3/m_axi_s2mm_aclk",
           "axis_round_saturate_0/clk",
-          "axis_round_saturate_1/clk"
+          "axis_round_saturate_1/clk",
+          "axis_tlast_gen_iq_0/aclk"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {
@@ -9429,8 +9408,7 @@
           "axi_interconnect_0/M06_ACLK",
           "axi_gpio_13/s_axi_aclk",
           "smartconnect_0/aclk1",
-          "axi_dma_3/s_axi_lite_aclk",
-          "axi_dma_3/m_axi_sg_aclk"
+          "axi_dma_3/s_axi_lite_aclk"
         ]
       },
       "zynq_ultra_ps_e_0_pl_resetn0": {

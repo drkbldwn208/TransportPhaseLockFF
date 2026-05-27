@@ -19,3 +19,4 @@ pynq_overlays/*
 !pynq_overlays/latest/
 
 *.aps
+__pycache__/

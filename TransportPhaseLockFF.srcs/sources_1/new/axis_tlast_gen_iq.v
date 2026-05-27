@@ -54,13 +54,19 @@ module axis_tlast_gen_iq(
     
     reg [31:0] counter;
     reg [31:0] pkt_length_reg;
-    wire handshake;
+    wire inputs_valid;
+    wire output_fire;
+    wire [31:0] last_count;
+    wire packet_last;
     
     initial begin
         counter = 0;
     end
         
-    assign handshake = (s_axis_1_tvalid & s_axis_2_tvalid) & m_axis_tready;
+    // Pack one beat only when both I and Q words are present.  The ready
+    // signals are cross-gated so one side cannot be consumed by itself.
+    assign inputs_valid = s_axis_1_tvalid & s_axis_2_tvalid;
+    assign output_fire = inputs_valid & m_axis_tready;
     
     always @(posedge aclk) begin
         if (!aresetn) begin
@@ -74,9 +80,9 @@ module axis_tlast_gen_iq(
         if (!aresetn) begin
             counter <= 0;
         end else begin
-            if (handshake) begin
-                if (m_axis_tlast) begin
-                    counter <= 1'b1;
+            if (output_fire) begin
+                if (packet_last) begin
+                    counter <= 32'd0;
                 end else begin
                     counter <= counter + 1'b1;
                 end
@@ -84,12 +90,18 @@ module axis_tlast_gen_iq(
         end
     end
     
+    // s_axis_1 occupies the upper 64 bits and s_axis_2 occupies the lower
+    // 64 bits.  Software reading int64[2] from little-endian memory will see
+    // s_axis_2 first and s_axis_1 second.
     assign m_axis_tdata = {s_axis_1_tdata, s_axis_2_tdata};
-    assign m_axis_tvalid = s_axis_1_tvalid & s_axis_2_tvalid;
-    assign s_axis_1_tready = m_axis_tready;
-    assign s_axis_2_tready = m_axis_tready;
+    assign m_axis_tvalid = inputs_valid;
+    assign s_axis_1_tready = m_axis_tready & s_axis_2_tvalid;
+    assign s_axis_2_tready = m_axis_tready & s_axis_1_tvalid;
     
-    assign m_axis_tlast = (counter == pkt_length_reg) & handshake;
+    // pkt_length_cycles is the packet length in 128-bit output beats.
+    // A zero length is treated as one beat to keep TLAST well-defined.
+    assign last_count = (pkt_length_reg == 32'd0) ? 32'd0 : (pkt_length_reg - 32'd1);
+    assign packet_last = (counter == last_count);
+    assign m_axis_tlast = m_axis_tvalid & packet_last;
     
 endmodule
-
