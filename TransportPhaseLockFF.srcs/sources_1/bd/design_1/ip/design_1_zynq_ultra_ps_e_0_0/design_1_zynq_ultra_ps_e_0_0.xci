@@ -1610,7 +1610,7 @@
         "PSU__IRQ_P2F_APU_REGS__INT": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__IRQ_P2F__INTF_PPD_CCI__INT": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__IRQ_P2F__INTF_FPD_SMMU__INT": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "PSU__NUM_F2P0__INTR__INPUTS": [ { "value": "1", "value_permission": "bd", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "PSU__NUM_F2P0__INTR__INPUTS": [ { "value": "1", "value_src": "propagated", "value_permission": "bd", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__NUM_F2P1__INTR__INPUTS": [ { "value": "1", "value_permission": "bd", "resolve_type": "user", "format": "long", "enabled": false, "usage": "all" } ],
         "PSU__NUM_FABRIC_RESETS": [ { "value": "1", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__GPIO_EMIO_WIDTH": [ { "value": "1", "resolve_type": "user", "format": "long", "usage": "all" } ],
@@ -2246,7 +2246,7 @@
           "abstraction_type": "xilinx.com:signal:interrupt_rtl:1.0",
           "mode": "slave",
           "parameters": {
-            "SENSITIVITY": [ { "value": "LEVEL_HIGH", "value_permission": "bd", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
+            "SENSITIVITY": [ { "value": "LEVEL_HIGH", "value_src": "constant_prop", "value_permission": "bd", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "PortWidth": [ { "value": "1", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ]
           },
           "port_maps": {

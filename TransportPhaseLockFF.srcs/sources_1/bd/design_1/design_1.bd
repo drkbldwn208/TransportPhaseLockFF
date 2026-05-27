@@ -5367,7 +5367,7 @@
             "value": "1"
           },
           "NUM_SI": {
-            "value": "4"
+            "value": "5"
           }
         },
         "interface_ports": {
@@ -5429,6 +5429,22 @@
               },
               "NUM_WRITE_OUTSTANDING": {
                 "value": "16"
+              }
+            },
+            "bridges": [
+              "M00_AXI"
+            ]
+          },
+          "S04_AXI": {
+            "mode": "Slave",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "2"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "2"
               }
             },
             "bridges": [
@@ -8191,7 +8207,7 @@
             "value": "0"
           },
           "c_include_sg": {
-            "value": "0"
+            "value": "1"
           },
           "c_m_axi_s2mm_data_width": {
             "value": "128"
@@ -8204,6 +8220,21 @@
           }
         },
         "interface_ports": {
+          "M_AXI_SG": {
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "mode": "Master",
+            "address_space_ref": "Data_SG",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0x0003FFFFFFFFFFFF",
+              "width": "50"
+            },
+            "parameters": {
+              "master_id": {
+                "value": "5"
+              }
+            }
+          },
           "M_AXI_S2MM": {
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
             "mode": "Master",
@@ -8223,6 +8254,10 @@
         "addressing": {
           "address_spaces": {
             "Data_S2MM": {
+              "range": "1P",
+              "width": "50"
+            },
+            "Data_SG": {
               "range": "1P",
               "width": "50"
             }
@@ -8655,6 +8690,12 @@
           "smartconnect_0/S03_AXI"
         ]
       },
+      "axi_dma_3_M_AXI_SG": {
+        "interface_ports": [
+          "axi_dma_3/M_AXI_SG",
+          "smartconnect_0/S04_AXI"
+        ]
+      },
       "axi_interconnect_0_M00_AXI": {
         "interface_ports": [
           "axi_interconnect_0/M00_AXI",
@@ -9075,6 +9116,12 @@
           "ErrorSignalSignExten_0/s_axis_tvalid"
         ]
       },
+      "axi_dma_3_s2mm_introut": {
+        "ports": [
+          "axi_dma_3/s2mm_introut",
+          "zynq_ultra_ps_e_0/pl_ps_irq0"
+        ]
+      },
       "axi_gpio_0_gpio_io_o": {
         "ports": [
           "axi_gpio_0/gpio_io_o",
@@ -9382,7 +9429,8 @@
           "axi_interconnect_0/M06_ACLK",
           "axi_gpio_13/s_axi_aclk",
           "smartconnect_0/aclk1",
-          "axi_dma_3/s_axi_lite_aclk"
+          "axi_dma_3/s_axi_lite_aclk",
+          "axi_dma_3/m_axi_sg_aclk"
         ]
       },
       "zynq_ultra_ps_e_0_pl_resetn0": {
@@ -9598,6 +9646,31 @@
       "/axi_dma_3": {
         "address_spaces": {
           "Data_S2MM": {
+            "segments": {
+              "SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH": {
+                "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH",
+                "offset": "0x0000800000000",
+                "range": "32G"
+              },
+              "SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW": {
+                "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW",
+                "offset": "0x0000000000000",
+                "range": "2G"
+              },
+              "SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM": {
+                "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM",
+                "offset": "0x00000FF000000",
+                "range": "16M",
+                "is_excluded": "TRUE"
+              },
+              "SEG_zynq_ultra_ps_e_0_HP0_QSPI": {
+                "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI",
+                "offset": "0x00000C0000000",
+                "range": "512M"
+              }
+            }
+          },
+          "Data_SG": {
             "segments": {
               "SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH": {
                 "address_block": "/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH",
