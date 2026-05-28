@@ -8199,7 +8199,9 @@
             "right": "0"
           },
           "counter_mon": {
-            "direction": "O"
+            "direction": "O",
+            "left": "31",
+            "right": "0"
           }
         }
       },

@@ -51,7 +51,7 @@ module axis_tlast_gen_iq(
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TLAST" *)
     output wire m_axis_tlast,
     
-    output wire counter_mon
+    output wire [31:0] counter_mon
     );
     
     reg [31:0] counter;
