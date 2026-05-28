@@ -9444,7 +9444,8 @@
       "axis_tlast_gen_iq_0_m_axis_tlast": {
         "ports": [
           "axis_tlast_gen_iq_0/m_axis_tlast",
-          "system_ila_0/probe2"
+          "system_ila_0/probe2",
+          "axi_dma_3/s_axis_s2mm_tlast"
         ]
       },
       "pmod_da2_trigger_0_dac_cs": {

@@ -1360,7 +1360,7 @@ connect_bd_intf_net -intf_net [get_bd_intf_nets ssr8_fir_decimator_0_m_axis] [ge
   connect_bd_net -net axi_gpio_6_gpio_io_o [get_bd_pins axi_gpio_6/gpio_io_o] [get_bd_pins pmod_da2_trigger_0/trigger_in]
   connect_bd_net -net axi_gpio_7_gpio_io_o [get_bd_pins axi_gpio_7/gpio_io_o] [get_bd_pins ErrorSignal_Wrapper_0/unwrap_en]
   connect_bd_net -net axis_tlast_gen_iq_0_counter_mon [get_bd_pins axis_tlast_gen_iq_0/counter_mon] [get_bd_pins system_ila_0/probe3]
-  connect_bd_net -net axis_tlast_gen_iq_0_m_axis_tlast [get_bd_pins axis_tlast_gen_iq_0/m_axis_tlast] [get_bd_pins system_ila_0/probe2]
+  connect_bd_net -net axis_tlast_gen_iq_0_m_axis_tlast [get_bd_pins axis_tlast_gen_iq_0/m_axis_tlast] [get_bd_pins system_ila_0/probe2] [get_bd_pins axi_dma_3/s_axis_s2mm_tlast]
   connect_bd_net -net pmod_da2_trigger_0_dac_cs [get_bd_pins pmod_da2_trigger_0/dac_cs] [get_bd_ports dac_cs_0]
   connect_bd_net -net pmod_da2_trigger_0_dac_mosi [get_bd_pins pmod_da2_trigger_0/dac_mosi] [get_bd_ports dac_mosi_0]
   connect_bd_net -net pmod_da2_trigger_0_dac_sclk [get_bd_pins pmod_da2_trigger_0/dac_sclk] [get_bd_ports dac_sclk_0]
