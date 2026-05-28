@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'rfdc_iq_derotator'
 ================================================================
 + General Information: 
-    * Date:           Thu May 28 11:22:21 2026
+    * Date:           Thu May 28 12:20:47 2026
     * Version:        2024.1 (Build 5069499 on May 21 2024)
     * Project:        rfdc_iq_derotator_prj
     * Solution:       solution1 (Vivado IP Flow Target)
@@ -109,11 +109,11 @@
 |   lut_addr_3_fu_678_p3               |     |        | lut_addr_3              | select    | auto_sel  | 0       |
 |   sub_ln35_1_fu_1384_p2              |     |        | sub_ln35_1              | sub       | fabric    | 0       |
 |   cos_phase_fu_1390_p3               |     |        | cos_phase               | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U1              | 1   |        | mul_ln73                | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U18  | 1   |        | mul_ln73_1              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U1              | 1   |        | mul_ln71                | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U18  | 1   |        | mul_ln71_1              | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U18  | 1   |        | i_mix                   | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U2              | 1   |        | mul_ln74                | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U19  | 1   |        | mul_ln74_1              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U2              | 1   |        | mul_ln72                | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U19  | 1   |        | mul_ln72_1              | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U19  | 1   |        | q_mix                   | sub       | dsp_slice | 3       |
 |   add_ln14_fu_1826_p2                |     |        | add_ln14                | add       | fabric    | 0       |
 |   icmp_ln16_fu_1851_p2               |     |        | icmp_ln16               | seteq     | auto      | 0       |
@@ -136,11 +136,11 @@
 |   lut_addr_7_fu_773_p3               |     |        | lut_addr_7              | select    | auto_sel  | 0       |
 |   sub_ln35_3_fu_1411_p2              |     |        | sub_ln35_3              | sub       | fabric    | 0       |
 |   cos_phase_1_fu_1417_p3             |     |        | cos_phase_1             | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U3              | 1   |        | mul_ln73_2              | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U20  | 1   |        | mul_ln73_3              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U3              | 1   |        | mul_ln71_2              | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U20  | 1   |        | mul_ln71_3              | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U20  | 1   |        | i_mix_1                 | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U4              | 1   |        | mul_ln74_2              | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U21  | 1   |        | mul_ln74_3              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U4              | 1   |        | mul_ln72_2              | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U21  | 1   |        | mul_ln72_3              | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U21  | 1   |        | q_mix_1                 | sub       | dsp_slice | 3       |
 |   add_ln14_2_fu_1976_p2              |     |        | add_ln14_2              | add       | fabric    | 0       |
 |   icmp_ln16_2_fu_2001_p2             |     |        | icmp_ln16_2             | seteq     | auto      | 0       |
@@ -163,11 +163,11 @@
 |   lut_addr_11_fu_868_p3              |     |        | lut_addr_11             | select    | auto_sel  | 0       |
 |   sub_ln35_5_fu_1428_p2              |     |        | sub_ln35_5              | sub       | fabric    | 0       |
 |   cos_phase_2_fu_1434_p3             |     |        | cos_phase_2             | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U5              | 1   |        | mul_ln73_4              | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U22  | 1   |        | mul_ln73_5              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U5              | 1   |        | mul_ln71_4              | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U22  | 1   |        | mul_ln71_5              | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U22  | 1   |        | i_mix_2                 | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U6              | 1   |        | mul_ln74_4              | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U23  | 1   |        | mul_ln74_5              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U6              | 1   |        | mul_ln72_4              | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U23  | 1   |        | mul_ln72_5              | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U23  | 1   |        | q_mix_2                 | sub       | dsp_slice | 3       |
 |   add_ln14_4_fu_2114_p2              |     |        | add_ln14_4              | add       | fabric    | 0       |
 |   icmp_ln16_4_fu_2139_p2             |     |        | icmp_ln16_4             | seteq     | auto      | 0       |
@@ -190,11 +190,11 @@
 |   lut_addr_15_fu_963_p3              |     |        | lut_addr_15             | select    | auto_sel  | 0       |
 |   sub_ln35_7_fu_1445_p2              |     |        | sub_ln35_7              | sub       | fabric    | 0       |
 |   cos_phase_3_fu_1451_p3             |     |        | cos_phase_3             | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U7              | 1   |        | mul_ln73_6              | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U24  | 1   |        | mul_ln73_7              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U7              | 1   |        | mul_ln71_6              | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U24  | 1   |        | mul_ln71_7              | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U24  | 1   |        | i_mix_3                 | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U8              | 1   |        | mul_ln74_6              | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U25  | 1   |        | mul_ln74_7              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U8              | 1   |        | mul_ln72_6              | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U25  | 1   |        | mul_ln72_7              | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U25  | 1   |        | q_mix_3                 | sub       | dsp_slice | 3       |
 |   add_ln14_6_fu_2252_p2              |     |        | add_ln14_6              | add       | fabric    | 0       |
 |   icmp_ln16_6_fu_2277_p2             |     |        | icmp_ln16_6             | seteq     | auto      | 0       |
@@ -217,11 +217,11 @@
 |   lut_addr_19_fu_1058_p3             |     |        | lut_addr_19             | select    | auto_sel  | 0       |
 |   sub_ln35_9_fu_1462_p2              |     |        | sub_ln35_9              | sub       | fabric    | 0       |
 |   cos_phase_4_fu_1468_p3             |     |        | cos_phase_4             | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U9              | 1   |        | mul_ln73_8              | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U26  | 1   |        | mul_ln73_9              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U9              | 1   |        | mul_ln71_8              | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U26  | 1   |        | mul_ln71_9              | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U26  | 1   |        | i_mix_4                 | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U10             | 1   |        | mul_ln74_8              | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U27  | 1   |        | mul_ln74_9              | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U10             | 1   |        | mul_ln72_8              | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U27  | 1   |        | mul_ln72_9              | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U27  | 1   |        | q_mix_4                 | sub       | dsp_slice | 3       |
 |   add_ln14_8_fu_2390_p2              |     |        | add_ln14_8              | add       | fabric    | 0       |
 |   icmp_ln16_8_fu_2415_p2             |     |        | icmp_ln16_8             | seteq     | auto      | 0       |
@@ -244,11 +244,11 @@
 |   lut_addr_23_fu_1153_p3             |     |        | lut_addr_23             | select    | auto_sel  | 0       |
 |   sub_ln35_11_fu_1479_p2             |     |        | sub_ln35_11             | sub       | fabric    | 0       |
 |   cos_phase_5_fu_1485_p3             |     |        | cos_phase_5             | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U11             | 1   |        | mul_ln73_10             | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U28  | 1   |        | mul_ln73_11             | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U11             | 1   |        | mul_ln71_10             | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U28  | 1   |        | mul_ln71_11             | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U28  | 1   |        | i_mix_5                 | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U12             | 1   |        | mul_ln74_10             | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U29  | 1   |        | mul_ln74_11             | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U12             | 1   |        | mul_ln72_10             | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U29  | 1   |        | mul_ln72_11             | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U29  | 1   |        | q_mix_5                 | sub       | dsp_slice | 3       |
 |   add_ln14_10_fu_2528_p2             |     |        | add_ln14_10             | add       | fabric    | 0       |
 |   icmp_ln16_10_fu_2553_p2            |     |        | icmp_ln16_10            | seteq     | auto      | 0       |
@@ -271,11 +271,11 @@
 |   lut_addr_27_fu_1248_p3             |     |        | lut_addr_27             | select    | auto_sel  | 0       |
 |   sub_ln35_13_fu_1496_p2             |     |        | sub_ln35_13             | sub       | fabric    | 0       |
 |   cos_phase_6_fu_1502_p3             |     |        | cos_phase_6             | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U13             | 1   |        | mul_ln73_12             | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U30  | 1   |        | mul_ln73_13             | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U13             | 1   |        | mul_ln71_12             | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U30  | 1   |        | mul_ln71_13             | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U30  | 1   |        | i_mix_6                 | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U14             | 1   |        | mul_ln74_12             | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U31  | 1   |        | mul_ln74_13             | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U14             | 1   |        | mul_ln72_12             | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U31  | 1   |        | mul_ln72_13             | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U31  | 1   |        | q_mix_6                 | sub       | dsp_slice | 3       |
 |   add_ln14_12_fu_2666_p2             |     |        | add_ln14_12             | add       | fabric    | 0       |
 |   icmp_ln16_12_fu_2691_p2            |     |        | icmp_ln16_12            | seteq     | auto      | 0       |
@@ -298,11 +298,11 @@
 |   lut_addr_31_fu_1343_p3             |     |        | lut_addr_31             | select    | auto_sel  | 0       |
 |   sub_ln35_15_fu_1513_p2             |     |        | sub_ln35_15             | sub       | fabric    | 0       |
 |   cos_phase_7_fu_1519_p3             |     |        | cos_phase_7             | select    | auto_sel  | 0       |
-|   mul_16s_16s_32_1_1_U15             | 1   |        | mul_ln73_14             | mul       | auto      | 0       |
-|   mac_muladd_16s_16s_32s_32_4_1_U32  | 1   |        | mul_ln73_15             | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U15             | 1   |        | mul_ln71_14             | mul       | auto      | 0       |
+|   mac_muladd_16s_16s_32s_32_4_1_U32  | 1   |        | mul_ln71_15             | mul       | dsp_slice | 3       |
 |   mac_muladd_16s_16s_32s_32_4_1_U32  | 1   |        | i_mix_7                 | add       | dsp_slice | 3       |
-|   mul_16s_16s_32_1_1_U16             | 1   |        | mul_ln74_14             | mul       | auto      | 0       |
-|   mac_mulsub_16s_16s_32s_32_4_1_U33  | 1   |        | mul_ln74_15             | mul       | dsp_slice | 3       |
+|   mul_16s_16s_32_1_1_U16             | 1   |        | mul_ln72_14             | mul       | auto      | 0       |
+|   mac_mulsub_16s_16s_32s_32_4_1_U33  | 1   |        | mul_ln72_15             | mul       | dsp_slice | 3       |
 |   mac_mulsub_16s_16s_32s_32_4_1_U33  | 1   |        | q_mix_7                 | sub       | dsp_slice | 3       |
 |   add_ln14_14_fu_2804_p2             |     |        | add_ln14_14             | add       | fabric    | 0       |
 |   icmp_ln16_14_fu_2829_p2            |     |        | icmp_ln16_14            | seteq     | auto      | 0       |
@@ -332,7 +332,7 @@
 |   xor_ln49_fu_3006_p2                |     |        | xor_ln49                | xor       | auto      | 0       |
 |   and_ln16_fu_3011_p2                |     |        | and_ln16                | and       | auto      | 0       |
 |   sparsemux_7_2_16_1_1_U17           |     |        | q_rot                   | sparsemux | auto      | 0       |
-|   add_ln136_fu_602_p2                |     |        | add_ln136               | add       | fabric    | 0       |
+|   add_ln134_fu_602_p2                |     |        | add_ln134               | add       | fabric    | 0       |
 +--------------------------------------+-----+--------+-------------------------+-----------+-----------+---------+
 
 
@@ -359,16 +359,16 @@
 | inline    |                           | rfdc_iq_derotator.cpp:27 in nco_sine_q15                    |
 | inline    |                           | rfdc_iq_derotator.cpp:40 in sincos_q15                      |
 | inline    |                           | rfdc_iq_derotator.cpp:52 in rotate_one_sample               |
-| interface | axis port=s_axis_i        | rfdc_iq_derotator.cpp:88 in rfdc_iq_derotator, s_axis_i     |
-| interface | axis port=s_axis_q        | rfdc_iq_derotator.cpp:89 in rfdc_iq_derotator, s_axis_q     |
-| interface | axis port=m_axis_i        | rfdc_iq_derotator.cpp:90 in rfdc_iq_derotator, m_axis_i     |
-| interface | axis port=m_axis_q        | rfdc_iq_derotator.cpp:91 in rfdc_iq_derotator, m_axis_q     |
-| interface | ap_none port=enable       | rfdc_iq_derotator.cpp:92 in rfdc_iq_derotator, enable       |
-| interface | ap_none port=reset_phase  | rfdc_iq_derotator.cpp:93 in rfdc_iq_derotator, reset_phase  |
-| interface | ap_none port=phase_offset | rfdc_iq_derotator.cpp:94 in rfdc_iq_derotator, phase_offset |
-| interface | ap_ctrl_none port=return  | rfdc_iq_derotator.cpp:95 in rfdc_iq_derotator, return       |
-| pipeline  | II=1                      | rfdc_iq_derotator.cpp:96 in rfdc_iq_derotator               |
-| unroll    |                           | rfdc_iq_derotator.cpp:109 in rfdc_iq_derotator              |
+| interface | axis port=s_axis_i        | rfdc_iq_derotator.cpp:86 in rfdc_iq_derotator, s_axis_i     |
+| interface | axis port=s_axis_q        | rfdc_iq_derotator.cpp:87 in rfdc_iq_derotator, s_axis_q     |
+| interface | axis port=m_axis_i        | rfdc_iq_derotator.cpp:88 in rfdc_iq_derotator, m_axis_i     |
+| interface | axis port=m_axis_q        | rfdc_iq_derotator.cpp:89 in rfdc_iq_derotator, m_axis_q     |
+| interface | ap_none port=enable       | rfdc_iq_derotator.cpp:90 in rfdc_iq_derotator, enable       |
+| interface | ap_none port=reset_phase  | rfdc_iq_derotator.cpp:91 in rfdc_iq_derotator, reset_phase  |
+| interface | ap_none port=phase_offset | rfdc_iq_derotator.cpp:92 in rfdc_iq_derotator, phase_offset |
+| interface | ap_ctrl_none port=return  | rfdc_iq_derotator.cpp:93 in rfdc_iq_derotator, return       |
+| pipeline  | II=1                      | rfdc_iq_derotator.cpp:94 in rfdc_iq_derotator               |
+| unroll    |                           | rfdc_iq_derotator.cpp:107 in rfdc_iq_derotator              |
 +-----------+---------------------------+-------------------------------------------------------------+
 
 

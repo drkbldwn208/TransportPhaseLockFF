@@ -37,7 +37,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>rfdc_iq_derotator.cpp:96</SourceLocation>
+<SourceLocation>rfdc_iq_derotator.cpp:94</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 

@@ -914,8 +914,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Rfdc_iq_derotator</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114628502</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2026-05-28T18:22:30Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114628560</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2026-05-28T19:20:58Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

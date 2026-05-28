@@ -14,34 +14,34 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/levlabcukomen/Desktop/VivadoProjects/TransportPhaseLockFF/hls_sources/rfdc_iq_derotator/run_hls.tcl:24:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=rfdc_iq_derotator" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:88:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:86:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=s_axis_i" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:89:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:87:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=s_axis_q" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:90:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:88:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=m_axis_i" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:91:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:89:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=m_axis_q" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:92:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:90:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="ap_none port=enable" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:93:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:91:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="ap_none port=reset_phase" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:94:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:92:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="ap_none port=phase_offset" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:95:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:93:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="ap_ctrl_none port=return" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:96:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:94:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:109:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="rfdc_iq_derotator.cpp:107:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="rfdc_iq_derotator" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:41:13" msg_body="Inlining function 'nco_sine_q15(ap_uint&lt;32&gt;)' into 'sincos_q15(ap_uint&lt;32&gt;, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)'">
@@ -53,20 +53,20 @@
     <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:61:5" msg_body="Inlining function 'sincos_q15(ap_uint&lt;32&gt;, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)' into 'rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)'">
         <args Callee="sincos_q15(ap_uint&lt;32&gt;, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)" Callee-DebugLoc="File rfdc_iq_derotator.cpp Line 39 Column 0" Caller="rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)" Caller-DebugLoc="File rfdc_iq_derotator.cpp Line 51 Column 0"/>
     </msg>
-    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:77:14" msg_body="Inlining function 'round_saturate_to_i16(ap_int&lt;48&gt;)' into 'rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)'">
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:75:14" msg_body="Inlining function 'round_saturate_to_i16(ap_int&lt;48&gt;)' into 'rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)'">
         <args Callee="round_saturate_to_i16(ap_int&lt;48&gt;)" Callee-DebugLoc="File rfdc_iq_derotator.cpp Line 11 Column 0" Caller="rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)" Caller-DebugLoc="File rfdc_iq_derotator.cpp Line 51 Column 0"/>
     </msg>
-    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:76:14" msg_body="Inlining function 'round_saturate_to_i16(ap_int&lt;48&gt;)' into 'rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)'">
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:74:14" msg_body="Inlining function 'round_saturate_to_i16(ap_int&lt;48&gt;)' into 'rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)'">
         <args Callee="round_saturate_to_i16(ap_int&lt;48&gt;)" Callee-DebugLoc="File rfdc_iq_derotator.cpp Line 11 Column 0" Caller="rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)" Caller-DebugLoc="File rfdc_iq_derotator.cpp Line 51 Column 0"/>
     </msg>
-    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:125:9" msg_body="Inlining function 'rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)' into 'rfdc_iq_derotator(hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, bool, bool, ap_uint&lt;32&gt;)'">
-        <args Callee="rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)" Callee-DebugLoc="File rfdc_iq_derotator.cpp Line 51 Column 0" Caller="rfdc_iq_derotator(hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, bool, bool, ap_uint&lt;32&gt;)" Caller-DebugLoc="File rfdc_iq_derotator.cpp Line 87 Column 0"/>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:123:9" msg_body="Inlining function 'rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)' into 'rfdc_iq_derotator(hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, bool, bool, ap_uint&lt;32&gt;)'">
+        <args Callee="rotate_one_sample(ap_int&lt;16&gt;, ap_int&lt;16&gt;, ap_uint&lt;32&gt;, bool, ap_int&lt;16&gt;*, ap_int&lt;16&gt;*)" Callee-DebugLoc="File rfdc_iq_derotator.cpp Line 51 Column 0" Caller="rfdc_iq_derotator(hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, hls::stream&lt;ap_uint&lt;128&gt;, 0&gt;&amp;, bool, bool, ap_uint&lt;32&gt;)" Caller-DebugLoc="File rfdc_iq_derotator.cpp Line 85 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:108:5" msg_body="Loop 'ROTATE_LANES' is marked as complete unroll implied by the pipeline pragma">
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:106:5" msg_body="Loop 'ROTATE_LANES' is marked as complete unroll implied by the pipeline pragma">
         <args LoopName="ROTATE_LANES"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:87:0" msg_body="Unrolling loop 'ROTATE_LANES' (rfdc_iq_derotator.cpp:108:5) in function 'rfdc_iq_derotator' completely with a factor of 8">
-        <args Factor="8" LoopLoc="rfdc_iq_derotator.cpp:108:5" LoopName="ROTATE_LANES"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="rfdc_iq_derotator.cpp:85:0" msg_body="Unrolling loop 'ROTATE_LANES' (rfdc_iq_derotator.cpp:106:5) in function 'rfdc_iq_derotator' completely with a factor of 8">
+        <args Factor="8" LoopLoc="rfdc_iq_derotator.cpp:106:5" LoopName="ROTATE_LANES"/>
     </msg>
 </xilinx:hls_fe_msgs>
 

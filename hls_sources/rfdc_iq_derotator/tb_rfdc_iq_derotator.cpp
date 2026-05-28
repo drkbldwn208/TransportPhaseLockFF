@@ -26,6 +26,10 @@ static axis_iq_bus_t make_bus(bool make_i, int bus_index, double amplitude) {
     for (int lane = 0; lane < RFDC_IQ_DEROTATOR_LANES; lane++) {
         int sample_index = bus_index * RFDC_IQ_DEROTATOR_LANES + lane;
         double phase = two_pi * turns_per_sample * sample_index;
+        /*
+         * The hardware currently applies exp(+j*phase), so the regression
+         * drives a negative-rotation phasor: I + jQ = A*exp(-j*phase).
+         */
         double value = make_i ? amplitude * std::cos(phase)
                               : amplitude * std::sin(phase);
         pack_lane(word, lane, (ap_int<16>)std::lround(value));

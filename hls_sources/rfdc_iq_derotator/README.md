@@ -76,17 +76,18 @@ Input is treated as:
 z = I + jQ
 ```
 
-To bring a positive-frequency tone to baseband, the module multiplies by:
+To bring the observed negative-phase-ramp tone to baseband, the module
+multiplies by:
 
 ```text
-exp(-j * phase)
+exp(+j * phase)
 ```
 
 So the implemented equations are:
 
 ```text
-I_out = I*cos(phase) + Q*sin(phase)
-Q_out = Q*cos(phase) - I*sin(phase)
+I_out = I*cos(phase) - Q*sin(phase)
+Q_out = Q*cos(phase) + I*sin(phase)
 ```
 
 The sine and cosine values are generated with the same quarter-wave lookup
@@ -165,11 +166,12 @@ For long phase-noise traces, decimating before DMA is the right move: the RFDC f
 
 ## Sign Check
 
-The implemented direction assumes a positive-frequency complex tone:
+The implemented direction assumes the measured complex tone has a negative
+phase ramp:
 
 ```text
 I = A*cos(phase)
-Q = A*sin(phase)
+Q = -A*sin(phase)
 ```
 
 After derotation, that becomes approximately:
@@ -179,7 +181,7 @@ I_out = A
 Q_out = 0
 ```
 
-If the observed tone rotates the opposite direction because of an upstream I/Q convention, use the complex conjugate input convention in software analysis or change the hardware equations to multiply by `exp(+j*phase)` instead.
+If the observed tone rotates the opposite direction because of an upstream I/Q convention, use the complex conjugate input convention in software analysis or change the hardware equations back to multiply by `exp(-j*phase)` instead.
 
 ## Running HLS
 

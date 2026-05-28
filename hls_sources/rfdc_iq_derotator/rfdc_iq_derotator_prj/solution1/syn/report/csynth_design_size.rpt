@@ -36,7 +36,7 @@
 +---------------------------+--------------------------+-----------------+---------------+--------------+-------------+---------------+
 | Function                  | Location                 | Compile/Link    | Unroll/Inline | Array/Struct | Performance | HW Transforms |
 +---------------------------+--------------------------+-----------------+---------------+--------------+-------------+---------------+
-| + rfdc_iq_derotator       | rfdc_iq_derotator.cpp:80 | 3,861           | 535           | 517          | 517         | 533           |
+| + rfdc_iq_derotator       | rfdc_iq_derotator.cpp:78 | 3,861           | 535           | 517          | 517         | 533           |
 |  + rotate_one_sample      | rfdc_iq_derotator.cpp:45 | 2,791           |               |              |             |               |
 |   + sincos_q15            | rfdc_iq_derotator.cpp:39 | 1,271           |               |              |             |               |
 |      nco_sine_q15         | rfdc_iq_derotator.cpp:26 | 1,110 (2 calls) |               |              |             |               |

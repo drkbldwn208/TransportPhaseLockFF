@@ -1,9 +1,9 @@
 {
   "0": {
     "basicblocks": 12,
-    "calls": "6",
+    "calls": "4",
     "file": "rfdc_iq_derotator.cpp",
-    "fileloc": 80,
+    "fileloc": 78,
     "instructions": 213,
     "loads": {
       "G": 1,
@@ -17,6 +17,63 @@
     "total_instructions": 3861
   },
   "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rfdc_iq_derotator.h",
+    "fileloc": 50,
+    "instructions": 2,
+    "name": "__cxx_global_var_init.1",
+    "total_instructions": 17
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "rfdc_iq_derotator_lut.h",
+    "fileloc": 17,
+    "instructions": 16385,
+    "name": "__cxx_global_var_init.2",
+    "total_instructions": 294913
+  },
+  "3": {
+    "basicblocks": 1,
+    "calls": "6 6",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 39,
+    "instructions": 36,
+    "loads": {
+      "L": 3
+    },
+    "name": "sincos_q15",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 1271
+  },
+  "4": {
+    "basicblocks": 4,
+    "calls": "3 5 5",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 45,
+    "instructions": 128,
+    "loads": {
+      "L": 7
+    },
+    "name": "rotate_one_sample",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 2791
+  },
+  "5": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "rfdc_iq_derotator.cpp",
+    "fileloc": 11,
+    "instructions": 40,
+    "name": "round_saturate_to_i16",
+    "total_instructions": 342
+  },
+  "6": {
     "basicblocks": 11,
     "calls": "",
     "file": "rfdc_iq_derotator.cpp",
@@ -31,70 +88,13 @@
     },
     "total_instructions": 555
   },
-  "2": {
+  "7": {
     "basicblocks": 1,
-    "calls": "",
-    "file": "rfdc_iq_derotator_lut.h",
-    "fileloc": 17,
-    "instructions": 16385,
-    "name": "__cxx_global_var_init.2",
-    "total_instructions": 294913
-  },
-  "3": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "rfdc_iq_derotator.h",
-    "fileloc": 50,
-    "instructions": 2,
-    "name": "__cxx_global_var_init.1",
-    "total_instructions": 17
-  },
-  "4": {
-    "basicblocks": 6,
-    "calls": "",
-    "file": "rfdc_iq_derotator.cpp",
-    "fileloc": 11,
-    "instructions": 40,
-    "name": "round_saturate_to_i16",
-    "total_instructions": 342
-  },
-  "5": {
-    "basicblocks": 1,
-    "calls": "3 2",
+    "calls": "1 2",
     "file": "rfdc_iq_derotator.pp.0.cpp",
     "fileloc": 0,
     "instructions": 3,
     "name": "",
     "total_instructions": 294933
-  },
-  "6": {
-    "basicblocks": 4,
-    "calls": "7 4 4",
-    "file": "rfdc_iq_derotator.cpp",
-    "fileloc": 45,
-    "instructions": 128,
-    "loads": {
-      "L": 7
-    },
-    "name": "rotate_one_sample",
-    "stores": {
-      "L": 7
-    },
-    "total_instructions": 2791
-  },
-  "7": {
-    "basicblocks": 1,
-    "calls": "1 1",
-    "file": "rfdc_iq_derotator.cpp",
-    "fileloc": 39,
-    "instructions": 36,
-    "loads": {
-      "L": 3
-    },
-    "name": "sincos_q15",
-    "stores": {
-      "L": 3
-    },
-    "total_instructions": 1271
   }
 }

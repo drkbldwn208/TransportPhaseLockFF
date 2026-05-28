@@ -4,7 +4,7 @@
     "xci_name": "design_1_rfdc_iq_derotator_0_0",
     "cell_name": "rfdc_iq_derotator_0",
     "component_reference": "xilinx.com:hls:rfdc_iq_derotator:1.0",
-    "ip_revision": "2114625745",
+    "ip_revision": "2114628560",
     "gen_directory": "../../../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_rfdc_iq_derotator_0_0",
     "parameters": {
       "component_parameters": {
@@ -12,7 +12,7 @@
         "clk_period": [ { "value": "4.069", "enabled": false, "usage": "all" } ],
         "machine": [ { "value": "64", "enabled": false, "usage": "all" } ],
         "combinational": [ { "value": "0", "enabled": false, "usage": "all" } ],
-        "latency": [ { "value": "22", "enabled": false, "usage": "all" } ],
+        "latency": [ { "value": "8", "enabled": false, "usage": "all" } ],
         "II": [ { "value": "1", "enabled": false, "usage": "all" } ]
       },
       "project_parameters": {
@@ -31,7 +31,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114625745" } ],
+        "IPREVISION": [ { "value": "2114628560" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_rfdc_iq_derotator_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

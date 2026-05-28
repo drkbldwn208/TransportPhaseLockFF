@@ -7660,7 +7660,7 @@
       },
       "rfdc_iq_derotator_0": {
         "vlnv": "xilinx.com:hls:rfdc_iq_derotator:1.0",
-        "ip_revision": "2114625745",
+        "ip_revision": "2114628560",
         "xci_name": "design_1_rfdc_iq_derotator_0_0",
         "xci_path": "ip/design_1_rfdc_iq_derotator_0_0/design_1_rfdc_iq_derotator_0_0.xci",
         "inst_hier_path": "rfdc_iq_derotator_0"
@@ -8262,6 +8262,11 @@
         "xci_name": "design_1_axis_round_saturate_0_1",
         "xci_path": "ip/design_1_axis_round_saturate_0_1/design_1_axis_round_saturate_0_1.xci",
         "inst_hier_path": "axis_round_saturate_0",
+        "parameters": {
+          "DROP_LSBS": {
+            "value": "0"
+          }
+        },
         "reference_info": {
           "ref_type": "hdl",
           "ref_name": "axis_round_saturate",
@@ -8432,6 +8437,11 @@
         "xci_name": "design_1_axis_round_saturate_0_3",
         "xci_path": "ip/design_1_axis_round_saturate_0_3/design_1_axis_round_saturate_0_3.xci",
         "inst_hier_path": "axis_round_saturate_1",
+        "parameters": {
+          "DROP_LSBS": {
+            "value": "0"
+          }
+        },
         "reference_info": {
           "ref_type": "hdl",
           "ref_name": "axis_round_saturate",
@@ -8619,7 +8629,7 @@
             "value": "7"
           },
           "C_NUM_OF_PROBES": {
-            "value": "2"
+            "value": "3"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -9319,7 +9329,8 @@
       "axi_dma_3_s_axis_s2mm_tready": {
         "ports": [
           "axi_dma_3/s_axis_s2mm_tready",
-          "system_ila_0/probe1"
+          "system_ila_0/probe1",
+          "axis_tlast_gen_iq_0/m_axis_tready"
         ]
       },
       "axi_gpio_0_gpio_io_o": {
@@ -9343,8 +9354,8 @@
       "axi_gpio_13_gpio_io_o": {
         "ports": [
           "axi_gpio_13/gpio_io_o",
-          "rfdc_iq_derotator_0/enable",
-          "system_ila_0/probe0"
+          "system_ila_0/probe0",
+          "rfdc_iq_derotator_0/enable"
         ]
       },
       "axi_gpio_1_gpio2_io_o": {
@@ -9413,6 +9424,12 @@
           "ErrorSignal_Wrapper_0/unwrap_en"
         ]
       },
+      "axis_tlast_gen_iq_0_m_axis_tlast": {
+        "ports": [
+          "axis_tlast_gen_iq_0/m_axis_tlast",
+          "system_ila_0/probe2"
+        ]
+      },
       "pmod_da2_trigger_0_dac_cs": {
         "ports": [
           "pmod_da2_trigger_0/dac_cs",
@@ -9462,13 +9479,13 @@
           "perturbation_gen_0/ap_rst_n",
           "axis_broadcaster_3/aresetn",
           "axis_broadcaster_2/aresetn",
-          "rfdc_iq_derotator_0/ap_rst_n",
           "ssr8_fir_decimator_0/ap_rst_n",
           "ssr8_fir_decimator_1/ap_rst_n",
+          "axis_tlast_gen_iq_0/aresetn",
+          "system_ila_0/resetn",
           "axis_round_saturate_0/rst_n",
           "axis_round_saturate_1/rst_n",
-          "axis_tlast_gen_iq_0/aresetn",
-          "system_ila_0/resetn"
+          "rfdc_iq_derotator_0/ap_rst_n"
         ]
       },
       "rst_ps8_0_99M_peripheral_aresetn": {
@@ -9558,7 +9575,6 @@
           "perturbation_gen_0/ap_clk",
           "axis_broadcaster_3/aclk",
           "axis_broadcaster_2/aclk",
-          "rfdc_iq_derotator_0/ap_clk",
           "ssr8_fir_decimator_0/ap_clk",
           "cic_compiler_1/aclk",
           "cic_compiler_0/aclk",
@@ -9566,10 +9582,11 @@
           "fir_compiler_1/aclk",
           "ssr8_fir_decimator_1/ap_clk",
           "axi_dma_3/m_axi_s2mm_aclk",
+          "axis_tlast_gen_iq_0/aclk",
+          "system_ila_0/clk",
           "axis_round_saturate_0/clk",
           "axis_round_saturate_1/clk",
-          "axis_tlast_gen_iq_0/aclk",
-          "system_ila_0/clk"
+          "rfdc_iq_derotator_0/ap_clk"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {

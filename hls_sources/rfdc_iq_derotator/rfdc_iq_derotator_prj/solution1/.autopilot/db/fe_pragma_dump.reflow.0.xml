@@ -1,4 +1,5 @@
 <pragmas>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<2, false>::ap_int_base<32, false>(ap_range_ref<32, false> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_range_ref<32, false>::ap_range_ref(ap_int_base<32, false>*, int, int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_bit_ref<2, false>::ap_bit_ref(ap_int_base<2, false>*, int)" off="0" region="0" recursive="0"/>
@@ -106,16 +107,16 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="range" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<32>::ap_uint(int)" off="0" region="0" recursive="0"/>
 <pragma file="/home/levlabcukomen/tools/Vitis_HLS/2024.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="ssdm_int<32, false>::ssdm_int(unsigned int)" off="0" region="0" recursive="0"/>
-<pragma file="rfdc_iq_derotator.cpp" line="96" pragmaType="pipeline" parentfunction="rfdc_iq_derotator" off="0" ii="1" style=""/>
-<pragma file="rfdc_iq_derotator.cpp" line="109" pragmaType="unroll" parentfunction="rfdc_iq_derotator" factor="-1" skip_exit_check="0"/>
-<pragma file="rfdc_iq_derotator.cpp" line="88" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="s_axis_i" register="1" register_mode="both" name="" depth="-1"/>
-<pragma file="rfdc_iq_derotator.cpp" line="89" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="s_axis_q" register="1" register_mode="both" name="" depth="-1"/>
-<pragma file="rfdc_iq_derotator.cpp" line="90" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="m_axis_i" register="1" register_mode="both" name="" depth="-1"/>
-<pragma file="rfdc_iq_derotator.cpp" line="91" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="m_axis_q" register="1" register_mode="both" name="" depth="-1"/>
-<pragma file="rfdc_iq_derotator.cpp" line="92" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_none" port="enable" name="" register="0"/>
-<pragma file="rfdc_iq_derotator.cpp" line="93" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_none" port="reset_phase" name="" register="0"/>
-<pragma file="rfdc_iq_derotator.cpp" line="94" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_none" port="phase_offset" name="" register="0"/>
-<pragma file="rfdc_iq_derotator.cpp" line="95" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_ctrl_none" port="return" name=""/>
+<pragma file="rfdc_iq_derotator.cpp" line="94" pragmaType="pipeline" parentfunction="rfdc_iq_derotator" off="0" ii="1" style=""/>
+<pragma file="rfdc_iq_derotator.cpp" line="107" pragmaType="unroll" parentfunction="rfdc_iq_derotator" factor="-1" skip_exit_check="0"/>
+<pragma file="rfdc_iq_derotator.cpp" line="86" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="s_axis_i" register="1" register_mode="both" name="" depth="-1"/>
+<pragma file="rfdc_iq_derotator.cpp" line="87" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="s_axis_q" register="1" register_mode="both" name="" depth="-1"/>
+<pragma file="rfdc_iq_derotator.cpp" line="88" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="m_axis_i" register="1" register_mode="both" name="" depth="-1"/>
+<pragma file="rfdc_iq_derotator.cpp" line="89" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="axis" port="m_axis_q" register="1" register_mode="both" name="" depth="-1"/>
+<pragma file="rfdc_iq_derotator.cpp" line="90" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_none" port="enable" name="" register="0"/>
+<pragma file="rfdc_iq_derotator.cpp" line="91" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_none" port="reset_phase" name="" register="0"/>
+<pragma file="rfdc_iq_derotator.cpp" line="92" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_none" port="phase_offset" name="" register="0"/>
+<pragma file="rfdc_iq_derotator.cpp" line="93" pragmaType="interface" parentfunction="rfdc_iq_derotator" mode="ap_ctrl_none" port="return" name=""/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, false>::RType<($_0)32, true>::mult operator*<32, false>(ap_int_base<32, false> const&, int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_range_ref<128, false>& ap_range_ref<128, false>::operator=<16, false>(ap_int_base<16, false> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
@@ -138,5 +139,4 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, false>::ap_int_base<33, false>(ap_int_base<33, false> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<33, false>::ap_int_base<32, false>(ap_int_base<32, false> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
 </pragmas>

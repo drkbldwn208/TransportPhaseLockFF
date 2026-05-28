@@ -32,12 +32,12 @@
         <hiertable>
             <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
             <rows>
-                <row id="0" col0="rfdc_iq_derotator" col1="rfdc_iq_derotator.cpp:80" col2="3861" col3="535" col4="517" col5="517" col6="533">
-                    <row id="5" col0="rotate_one_sample" col1="rfdc_iq_derotator.cpp:45" col2="2791" col3="" col4="" col5="" col6="">
-                        <row id="6" col0="sincos_q15" col1="rfdc_iq_derotator.cpp:39" col2="1271" col3="" col4="" col5="" col6="">
-                            <row id="1" col0="nco_sine_q15" col1="rfdc_iq_derotator.cpp:26" col2="1110" col2_disp="1,110 (2 calls)" col3="" col4="" col5="" col6=""/>
+                <row id="0" col0="rfdc_iq_derotator" col1="rfdc_iq_derotator.cpp:78" col2="3861" col3="535" col4="517" col5="517" col6="533">
+                    <row id="4" col0="rotate_one_sample" col1="rfdc_iq_derotator.cpp:45" col2="2791" col3="" col4="" col5="" col6="">
+                        <row id="3" col0="sincos_q15" col1="rfdc_iq_derotator.cpp:39" col2="1271" col3="" col4="" col5="" col6="">
+                            <row id="6" col0="nco_sine_q15" col1="rfdc_iq_derotator.cpp:26" col2="1110" col2_disp="1,110 (2 calls)" col3="" col4="" col5="" col6=""/>
                         </row>
-                        <row id="4" col0="round_saturate_to_i16" col1="rfdc_iq_derotator.cpp:11" col2="684" col2_disp=" 684 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        <row id="5" col0="round_saturate_to_i16" col1="rfdc_iq_derotator.cpp:11" col2="684" col2_disp=" 684 (2 calls)" col3="" col4="" col5="" col6=""/>
                     </row>
                 </row>
             </rows>

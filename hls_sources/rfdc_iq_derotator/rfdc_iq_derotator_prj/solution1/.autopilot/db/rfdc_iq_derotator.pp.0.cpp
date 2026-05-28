@@ -7983,7 +7983,7 @@ static void rotate_one_sample(
     coeff_t cos_phase;
     coeff_t sin_phase;
     sincos_q15(phase, &cos_phase, &sin_phase);
-# 73 "rfdc_iq_derotator.cpp"
+# 71 "rfdc_iq_derotator.cpp"
     mix_acc_t i_mix = (mix_acc_t)i_in * cos_phase + (mix_acc_t)q_in * sin_phase;
     mix_acc_t q_mix = (mix_acc_t)q_in * cos_phase - (mix_acc_t)i_in * sin_phase;
 
@@ -8001,7 +8001,7 @@ __attribute__((sdx_kernel("rfdc_iq_derotator", 0))) void rfdc_iq_derotator(
     ap_uint<32> phase_offset) {
 #line 24 "/home/levlabcukomen/Desktop/VivadoProjects/TransportPhaseLockFF/hls_sources/rfdc_iq_derotator/run_hls.tcl"
 #pragma HLSDIRECTIVE TOP name=rfdc_iq_derotator
-# 87 "rfdc_iq_derotator.cpp"
+# 85 "rfdc_iq_derotator.cpp"
 
 #pragma HLS INTERFACE axis port=s_axis_i
 #pragma HLS INTERFACE axis port=s_axis_q

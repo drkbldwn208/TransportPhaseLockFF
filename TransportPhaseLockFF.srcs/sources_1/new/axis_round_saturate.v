@@ -23,7 +23,7 @@
 module axis_round_saturate #(
     parameter integer IN_WIDTH = 32,
     parameter integer OUT_WIDTH = 18,
-    parameter integer DROP_LSBS = 14,
+    parameter integer DROP_LSBS = 0,
     parameter integer BUS_WIDTH = 24
     )(
     input wire clk,
@@ -33,12 +33,13 @@ module axis_round_saturate #(
     output wire s_axis_tready,
     input wire signed [IN_WIDTH-1:0] s_axis_tdata,
     
-    output reg m_axis_tvalid,
+    output wire m_axis_tvalid,
     input wire m_axis_tready,
-    output reg signed [BUS_WIDTH-1:0] m_axis_tdata
+    output wire signed [BUS_WIDTH-1:0] m_axis_tdata
     );
     
-    assign s_axis_tready = m_axis_tready || !m_axis_tvalid;
+    assign s_axis_tready = m_axis_tready;
+    assign m_axis_tvalid = rst_n && s_axis_tvalid;
     
     wire signed [IN_WIDTH-1:0] rounded_data;
     
@@ -68,16 +69,8 @@ module axis_round_saturate #(
         end
     end 
     
-    always @(posedge clk) begin
-        if (!rst_n) begin
-            m_axis_tvalid <= 1'b0;
-            m_axis_tdata <= {BUS_WIDTH{1'b0}};
-        end else if (s_axis_tready) begin
-            m_axis_tvalid <= s_axis_tvalid;
-            if (s_axis_tvalid) begin  
-                m_axis_tdata <= {{(BUS_WIDTH - OUT_WIDTH){next_tdata[OUT_WIDTH-1]}}, next_tdata};
-            end
-        end
-    end
+    assign m_axis_tdata =
+        rst_n ? {{(BUS_WIDTH - OUT_WIDTH){next_tdata[OUT_WIDTH-1]}}, next_tdata}
+              : {BUS_WIDTH{1'b0}};
         
 endmodule

@@ -61,14 +61,12 @@ static void rotate_one_sample(
     sincos_q15(phase, &cos_phase, &sin_phase);
 
     /*
-     * Derotation means multiplying by exp(-j*phase):
+     * This sign convention multiplies by exp(+j*phase):
      *
-     *   (I + jQ) * (cos(phase) - j sin(phase))
+     *   (I + jQ) * (cos(phase) + j sin(phase))
      *
-     * so:
-     *
-     *   I_out = I*cos + Q*sin
-     *   Q_out = Q*cos - I*sin
+     * so a measured negative phase ramp, I + jQ ~= A*exp(-j*phase),
+     * is brought to baseband as approximately A + j0.
      */
     mix_acc_t i_mix = (mix_acc_t)i_in * cos_phase + (mix_acc_t)q_in * sin_phase;
     mix_acc_t q_mix = (mix_acc_t)q_in * cos_phase - (mix_acc_t)i_in * sin_phase;

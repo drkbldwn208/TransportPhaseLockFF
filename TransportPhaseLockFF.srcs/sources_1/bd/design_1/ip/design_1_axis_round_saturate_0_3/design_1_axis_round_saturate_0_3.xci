@@ -10,14 +10,14 @@
       "component_parameters": {
         "IN_WIDTH": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "OUT_WIDTH": [ { "value": "18", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "DROP_LSBS": [ { "value": "14", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "DROP_LSBS": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "BUS_WIDTH": [ { "value": "24", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "design_1_axis_round_saturate_0_3", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
         "IN_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "OUT_WIDTH": [ { "value": "18", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "DROP_LSBS": [ { "value": "14", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "DROP_LSBS": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "BUS_WIDTH": [ { "value": "24", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {

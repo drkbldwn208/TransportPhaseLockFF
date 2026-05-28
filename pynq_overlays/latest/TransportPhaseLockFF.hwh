@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed May 27 13:23:31 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu May 28 12:27:03 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2"/>
 
@@ -5809,6 +5809,7 @@
         <PORT DIR="O" NAME="s_axis_s2mm_tready" SIGIS="undef" SIGNAME="axi_dma_3_s_axis_s2mm_tready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe1"/>
+            <CONNECTION INSTANCE="axis_tlast_gen_iq_0" PORT="m_axis_tready"/>
           </CONNECTIONS>
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_tlast_gen_iq_0" PORT="m_axis_tready"/>
@@ -7234,8 +7235,8 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_13_gpio_io_o">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="rfdc_iq_derotator_0" PORT="enable"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe0"/>
+            <CONNECTION INSTANCE="rfdc_iq_derotator_0" PORT="enable"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="99999001" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
@@ -11396,7 +11397,7 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="BUS_WIDTH" VALUE="24"/>
-        <PARAMETER NAME="DROP_LSBS" VALUE="14"/>
+        <PARAMETER NAME="DROP_LSBS" VALUE="0"/>
         <PARAMETER NAME="IN_WIDTH" VALUE="32"/>
         <PARAMETER NAME="OUT_WIDTH" VALUE="18"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_axis_round_saturate_0_1"/>
@@ -11491,7 +11492,7 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="BUS_WIDTH" VALUE="24"/>
-        <PARAMETER NAME="DROP_LSBS" VALUE="14"/>
+        <PARAMETER NAME="DROP_LSBS" VALUE="0"/>
         <PARAMETER NAME="IN_WIDTH" VALUE="32"/>
         <PARAMETER NAME="OUT_WIDTH" VALUE="18"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_axis_round_saturate_0_3"/>
@@ -11910,12 +11911,16 @@
             <CONNECTION INSTANCE="axi_dma_3" PORT="s_axis_s2mm_tdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="m_axis_tlast" SIGIS="undef" SIGNAME="axi_dma_3_s_axis_s2mm_tlast">
+        <PORT DIR="O" NAME="m_axis_tlast" SIGIS="undef" SIGNAME="axis_tlast_gen_iq_0_m_axis_tlast">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_3" PORT="s_axis_s2mm_tlast"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="m_axis_tready" SIGIS="undef" SIGNAME="axi_dma_3_s_axis_s2mm_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_3" PORT="s_axis_s2mm_tready"/>
+          </CONNECTIONS>
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_3" PORT="s_axis_s2mm_tready"/>
           </CONNECTIONS>
@@ -15014,13 +15019,13 @@
             <CONNECTION INSTANCE="perturbation_gen_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="axis_broadcaster_3" PORT="aresetn"/>
             <CONNECTION INSTANCE="axis_broadcaster_2" PORT="aresetn"/>
-            <CONNECTION INSTANCE="rfdc_iq_derotator_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="ssr8_fir_decimator_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="ssr8_fir_decimator_1" PORT="ap_rst_n"/>
-            <CONNECTION INSTANCE="axis_round_saturate_0" PORT="rst_n"/>
-            <CONNECTION INSTANCE="axis_round_saturate_1" PORT="rst_n"/>
             <CONNECTION INSTANCE="axis_tlast_gen_iq_0" PORT="aresetn"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="resetn"/>
+            <CONNECTION INSTANCE="axis_round_saturate_0" PORT="rst_n"/>
+            <CONNECTION INSTANCE="axis_round_saturate_1" PORT="rst_n"/>
+            <CONNECTION INSTANCE="rfdc_iq_derotator_0" PORT="ap_rst_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
@@ -17691,14 +17696,14 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="2114625745" FULLNAME="/rfdc_iq_derotator_0" HWVERSION="1.0" INSTANCE="rfdc_iq_derotator_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="rfdc_iq_derotator" VLNV="xilinx.com:hls:rfdc_iq_derotator:1.0">
+    <MODULE COREREVISION="2114628560" FULLNAME="/rfdc_iq_derotator_0" HWVERSION="1.0" INSTANCE="rfdc_iq_derotator_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="rfdc_iq_derotator" VLNV="xilinx.com:hls:rfdc_iq_derotator:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="design_1_rfdc_iq_derotator_0_0"/>
         <PARAMETER NAME="II" VALUE="1"/>
         <PARAMETER NAME="clk_period" VALUE="4.069"/>
         <PARAMETER NAME="combinational" VALUE="0"/>
-        <PARAMETER NAME="latency" VALUE="22"/>
+        <PARAMETER NAME="latency" VALUE="8"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -18949,7 +18954,7 @@
         <PARAMETER NAME="C_INPUT_PIPE_STAGES" VALUE="0"/>
         <PARAMETER NAME="C_MON_TYPE" VALUE="MIX"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="7"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="2"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="3"/>
         <PARAMETER NAME="C_PROBE0_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE0_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
@@ -19688,7 +19693,7 @@
         <PARAMETER NAME="C_PROBE29_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE29_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE29_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE2_MU_CNT" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE2_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE2_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE300_MU_CNT" VALUE="1"/>
@@ -22805,6 +22810,11 @@
             <CONNECTION INSTANCE="axi_dma_3" PORT="s_axis_s2mm_tready"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="axis_tlast_gen_iq_0_m_axis_tlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_tlast_gen_iq_0" PORT="m_axis_tlast"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" NAME="resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn"/>
@@ -24655,7 +24665,6 @@
             <CONNECTION INSTANCE="perturbation_gen_0" PORT="ap_clk"/>
             <CONNECTION INSTANCE="axis_broadcaster_3" PORT="aclk"/>
             <CONNECTION INSTANCE="axis_broadcaster_2" PORT="aclk"/>
-            <CONNECTION INSTANCE="rfdc_iq_derotator_0" PORT="ap_clk"/>
             <CONNECTION INSTANCE="ssr8_fir_decimator_0" PORT="ap_clk"/>
             <CONNECTION INSTANCE="cic_compiler_1" PORT="aclk"/>
             <CONNECTION INSTANCE="cic_compiler_0" PORT="aclk"/>
@@ -24663,10 +24672,11 @@
             <CONNECTION INSTANCE="fir_compiler_1" PORT="aclk"/>
             <CONNECTION INSTANCE="ssr8_fir_decimator_1" PORT="ap_clk"/>
             <CONNECTION INSTANCE="axi_dma_3" PORT="m_axi_s2mm_aclk"/>
-            <CONNECTION INSTANCE="axis_round_saturate_0" PORT="clk"/>
-            <CONNECTION INSTANCE="axis_round_saturate_1" PORT="clk"/>
             <CONNECTION INSTANCE="axis_tlast_gen_iq_0" PORT="aclk"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="clk"/>
+            <CONNECTION INSTANCE="axis_round_saturate_0" PORT="clk"/>
+            <CONNECTION INSTANCE="axis_round_saturate_1" PORT="clk"/>
+            <CONNECTION INSTANCE="rfdc_iq_derotator_0" PORT="ap_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_adc2" SIGIS="clk"/>
@@ -25431,10 +25441,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
@@ -25443,10 +25453,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>

@@ -43,7 +43,7 @@ Args:
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 77, Column: 14 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 75, Column: 14 }
 Function:        _ZL17rotate_one_sample6ap_intILi16EES0_7ap_uintILi32EEbPS0_S3_
 Args:            
   - String:          'Inlining function '''
@@ -57,7 +57,7 @@ Args:
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 76, Column: 14 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 74, Column: 14 }
 Function:        _ZL17rotate_one_sample6ap_intILi16EES0_7ap_uintILi32EEbPS0_S3_
 Args:            
   - String:          'Inlining function '''
@@ -71,7 +71,7 @@ Args:
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 125, Column: 9 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 123, Column: 9 }
 Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
 Args:            
   - String:          'Inlining function '''
@@ -79,13 +79,13 @@ Args:
     DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 51, Column: 0 }
   - String:          ''' into '''
   - Caller:          'rfdc_iq_derotator(hls::stream<ap_uint<128>, 0>&, hls::stream<ap_uint<128>, 0>&, hls::stream<ap_uint<128>, 0>&, hls::stream<ap_uint<128>, 0>&, bool, bool, ap_uint<32>)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 87, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 85, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            reflow-infer-unroll
 Name:            ImplicitUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 108, Column: 5 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 106, Column: 5 }
 Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
 Args:            
   - String:          'Loop '''
@@ -95,13 +95,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 87, Column: 0 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 85, Column: 0 }
 Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        ROTATE_LANES
   - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:108:5'
+  - LoopLoc:         'rfdc_iq_derotator.cpp:106:5'
   - String:          ') '
   - String:          'in function '''
   - String:          rfdc_iq_derotator
