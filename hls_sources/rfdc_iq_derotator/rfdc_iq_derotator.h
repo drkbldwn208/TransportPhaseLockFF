@@ -20,6 +20,11 @@
  * generate TDATA/TVALID/TREADY, without forcing TLAST/TKEEP sideband ports.
  * That makes the output easy to connect to standard Xilinx CIC/FIR Compiler
  * AXI4-Stream inputs.
+ *
+ * The derotation sine/cosine now use the same 14-bit quarter-wave addressing
+ * convention as the existing RTL NCO. The NCO's original table is amplitude
+ * scaled for DAC output, so the HLS table is a normalized copy for unit-gain
+ * Q1.15 mixer coefficients.
  */
 typedef ap_uint<128> axis_iq_bus_t;
 

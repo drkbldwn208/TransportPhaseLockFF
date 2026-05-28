@@ -1,248 +1,110 @@
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 109, Column: 16 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 41, Column: 13 }
 Function:        _ZL10sincos_q157ap_uintILi32EEP6ap_intILi16EES3_
 Args:            
   - String:          'Inlining function '''
-  - Callee:          'q30_to_q15(ap_int<32>)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 41, Column: 0 }
+  - Callee:          'nco_sine_q15(ap_uint<32>)'
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 26, Column: 0 }
   - String:          ''' into '''
   - Caller:          'sincos_q15(ap_uint<32>, ap_int<16>*, ap_int<16>*)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 57, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 39, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 108, Column: 16 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 42, Column: 16 }
 Function:        _ZL10sincos_q157ap_uintILi32EEP6ap_intILi16EES3_
 Args:            
   - String:          'Inlining function '''
-  - Callee:          'q30_to_q15(ap_int<32>)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 41, Column: 0 }
+  - Callee:          'nco_sine_q15(ap_uint<32>)'
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 26, Column: 0 }
   - String:          ''' into '''
   - Caller:          'sincos_q15(ap_uint<32>, ap_int<16>*, ap_int<16>*)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 57, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 39, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 128, Column: 5 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 61, Column: 5 }
 Function:        _ZL17rotate_one_sample6ap_intILi16EES0_7ap_uintILi32EEbPS0_S3_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'sincos_q15(ap_uint<32>, ap_int<16>*, ap_int<16>*)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 57, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 39, Column: 0 }
   - String:          ''' into '''
   - Caller:          'rotate_one_sample(ap_int<16>, ap_int<16>, ap_uint<32>, bool, ap_int<16>*, ap_int<16>*)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 118, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 51, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 144, Column: 14 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 77, Column: 14 }
 Function:        _ZL17rotate_one_sample6ap_intILi16EES0_7ap_uintILi32EEbPS0_S3_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'round_saturate_to_i16(ap_int<48>)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 26, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 11, Column: 0 }
   - String:          ''' into '''
   - Caller:          'rotate_one_sample(ap_int<16>, ap_int<16>, ap_uint<32>, bool, ap_int<16>*, ap_int<16>*)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 118, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 51, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 143, Column: 14 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 76, Column: 14 }
 Function:        _ZL17rotate_one_sample6ap_intILi16EES0_7ap_uintILi32EEbPS0_S3_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'round_saturate_to_i16(ap_int<48>)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 26, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 11, Column: 0 }
   - String:          ''' into '''
   - Caller:          'rotate_one_sample(ap_int<16>, ap_int<16>, ap_uint<32>, bool, ap_int<16>*, ap_int<16>*)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 118, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 51, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 192, Column: 9 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 125, Column: 9 }
 Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
 Args:            
   - String:          'Inlining function '''
   - Callee:          'rotate_one_sample(ap_int<16>, ap_int<16>, ap_uint<32>, bool, ap_int<16>*, ap_int<16>*)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 118, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 51, Column: 0 }
   - String:          ''' into '''
   - Caller:          'rfdc_iq_derotator(hls::stream<ap_uint<128>, 0>&, hls::stream<ap_uint<128>, 0>&, hls::stream<ap_uint<128>, 0>&, hls::stream<ap_uint<128>, 0>&, bool, bool, ap_uint<32>)'
-    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
+    DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 87, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            reflow-infer-unroll
 Name:            ImplicitUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 175, Column: 5 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 108, Column: 5 }
 Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
 Args:            
   - String:          'Loop '''
   - LoopName:        ROTATE_LANES
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
-...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 87, Column: 5 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Loop '''
-  - LoopName:        CORDIC_ROTATE
   - String:          ''' is marked as complete unroll implied by the pipeline pragma'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
+DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 87, Column: 0 }
 Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        ROTATE_LANES
   - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:175:5'
+  - LoopLoc:         'rfdc_iq_derotator.cpp:108:5'
   - String:          ') '
   - String:          'in function '''
   - String:          rfdc_iq_derotator
   - String:          ''' completely with a factor of '
   - Factor:          '8'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: rfdc_iq_derotator.cpp, Line: 154, Column: 0 }
-Function:        _Z17rfdc_iq_derotatorRN3hls6streamI7ap_uintILi128EELi0EEES4_S4_S4_bbS1_ILi32EE
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        CORDIC_ROTATE
-  - String:          ''' ('
-  - LoopLoc:         'rfdc_iq_derotator.cpp:87:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          rfdc_iq_derotator
-  - String:          ''' completely with a factor of '
-  - Factor:          '20'
 ...

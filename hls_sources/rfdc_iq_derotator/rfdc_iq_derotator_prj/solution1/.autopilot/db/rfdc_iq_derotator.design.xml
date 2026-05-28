@@ -14,39 +14,39 @@
 <TargetClockPeriod>4.07</TargetClockPeriod>
 <ClockUncertainty>1.10</ClockUncertainty>
 <TargetInitiationInterval>1</TargetInitiationInterval>
-<EstimatedClockPeriod>2.960</EstimatedClockPeriod>
+<EstimatedClockPeriod>2.951</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>22</Best-caseLatency>
-<Average-caseLatency>22</Average-caseLatency>
-<Worst-caseLatency>22</Worst-caseLatency>
-<Best-caseRealTimeLatency>89.518 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>89.518 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>89.518 ns</Worst-caseRealTimeLatency>
+<Best-caseLatency>8</Best-caseLatency>
+<Average-caseLatency>8</Average-caseLatency>
+<Worst-caseLatency>8</Worst-caseLatency>
+<Best-caseRealTimeLatency>32.552 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>32.552 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>32.552 ns</Worst-caseRealTimeLatency>
 <PipelineInitiationInterval>1</PipelineInitiationInterval>
-<PipelineDepth>23</PipelineDepth>
+<PipelineDepth>9</PipelineDepth>
 <PipelineType>yes</PipelineType>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>rfdc_iq_derotator.cpp:163</SourceLocation>
+<SourceLocation>rfdc_iq_derotator.cpp:96</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>
 <Resources>
+<BRAM_18K>112</BRAM_18K>
+<AVAIL_BRAM>2160</AVAIL_BRAM>
+<UTIL_BRAM>5</UTIL_BRAM>
 <DSP>32</DSP>
 <AVAIL_DSP>4272</AVAIL_DSP>
 <UTIL_DSP>~0</UTIL_DSP>
-<FF>20771</FF>
+<FF>3258</FF>
 <AVAIL_FF>850560</AVAIL_FF>
-<UTIL_FF>2</UTIL_FF>
-<LUT>53899</LUT>
+<UTIL_FF>~0</UTIL_FF>
+<LUT>4331</LUT>
 <AVAIL_LUT>425280</AVAIL_LUT>
-<UTIL_LUT>12</UTIL_LUT>
-<BRAM_18K>0</BRAM_18K>
-<AVAIL_BRAM>2160</AVAIL_BRAM>
-<UTIL_BRAM>0</UTIL_BRAM>
+<UTIL_LUT>1</UTIL_LUT>
 <URAM>0</URAM>
 <AVAIL_URAM>80</AVAIL_URAM>
 <UTIL_URAM>0</UTIL_URAM>

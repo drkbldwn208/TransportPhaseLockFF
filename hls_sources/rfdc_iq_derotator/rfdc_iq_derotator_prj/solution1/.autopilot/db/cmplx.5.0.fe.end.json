@@ -2,13 +2,13 @@
     "0": {
         "name": "rfdc_iq_derotator",
         "file": "rfdc_iq_derotator.cpp",
-        "fileloc": "147",
-        "instructions": "3215",
-        "total_instructions": "3215",
+        "fileloc": "80",
+        "instructions": "479",
+        "total_instructions": "479",
         "calls": "",
         "basicblocks": "1",
         "loads": {
-            "G": "1"
+            "G": "17"
         },
         "stores": {
             "G": "1"

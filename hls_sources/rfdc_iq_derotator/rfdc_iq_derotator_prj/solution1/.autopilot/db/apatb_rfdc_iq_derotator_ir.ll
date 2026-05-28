@@ -7,15 +7,15 @@ target triple = "fpga64-xilinx-none"
 %"struct.ap_uint<128>" = type { %"struct.ap_int_base<128, false>" }
 %"struct.ap_int_base<128, false>" = type { %"struct.ssdm_int<128, false>" }
 %"struct.ssdm_int<128, false>" = type { i128 }
-%"struct.ap_int<32>" = type { %"struct.ap_int_base<32, true>" }
-%"struct.ap_int_base<32, true>" = type { %"struct.ssdm_int<32, true>" }
-%"struct.ssdm_int<32, true>" = type { i32 }
+%"struct.ap_uint<32>" = type { %"struct.ap_int_base<32, false>" }
+%"struct.ap_int_base<32, false>" = type { %"struct.ssdm_int<32, false>" }
+%"struct.ssdm_int<32, false>" = type { i32 }
 
 ; Function Attrs: inaccessiblememonly nounwind willreturn
 declare void @llvm.sideeffect() #0
 
 ; Function Attrs: noinline willreturn
-define void @apatb_rfdc_iq_derotator_ir(%"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %s_axis_i, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %s_axis_q, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %m_axis_i, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %m_axis_q, i1 zeroext %enable, i1 zeroext %reset_phase, %"struct.ap_int<32>"* nocapture readonly %phase_offset) local_unnamed_addr #1 {
+define void @apatb_rfdc_iq_derotator_ir(%"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %s_axis_i, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %s_axis_q, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %m_axis_i, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull dereferenceable(16) %m_axis_q, i1 zeroext %enable, i1 zeroext %reset_phase, %"struct.ap_uint<32>"* nocapture readonly %phase_offset) local_unnamed_addr #1 {
 entry:
   %s_axis_i_copy = alloca i128, align 512
   call void @llvm.sideeffect() #7 [ "stream_interface"(i128* %s_axis_i_copy, i32 0) ]
@@ -26,7 +26,7 @@ entry:
   %m_axis_q_copy = alloca i128, align 512
   call void @llvm.sideeffect() #7 [ "stream_interface"(i128* %m_axis_q_copy, i32 0) ]
   call fastcc void @copy_in(%"class.hls::stream<ap_uint<128>, 0>"* nonnull %s_axis_i, i128* nonnull align 512 %s_axis_i_copy, %"class.hls::stream<ap_uint<128>, 0>"* nonnull %s_axis_q, i128* nonnull align 512 %s_axis_q_copy, %"class.hls::stream<ap_uint<128>, 0>"* nonnull %m_axis_i, i128* nonnull align 512 %m_axis_i_copy, %"class.hls::stream<ap_uint<128>, 0>"* nonnull %m_axis_q, i128* nonnull align 512 %m_axis_q_copy)
-  call void @apatb_rfdc_iq_derotator_hw(i128* %s_axis_i_copy, i128* %s_axis_q_copy, i128* %m_axis_i_copy, i128* %m_axis_q_copy, i1 %enable, i1 %reset_phase, %"struct.ap_int<32>"* %phase_offset)
+  call void @apatb_rfdc_iq_derotator_hw(i128* %s_axis_i_copy, i128* %s_axis_q_copy, i128* %m_axis_i_copy, i128* %m_axis_q_copy, i1 %enable, i1 %reset_phase, %"struct.ap_uint<32>"* %phase_offset)
   call void @copy_back(%"class.hls::stream<ap_uint<128>, 0>"* %s_axis_i, i128* %s_axis_i_copy, %"class.hls::stream<ap_uint<128>, 0>"* %s_axis_q, i128* %s_axis_q_copy, %"class.hls::stream<ap_uint<128>, 0>"* %m_axis_i, i128* %m_axis_i_copy, %"class.hls::stream<ap_uint<128>, 0>"* %m_axis_q, i128* %m_axis_q_copy)
   ret void
 }
@@ -135,7 +135,7 @@ ret:                                              ; preds = %empty
   ret void
 }
 
-declare void @apatb_rfdc_iq_derotator_hw(i128*, i128*, i128*, i128*, i1, i1, %"struct.ap_int<32>"*)
+declare void @apatb_rfdc_iq_derotator_hw(i128*, i128*, i128*, i128*, i1, i1, %"struct.ap_uint<32>"*)
 
 ; Function Attrs: argmemonly noinline willreturn
 define internal fastcc void @copy_back(%"class.hls::stream<ap_uint<128>, 0>"* noalias "unpacked"="0", i128* noalias nocapture align 512 "unpacked"="1.0", %"class.hls::stream<ap_uint<128>, 0>"* noalias "unpacked"="2", i128* noalias nocapture align 512 "unpacked"="3.0", %"class.hls::stream<ap_uint<128>, 0>"* noalias "unpacked"="4", i128* noalias nocapture align 512 "unpacked"="5.0", %"class.hls::stream<ap_uint<128>, 0>"* noalias "unpacked"="6", i128* noalias nocapture align 512 "unpacked"="7.0") unnamed_addr #3 {
@@ -147,19 +147,19 @@ entry:
   ret void
 }
 
-define void @rfdc_iq_derotator_hw_stub_wrapper(i128*, i128*, i128*, i128*, i1, i1, %"struct.ap_int<32>"*) #6 {
+define void @rfdc_iq_derotator_hw_stub_wrapper(i128*, i128*, i128*, i128*, i1, i1, %"struct.ap_uint<32>"*) #6 {
 entry:
   %7 = alloca %"class.hls::stream<ap_uint<128>, 0>"
   %8 = alloca %"class.hls::stream<ap_uint<128>, 0>"
   %9 = alloca %"class.hls::stream<ap_uint<128>, 0>"
   %10 = alloca %"class.hls::stream<ap_uint<128>, 0>"
   call void @copy_out(%"class.hls::stream<ap_uint<128>, 0>"* %7, i128* %0, %"class.hls::stream<ap_uint<128>, 0>"* %8, i128* %1, %"class.hls::stream<ap_uint<128>, 0>"* %9, i128* %2, %"class.hls::stream<ap_uint<128>, 0>"* %10, i128* %3)
-  call void @rfdc_iq_derotator_hw_stub(%"class.hls::stream<ap_uint<128>, 0>"* %7, %"class.hls::stream<ap_uint<128>, 0>"* %8, %"class.hls::stream<ap_uint<128>, 0>"* %9, %"class.hls::stream<ap_uint<128>, 0>"* %10, i1 %4, i1 %5, %"struct.ap_int<32>"* %6)
+  call void @rfdc_iq_derotator_hw_stub(%"class.hls::stream<ap_uint<128>, 0>"* %7, %"class.hls::stream<ap_uint<128>, 0>"* %8, %"class.hls::stream<ap_uint<128>, 0>"* %9, %"class.hls::stream<ap_uint<128>, 0>"* %10, i1 %4, i1 %5, %"struct.ap_uint<32>"* %6)
   call void @copy_in(%"class.hls::stream<ap_uint<128>, 0>"* %7, i128* %0, %"class.hls::stream<ap_uint<128>, 0>"* %8, i128* %1, %"class.hls::stream<ap_uint<128>, 0>"* %9, i128* %2, %"class.hls::stream<ap_uint<128>, 0>"* %10, i128* %3)
   ret void
 }
 
-declare void @rfdc_iq_derotator_hw_stub(%"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, i1 zeroext, i1 zeroext, %"struct.ap_int<32>"* nocapture readonly)
+declare void @rfdc_iq_derotator_hw_stub(%"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, %"class.hls::stream<ap_uint<128>, 0>"* noalias nocapture nonnull, i1 zeroext, i1 zeroext, %"struct.ap_uint<32>"* nocapture readonly)
 
 declare i1 @fpga_fifo_not_empty_16(i8*)
 

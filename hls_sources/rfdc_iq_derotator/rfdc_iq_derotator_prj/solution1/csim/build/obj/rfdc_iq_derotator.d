@@ -18,4 +18,5 @@ obj/rfdc_iq_derotator.o: ../../../../rfdc_iq_derotator.cpp \
   /home/levlabcukomen/tools/Vitis_HLS/2024.1/include/etc/ap_fixed_base.h \
   /home/levlabcukomen/tools/Vitis_HLS/2024.1/include/etc/ap_fixed_ref.h \
   /home/levlabcukomen/tools/Vitis_HLS/2024.1/include/etc/ap_fixed_special.h \
-  /home/levlabcukomen/tools/Vitis_HLS/2024.1/include/hls_stream.h
+  /home/levlabcukomen/tools/Vitis_HLS/2024.1/include/hls_stream.h \
+  ../../../../rfdc_iq_derotator_lut.h

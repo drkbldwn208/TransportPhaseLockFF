@@ -11,6 +11,7 @@ set_top rfdc_iq_derotator
 
 add_files rfdc_iq_derotator.cpp
 add_files rfdc_iq_derotator.h
+add_files rfdc_iq_derotator_lut.h
 add_files -tb tb_rfdc_iq_derotator.cpp
 
 open_solution "solution1" -flow_target vivado

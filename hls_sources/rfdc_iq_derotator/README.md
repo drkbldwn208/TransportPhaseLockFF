@@ -89,7 +89,18 @@ I_out = I*cos(phase) + Q*sin(phase)
 Q_out = Q*cos(phase) - I*sin(phase)
 ```
 
-The sine and cosine values are generated from the 32-bit phase using an HLS CORDIC, avoiding the RFDC mixer and avoiding a large hand-maintained sine lookup table.
+The sine and cosine values are generated with the same quarter-wave lookup
+addressing used by the existing RTL `NCO.sv`:
+
+```text
+quadrant = phase[31:30]
+address  = phase[29:16]
+```
+
+The original RTL NCO table is amplitude-scaled for DAC output. The derotator
+uses a normalized copy of that table so the mixer coefficients are unit-gain
+signed Q1.15 values. This keeps the derotator phase quantization aligned with
+the NCO without attenuating the I/Q samples.
 
 The output is clipped back to signed 16-bit samples. That keeps the output stream width compatible with the common CIC/FIR Compiler input setup. If the incoming I/Q vector is near full scale on both axes, rotation can clip because the vector magnitude can exceed the signed 16-bit range.
 

@@ -1,11 +1,12 @@
 {
   "0": {
-    "basicblocks": 481,
+    "basicblocks": 25,
     "calls": "",
     "file": "rfdc_iq_derotator.cpp",
-    "fileloc": 147,
-    "instructions": 2903,
+    "fileloc": 80,
+    "instructions": 535,
     "loads": {
+      "G": 16,
       "L": 1
     },
     "name": "rfdc_iq_derotator",
@@ -13,6 +14,6 @@
       "G": 1,
       "L": 1
     },
-    "total_instructions": 2903
+    "total_instructions": 535
   }
 }

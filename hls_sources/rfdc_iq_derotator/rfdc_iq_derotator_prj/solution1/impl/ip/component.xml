@@ -268,7 +268,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8b91e48c</spirit:value>
+            <spirit:value>12a8df63</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -284,7 +284,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1d9ebc12</spirit:value>
+            <spirit:value>5dfd77ae</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -300,7 +300,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e0f392a1</spirit:value>
+            <spirit:value>69e480cc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -316,7 +316,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>67236932</spirit:value>
+            <spirit:value>1d8260ae</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -640,6 +640,10 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/rfdc_iq_derotator_mac_muladd_16s_16s_32s_32_4_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/rfdc_iq_derotator_mac_muladd_16s_16s_32s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
@@ -653,6 +657,14 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/rfdc_iq_derotator_regslice_both.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/rfdc_iq_derotator_RFDC_IQ_DEROTATOR_SINE_LUT_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/rfdc_iq_derotator_RFDC_IQ_DEROTATOR_SINE_LUT_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -687,6 +699,11 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/rfdc_iq_derotator_mac_muladd_16s_16s_32s_32_4_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/rfdc_iq_derotator_mac_muladd_16s_16s_32s_33_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -703,6 +720,15 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/rfdc_iq_derotator_regslice_both.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/rfdc_iq_derotator_RFDC_IQ_DEROTATOR_SINE_LUT_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/rfdc_iq_derotator_RFDC_IQ_DEROTATOR_SINE_LUT_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -733,6 +759,10 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/vhdl/rfdc_iq_derotator_mac_muladd_16s_16s_32s_32_4_1.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/vhdl/rfdc_iq_derotator_mac_muladd_16s_16s_32s_33_4_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
@@ -746,6 +776,10 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/rfdc_iq_derotator_regslice_both.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/rfdc_iq_derotator_RFDC_IQ_DEROTATOR_SINE_LUT_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -771,6 +805,11 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/vhdl/rfdc_iq_derotator_mac_muladd_16s_16s_32s_32_4_1.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/vhdl/rfdc_iq_derotator_mac_muladd_16s_16s_32s_33_4_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -787,6 +826,11 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/rfdc_iq_derotator_regslice_both.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/rfdc_iq_derotator_RFDC_IQ_DEROTATOR_SINE_LUT_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -853,7 +897,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="4">22</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="4">8</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
@@ -870,8 +914,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Rfdc_iq_derotator</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114625745</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2026-05-26T20:25:53Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114628502</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2026-05-28T18:22:30Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -880,9 +924,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2024.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="221e893d"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e61fea76"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="37bf2811"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="fb6f1513"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="f74183c6"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="ddc20ee7"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

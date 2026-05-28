@@ -42,8 +42,8 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xczu49dr:-ffvf1760:-2-e
-set SourceFiles {sc {} c {../.././rfdc_iq_derotator.h ../.././rfdc_iq_derotator.cpp ../../rfdc_iq_derotator.cpp}}
-set SourceFlags {sc {} c {{ } {} { } {} {}}}
+set SourceFiles {sc {} c {../.././rfdc_iq_derotator_lut.h ../.././rfdc_iq_derotator.h ../.././rfdc_iq_derotator.cpp ../../rfdc_iq_derotator.cpp}}
+set SourceFlags {sc {} c {{ } {} { } {} { } {} {}}}
 set DirectiveFile {}
 set TBFiles {verilog ../../tb_rfdc_iq_derotator.cpp bc ../../tb_rfdc_iq_derotator.cpp sc ../../tb_rfdc_iq_derotator.cpp vhdl ../../tb_rfdc_iq_derotator.cpp c {} cas ../../tb_rfdc_iq_derotator.cpp}
 set SpecLanguage C

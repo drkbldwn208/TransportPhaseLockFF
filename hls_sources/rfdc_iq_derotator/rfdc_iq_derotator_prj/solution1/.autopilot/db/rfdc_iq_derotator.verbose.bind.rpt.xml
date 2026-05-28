@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'rfdc_iq_derotator'" level="0">
-<item name = "Date">Tue May 26 13:25:40 2026
+<item name = "Date">Thu May 28 11:22:20 2026
 </item>
 <item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
 <item name = "Project">rfdc_iq_derotator_prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">4.07 ns, 2.960 ns, 1.10 ns</column>
+<column name="ap_clk">4.07 ns, 2.951 ns, 1.10 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">22, 22, 89.518 ns, 89.518 ns, 1, 1, yes</column>
+<column name="">8, 8, 32.552 ns, 32.552 ns, 1, 1, yes</column>
 </table>
 </item>
 <item name = "Detail">

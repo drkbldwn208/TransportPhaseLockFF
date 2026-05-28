@@ -12,7 +12,7 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 
 
 if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler rfdc_iq_derotator_mac_muladd_16s_16s_32s_33_4_1 BINDTYPE {op} TYPE {all} IMPL {dsp_slice} LATENCY 3
+	::AP::rtl_comp_handler rfdc_iq_derotator_mac_muladd_16s_16s_32s_32_4_1 BINDTYPE {op} TYPE {all} IMPL {dsp_slice} LATENCY 3
 }
 
 
@@ -21,33 +21,8 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-# FIFO definition:
-set ID 38
-set FifoName rfdc_iq_derotator_frp_fifoout
-set InstName rfdc_iq_derotator_frp_fifoout_U
-set CoreName ap_simcore_frp_fifoout
-set NumOfStage 2
-set DualClock 0
-set Depth 16
-set DataWd 0
-set AddrWd 4
-set FullThresh 0
-set impl_style auto
 if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $FifoName BINDTYPE interface TYPE internal_frp_fifoout
-}
-
-
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_frp_fifoout] == "::AESL_LIB_VIRTEX::xil_gen_frp_fifoout"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_frp_fifoout { \
-    name ${FifoName} \
-    loop_pipe false \
-    prefix rfdc_iq_derotator_\
-}"
-} else {
-puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_frp_fifoout, check your platform lib"
-}
+	::AP::rtl_comp_handler rfdc_iq_derotator_RFDC_IQ_DEROTATOR_SINE_LUT_ROM_AUTO_1R BINDTYPE {storage} TYPE {rom} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
 }
 
 
@@ -230,26 +205,13 @@ if {${::AESL::PGuard_autoexp_gen}} {
 }
 
 
-# PVB definition:
-set ID 0
-set PvbName rfdc_iq_derotator_frp_pipeline_valid
-set InstName rfdc_iq_derotator_frp_pipeline_valid_U
-set CoreName ap_simcore_frp_validbits
-set NumOfStage 2
 if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $PvbName BINDTYPE interface TYPE internal_frp_validbits INSTNAME $InstName
+	::AP::rtl_comp_handler rfdc_iq_derotator_regslice_both BINDTYPE {interface} TYPE {adapter} IMPL {reg_slice}
 }
 
 
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_frp_validbits] == "::AESL_LIB_VIRTEX::xil_gen_frp_validbits"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_frp_validbits { \
-    name ${PvbName} \
-    prefix rfdc_iq_derotator_\
-}"
-} else {
-puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_frp_validbits, check your platform lib"
-}
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler rfdc_iq_derotator_regslice_both BINDTYPE {interface} TYPE {adapter} IMPL {reg_slice}
 }
 
 

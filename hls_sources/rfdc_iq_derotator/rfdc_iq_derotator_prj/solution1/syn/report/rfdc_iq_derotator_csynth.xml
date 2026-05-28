@@ -19,34 +19,34 @@
 <PipelineType>yes</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>2.960</EstimatedClockPeriod>
+<EstimatedClockPeriod>2.951</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>22</Best-caseLatency>
-<Average-caseLatency>22</Average-caseLatency>
-<Worst-caseLatency>22</Worst-caseLatency>
-<Best-caseRealTimeLatency>89.518 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>89.518 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>89.518 ns</Worst-caseRealTimeLatency>
+<Best-caseLatency>8</Best-caseLatency>
+<Average-caseLatency>8</Average-caseLatency>
+<Worst-caseLatency>8</Worst-caseLatency>
+<Best-caseRealTimeLatency>32.552 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>32.552 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>32.552 ns</Worst-caseRealTimeLatency>
 <PipelineInitiationInterval>1</PipelineInitiationInterval>
-<PipelineDepth>23</PipelineDepth>
+<PipelineDepth>9</PipelineDepth>
 <Interval-min>1</Interval-min>
 <Interval-max>1</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>rfdc_iq_derotator.cpp:163</SourceLocation>
+<SourceLocation>rfdc_iq_derotator.cpp:96</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
+<BRAM_18K>112</BRAM_18K>
 <DSP>32</DSP>
-<FF>20771</FF>
-<LUT>53899</LUT>
-<BRAM_18K>0</BRAM_18K>
+<FF>3258</FF>
+<LUT>4331</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
