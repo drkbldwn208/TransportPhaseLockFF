@@ -49,7 +49,9 @@ module axis_tlast_gen_iq(
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TREADY" *)
     input wire m_axis_tready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TLAST" *)
-    output wire m_axis_tlast
+    output wire m_axis_tlast,
+    
+    output wire counter_mon
     );
     
     reg [31:0] counter;
@@ -103,5 +105,6 @@ module axis_tlast_gen_iq(
     assign last_count = (pkt_length_reg == 32'd0) ? 32'd0 : (pkt_length_reg - 32'd1);
     assign packet_last = (counter == last_count);
     assign m_axis_tlast = m_axis_tvalid & packet_last;
+    assign counter_mon = counter;
     
 endmodule

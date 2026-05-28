@@ -8197,6 +8197,9 @@
             "direction": "I",
             "left": "31",
             "right": "0"
+          },
+          "counter_mon": {
+            "direction": "O"
           }
         }
       },
@@ -8629,10 +8632,16 @@
             "value": "7"
           },
           "C_NUM_OF_PROBES": {
-            "value": "3"
+            "value": "4"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
+          },
+          "C_PROBE3_WIDTH": {
+            "value": "32"
+          },
+          "C_PROBE_WIDTH_PROPAGATION": {
+            "value": "MANUAL"
           },
           "C_SLOT_0_APC_EN": {
             "value": "0"
@@ -9424,6 +9433,12 @@
           "ErrorSignal_Wrapper_0/unwrap_en"
         ]
       },
+      "axis_tlast_gen_iq_0_counter_mon": {
+        "ports": [
+          "axis_tlast_gen_iq_0/counter_mon",
+          "system_ila_0/probe3"
+        ]
+      },
       "axis_tlast_gen_iq_0_m_axis_tlast": {
         "ports": [
           "axis_tlast_gen_iq_0/m_axis_tlast",
@@ -9481,11 +9496,11 @@
           "axis_broadcaster_2/aresetn",
           "ssr8_fir_decimator_0/ap_rst_n",
           "ssr8_fir_decimator_1/ap_rst_n",
-          "axis_tlast_gen_iq_0/aresetn",
           "system_ila_0/resetn",
           "axis_round_saturate_0/rst_n",
           "axis_round_saturate_1/rst_n",
-          "rfdc_iq_derotator_0/ap_rst_n"
+          "rfdc_iq_derotator_0/ap_rst_n",
+          "axis_tlast_gen_iq_0/aresetn"
         ]
       },
       "rst_ps8_0_99M_peripheral_aresetn": {
@@ -9582,11 +9597,11 @@
           "fir_compiler_1/aclk",
           "ssr8_fir_decimator_1/ap_clk",
           "axi_dma_3/m_axi_s2mm_aclk",
-          "axis_tlast_gen_iq_0/aclk",
           "system_ila_0/clk",
           "axis_round_saturate_0/clk",
           "axis_round_saturate_1/clk",
-          "rfdc_iq_derotator_0/ap_clk"
+          "rfdc_iq_derotator_0/ap_clk",
+          "axis_tlast_gen_iq_0/aclk"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {
