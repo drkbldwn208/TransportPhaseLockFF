@@ -4,7 +4,7 @@
     "xci_name": "design_1_fast_servo_controller_0_0",
     "cell_name": "fast_servo_controller_0",
     "component_reference": "xilinx.com:hls:fast_servo_controller:1.0",
-    "ip_revision": "2114664701",
+    "ip_revision": "2114666061",
     "gen_directory": "../../../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_fast_servo_controller_0_0",
     "parameters": {
       "component_parameters": {
@@ -35,7 +35,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114664701" } ],
+        "IPREVISION": [ { "value": "2114666061" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_fast_servo_controller_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

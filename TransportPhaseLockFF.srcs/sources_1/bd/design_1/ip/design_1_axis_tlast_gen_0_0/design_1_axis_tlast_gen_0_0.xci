@@ -8,7 +8,11 @@
     "gen_directory": "../../../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_axis_tlast_gen_0_0",
     "parameters": {
       "component_parameters": {
+        "BUS_WIDTH": [ { "value": "128", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "design_1_axis_tlast_gen_0_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "model_parameters": {
+        "BUS_WIDTH": [ { "value": "128", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynquplusRFSOC" } ],
@@ -54,7 +58,7 @@
           "abstraction_type": "xilinx.com:interface:axis_rtl:1.0",
           "mode": "slave",
           "parameters": {
-            "TDATA_NUM_BYTES": [ { "value": "16", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
+            "TDATA_NUM_BYTES": [ { "value": "16", "value_src": "auto", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TUSER_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
@@ -79,7 +83,7 @@
           "abstraction_type": "xilinx.com:interface:axis_rtl:1.0",
           "mode": "master",
           "parameters": {
-            "TDATA_NUM_BYTES": [ { "value": "16", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
+            "TDATA_NUM_BYTES": [ { "value": "16", "value_src": "auto", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TUSER_WIDTH": [ { "value": "0", "value_src": "constant", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],

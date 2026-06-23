@@ -24,7 +24,7 @@ module axis_power_mod(
     input wire clk,
     input wire rst_n,
     input wire [15:0] async_in, 
-    output wire [127:0] m_axis_tdata,
+    output wire [31:0] m_axis_tdata,
     output wire m_axis_tvalid
     );
     // latch gpio value
@@ -47,7 +47,7 @@ module axis_power_mod(
         end
     end
         
-    assign m_axis_tdata = {4{{16'b0, latched_data}}};
+    assign m_axis_tdata = {16'b0, latched_data};
     assign m_axis_tvalid = 1'b1;
 endmodule
     

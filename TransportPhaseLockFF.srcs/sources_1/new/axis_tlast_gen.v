@@ -20,7 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module axis_tlast_gen(
+module axis_tlast_gen #(
+    parameter BUS_WIDTH = 128
+    )(
     input wire aclk,
     input wire aresetn,
     
@@ -28,14 +30,14 @@ module axis_tlast_gen(
     
     
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_axis TDATA" *) 
-    input wire [127:0] s_axis_tdata,
+    input wire [BUS_WIDTH-1:0] s_axis_tdata,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_axis TVALID" *)
     input wire s_axis_tvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_axis TREADY" *)
     output wire s_axis_tready,
     
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TDATA" *)
-    output wire [127:0] m_axis_tdata,
+    output wire [BUS_WIDTH-1:0] m_axis_tdata,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TVALID" *)
     output wire m_axis_tvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TREADY" *)
