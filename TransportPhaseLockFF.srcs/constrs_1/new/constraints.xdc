@@ -8,3 +8,18 @@ set_property IOSTANDARD LVCMOS18 [get_ports dac_mosi_0]
 
 set_property PACKAGE_PIN H15 [get_ports dac_sclk_0]
 set_property IOSTANDARD LVCMOS18 [get_ports dac_sclk_0]
+
+set_property PACKAGE_PIN L17 [get_ports adc_cs_n_0]
+set_property IOSTANDARD LVCMOS18 [get_ports adc_cs_n_0] 
+
+set_property PACKAGE_PIN M17 [get_ports adc_sdata0_0]
+set_property IOSTANDARD LVCMOS18 [get_ports adc_sdata0_0]
+
+set_property PACKAGE_PIN M14 [get_ports adc_sdata1_0]
+set_property IOSTANDARD LVCMOS18 [get_ports adc_sdata1_0]
+
+set_property PACKAGE_PIN N14 [get_ports adc_sclk_0]
+set_property IOSTANDARD LVCMOS18 [get_ports adc_sclk_0]
+
+set_property PACKAGE_PIN M15 [get_ports pmod_digital_in_0]
+set_property IOSTANDARD LVCMOS18 [get_ports pmod_digital_in_0]

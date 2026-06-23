@@ -20,14 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module pmod_ad1_adc #(
-    parameter CLK_DIV = 8
-    ) (
+module pmod_ad1_adc (
     input wire clk,
     input wire rst_n,
     
     output reg adc_cs_n,
-    output reg adc_sclk,
+    output wire adc_sclk,
     input wire adc_sdata0,
     input wire adc_sdata1,
     // {4'b0, ch1[11:0], 4'b0, ch0[11:0]   
@@ -38,76 +36,65 @@ module pmod_ad1_adc #(
     output reg out_sclk
     );
     
-    localparam HALF = CLK_DIV/2;
-    localparam IDLE = 2'd0;
-    localparam SHIFT = 2'd1;
-    localparam EMIT = 2'd2;
+    localparam [4:0] FRAME_LAST_PHASE = 5'd19;
+    localparam [4:0] CONV_LAST_PHASE = 5'd15;
     
-    reg [3:0] div;
-    reg sclk_re, sclk_fe;
-    reg [1:0] st;
-    reg [4:0] bcnt;
-    reg [15:0] sh0, sh1;
+    reg [4:0] phase_count;
+    reg [4:0] fall_count;
+    reg [11:0] sh0;
+    reg [11:0] sh1;
     
-    always @(posedge clk) begin
-        sclk_re <= 1'b0;
-        sclk_fe <= 1'b0;
-        if (!rst_n) begin
-            div <= 4'b0;
-            adc_sclk <= 1'b1;
-        end else begin 
-            div <= div + 4'd1;
-            if (div == HALF-1) begin
-                adc_sclk <= 1'b0;
-                sclk_fe <= 1'b1;
-            end 
-            if (div == CLK_DIV-1) begin
-                adc_sclk <= 1'b1;
-                sclk_re <= 1'b1;
-                div <= 4'b0;
-            end 
-        end
-    end
+    assign adc_sclk = adc_cs_n ? 1'b1 : clk;
     
-    always @(posedge clk) begin
-        if (!rst_n) begin
-            st <= IDLE;
+    
+    
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin 
+            phase_count <= FRAME_LAST_PHASE;
             adc_cs_n <= 1'b1;
+            m_axis_tdata <= 32'b0;
             m_axis_tvalid <= 1'b0;
-            m_axis_tdata <= 32'd0;
-            bcnt <= 5'd0;
-            sh0 <= 16'd0;
-            sh1 <= 16'd0;
-        end else begin
-            case (st)
-                IDLE: begin
-                    adc_cs_n <= 1'b0; //assert cs, wait for sclk falling edge
-                    bcnt <= 5'd16;
-                    if (sclk_fe) st <= SHIFT;
-                end
+            out_sclk <= 1'b0;
+        end else begin 
+            out_sclk <= 1'b0;
+            
+            if (phase_count == FRAME_LAST_PHASE) begin 
+                phase_count <= 5'd0;
+                adc_cs_n <= 1'b0;
+            end else begin 
+                phase_count <= phase_count + 5'd1;
                 
-                SHIFT: begin
-                    if (sclk_re) begin //sample on rising edge
-                        sh0 <= {sh0[14:0], adc_sdata0};
-                        sh1 <= {sh1[14:0], adc_sdata1};
-                        bcnt <= bcnt - 5'd1;
-                        if (bcnt == 5'd1) st <= EMIT;
-                    end
-                end
-                
-                EMIT: begin
-                    adc_cs_n <= 1'b1; // release cs, wait for time tquiet (~ 50 ns, faster than divider period)
-                    m_axis_tdata <= {4'b0, sh1[11:0], 4'b0, sh0[11:0]};
+                if (phase_count == CONV_LAST_PHASE) begin 
+                    adc_cs_n <= 1'b1;
+                    m_axis_tdata <= {1'b0, sh1[11:0], 3'b0, 1'b0, sh0[11:0], 3'b0};
                     m_axis_tvalid <= 1'b1;
-                    if (m_axis_tvalid && m_axis_tready) begin 
-                        m_axis_tvalid <= 1'b0;
-                        st <= IDLE;
-                    end
+                    out_sclk <= 1'b1;
                 end
-                
-                default: st <= IDLE;
-            endcase
+            end
         end
     end 
-
+    
+    
+    always @(negedge clk or negedge rst_n) begin 
+        if (!rst_n) begin 
+            sh0 <= 12'b0;
+            sh1 <= 12'b0;
+            fall_count <= 5'b0;
+        end else begin
+            if (adc_cs_n) begin 
+                fall_count <= 5'b0;
+            end else begin 
+                if (fall_count >= 5'd4 && fall_count <= 5'd15) begin 
+                    sh0 <= {sh0[10:0], adc_sdata0};
+                    sh1 <= {sh1[10:0], adc_sdata1};
+                end 
+                
+                if (fall_count < 5'd16) begin 
+                    fall_count <= fall_count + 1; 
+                end
+            end
+       end
+   end 
+    
+    
 endmodule

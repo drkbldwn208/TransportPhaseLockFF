@@ -1,0 +1,148 @@
+
+
+================================================================
+== Vitis HLS Report for 'dwell_fcw_streamer'
+================================================================
+* Date:           Fri May 29 14:18:02 2026
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        dwell_fcw_streamer_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynquplusRFSOC
+* Target device:  xczu49dr-ffvf1760-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  4.07 ns|  2.746 ns|     1.10 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     174|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       -|       -|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       0|      63|    -|
+|Register         |        -|     -|      68|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|      68|     237|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     2160|  4272|  850560|  425280|   80|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln72_fu_206_p2    |         +|   0|  0|  39|          32|           2|
+    |and_ln67_fu_200_p2    |       and|   0|  0|   2|           1|           1|
+    |and_ln74_fu_224_p2    |       and|   0|  0|   2|           1|           1|
+    |ap_block_state1       |       and|   0|  0|   2|           1|           1|
+    |ap_condition_43       |       and|   0|  0|   2|           1|           1|
+    |ap_condition_62       |       and|   0|  0|   2|           1|           1|
+    |ap_condition_65       |       and|   0|  0|   2|           1|           1|
+    |dwell_wait            |       and|   0|  0|   2|           1|           1|
+    |start_edge_fu_154_p2  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln41_fu_131_p2   |      icmp|   0|  0|  39|          32|           1|
+    |icmp_ln67_fu_194_p2   |      icmp|   0|  0|  39|          32|           1|
+    |icmp_ln74_fu_218_p2   |      icmp|   0|  0|  39|          32|           1|
+    |xor_ln43_fu_148_p2    |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0| 174|         137|          15|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------+----+-----------+-----+-----------+
+    |          Name          | LUT| Input Size| Bits| Total Bits|
+    +------------------------+----+-----------+-----+-----------+
+    |current_fcw             |  20|          4|   32|        128|
+    |current_word_was_last   |  20|          4|    1|          4|
+    |dwell_remaining         |  14|          3|   32|         96|
+    |s_axis_cmd_TDATA_blk_n  |   9|          2|    1|          2|
+    +------------------------+----+-----------+-----+-----------+
+    |Total                   |  63|         13|   66|        230|
+    +------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------+----+----+-----+-----------+
+    |          Name         | FF | LUT| Bits| Const Bits|
+    +-----------------------+----+----+-----+-----------+
+    |ap_CS_fsm              |   1|   0|    1|          0|
+    |current_fcw            |  32|   0|   32|          0|
+    |current_word_was_last  |   1|   0|    1|          0|
+    |dwell_remaining        |  32|   0|   32|          0|
+    |start_d                |   1|   0|    1|          0|
+    |state                  |   1|   0|    1|          0|
+    +-----------------------+----+----+-----+-----------+
+    |Total                  |  68|   0|   68|          0|
+    +-----------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------+-----+-----+--------------+---------------------+--------------+
+|     RTL Ports     | Dir | Bits|   Protocol   |    Source Object    |    C Type    |
++-------------------+-----+-----+--------------+---------------------+--------------+
+|ap_clk             |   in|    1|  ap_ctrl_none|   dwell_fcw_streamer|  return value|
+|ap_rst_n           |   in|    1|  ap_ctrl_none|   dwell_fcw_streamer|  return value|
+|s_axis_cmd_TDATA   |   in|   64|          axis|  s_axis_cmd_V_data_V|       pointer|
+|s_axis_cmd_TVALID  |   in|    1|          axis|  s_axis_cmd_V_last_V|       pointer|
+|s_axis_cmd_TREADY  |  out|    1|          axis|  s_axis_cmd_V_last_V|       pointer|
+|s_axis_cmd_TLAST   |   in|    1|          axis|  s_axis_cmd_V_last_V|       pointer|
+|s_axis_cmd_TKEEP   |   in|    8|          axis|  s_axis_cmd_V_keep_V|       pointer|
+|s_axis_cmd_TSTRB   |   in|    8|          axis|  s_axis_cmd_V_strb_V|       pointer|
+|start_r            |   in|    1|       ap_none|              start_r|        scalar|
+|fcw_out            |  out|   32|       ap_none|              fcw_out|       pointer|
+|active_r           |  out|    1|       ap_none|             active_r|       pointer|
+|dwell_wait         |  out|    1|       ap_none|           dwell_wait|       pointer|
++-------------------+-----+-----+--------------+---------------------+--------------+
+

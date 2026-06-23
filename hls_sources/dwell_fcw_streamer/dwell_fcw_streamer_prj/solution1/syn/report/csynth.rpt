@@ -1,0 +1,122 @@
+
+
+================================================================
+== Synthesis Summary Report of 'dwell_fcw_streamer'
+================================================================
++ General Information: 
+    * Date:           Fri May 29 14:18:02 2026
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        dwell_fcw_streamer_prj
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynquplusRFSOC
+    * Target device:  xczu49dr-ffvf1760-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------------+------+------+---------+--------+----------+---------+------+----------+------+----+----------+-----------+-----+
+    |        Modules       | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |    |          |           |     |
+    |        & Loops       | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM | DSP|    FF    |    LUT    | URAM|
+    +----------------------+------+------+---------+--------+----------+---------+------+----------+------+----+----------+-----------+-----+
+    |+ dwell_fcw_streamer  |     -|  0.22|        0|   0.000|         -|        1|     -|       yes|     -|   -|  68 (~0%)|  237 (~0%)|    -|
+    +----------------------+------+------+---------+--------+----------+---------+------+----------+------+----+----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AXIS
++------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| Interface  | Direction | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TVALID |
++------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| s_axis_cmd | in        | both          | 64    | 8     | 1     | 1      | 8     | 1      |
++------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+
+* Other Ports
++------------+---------+-----------+----------+
+| Port       | Mode    | Direction | Bitwidth |
++------------+---------+-----------+----------+
+| active_r   | ap_none | out       | 1        |
+| dwell_wait | ap_none | out       | 1        |
+| fcw_out    | ap_none | out       | 32       |
+| start_r    | ap_none | in        | 1        |
++------------+---------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+--------------+----------+
+| Interface | Type         | Ports    |
++-----------+--------------+----------+
+| ap_clk    | clock        | ap_clk   |
+| ap_rst_n  | reset        | ap_rst_n |
+| ap_ctrl   | ap_ctrl_none |          |
++-----------+--------------+----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++------------+-----------+---------------------------------------------------------+
+| Argument   | Direction | Datatype                                                |
++------------+-----------+---------------------------------------------------------+
+| s_axis_cmd | in        | stream<hls::axis<ap_uint<64>, 0, 0, 0, '8', false>, 0>& |
+| start      | in        | bool                                                    |
+| fcw_out    | out       | ap_uint<32>*                                            |
+| active     | out       | ap_uint<1>*                                             |
+| dwell_wait | out       | ap_uint<1>*                                             |
++------------+-----------+---------------------------------------------------------+
+
+* SW-to-HW Mapping
++------------+--------------+-----------+
+| Argument   | HW Interface | HW Type   |
++------------+--------------+-----------+
+| s_axis_cmd | s_axis_cmd   | interface |
+| start      | start_r      | port      |
+| fcw_out    | fcw_out      | port      |
+| active     | active_r     | port      |
+| dwell_wait | dwell_wait   | port      |
++------------+--------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------+-----+--------+------------+-------+--------+---------+
+| Name                   | DSP | Pragma | Variable   | Op    | Impl   | Latency |
++------------------------+-----+--------+------------+-------+--------+---------+
+| + dwell_fcw_streamer   | 0   |        |            |       |        |         |
+|   icmp_ln41_fu_131_p2  |     |        | icmp_ln41  | setne | auto   | 0       |
+|   dwell_wait           |     |        | and_ln41   | and   | auto   | 0       |
+|   xor_ln43_fu_148_p2   |     |        | xor_ln43   | xor   | auto   | 0       |
+|   start_edge_fu_154_p2 |     |        | start_edge | and   | auto   | 0       |
+|   icmp_ln67_fu_194_p2  |     |        | icmp_ln67  | seteq | auto   | 0       |
+|   and_ln67_fu_200_p2   |     |        | and_ln67   | and   | auto   | 0       |
+|   add_ln72_fu_206_p2   |     |        | add_ln72   | add   | fabric | 0       |
+|   icmp_ln74_fu_218_p2  |     |        | icmp_ln74  | seteq | auto   | 0       |
+|   and_ln74_fu_224_p2   |     |        | and_ln74   | and   | auto   | 0       |
++------------------------+-----+--------+------------+-------+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------+--------------------------+-------------------------------------------------------------+
+| Type      | Options                  | Location                                                    |
++-----------+--------------------------+-------------------------------------------------------------+
+| interface | axis port=s_axis_cmd     | dwell_fcw_streamer.cpp:14 in dwell_fcw_streamer, s_axis_cmd |
+| interface | ap_none port=start       | dwell_fcw_streamer.cpp:15 in dwell_fcw_streamer, start      |
+| interface | ap_none port=fcw_out     | dwell_fcw_streamer.cpp:16 in dwell_fcw_streamer, fcw_out    |
+| interface | ap_none port=active      | dwell_fcw_streamer.cpp:17 in dwell_fcw_streamer, active     |
+| interface | ap_none port=dwell_wait  | dwell_fcw_streamer.cpp:18 in dwell_fcw_streamer, dwell_wait |
+| interface | ap_ctrl_none port=return | dwell_fcw_streamer.cpp:19 in dwell_fcw_streamer, return     |
+| pipeline  | II=1                     | dwell_fcw_streamer.cpp:20 in dwell_fcw_streamer             |
++-----------+--------------------------+-------------------------------------------------------------+
+
+
