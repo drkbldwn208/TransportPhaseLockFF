@@ -26,12 +26,12 @@ module sync_axis_power_mod(
     input wire [15:0] sync_in, 
     input wire open_loop_toggle,
     input wire [15:0] open_loop_setpoint,
-    output wire [223:0] m_axis_tdata,
+    output wire [127:0] m_axis_tdata,
     output wire m_axis_tvalid
     );
     
         
-    assign m_axis_tdata = open_loop_toggle ? {7{{16'b0, open_loop_setpoint[15:0]}}} : {7{{16'b0, sync_in[15:0]}}};
+    assign m_axis_tdata = open_loop_toggle ? {4{{16'b0, open_loop_setpoint[15:0]}}} : {4{{16'b0, sync_in[15:0]}}};
     assign m_axis_tvalid = 1'b1;
     
 endmodule

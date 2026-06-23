@@ -1454,7 +1454,7 @@
             "value": "2"
           },
           "ADC_NCO_Freq01": {
-            "value": "0.08"
+            "value": "0.09"
           },
           "ADC_Slice01_Enable": {
             "value": "true"
@@ -1516,9 +1516,6 @@
           "DAC_Data_Width10": {
             "value": "14"
           },
-          "DAC_Data_Width11": {
-            "value": "14"
-          },
           "DAC_Data_Width12": {
             "value": "14"
           },
@@ -1535,9 +1532,6 @@
             "value": "4"
           },
           "DAC_Interpolation_Mode10": {
-            "value": "4"
-          },
-          "DAC_Interpolation_Mode11": {
             "value": "4"
           },
           "DAC_Interpolation_Mode12": {
@@ -1561,14 +1555,14 @@
           "DAC_Mixer_Type10": {
             "value": "2"
           },
-          "DAC_Mixer_Type11": {
-            "value": "2"
-          },
           "DAC_Mixer_Type12": {
             "value": "2"
           },
           "DAC_Mode10": {
             "value": "0"
+          },
+          "DAC_NCO_Freq01": {
+            "value": "0.09"
           },
           "DAC_NCO_Freq03": {
             "value": "0.08"
@@ -1589,7 +1583,7 @@
             "value": "true"
           },
           "DAC_Slice11_Enable": {
-            "value": "true"
+            "value": "false"
           },
           "DAC_Slice12_Enable": {
             "value": "true"
@@ -9580,7 +9574,7 @@
             "vlnv": "xilinx.com:interface:axis_rtl:1.0",
             "parameters": {
               "TDATA_NUM_BYTES": {
-                "value": "28",
+                "value": "16",
                 "value_src": "constant"
               },
               "TDEST_WIDTH": {
@@ -9624,7 +9618,7 @@
               "TDATA": {
                 "physical_name": "m_axis_tdata",
                 "direction": "O",
-                "left": "223",
+                "left": "127",
                 "right": "0"
               },
               "TVALID": {
@@ -10633,12 +10627,6 @@
           "usp_rf_data_converter_0/s02_axis"
         ]
       },
-      "AXISConstant_1_m_axis": {
-        "interface_ports": [
-          "AXISConstant_1/m_axis",
-          "usp_rf_data_converter_0/s03_axis"
-        ]
-      },
       "AxisConstant14Samples_0_m_axis": {
         "interface_ports": [
           "AxisConstant14Samples_0/m_axis",
@@ -11161,7 +11149,7 @@
       "sync_axis_power_mod_0_m_axis": {
         "interface_ports": [
           "sync_axis_power_mod_0/m_axis",
-          "usp_rf_data_converter_0/s11_axis"
+          "usp_rf_data_converter_0/s03_axis"
         ]
       },
       "sysref_in_1": {
@@ -11660,8 +11648,8 @@
           "axi_dma_4/m_axi_s2mm_aclk",
           "iq_split_0/clk",
           "axi_interconnect_0/M03_ACLK",
-          "sync_axis_power_mod_0/clk",
-          "axis_padding_0/clk"
+          "axis_padding_0/clk",
+          "sync_axis_power_mod_0/clk"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {
