@@ -56,6 +56,9 @@ module pmod_ad1_adc (
             m_axis_tvalid <= 1'b0;
             out_sclk <= 1'b0;
         end else begin 
+            if (m_axis_tvalid && m_axis_tready) begin
+                m_axis_tvalid <= 1'b0; 
+            end 
             out_sclk <= 1'b0;
             
             if (phase_count == FRAME_LAST_PHASE) begin 

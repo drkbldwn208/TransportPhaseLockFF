@@ -34,7 +34,7 @@ module async_fifo_latch(
     assign s_axis_tready = 1'b1;
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            m_axis_tdata <= 32'b0;
+            m_axis_tdata <= 16'b0;
             m_axis_tvalid <= 1'b0;
         end else begin 
             m_axis_tvalid <= 1'b1;

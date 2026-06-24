@@ -136,8 +136,7 @@
       "cordic_1": "",
       "cordic_phase_helper_0": "",
       "PostCordicExtension_0": "",
-      "axi_gpio_10": "",
-      "system_ila_1": ""
+      "axi_gpio_10": ""
     },
     "interface_ports": {
       "sysref_in": {
@@ -11038,40 +11037,6 @@
             "value": "16"
           }
         }
-      },
-      "system_ila_1": {
-        "vlnv": "xilinx.com:ip:system_ila:1.1",
-        "ip_revision": "17",
-        "xci_name": "design_1_system_ila_1_0",
-        "xci_path": "ip/design_1_system_ila_1_0/design_1_system_ila_1_0.xci",
-        "inst_hier_path": "system_ila_1",
-        "parameters": {
-          "C_MON_TYPE": {
-            "value": "INTERFACE"
-          },
-          "C_NUM_MONITOR_SLOTS": {
-            "value": "1"
-          },
-          "C_SLOT_0_APC_EN": {
-            "value": "0"
-          },
-          "C_SLOT_0_AXI_DATA_SEL": {
-            "value": "1"
-          },
-          "C_SLOT_0_AXI_TRIG_SEL": {
-            "value": "1"
-          },
-          "C_SLOT_0_INTF_TYPE": {
-            "value": "xilinx.com:interface:axis_rtl:1.0"
-          }
-        },
-        "interface_ports": {
-          "SLOT_0_AXIS": {
-            "mode": "Monitor",
-            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
-            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
-          }
-        }
       }
     },
     "interface_nets": {
@@ -11498,17 +11463,8 @@
       "pmod_ad1_adc_0_m_axis": {
         "interface_ports": [
           "pmod_ad1_adc_0/m_axis",
-          "axis_data_fifo_0/S_AXIS",
-          "system_ila_1/SLOT_0_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+          "axis_data_fifo_0/S_AXIS"
+        ]
       },
       "ps8_0_axi_periph_M00_AXI": {
         "interface_ports": [
@@ -11957,10 +11913,9 @@
       "clk_wiz_0_clk_out1": {
         "ports": [
           "clk_wiz_0/clk_out1",
-          "pmod_ad1_adc_0/clk",
           "axis_data_fifo_0/s_axis_aclk",
           "proc_sys_reset_1/slowest_sync_clk",
-          "system_ila_1/clk"
+          "pmod_ad1_adc_0/clk"
         ]
       },
       "fast_servo_controller_0_dac_out": {
@@ -12040,7 +11995,6 @@
           "rfdc_iq_derotator_0/ap_rst_n",
           "axis_tlast_gen_iq_0/aresetn",
           "PhaseAccumulator_Wra_0/rst_n",
-          "async_fifo_latch_0/rst_n",
           "cordic_average_0/rst_n",
           "axi_interconnect_0/M03_ARESETN",
           "fast_servo_controller_0/ap_rst_n",
@@ -12049,15 +12003,15 @@
           "axis_tlast_gen_0/aresetn",
           "axis_tlast_gen_1/aresetn",
           "axis_tlast_gen_2/aresetn",
-          "axis_tlast_gen_3/aresetn"
+          "axis_tlast_gen_3/aresetn",
+          "async_fifo_latch_0/rst_n"
         ]
       },
       "proc_sys_reset_1_peripheral_aresetn": {
         "ports": [
           "proc_sys_reset_1/peripheral_aresetn",
-          "pmod_ad1_adc_0/rst_n",
           "axis_data_fifo_0/s_axis_aresetn",
-          "system_ila_1/resetn"
+          "pmod_ad1_adc_0/rst_n"
         ]
       },
       "rst_ps8_0_99M_peripheral_aresetn": {
@@ -12163,7 +12117,6 @@
           "AXISConstant_1/aclk",
           "clk_wiz_0/clk_in1",
           "axis_data_fifo_0/m_axis_aclk",
-          "async_fifo_latch_0/clk",
           "cordic_0/aclk",
           "cordic_average_0/clk",
           "cic_compiler_2/aclk",
@@ -12179,7 +12132,8 @@
           "axis_tlast_gen_1/aclk",
           "axis_tlast_gen_2/aclk",
           "axis_tlast_gen_3/aclk",
-          "iq_split_0/clk"
+          "iq_split_0/clk",
+          "async_fifo_latch_0/clk"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {
