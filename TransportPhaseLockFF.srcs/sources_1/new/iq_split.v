@@ -32,7 +32,9 @@ module iq_split #(
     output wire m_axis_i_tvalid,
     
     output wire [63:0] m_axis_q_tdata,
-    output wire m_axis_q_tvalid
+    output wire m_axis_q_tvalid,
+    
+    output wire [63:0] adc_bus
     );
     
     genvar i;
@@ -40,6 +42,7 @@ module iq_split #(
     generate
         for (i = 0; i < 4; i = i + 1) begin 
             assign m_axis_i_tdata[i*DATA_WIDTH +: DATA_WIDTH] = s_axis_tdata[2*i*DATA_WIDTH +: DATA_WIDTH];
+            assign adc_bus[i*DATA_WIDTH +: DATA_WIDTH] = s_axis_tdata[2*i*DATA_WIDTH +: DATA_WIDTH];
             assign m_axis_q_tdata[i*DATA_WIDTH +: DATA_WIDTH] = s_axis_tdata[((2*i)+1)*DATA_WIDTH +: DATA_WIDTH];
         end
     endgenerate 

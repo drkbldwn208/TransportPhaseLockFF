@@ -47,7 +47,8 @@
         "m_axis_i_tdata": [ { "direction": "out", "size_left": "63", "size_right": "0" } ],
         "m_axis_i_tvalid": [ { "direction": "out" } ],
         "m_axis_q_tdata": [ { "direction": "out", "size_left": "63", "size_right": "0" } ],
-        "m_axis_q_tvalid": [ { "direction": "out" } ]
+        "m_axis_q_tvalid": [ { "direction": "out" } ],
+        "adc_bus": [ { "direction": "out", "size_left": "63", "size_right": "0" } ]
       },
       "interfaces": {
         "m_axis_i": {
