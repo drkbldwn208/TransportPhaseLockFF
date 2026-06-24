@@ -10135,7 +10135,7 @@
         "inst_hier_path": "cordic_0",
         "parameters": {
           "Architectural_Configuration": {
-            "value": "Word_Serial"
+            "value": "Parallel"
           },
           "Data_Format": {
             "value": "SignedFraction"
@@ -10144,7 +10144,7 @@
             "value": "Arc_Tan"
           },
           "Pipelining_Mode": {
-            "value": "Maximum"
+            "value": "Optimal"
           }
         }
       },
