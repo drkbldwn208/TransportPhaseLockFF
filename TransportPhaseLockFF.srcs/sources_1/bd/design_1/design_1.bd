@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x222BCC3163BFABAF",
+      "boundary_crc": "0x19976F0A5C9F4AC3",
       "device": "xczu49dr-ffvf1760-2-e",
       "gen_directory": "../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -136,7 +136,8 @@
       "cordic_1": "",
       "cordic_phase_helper_0": "",
       "PostCordicExtension_0": "",
-      "axi_gpio_10": ""
+      "axi_gpio_10": "",
+      "system_ila_1": ""
     },
     "interface_ports": {
       "sysref_in": {
@@ -349,6 +350,9 @@
       },
       "adc_sclk_0": {
         "direction": "O"
+      },
+      "pmod_digital_in_0": {
+        "direction": "I"
       }
     },
     "components": {
@@ -9046,10 +9050,10 @@
             "value": "MIX"
           },
           "C_NUM_MONITOR_SLOTS": {
-            "value": "12"
+            "value": "9"
           },
           "C_NUM_OF_PROBES": {
-            "value": "5"
+            "value": "7"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -9063,6 +9067,12 @@
           "C_PROBE4_WIDTH": {
             "value": "64"
           },
+          "C_PROBE5_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE5_WIDTH": {
+            "value": "16"
+          },
           "C_PROBE_WIDTH_PROPAGATION": {
             "value": "MANUAL"
           },
@@ -9073,10 +9083,13 @@
             "value": "1"
           },
           "C_SLOT_0_AXI_TRIG_SEL": {
-            "value": "0"
+            "value": "1"
           },
           "C_SLOT_0_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "C_SLOT_0_TYPE": {
+            "value": "0"
           },
           "C_SLOT_10_APC_EN": {
             "value": "0"
@@ -9090,6 +9103,9 @@
           "C_SLOT_10_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
           },
+          "C_SLOT_10_TYPE": {
+            "value": "0"
+          },
           "C_SLOT_11_APC_EN": {
             "value": "0"
           },
@@ -9100,6 +9116,18 @@
             "value": "1"
           },
           "C_SLOT_11_INTF_TYPE": {
+            "value": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "C_SLOT_12_APC_EN": {
+            "value": "0"
+          },
+          "C_SLOT_12_AXI_DATA_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_12_AXI_TRIG_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_12_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
           },
           "C_SLOT_1_APC_EN": {
@@ -9114,6 +9142,9 @@
           "C_SLOT_1_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
           },
+          "C_SLOT_1_TYPE": {
+            "value": "0"
+          },
           "C_SLOT_2_APC_EN": {
             "value": "0"
           },
@@ -9125,6 +9156,9 @@
           },
           "C_SLOT_2_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "C_SLOT_2_TYPE": {
+            "value": "0"
           },
           "C_SLOT_3_APC_EN": {
             "value": "0"
@@ -9138,6 +9172,9 @@
           "C_SLOT_3_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
           },
+          "C_SLOT_3_TYPE": {
+            "value": "0"
+          },
           "C_SLOT_4_APC_EN": {
             "value": "0"
           },
@@ -9149,6 +9186,9 @@
           },
           "C_SLOT_4_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "C_SLOT_4_TYPE": {
+            "value": "0"
           },
           "C_SLOT_5_APC_EN": {
             "value": "0"
@@ -9162,6 +9202,9 @@
           "C_SLOT_5_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
           },
+          "C_SLOT_5_TYPE": {
+            "value": "0"
+          },
           "C_SLOT_6_APC_EN": {
             "value": "0"
           },
@@ -9173,6 +9216,9 @@
           },
           "C_SLOT_6_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "C_SLOT_6_TYPE": {
+            "value": "0"
           },
           "C_SLOT_7_APC_EN": {
             "value": "0"
@@ -9186,6 +9232,9 @@
           "C_SLOT_7_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
           },
+          "C_SLOT_7_TYPE": {
+            "value": "0"
+          },
           "C_SLOT_8_APC_EN": {
             "value": "0"
           },
@@ -9198,6 +9247,9 @@
           "C_SLOT_8_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
           },
+          "C_SLOT_8_TYPE": {
+            "value": "0"
+          },
           "C_SLOT_9_APC_EN": {
             "value": "0"
           },
@@ -9209,6 +9261,9 @@
           },
           "C_SLOT_9_INTF_TYPE": {
             "value": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "C_SLOT_9_TYPE": {
+            "value": "0"
           }
         },
         "interface_ports": {
@@ -9253,21 +9308,6 @@
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
           },
           "SLOT_8_AXIS": {
-            "mode": "Monitor",
-            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
-            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
-          },
-          "SLOT_9_AXIS": {
-            "mode": "Monitor",
-            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
-            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
-          },
-          "SLOT_10_AXIS": {
-            "mode": "Monitor",
-            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
-            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
-          },
-          "SLOT_11_AXIS": {
             "mode": "Monitor",
             "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
@@ -10988,6 +11028,40 @@
             "value": "16"
           }
         }
+      },
+      "system_ila_1": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "ip_revision": "17",
+        "xci_name": "design_1_system_ila_1_0",
+        "xci_path": "ip/design_1_system_ila_1_0/design_1_system_ila_1_0.xci",
+        "inst_hier_path": "system_ila_1",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "INTERFACE"
+          },
+          "C_NUM_MONITOR_SLOTS": {
+            "value": "1"
+          },
+          "C_SLOT_0_APC_EN": {
+            "value": "0"
+          },
+          "C_SLOT_0_AXI_DATA_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_TRIG_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_0_INTF_TYPE": {
+            "value": "xilinx.com:interface:axis_rtl:1.0"
+          }
+        },
+        "interface_ports": {
+          "SLOT_0_AXIS": {
+            "mode": "Monitor",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -11049,7 +11123,7 @@
         "interface_ports": [
           "usp_rf_data_converter_0/s01_axis",
           "PostCordicExtension_0/m_axis",
-          "system_ila_0/SLOT_10_AXIS"
+          "system_ila_0/SLOT_3_AXIS"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -11189,17 +11263,8 @@
       "axis_broadcaster_2_M01_AXIS": {
         "interface_ports": [
           "axis_broadcaster_2/M01_AXIS",
-          "rfdc_iq_derotator_0/s_axis_i",
-          "system_ila_0/SLOT_0_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+          "rfdc_iq_derotator_0/s_axis_i"
+        ]
       },
       "axis_broadcaster_3_M00_AXIS": {
         "interface_ports": [
@@ -11216,8 +11281,17 @@
       "axis_data_fifo_0_M_AXIS": {
         "interface_ports": [
           "axis_data_fifo_0/M_AXIS",
-          "async_fifo_latch_0/s_axis"
-        ]
+          "async_fifo_latch_0/s_axis",
+          "system_ila_0/SLOT_8_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "axis_power_mod_0_m_axis": {
         "interface_ports": [
@@ -11228,17 +11302,8 @@
       "axis_round_saturate_0_m_axis": {
         "interface_ports": [
           "axis_round_saturate_0/m_axis",
-          "cic_compiler_0/S_AXIS_DATA",
-          "system_ila_0/SLOT_3_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+          "cic_compiler_0/S_AXIS_DATA"
+        ]
       },
       "axis_round_saturate_1_m_axis": {
         "interface_ports": [
@@ -11267,28 +11332,7 @@
       "axis_tlast_gen_3_m_axis": {
         "interface_ports": [
           "axis_tlast_gen_3/m_axis",
-          "axi_dma_4/S_AXIS_S2MM"
-        ]
-      },
-      "axis_tlast_gen_iq_0_m_axis": {
-        "interface_ports": [
-          "axis_tlast_gen_iq_0/m_axis",
-          "axi_dma_3/S_AXIS_S2MM",
-          "system_ila_0/SLOT_4_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
-      },
-      "cic_compiler_0_M_AXIS_DATA": {
-        "interface_ports": [
-          "cic_compiler_0/M_AXIS_DATA",
-          "fir_compiler_0/S_AXIS_DATA",
+          "axi_dma_4/S_AXIS_S2MM",
           "system_ila_0/SLOT_5_AXIS"
         ],
         "hdl_attributes": {
@@ -11300,6 +11344,18 @@
           }
         }
       },
+      "axis_tlast_gen_iq_0_m_axis": {
+        "interface_ports": [
+          "axis_tlast_gen_iq_0/m_axis",
+          "axi_dma_3/S_AXIS_S2MM"
+        ]
+      },
+      "cic_compiler_0_M_AXIS_DATA": {
+        "interface_ports": [
+          "cic_compiler_0/M_AXIS_DATA",
+          "fir_compiler_0/S_AXIS_DATA"
+        ]
+      },
       "cic_compiler_1_M_AXIS_DATA": {
         "interface_ports": [
           "cic_compiler_1/M_AXIS_DATA",
@@ -11309,14 +11365,23 @@
       "cic_compiler_2_M_AXIS_DATA": {
         "interface_ports": [
           "cic_compiler_2/M_AXIS_DATA",
-          "axis_tlast_gen_3/s_axis"
-        ]
+          "axis_tlast_gen_3/s_axis",
+          "system_ila_0/SLOT_6_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "cordic_0_M_AXIS_DOUT": {
         "interface_ports": [
           "cordic_0/M_AXIS_DOUT",
           "cic_compiler_2/S_AXIS_DATA",
-          "system_ila_0/SLOT_7_AXIS"
+          "system_ila_0/SLOT_0_AXIS"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -11337,7 +11402,7 @@
         "interface_ports": [
           "cordic_average_0/m_axis_cartesian",
           "cordic_0/S_AXIS_CARTESIAN",
-          "system_ila_0/SLOT_8_AXIS"
+          "system_ila_0/SLOT_1_AXIS"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -11363,17 +11428,8 @@
       "fir_compiler_0_M_AXIS_DATA": {
         "interface_ports": [
           "fir_compiler_0/M_AXIS_DATA",
-          "axis_tlast_gen_iq_0/s_axis_1",
-          "system_ila_0/SLOT_6_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+          "axis_tlast_gen_iq_0/s_axis_1"
+        ]
       },
       "fir_compiler_1_M_AXIS_DATA": {
         "interface_ports": [
@@ -11384,8 +11440,17 @@
       "iq_split_0_m_axis_i": {
         "interface_ports": [
           "cordic_average_0/s_axis_i",
-          "iq_split_0/m_axis_i"
-        ]
+          "iq_split_0/m_axis_i",
+          "system_ila_0/SLOT_7_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "iq_split_0_m_axis_q": {
         "interface_ports": [
@@ -11414,8 +11479,17 @@
       "pmod_ad1_adc_0_m_axis": {
         "interface_ports": [
           "pmod_ad1_adc_0/m_axis",
-          "axis_data_fifo_0/S_AXIS"
-        ]
+          "axis_data_fifo_0/S_AXIS",
+          "system_ila_1/SLOT_0_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "ps8_0_axi_periph_M00_AXI": {
         "interface_ports": [
@@ -11516,17 +11590,8 @@
       "rfdc_iq_derotator_0_m_axis_i": {
         "interface_ports": [
           "rfdc_iq_derotator_0/m_axis_i",
-          "ssr8_fir_decimator_0/s_axis",
-          "system_ila_0/SLOT_1_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+          "ssr8_fir_decimator_0/s_axis"
+        ]
       },
       "rfdc_iq_derotator_0_m_axis_q": {
         "interface_ports": [
@@ -11543,17 +11608,8 @@
       "ssr8_fir_decimator_0_m_axis": {
         "interface_ports": [
           "ssr8_fir_decimator_0/m_axis",
-          "axis_round_saturate_0/s_axis",
-          "system_ila_0/SLOT_2_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+          "axis_round_saturate_0/s_axis"
+        ]
       },
       "ssr8_fir_decimator_1_m_axis": {
         "interface_ports": [
@@ -11565,7 +11621,7 @@
         "interface_ports": [
           "sync_axis_power_mod_0/m_axis",
           "usp_rf_data_converter_0/s03_axis",
-          "system_ila_0/SLOT_11_AXIS"
+          "system_ila_0/SLOT_4_AXIS"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -11592,7 +11648,7 @@
         "interface_ports": [
           "usp_rf_data_converter_0/m01_axis",
           "iq_split_0/s_axis",
-          "system_ila_0/SLOT_9_AXIS"
+          "system_ila_0/SLOT_2_AXIS"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -11732,8 +11788,17 @@
       "async_fifo_latch_0_m_axis_tdata": {
         "ports": [
           "async_fifo_latch_0/m_axis_tdata",
-          "fast_servo_controller_0/set_point"
-        ]
+          "fast_servo_controller_0/set_point",
+          "system_ila_0/probe5"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "axi_dma_3_s_axis_s2mm_tready": {
         "ports": [
@@ -11875,7 +11940,8 @@
           "clk_wiz_0/clk_out1",
           "pmod_ad1_adc_0/clk",
           "axis_data_fifo_0/s_axis_aclk",
-          "proc_sys_reset_1/slowest_sync_clk"
+          "proc_sys_reset_1/slowest_sync_clk",
+          "system_ila_1/clk"
         ]
       },
       "fast_servo_controller_0_dac_out": {
@@ -11929,6 +11995,12 @@
           "dac_sclk_0"
         ]
       },
+      "pmod_digital_in_0_1": {
+        "ports": [
+          "pmod_digital_in_0",
+          "system_ila_0/probe6"
+        ]
+      },
       "proc_sys_reset_0_peripheral_aresetn": {
         "ports": [
           "proc_sys_reset_0/peripheral_aresetn",
@@ -11979,7 +12051,8 @@
         "ports": [
           "proc_sys_reset_1/peripheral_aresetn",
           "pmod_ad1_adc_0/rst_n",
-          "axis_data_fifo_0/s_axis_aresetn"
+          "axis_data_fifo_0/s_axis_aresetn",
+          "system_ila_1/resetn"
         ]
       },
       "rst_ps8_0_99M_peripheral_aresetn": {
