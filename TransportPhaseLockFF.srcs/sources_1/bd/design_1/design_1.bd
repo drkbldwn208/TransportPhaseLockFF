@@ -11995,7 +11995,6 @@
           "rfdc_iq_derotator_0/ap_rst_n",
           "axis_tlast_gen_iq_0/aresetn",
           "PhaseAccumulator_Wra_0/rst_n",
-          "cordic_average_0/rst_n",
           "axi_interconnect_0/M03_ARESETN",
           "fast_servo_controller_0/ap_rst_n",
           "sync_axis_power_mod_0/rst_n",
@@ -12004,7 +12003,8 @@
           "axis_tlast_gen_1/aresetn",
           "axis_tlast_gen_2/aresetn",
           "axis_tlast_gen_3/aresetn",
-          "async_fifo_latch_0/rst_n"
+          "async_fifo_latch_0/rst_n",
+          "cordic_average_0/rst_n"
         ]
       },
       "proc_sys_reset_1_peripheral_aresetn": {
@@ -12118,7 +12118,6 @@
           "clk_wiz_0/clk_in1",
           "axis_data_fifo_0/m_axis_aclk",
           "cordic_0/aclk",
-          "cordic_average_0/clk",
           "cic_compiler_2/aclk",
           "axi_dma_4/m_axi_s2mm_aclk",
           "axi_interconnect_0/M03_ACLK",
@@ -12133,7 +12132,8 @@
           "axis_tlast_gen_2/aclk",
           "axis_tlast_gen_3/aclk",
           "iq_split_0/clk",
-          "async_fifo_latch_0/clk"
+          "async_fifo_latch_0/clk",
+          "cordic_average_0/clk"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {

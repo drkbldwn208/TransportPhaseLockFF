@@ -36,28 +36,28 @@ module cordic_average #(
     output reg m_axis_cartesian_tvalid
     );
     
-    reg [16:0] sum_0_i, sum_1_i;
-    reg [16:0] sum_0_q, sum_1_q;
-    reg [18:0] sum_f_i, sum_f_q;
     
+    wire signed [16:0] i0 = {s_axis_i_tdata[15], s_axis_i_tdata[15:0]};
+    wire signed [16:0] i1 = {s_axis_i_tdata[31], s_axis_i_tdata[31:16]};
+    wire signed [16:0] i2 = {s_axis_i_tdata[47], s_axis_i_tdata[47:32]};
+    wire signed [16:0] i3 = {s_axis_i_tdata[63], s_axis_i_tdata[63:48]};
+       
+    wire signed [16:0] q0 = {s_axis_q_tdata[15], s_axis_q_tdata[15:0]};
+    wire signed [16:0] q1 = {s_axis_q_tdata[31], s_axis_q_tdata[31:16]};
+    wire signed [16:0] q2 = {s_axis_q_tdata[47], s_axis_q_tdata[47:32]};
+    wire signed [16:0] q3 = {s_axis_q_tdata[63], s_axis_q_tdata[63:48]};
+      
+    wire signed [17:0] sum_i = i0 + i1 + i2 + i3;
+    wire signed [17:0] sum_q = q0 + q1 + q2 + q3;
+    
+    wire signed [15:0] avg_i = sum_i >>> 3;
+    wire signed [15:0] avg_q = sum_q >>> 3;
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            sum_0_i <= 17'b0;
-            sum_0_q <= 17'b0;
-            sum_1_i <= 17'b0;
-            sum_1_q <= 17'b0;
-            sum_f_i <= 19'b0;
-            sum_f_q <= 19'b0;
             m_axis_cartesian_tdata <= 32'b0;
             m_axis_cartesian_tvalid <= 1'b0;
         end else begin 
-             sum_0_i <= s_axis_i_tdata[15:0] + s_axis_i_tdata[31:16];
-             sum_0_q <= s_axis_q_tdata[15:0] + s_axis_q_tdata[31:16];
-             sum_1_i <= s_axis_i_tdata[47:32] + s_axis_i_tdata[63:48];
-             sum_1_q <= s_axis_q_tdata[47:32] + s_axis_q_tdata[63:48];
-             sum_f_i <= (sum_0_i + sum_1_i) >>> 4;
-             sum_f_q <= (sum_0_q + sum_1_q) >>> 4;
-             m_axis_cartesian_tdata <= {sum_f_q[15:0], sum_f_i[15:0]};
+             m_axis_cartesian_tdata <= {avg_q, avg_i};
              m_axis_cartesian_tvalid <= 1'b1;
         end
     end 

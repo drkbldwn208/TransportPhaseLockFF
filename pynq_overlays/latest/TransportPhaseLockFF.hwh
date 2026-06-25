@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 24 14:17:35 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 24 21:04:03 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2"/>
 
@@ -19842,7 +19842,6 @@
             <CONNECTION INSTANCE="rfdc_iq_derotator_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="axis_tlast_gen_iq_0" PORT="aresetn"/>
             <CONNECTION INSTANCE="PhaseAccumulator_Wra_0" PORT="rst_n"/>
-            <CONNECTION INSTANCE="cordic_average_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="axi_interconnect_0" PORT="M03_ARESETN"/>
             <CONNECTION INSTANCE="fast_servo_controller_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="sync_axis_power_mod_0" PORT="rst_n"/>
@@ -19852,6 +19851,7 @@
             <CONNECTION INSTANCE="axis_tlast_gen_2" PORT="aresetn"/>
             <CONNECTION INSTANCE="axis_tlast_gen_3" PORT="aresetn"/>
             <CONNECTION INSTANCE="async_fifo_latch_0" PORT="rst_n"/>
+            <CONNECTION INSTANCE="cordic_average_0" PORT="rst_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
@@ -29723,7 +29723,6 @@
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_in1"/>
             <CONNECTION INSTANCE="axis_data_fifo_0" PORT="m_axis_aclk"/>
             <CONNECTION INSTANCE="cordic_0" PORT="aclk"/>
-            <CONNECTION INSTANCE="cordic_average_0" PORT="clk"/>
             <CONNECTION INSTANCE="cic_compiler_2" PORT="aclk"/>
             <CONNECTION INSTANCE="axi_dma_4" PORT="m_axi_s2mm_aclk"/>
             <CONNECTION INSTANCE="axi_interconnect_0" PORT="M03_ACLK"/>
@@ -29739,6 +29738,7 @@
             <CONNECTION INSTANCE="axis_tlast_gen_3" PORT="aclk"/>
             <CONNECTION INSTANCE="iq_split_0" PORT="clk"/>
             <CONNECTION INSTANCE="async_fifo_latch_0" PORT="clk"/>
+            <CONNECTION INSTANCE="cordic_average_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_adc2" SIGIS="clk"/>
@@ -30589,10 +30589,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
@@ -30625,10 +30625,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <PARAMETERS>
         <PARAMETER NAME="C_DP_USE_AUDIO" VALUE="0"/>
