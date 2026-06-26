@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x19976F0A5C9F4AC3",
+      "boundary_crc": "0x906B07B64712BB9B",
       "device": "xczu49dr-ffvf1760-2-e",
       "gen_directory": "../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -139,7 +139,8 @@
       "PostCordicExtension_0": "",
       "axi_gpio_10": "",
       "setpoint_switch_0": "",
-      "axi_gpio_11": ""
+      "axi_gpio_11": "",
+      "gpio_pmod_trigger_0": ""
     },
     "interface_ports": {
       "sysref_in": {
@@ -353,8 +354,8 @@
       "adc_sclk_0": {
         "direction": "O"
       },
-      "pmod_digital_in_0": {
-        "direction": "I"
+      "pmod_digital_out": {
+        "direction": "O"
       }
     },
     "components": {
@@ -9159,7 +9160,7 @@
             "value": "10"
           },
           "C_NUM_OF_PROBES": {
-            "value": "6"
+            "value": "8"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -9178,6 +9179,12 @@
           },
           "C_PROBE5_WIDTH": {
             "value": "16"
+          },
+          "C_PROBE6_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE7_TYPE": {
+            "value": "0"
           },
           "C_PROBE_WIDTH_PROPAGATION": {
             "value": "MANUAL"
@@ -11224,6 +11231,42 @@
             "value": "1"
           }
         }
+      },
+      "gpio_pmod_trigger_0": {
+        "vlnv": "xilinx.com:module_ref:gpio_pmod_trigger:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_gpio_pmod_trigger_0_0",
+        "xci_path": "ip/design_1_gpio_pmod_trigger_0_0/design_1_gpio_pmod_trigger_0_0.xci",
+        "inst_hier_path": "gpio_pmod_trigger_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "gpio_pmod_trigger",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "245760000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_usp_rf_data_converter_0_0_clk_adc1",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "gpio_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pmod_driver_out": {
+            "direction": "O"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -11899,14 +11942,32 @@
         "ports": [
           "ErrorSignal_Wrapper_0/error_signal_out",
           "ErrorSignalTruncation_0/s_axis_tdata",
-          "PIController_Wrapper_0/error_signal_unfolded"
-        ]
+          "PIController_Wrapper_0/error_signal_unfolded",
+          "system_ila_0/probe6"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "PIController_Wrapper_0_control_output": {
         "ports": [
           "PIController_Wrapper_0/control_output",
-          "PhaseAccumulator_Wra_0/pi_control_in"
-        ]
+          "PhaseAccumulator_Wra_0/pi_control_in",
+          "system_ila_0/probe7"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "PhaseAccumulator_Wra_0_phase_out": {
         "ports": [
@@ -12093,7 +12154,8 @@
       "axi_gpio_9_gpio2_io_o": {
         "ports": [
           "axi_gpio_9/gpio2_io_o",
-          "sync_axis_power_mod_0/open_loop_setpoint"
+          "sync_axis_power_mod_0/open_loop_setpoint",
+          "gpio_pmod_trigger_0/gpio_in"
         ]
       },
       "axi_gpio_9_gpio_io_o": {
@@ -12127,6 +12189,12 @@
         "ports": [
           "fast_servo_controller_0/dac_out",
           "sync_axis_power_mod_0/sync_in"
+        ]
+      },
+      "gpio_pmod_trigger_0_pmod_driver_out": {
+        "ports": [
+          "gpio_pmod_trigger_0/pmod_driver_out",
+          "pmod_digital_out"
         ]
       },
       "iq_split_0_adc_bus": {
@@ -12348,7 +12416,8 @@
           "async_fifo_latch_0/clk",
           "cordic_average_0/clk",
           "setpoint_switch_0/clk",
-          "fast_servo_controller_0/ap_clk"
+          "fast_servo_controller_0/ap_clk",
+          "gpio_pmod_trigger_0/clk"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jun 25 16:21:09 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun 26 11:57:29 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2"/>
 
@@ -59,7 +59,11 @@
         <CONNECTION INSTANCE="pmod_da2_trigger_0" PORT="dac_sclk"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="pmod_digital_in_0" SIGIS="undef"/>
+    <PORT DIR="O" NAME="pmod_digital_out" SIGIS="undef" SIGNAME="gpio_pmod_trigger_0_pmod_driver_out">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="gpio_pmod_trigger_0" PORT="pmod_driver_out"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT DIR="I" NAME="sysref_in_diff_n" SIGIS="undef" SIGNAME="usp_rf_data_converter_0_sysref_in_n">
       <CONNECTIONS>
         <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="sysref_in_n"/>
@@ -585,6 +589,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="ErrorSignalTruncation_0" PORT="s_axis_tdata"/>
             <CONNECTION INSTANCE="PIController_Wrapper_0" PORT="error_signal_unfolded"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe6"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="159" NAME="perturb_in_tdata" RIGHT="0" SIGIS="undef" SIGNAME="ErrorSignal_Wrapper_0_perturb_in_tdata">
@@ -807,6 +812,7 @@
         <PORT DIR="O" LEFT="255" NAME="control_output" RIGHT="0" SIGIS="undef" SIGNAME="PIController_Wrapper_0_control_output">
           <CONNECTIONS>
             <CONNECTION INSTANCE="PhaseAccumulator_Wra_0" PORT="pi_control_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe7"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="159" NAME="error_signal_unfolded" RIGHT="0" SIGIS="undef" SIGNAME="ErrorSignal_Wrapper_0_error_signal_out">
@@ -8663,6 +8669,7 @@
         <PORT DIR="O" LEFT="15" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_11_gpio2_io_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="setpoint_switch_0" PORT="gpio_setpoint"/>
+            <CONNECTION INSTANCE="gpio_pmod_trigger_0" PORT="gpio_in"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_11_gpio_io_o">
@@ -19500,6 +19507,31 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/gpio_pmod_trigger_0" HWVERSION="1.0" INSTANCE="gpio_pmod_trigger_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gpio_pmod_trigger" VLNV="xilinx.com:module_ref:gpio_pmod_trigger:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_gpio_pmod_trigger_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="245760000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="gpio_in" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_11_gpio2_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_11" PORT="gpio2_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="pmod_driver_out" SIGIS="undef" SIGNAME="gpio_pmod_trigger_0_pmod_driver_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="pmod_digital_out"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
     <MODULE COREREVISION="1" FULLNAME="/iq_split_0" HWVERSION="1.0" INSTANCE="iq_split_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="iq_split" VLNV="xilinx.com:module_ref:iq_split:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -24451,7 +24483,7 @@
         <PARAMETER NAME="C_INPUT_PIPE_STAGES" VALUE="0"/>
         <PARAMETER NAME="C_MON_TYPE" VALUE="MIX"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="10"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="6"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="8"/>
         <PARAMETER NAME="C_PROBE0_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE0_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
@@ -26855,7 +26887,7 @@
         <PARAMETER NAME="C_PROBE79_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE79_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE79_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE7_MU_CNT" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE7_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE7_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE800_MU_CNT" VALUE="1"/>
@@ -28329,6 +28361,16 @@
         <PORT DIR="I" LEFT="15" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="async_fifo_latch_0_m_axis_tdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="async_fifo_latch_0" PORT="m_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="ErrorSignal_Wrapper_0_error_signal_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ErrorSignal_Wrapper_0" PORT="error_signal_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="PIController_Wrapper_0_control_output">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="PIController_Wrapper_0" PORT="control_output"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
@@ -30265,6 +30307,7 @@
             <CONNECTION INSTANCE="cordic_average_0" PORT="clk"/>
             <CONNECTION INSTANCE="setpoint_switch_0" PORT="clk"/>
             <CONNECTION INSTANCE="fast_servo_controller_0" PORT="ap_clk"/>
+            <CONNECTION INSTANCE="gpio_pmod_trigger_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_adc2" SIGIS="clk"/>
@@ -31115,30 +31158,6 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
-      </ADDRESSBLOCKS>
-      <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
@@ -31155,6 +31174,30 @@
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <PARAMETERS>
         <PARAMETER NAME="C_DP_USE_AUDIO" VALUE="0"/>
