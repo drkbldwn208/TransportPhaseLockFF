@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun 26 11:57:29 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun 26 12:16:09 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2"/>
 
@@ -8669,7 +8669,6 @@
         <PORT DIR="O" LEFT="15" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_11_gpio2_io_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="setpoint_switch_0" PORT="gpio_setpoint"/>
-            <CONNECTION INSTANCE="gpio_pmod_trigger_0" PORT="gpio_in"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_11_gpio_io_o">
@@ -12281,6 +12280,7 @@
         <PORT DIR="O" LEFT="15" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_9_gpio2_io_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="sync_axis_power_mod_0" PORT="open_loop_setpoint"/>
+            <CONNECTION INSTANCE="gpio_pmod_trigger_0" PORT="gpio_in"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_9_gpio_io_o">
@@ -19519,9 +19519,9 @@
             <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="gpio_in" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_11_gpio2_io_o">
+        <PORT DIR="I" LEFT="15" NAME="gpio_in" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_9_gpio2_io_o">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_11" PORT="gpio2_io_o"/>
+            <CONNECTION INSTANCE="axi_gpio_9" PORT="gpio2_io_o"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="pmod_driver_out" SIGIS="undef" SIGNAME="gpio_pmod_trigger_0_pmod_driver_out">
