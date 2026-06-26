@@ -23,10 +23,10 @@
 module PhaseAccumulator_Wrapper #(
     parameter PHASE_WIDTH = 32
     )(
-    input clk,
-    input rst_n,
-    input [PHASE_WIDTH-1:0] center_freq_word,
-    input [PHASE_WIDTH*8-1:0] pi_control_in,
+    input wire clk,
+    input wire rst_n,
+    input wire [PHASE_WIDTH-1:0] center_freq_word,
+    input wire [PHASE_WIDTH*8-1:0] pi_control_in,
     
     input wire [PHASE_WIDTH*8-1:0] perturb_in_tdata,
     input wire perturb_in_tvalid,
@@ -34,11 +34,11 @@ module PhaseAccumulator_Wrapper #(
     
     input wire [31:0] fcw_in,
     input wire active_in, 
-    output [PHASE_WIDTH*8-1:0] phase_out
+    output wire [PHASE_WIDTH*8-1:0] phase_out
 );
 
 wire [PHASE_WIDTH*8-1:0] raw_phase_out;
-wire [PHASE_WIDTH-1:0] mod_freq_word = active_in ? center_freq_word + fcw_in : center_freq_word;
+wire [PHASE_WIDTH-1:0] mod_freq_word = (active_in == 1) ? center_freq_word + fcw_in : center_freq_word;
 
 
     PhaseAccumulator_8Lane #(

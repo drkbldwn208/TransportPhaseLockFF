@@ -27,6 +27,6 @@ module gpio_pmod_trigger(
     );
     
     always @(posedge clk) begin
-        pmod_driver_out <= gpio_in == 0 ? 1'b1 : 1'b0; 
+        pmod_driver_out <= (gpio_in == 0) ? 1'b1 : 1'b0; 
     end 
 endmodule

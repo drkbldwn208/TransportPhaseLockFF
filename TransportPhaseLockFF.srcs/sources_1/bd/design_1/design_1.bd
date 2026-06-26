@@ -140,7 +140,9 @@
       "axi_gpio_10": "",
       "setpoint_switch_0": "",
       "axi_gpio_11": "",
-      "gpio_pmod_trigger_0": ""
+      "gpio_pmod_trigger_0": "",
+      "xlconstant_0": "",
+      "xlconstant_1": ""
     },
     "interface_ports": {
       "sysref_in": {
@@ -9160,7 +9162,7 @@
             "value": "10"
           },
           "C_NUM_OF_PROBES": {
-            "value": "8"
+            "value": "10"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -9184,6 +9186,12 @@
             "value": "0"
           },
           "C_PROBE7_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE8_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE9_TYPE": {
             "value": "0"
           },
           "C_PROBE_WIDTH_PROPAGATION": {
@@ -11267,6 +11275,33 @@
             "direction": "O"
           }
         }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "design_1_xlconstant_0_0",
+        "xci_path": "ip/design_1_xlconstant_0_0/design_1_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "design_1_xlconstant_1_0",
+        "xci_path": "ip/design_1_xlconstant_1_0/design_1_xlconstant_1_0.xci",
+        "inst_hier_path": "xlconstant_1",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "32"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -11957,8 +11992,8 @@
       "PIController_Wrapper_0_control_output": {
         "ports": [
           "PIController_Wrapper_0/control_output",
-          "PhaseAccumulator_Wra_0/pi_control_in",
-          "system_ila_0/probe7"
+          "system_ila_0/probe7",
+          "PhaseAccumulator_Wra_0/pi_control_in"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -11972,8 +12007,17 @@
       "PhaseAccumulator_Wra_0_phase_out": {
         "ports": [
           "PhaseAccumulator_Wra_0/phase_out",
-          "NCO_Wrapper_0/phase_in"
-        ]
+          "NCO_Wrapper_0/phase_in",
+          "system_ila_0/probe8"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "PhaseExtractor_Wrapp_0_phase_error_out": {
         "ports": [
@@ -12194,8 +12238,17 @@
       "gpio_pmod_trigger_0_pmod_driver_out": {
         "ports": [
           "gpio_pmod_trigger_0/pmod_driver_out",
-          "pmod_digital_out"
-        ]
+          "pmod_digital_out",
+          "system_ila_0/probe9"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "iq_split_0_adc_bus": {
         "ports": [
@@ -12267,7 +12320,6 @@
           "axis_round_saturate_1/rst_n",
           "rfdc_iq_derotator_0/ap_rst_n",
           "axis_tlast_gen_iq_0/aresetn",
-          "PhaseAccumulator_Wra_0/rst_n",
           "axi_interconnect_0/M03_ARESETN",
           "sync_axis_power_mod_0/rst_n",
           "axis_power_mod_0/rst_n",
@@ -12278,7 +12330,8 @@
           "async_fifo_latch_0/rst_n",
           "cordic_average_0/rst_n",
           "setpoint_switch_0/rst_n",
-          "fast_servo_controller_0/ap_rst_n"
+          "fast_servo_controller_0/ap_rst_n",
+          "PhaseAccumulator_Wra_0/rst_n"
         ]
       },
       "proc_sys_reset_1_peripheral_aresetn": {
@@ -12395,7 +12448,6 @@
           "axis_round_saturate_1/clk",
           "rfdc_iq_derotator_0/ap_clk",
           "axis_tlast_gen_iq_0/aclk",
-          "PhaseAccumulator_Wra_0/clk",
           "AXISConstant_1/aclk",
           "clk_wiz_0/clk_in1",
           "axis_data_fifo_0/m_axis_aclk",
@@ -12417,7 +12469,20 @@
           "cordic_average_0/clk",
           "setpoint_switch_0/clk",
           "fast_servo_controller_0/ap_clk",
+          "PhaseAccumulator_Wra_0/clk",
           "gpio_pmod_trigger_0/clk"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "PhaseAccumulator_Wra_0/active_in"
+        ]
+      },
+      "xlconstant_1_dout": {
+        "ports": [
+          "xlconstant_1/dout",
+          "PhaseAccumulator_Wra_0/fcw_in"
         ]
       },
       "xpm_cdc_gen_0_dest_out": {
