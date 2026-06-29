@@ -1,0 +1,10 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="dwell_fcw_streamer_32" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="dwell_fcw_streamer_32"/>
+            </pragma>
+        </directive>
+    </sourceFile>
+</AutoPilot:ProjectResources>
+

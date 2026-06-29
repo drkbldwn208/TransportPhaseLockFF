@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"dwell_fcw_streamer_32": {
+			"proto_instances": {
+			}
+		}
+	}
+}

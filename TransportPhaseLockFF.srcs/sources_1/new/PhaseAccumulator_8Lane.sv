@@ -58,8 +58,8 @@ module PhaseAccumulator_8Lane #(
       center_freq_word_reg <= center_freq_word;
       //Calculate base increment
       for(int i = 0; i < 8; i++) begin
-//        inc_s1[i] <= center_freq_word_reg + pi_control_in[i*PHASE_WIDTH +: PHASE_WIDTH];
-        inc_s1[i] <= center_freq_word_reg;
+        inc_s1[i] <= center_freq_word_reg + pi_control_in[i*PHASE_WIDTH +: PHASE_WIDTH];
+//        inc_s1[i] <= center_freq_word_reg;
       end
 
       //Calculate pairwise sums
@@ -97,8 +97,8 @@ module PhaseAccumulator_8Lane #(
       global_phase <= global_phase + s4[7];
 
       for (int i = 0; i < 8; i++) begin
-        phase_out_reg[PHASE_WIDTH*i +: PHASE_WIDTH] <= global_phase + s4[i] + $signed(pi_control_in[i*PHASE_WIDTH +: PHASE_WIDTH]);
-        //        phase_out_reg[PHASE_WIDTH*i +: PHASE_WIDTH] <= global_phase + s4[i];
+//        phase_out_reg[PHASE_WIDTH*i +: PHASE_WIDTH] <= global_phase + s4[i] + $signed(pi_control_in[i*PHASE_WIDTH +: PHASE_WIDTH]);
+          phase_out_reg[PHASE_WIDTH*i +: PHASE_WIDTH] <= global_phase + s4[i];
 
       end
 

@@ -1,0 +1,17 @@
+{
+    "0": {
+        "name": "dwell_fcw_streamer_32",
+        "file": "dwell_fcw_streamer_32.cpp",
+        "fileloc": "8",
+        "instructions": "69",
+        "total_instructions": "69",
+        "calls": "",
+        "basicblocks": "14",
+        "loads": {
+            "G": "5"
+        },
+        "stores": {
+            "G": "15"
+        }
+    }
+}

@@ -1,0 +1,438 @@
+<profile>
+    <ReportVersion>
+        <Version>2024.1</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>zynquplusRFSOC</ProductFamily>
+        <Part>xczu49dr-ffvf1760-2-e</Part>
+        <TopModelName>dwell_fcw_streamer_64</TopModelName>
+        <TargetClockPeriod>4.07</TargetClockPeriod>
+        <ClockUncertainty>1.10</ClockUncertainty>
+        <TargetInitiationInterval>1</TargetInitiationInterval>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>yes</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>2.746</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>0</Best-caseLatency>
+            <Average-caseLatency>0</Average-caseLatency>
+            <Worst-caseLatency>0</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+            <PipelineInitiationInterval>1</PipelineInitiationInterval>
+            <PipelineDepth>1</PipelineDepth>
+            <Interval-min>1</Interval-min>
+            <Interval-max>1</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfViolations>
+            <IssueType>-</IssueType>
+            <ViolationType>-</ViolationType>
+            <SourceLocation>dwell_fcw_streamer_64.cpp:20</SourceLocation>
+        </SummaryOfViolations>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <FF>68</FF>
+            <LUT>237</LUT>
+            <BRAM_18K>0</BRAM_18K>
+            <DSP>0</DSP>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2160</BRAM_18K>
+            <DSP>4272</DSP>
+            <FF>850560</FF>
+            <LUT>425280</LUT>
+            <URAM>80</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>dwell_fcw_streamer_64</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst_n</name>
+            <Object>dwell_fcw_streamer_64</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_cmd_TDATA</name>
+            <Object>s_axis_cmd_V_data_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>64</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_cmd_TVALID</name>
+            <Object>s_axis_cmd_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_cmd_TREADY</name>
+            <Object>s_axis_cmd_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_cmd_TLAST</name>
+            <Object>s_axis_cmd_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_cmd_TKEEP</name>
+            <Object>s_axis_cmd_V_keep_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>8</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>s_axis_cmd_TSTRB</name>
+            <Object>s_axis_cmd_V_strb_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>8</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>start_r</name>
+            <Object>start_r</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>data</Attribute>
+            <CType>bool</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>fcw_out</name>
+            <Object>fcw_out</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>active_r</name>
+            <Object>active_r</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>dwell_wait</name>
+            <Object>dwell_wait</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule MAX_DEPTH="2">
+            <ModuleName>dwell_fcw_streamer_64</ModuleName>
+            <BindInstances>icmp_ln41_fu_131_p2 dwell_wait xor_ln43_fu_148_p2 start_edge_fu_154_p2 icmp_ln67_fu_194_p2 and_ln67_fu_200_p2 add_ln72_fu_206_p2 icmp_ln74_fu_218_p2 and_ln74_fu_224_p2</BindInstances>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>dwell_fcw_streamer_64</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>4.07</TargetClockPeriod>
+                    <ClockUncertainty>1.10</ClockUncertainty>
+                    <TargetInitiationInterval>1</TargetInitiationInterval>
+                    <EstimatedClockPeriod>2.746</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>0</Best-caseLatency>
+                    <Average-caseLatency>0</Average-caseLatency>
+                    <Worst-caseLatency>0</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1</PipelineInitiationInterval>
+                    <PipelineDepth>1</PipelineDepth>
+                    <PipelineType>yes</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>dwell_fcw_streamer_64.cpp:20</SourceLocation>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>68</FF>
+                    <AVAIL_FF>850560</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>237</LUT>
+                    <AVAIL_LUT>425280</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2160</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>4272</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>80</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln41_fu_131_p2" SOURCE="dwell_fcw_streamer_64.cpp:41" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln41" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="dwell_wait" SOURCE="dwell_fcw_streamer_64.cpp:41" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln41" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln43_fu_148_p2" SOURCE="dwell_fcw_streamer_64.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln43" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="start_edge_fu_154_p2" SOURCE="dwell_fcw_streamer_64.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="start_edge" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln67_fu_194_p2" SOURCE="dwell_fcw_streamer_64.cpp:67" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln67" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln67_fu_200_p2" SOURCE="dwell_fcw_streamer_64.cpp:67" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln67" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln72_fu_206_p2" SOURCE="dwell_fcw_streamer_64.cpp:72" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln72" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln74_fu_218_p2" SOURCE="dwell_fcw_streamer_64.cpp:74" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln74" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln74_fu_224_p2" SOURCE="dwell_fcw_streamer_64.cpp:74" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln74" VISIBLE="false"/>
+            </BindNodes>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <UserConfigCommands/>
+    <Args>
+        <Arg ArgName="s_axis_cmd" index="0" direction="in" srcType="stream&lt;hls::axis&lt;ap_uint&lt;64&gt;, 0, 0, 0, '8', false&gt;, 0&gt;&amp;" srcSize="128">
+            <hwRefs>
+                <hwRef type="interface" interface="s_axis_cmd" name="" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="start" index="1" direction="in" srcType="bool" srcSize="1">
+            <hwRefs>
+                <hwRef type="port" interface="start_r" name="start_r" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="fcw_out" index="2" direction="out" srcType="ap_uint&lt;32&gt;*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="fcw_out" name="fcw_out" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="active" index="3" direction="out" srcType="ap_uint&lt;1&gt;*" srcSize="8">
+            <hwRefs>
+                <hwRef type="port" interface="active_r" name="active_r" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="dwell_wait" index="4" direction="out" srcType="ap_uint&lt;1&gt;*" srcSize="8">
+            <hwRefs>
+                <hwRef type="port" interface="dwell_wait" name="dwell_wait" usage="data" direction="out"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_BUSIF">s_axis_cmd</busParam>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst_n</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst_n" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_LOW</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst_n">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst_n</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="s_axis_cmd" type="axi4stream" busTypeName="axis" mode="slave" direction="in" dataWidth="64" portPrefix="s_axis_cmd_">
+            <ports>
+                <port>s_axis_cmd_TDATA</port>
+                <port>s_axis_cmd_TKEEP</port>
+                <port>s_axis_cmd_TLAST</port>
+                <port>s_axis_cmd_TREADY</port>
+                <port>s_axis_cmd_TSTRB</port>
+                <port>s_axis_cmd_TVALID</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="axis" register_option="1" register_mode="both" argName="s_axis_cmd"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="start_r" type="data" busTypeName="data" protocol="ap_none" mode="slave" dataWidth="1">
+            <portMaps>
+                <portMap portMapName="start_r">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>start_r</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="start"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="fcw_out" type="data" busTypeName="data" protocol="ap_none" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="fcw_out">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>fcw_out</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="fcw_out"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="active_r" type="data" busTypeName="data" protocol="ap_none" mode="master" dataWidth="1">
+            <portMaps>
+                <portMap portMapName="active_r">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>active_r</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="active"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="dwell_wait" type="data" busTypeName="data" protocol="ap_none" mode="master" dataWidth="1">
+            <portMaps>
+                <portMap portMapName="dwell_wait">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>dwell_wait</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="dwell_wait"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="AXIS">
+                <table>
+                    <keys size="9">Interface, Direction, Register Mode, TDATA, TKEEP, TLAST, TREADY, TSTRB, TVALID</keys>
+                    <column name="s_axis_cmd">in, both, 64, 8, 1, 1, 8, 1</column>
+                </table>
+            </item>
+            <item name="Other Ports">
+                <table>
+                    <keys size="4">Port, Mode, Direction, Bitwidth</keys>
+                    <column name="active_r">ap_none, out, 1</column>
+                    <column name="dwell_wait">ap_none, out, 1</column>
+                    <column name="fcw_out">ap_none, out, 32</column>
+                    <column name="start_r">ap_none, in, 1</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst_n">reset, ap_rst_n</column>
+                    <column name="ap_ctrl">ap_ctrl_none, </column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table>
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="s_axis_cmd">in, stream&lt;hls::axis&lt;ap_uint&lt;64&gt; 0 0 0 '8' false&gt; 0&gt;&amp;</column>
+                    <column name="start">in, bool</column>
+                    <column name="fcw_out">out, ap_uint&lt;32&gt;*</column>
+                    <column name="active">out, ap_uint&lt;1&gt;*</column>
+                    <column name="dwell_wait">out, ap_uint&lt;1&gt;*</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table>
+                    <keys size="3">Argument, HW Interface, HW Type</keys>
+                    <column name="s_axis_cmd">s_axis_cmd, interface</column>
+                    <column name="start">start_r, port</column>
+                    <column name="fcw_out">fcw_out, port</column>
+                    <column name="active">active_r, port</column>
+                    <column name="dwell_wait">dwell_wait, port</column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
+    <PragmaReport>
+        <Pragma type="interface" location="dwell_fcw_streamer_64.cpp:14" status="valid" parentFunction="dwell_fcw_streamer_64" variable="s_axis_cmd" isDirective="0" options="axis port=s_axis_cmd"/>
+        <Pragma type="interface" location="dwell_fcw_streamer_64.cpp:15" status="valid" parentFunction="dwell_fcw_streamer_64" variable="start" isDirective="0" options="ap_none port=start"/>
+        <Pragma type="interface" location="dwell_fcw_streamer_64.cpp:16" status="valid" parentFunction="dwell_fcw_streamer_64" variable="fcw_out" isDirective="0" options="ap_none port=fcw_out"/>
+        <Pragma type="interface" location="dwell_fcw_streamer_64.cpp:17" status="valid" parentFunction="dwell_fcw_streamer_64" variable="active" isDirective="0" options="ap_none port=active"/>
+        <Pragma type="interface" location="dwell_fcw_streamer_64.cpp:18" status="valid" parentFunction="dwell_fcw_streamer_64" variable="dwell_wait" isDirective="0" options="ap_none port=dwell_wait"/>
+        <Pragma type="interface" location="dwell_fcw_streamer_64.cpp:19" status="valid" parentFunction="dwell_fcw_streamer_64" variable="return" isDirective="0" options="ap_ctrl_none port=return"/>
+        <Pragma type="pipeline" location="dwell_fcw_streamer_64.cpp:20" status="valid" parentFunction="dwell_fcw_streamer_64" variable="" isDirective="0" options="II=1"/>
+    </PragmaReport>
+</profile>
+

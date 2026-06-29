@@ -9,14 +9,13 @@ The module is a two-state machine:
 
 ## Files
 
-- `dwell_fcw_streamer.h`: top function declaration, AXI stream word type, and FCW constants.
-- `dwell_fcw_streamer.cpp`: synthesizable HLS implementation.
-- `tb_dwell_fcw_streamer.cpp`: simple C simulation testbench.
-- `run_hls.tcl`: Vitis/Vivado HLS script for C simulation, synthesis, and IP export.
+- `dwell_streamer_64_bit/`: 64-bit command input, 32-bit FCW output.
+- `dwell_fcw_streamer_32_bit/`: 32-bit command input, 16-bit FCW output.
+- `Makefile`: convenience targets for C simulation, synthesis, export, and cleanup.
 
 ## Command Format
 
-Each AXI4-Stream transfer is one 64-bit command:
+The 64-bit streamer uses one 64-bit AXI4-Stream transfer per command:
 
 ```text
 63                              32 31                               0
@@ -31,17 +30,48 @@ Software-side packing:
 uint64_t command = ((uint64_t)fcw << 32) | dwell_cycles;
 ```
 
+The 32-bit streamer uses one 32-bit AXI4-Stream transfer per command:
+
+```text
+31              16 15               0
++-----------------+------------------+
+| 16-bit FCW      | 16-bit dwell     |
++-----------------+------------------+
+```
+
+Software-side packing:
+
+```c
+uint32_t command = ((uint32_t)(fcw16 & 0xffff) << 16) | (dwell16 & 0xffff);
+```
+
+The 32-bit dwell field is full-scale: `dwell16 = 0xffff` loads the internal
+16-bit dwell counter with all ones and holds the FCW for about 65536 `ap_clk`
+cycles before the next command is accepted. At 245.76 MHz, that is about
+267 us.
+
 `TLAST` is treated as the end of a command packet. After the `TLAST` command finishes its dwell time, the module returns to `IDLE` and outputs the default 85 MHz FCW again. If you want the streamer to stay in `RUN` forever, keep `TLAST` low.
 
 ## Ports
 
-The HLS top function is:
+The 64-bit HLS top function is:
 
 ```cpp
-void dwell_fcw_streamer(
-    hls::stream<axis_cmd_t> &s_axis_cmd,
+void dwell_fcw_streamer_64(
+    hls::stream<axis_cmd64_t> &s_axis_cmd,
     bool start,
     ap_uint<32> *fcw_out,
+    ap_uint<1> *active,
+    ap_uint<1> *dwell_wait);
+```
+
+The 32-bit HLS top function is:
+
+```cpp
+void dwell_fcw_streamer_32(
+    hls::stream<axis_cmd32_t> &s_axis_cmd,
+    bool start,
+    ap_uint<16> *fcw_out,
     ap_uint<1> *active,
     ap_uint<1> *dwell_wait);
 ```
@@ -153,15 +183,14 @@ To override the default without editing the source, define `DWELL_FCW_STREAMER_I
 From this directory:
 
 ```bash
-vitis_hls -f run_hls.tcl
+make csim
+make export
 ```
 
-The script:
-
-1. creates an HLS project,
-2. runs C simulation,
-3. synthesizes for `xczu49dr-ffvf1760-2-e`, and
-4. exports an IP catalog package.
+`make csim` runs C simulation for both variants. `make export` runs C
+simulation, synthesis, and IP catalog export for both variants. Run `make clean`
+before rebuilding after interface-width changes so stale generated RTL is not
+left in the old HLS project directories.
 
 The clock constraint is 4.069 ns, matching 245.76 MHz.
 
@@ -177,10 +206,11 @@ Use an AXI4-Stream FIFO or clock converter between PS/DMA and this IP when the D
 
 The exported IP will also have HLS-generated `ap_clk` and reset ports. Connect `ap_clk` to the same PL clock used by the NCO/phase accumulator.
 
-After export, add this folder to Vivado as an IP repository:
+After export, add both IP folders to Vivado as IP repositories:
 
 ```text
-hls_sources/dwell_fcw_streamer/dwell_fcw_streamer_prj/solution1/impl/ip
+hls_sources/dwell_fcw_streamer/dwell_streamer_64_bit/dwell_fcw_streamer_64_prj/solution1/impl/ip
+hls_sources/dwell_fcw_streamer/dwell_fcw_streamer_32_bit/dwell_fcw_streamer_32_prj/solution1/impl/ip
 ```
 
 Then instantiate the IP in the block design, connect `s_axis_cmd` to the AXI stream FIFO output, and connect `fcw_out` to the phase accumulator `center_freq_word` input.
