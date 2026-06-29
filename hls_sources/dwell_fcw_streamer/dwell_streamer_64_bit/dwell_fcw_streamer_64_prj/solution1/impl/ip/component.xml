@@ -194,7 +194,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>38805040</spirit:value>
+            <spirit:value>256000c1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -210,7 +210,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ea2d8580</spirit:value>
+            <spirit:value>d4f6c0b0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -226,7 +226,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5cedf9d4</spirit:value>
+            <spirit:value>aab1a263</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -242,7 +242,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f2233ff9</spirit:value>
+            <spirit:value>eef09fec</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -555,7 +555,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/dwell_fcw_streamer_64.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_6b363053</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_2f8d9a1b</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -640,8 +640,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Dwell_fcw_streamer_64</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114674539</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2026-06-29T17:39:52Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114674780</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2026-06-29T21:40:14Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -650,7 +650,7 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2024.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1f26fb84"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ad5a248a"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="0dc8b9a0"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="87ae3338"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="0b329ab8"/>
     </xilinx:packagingInfo>

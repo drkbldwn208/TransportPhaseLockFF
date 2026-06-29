@@ -47,18 +47,18 @@ reg   [0:0] current_word_was_last;
 reg    s_axis_cmd_TDATA_blk_n;
 (* fsm_encoding = "none" *) reg   [0:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-wire   [0:0] state_load_load_fu_126_p1;
-wire   [0:0] and_ln67_fu_204_p2;
-wire   [0:0] icmp_ln67_fu_198_p2;
+wire   [0:0] state_load_load_fu_124_p1;
+wire   [0:0] and_ln67_fu_202_p2;
+wire   [0:0] icmp_ln67_fu_196_p2;
 reg    ap_predicate_op55_read_state1;
 reg    ap_block_state1;
-wire   [0:0] and_ln74_fu_228_p2;
-wire   [0:0] start_edge_fu_158_p2;
-wire   [15:0] add_ln72_fu_210_p2;
-wire   [15:0] trunc_ln84_fu_276_p1;
-wire   [0:0] icmp_ln41_fu_135_p2;
-wire   [0:0] xor_ln43_fu_152_p2;
-wire   [0:0] icmp_ln74_fu_222_p2;
+wire   [0:0] and_ln74_fu_226_p2;
+wire   [0:0] start_edge_fu_156_p2;
+wire   [15:0] add_ln72_fu_208_p2;
+wire   [15:0] trunc_ln84_fu_274_p1;
+wire   [0:0] icmp_ln41_fu_133_p2;
+wire   [0:0] xor_ln43_fu_150_p2;
+wire   [0:0] icmp_ln74_fu_220_p2;
 reg   [0:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    regslice_both_s_axis_cmd_V_data_V_U_apdone_blk;
@@ -78,14 +78,14 @@ wire    regslice_both_s_axis_cmd_V_last_V_U_apdone_blk;
 wire   [0:0] s_axis_cmd_TLAST_int_regslice;
 wire    regslice_both_s_axis_cmd_V_last_V_U_vld_out;
 wire    regslice_both_s_axis_cmd_V_last_V_U_ack_in;
-reg    ap_condition_66;
-reg    ap_condition_44;
-reg    ap_condition_63;
+reg    ap_condition_65;
+reg    ap_condition_43;
+reg    ap_condition_62;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
-#0 current_fcw = 16'd2833;
+#0 current_fcw = 16'd0;
 #0 state = 1'd0;
 #0 dwell_remaining = 16'd0;
 #0 start_d = 1'd0;
@@ -159,27 +159,27 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1))) begin
-        if (((1'd1 == and_ln67_fu_204_p2) & (state == 1'd1))) begin
-            current_fcw <= 16'd2833;
-        end else if ((1'b1 == ap_condition_44)) begin
+        if (((1'd1 == and_ln67_fu_202_p2) & (state == 1'd1))) begin
+            current_fcw <= 16'd0;
+        end else if ((1'b1 == ap_condition_43)) begin
             current_fcw <= {{s_axis_cmd_TDATA_int_regslice[31:16]}};
-        end else if ((1'b1 == ap_condition_66)) begin
-            current_fcw <= 16'd2833;
-        end else if ((state_load_load_fu_126_p1 == 1'd0)) begin
-            current_fcw <= 16'd2833;
+        end else if ((1'b1 == ap_condition_65)) begin
+            current_fcw <= 16'd0;
+        end else if ((state_load_load_fu_124_p1 == 1'd0)) begin
+            current_fcw <= 16'd0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1))) begin
-        if (((1'd1 == and_ln67_fu_204_p2) & (state == 1'd1))) begin
+        if (((1'd1 == and_ln67_fu_202_p2) & (state == 1'd1))) begin
             current_word_was_last <= 1'd0;
-        end else if ((1'b1 == ap_condition_44)) begin
+        end else if ((1'b1 == ap_condition_43)) begin
             current_word_was_last <= s_axis_cmd_TLAST_int_regslice;
-        end else if ((1'b1 == ap_condition_66)) begin
+        end else if ((1'b1 == ap_condition_65)) begin
             current_word_was_last <= 1'd0;
-        end else if ((state_load_load_fu_126_p1 == 1'd0)) begin
+        end else if ((state_load_load_fu_124_p1 == 1'd0)) begin
             current_word_was_last <= 1'd0;
         end
     end
@@ -187,20 +187,20 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1))) begin
-        if ((1'b1 == ap_condition_44)) begin
-            dwell_remaining <= trunc_ln84_fu_276_p1;
-        end else if ((1'b1 == ap_condition_63)) begin
-            dwell_remaining <= add_ln72_fu_210_p2;
-        end else if ((state_load_load_fu_126_p1 == 1'd0)) begin
+        if ((1'b1 == ap_condition_43)) begin
+            dwell_remaining <= trunc_ln84_fu_274_p1;
+        end else if ((1'b1 == ap_condition_62)) begin
+            dwell_remaining <= add_ln72_fu_208_p2;
+        end else if ((state_load_load_fu_124_p1 == 1'd0)) begin
             dwell_remaining <= 16'd0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((((1'b0 == ap_block_state1) & (1'd1 == and_ln67_fu_204_p2) & (state == 1'd1) & (1'b1 == ap_CS_fsm_state1)) | ((1'b0 == ap_block_state1) & (icmp_ln67_fu_198_p2 == 1'd0) & (1'd1 == and_ln74_fu_228_p2) & (state == 1'd1) & (1'd0 == and_ln67_fu_204_p2) & (1'b1 == ap_CS_fsm_state1)))) begin
+    if ((((1'b0 == ap_block_state1) & (1'd1 == and_ln67_fu_202_p2) & (state == 1'd1) & (1'b1 == ap_CS_fsm_state1)) | ((1'b0 == ap_block_state1) & (icmp_ln67_fu_196_p2 == 1'd0) & (1'd1 == and_ln74_fu_226_p2) & (state == 1'd1) & (1'd0 == and_ln67_fu_202_p2) & (1'b1 == ap_CS_fsm_state1)))) begin
         state <= 1'd0;
-    end else if (((start_edge_fu_158_p2 == 1'd1) & (1'b0 == ap_block_state1) & (state_load_load_fu_126_p1 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
+    end else if (((start_edge_fu_156_p2 == 1'd1) & (1'b0 == ap_block_state1) & (state_load_load_fu_124_p1 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
         state <= 1'd1;
     end
 end
@@ -220,7 +220,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln67_fu_198_p2 == 1'd1) & (state == 1'd1) & (1'd0 == and_ln67_fu_204_p2) & (1'b1 == ap_CS_fsm_state1))) begin
+    if (((icmp_ln67_fu_196_p2 == 1'd1) & (state == 1'd1) & (1'd0 == and_ln67_fu_202_p2) & (1'b1 == ap_CS_fsm_state1))) begin
         s_axis_cmd_TDATA_blk_n = s_axis_cmd_TVALID_int_regslice;
     end else begin
         s_axis_cmd_TDATA_blk_n = 1'b1;
@@ -248,11 +248,11 @@ end
 
 assign active_r = state;
 
-assign add_ln72_fu_210_p2 = ($signed(dwell_remaining) + $signed(16'd65535));
+assign add_ln72_fu_208_p2 = ($signed(dwell_remaining) + $signed(16'd65535));
 
-assign and_ln67_fu_204_p2 = (icmp_ln67_fu_198_p2 & current_word_was_last);
+assign and_ln67_fu_202_p2 = (icmp_ln67_fu_196_p2 & current_word_was_last);
 
-assign and_ln74_fu_228_p2 = (icmp_ln74_fu_222_p2 & current_word_was_last);
+assign and_ln74_fu_226_p2 = (icmp_ln74_fu_220_p2 & current_word_was_last);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -261,44 +261,44 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    ap_condition_44 = ((icmp_ln67_fu_198_p2 == 1'd1) & (state == 1'd1) & (1'd0 == and_ln67_fu_204_p2));
+    ap_condition_43 = ((icmp_ln67_fu_196_p2 == 1'd1) & (state == 1'd1) & (1'd0 == and_ln67_fu_202_p2));
 end
 
 always @ (*) begin
-    ap_condition_63 = ((icmp_ln67_fu_198_p2 == 1'd0) & (state == 1'd1) & (1'd0 == and_ln67_fu_204_p2));
+    ap_condition_62 = ((icmp_ln67_fu_196_p2 == 1'd0) & (state == 1'd1) & (1'd0 == and_ln67_fu_202_p2));
 end
 
 always @ (*) begin
-    ap_condition_66 = ((icmp_ln67_fu_198_p2 == 1'd0) & (1'd1 == and_ln74_fu_228_p2) & (state == 1'd1) & (1'd0 == and_ln67_fu_204_p2));
+    ap_condition_65 = ((icmp_ln67_fu_196_p2 == 1'd0) & (1'd1 == and_ln74_fu_226_p2) & (state == 1'd1) & (1'd0 == and_ln67_fu_202_p2));
 end
 
 always @ (*) begin
-    ap_predicate_op55_read_state1 = ((icmp_ln67_fu_198_p2 == 1'd1) & (state == 1'd1) & (1'd0 == and_ln67_fu_204_p2));
+    ap_predicate_op55_read_state1 = ((icmp_ln67_fu_196_p2 == 1'd1) & (state == 1'd1) & (1'd0 == and_ln67_fu_202_p2));
 end
 
 always @ (*) begin
     ap_rst_n_inv = ~ap_rst_n;
 end
 
-assign dwell_wait = (state & icmp_ln41_fu_135_p2);
+assign dwell_wait = (state & icmp_ln41_fu_133_p2);
 
 assign fcw_out = current_fcw;
 
-assign icmp_ln41_fu_135_p2 = ((dwell_remaining != 16'd0) ? 1'b1 : 1'b0);
+assign icmp_ln41_fu_133_p2 = ((dwell_remaining != 16'd0) ? 1'b1 : 1'b0);
 
-assign icmp_ln67_fu_198_p2 = ((dwell_remaining == 16'd0) ? 1'b1 : 1'b0);
+assign icmp_ln67_fu_196_p2 = ((dwell_remaining == 16'd0) ? 1'b1 : 1'b0);
 
-assign icmp_ln74_fu_222_p2 = ((add_ln72_fu_210_p2 == 16'd0) ? 1'b1 : 1'b0);
+assign icmp_ln74_fu_220_p2 = ((add_ln72_fu_208_p2 == 16'd0) ? 1'b1 : 1'b0);
 
 assign s_axis_cmd_TREADY = regslice_both_s_axis_cmd_V_data_V_U_ack_in;
 
-assign start_edge_fu_158_p2 = (xor_ln43_fu_152_p2 & start_r);
+assign start_edge_fu_156_p2 = (xor_ln43_fu_150_p2 & start_r);
 
-assign state_load_load_fu_126_p1 = state;
+assign state_load_load_fu_124_p1 = state;
 
-assign trunc_ln84_fu_276_p1 = s_axis_cmd_TDATA_int_regslice[15:0];
+assign trunc_ln84_fu_274_p1 = s_axis_cmd_TDATA_int_regslice[15:0];
 
-assign xor_ln43_fu_152_p2 = (start_d ^ 1'd1);
+assign xor_ln43_fu_150_p2 = (start_d ^ 1'd1);
 
 
 reg find_kernel_block = 0;

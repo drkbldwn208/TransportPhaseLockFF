@@ -42,7 +42,7 @@ static void tick(
 int main() {
     hls::stream<axis_cmd64_t> commands("commands");
 
-    const ap_uint<32> idle_fcw = FCW_85MHZ_8LANE_245P76MHZ;
+    const ap_uint<32> idle_fcw = 0x0;
     const ap_uint<32> fcw_a = 0x11112222;
     const ap_uint<32> fcw_b = 0x33334444;
 

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x906B07B64712BB9B",
+      "boundary_crc": "0x19976F0A5C9F4AC3",
       "device": "xczu49dr-ffvf1760-2-e",
       "gen_directory": "../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -150,7 +150,8 @@
       "axi_gpio_14": "",
       "dwell_fcw_streamer_32_0": "",
       "axi_dma_5": "",
-      "axi_dma_6": ""
+      "axi_dma_6": "",
+      "pmod_debounce_sync_0": ""
     },
     "interface_ports": {
       "sysref_in": {
@@ -364,8 +365,8 @@
       "adc_sclk_0": {
         "direction": "O"
       },
-      "pmod_digital_out": {
-        "direction": "O"
+      "pmod_digital_in_0": {
+        "direction": "I"
       }
     },
     "components": {
@@ -11578,7 +11579,13 @@
           "serial_setpoint": {
             "direction": "I",
             "left": "15",
-            "right": "0"
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": "undef",
+                "value_src": "default_prop"
+              }
+            }
           },
           "gpio_setpoint": {
             "direction": "I",
@@ -11681,7 +11688,7 @@
       },
       "dwell_fcw_streamer_64_0": {
         "vlnv": "xilinx.com:hls:dwell_fcw_streamer_64:1.0",
-        "ip_revision": "2114674539",
+        "ip_revision": "2114674780",
         "xci_name": "design_1_dwell_fcw_streamer_64_0_0",
         "xci_path": "ip/design_1_dwell_fcw_streamer_64_0_0/design_1_dwell_fcw_streamer_64_0_0.xci",
         "inst_hier_path": "dwell_fcw_streamer_64_0"
@@ -11712,7 +11719,7 @@
       },
       "dwell_fcw_streamer_32_0": {
         "vlnv": "xilinx.com:hls:dwell_fcw_streamer_32:1.0",
-        "ip_revision": "2114674538",
+        "ip_revision": "2114674781",
         "xci_name": "design_1_dwell_fcw_streamer_32_0_1",
         "xci_path": "ip/design_1_dwell_fcw_streamer_32_0_1/design_1_dwell_fcw_streamer_32_0_1.xci",
         "inst_hier_path": "dwell_fcw_streamer_32_0"
@@ -11809,6 +11816,59 @@
               "range": "4G",
               "width": "32"
             }
+          }
+        }
+      },
+      "pmod_debounce_sync_0": {
+        "vlnv": "xilinx.com:module_ref:pmod_debounce_sync:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_pmod_debounce_sync_0_0",
+        "xci_path": "ip/design_1_pmod_debounce_sync_0_0/design_1_pmod_debounce_sync_0_0.xci",
+        "inst_hier_path": "pmod_debounce_sync_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pmod_debounce_sync",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "245760000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_usp_rf_data_converter_0_0_clk_adc1",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "rst_n": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
+          },
+          "async_pin": {
+            "direction": "I"
+          },
+          "clear_latch": {
+            "direction": "I"
+          },
+          "debounced_level": {
+            "direction": "O"
+          },
+          "event_pulse": {
+            "direction": "O"
+          },
+          "event_latched": {
+            "direction": "O"
           }
         }
       }
@@ -12637,21 +12697,6 @@
           "pmod_ad1_adc_0/adc_sdata1"
         ]
       },
-      "async_fifo_latch_0_m_axis_tdata": {
-        "ports": [
-          "async_fifo_latch_0/m_axis_tdata",
-          "system_ila_0/probe5",
-          "setpoint_switch_0/serial_setpoint"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
-      },
       "axi_dma_3_s_axis_s2mm_tready": {
         "ports": [
           "axi_dma_3/s_axis_s2mm_tready",
@@ -12700,12 +12745,6 @@
           "axi_gpio_13/gpio_io_o",
           "system_ila_0/probe0",
           "rfdc_iq_derotator_0/enable"
-        ]
-      },
-      "axi_gpio_14_gpio2_io_o": {
-        "ports": [
-          "axi_gpio_14/gpio2_io_o",
-          "dwell_fcw_streamer_32_0/start_r"
         ]
       },
       "axi_gpio_14_gpio_io_o": {
@@ -12844,7 +12883,8 @@
       "fcw_out": {
         "ports": [
           "dwell_fcw_streamer_32_0/fcw_out",
-          "system_ila_0/probe11"
+          "system_ila_0/probe11",
+          "setpoint_switch_0/serial_setpoint"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -12858,7 +12898,6 @@
       "gpio_pmod_trigger_0_pmod_driver_out": {
         "ports": [
           "gpio_pmod_trigger_0/pmod_driver_out",
-          "pmod_digital_out",
           "system_ila_0/probe9"
         ],
         "hdl_attributes": {
@@ -12907,6 +12946,27 @@
           "dac_sclk_0"
         ]
       },
+      "pmod_debounce_sync_0_event_pulse": {
+        "ports": [
+          "pmod_debounce_sync_0/event_pulse",
+          "system_ila_0/probe5",
+          "dwell_fcw_streamer_32_0/start_r"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "pmod_digital_in_0_1": {
+        "ports": [
+          "pmod_digital_in_0",
+          "pmod_debounce_sync_0/async_pin"
+        ]
+      },
       "proc_sys_reset_0_peripheral_aresetn": {
         "ports": [
           "proc_sys_reset_0/peripheral_aresetn",
@@ -12952,6 +13012,7 @@
           "setpoint_switch_0/rst_n",
           "fast_servo_controller_0/ap_rst_n",
           "PhaseAccumulator_Wra_0/rst_n",
+          "pmod_debounce_sync_0/rst_n",
           "dwell_fcw_streamer_32_0/ap_rst_n",
           "dwell_fcw_streamer_64_0/ap_rst_n"
         ]
@@ -13099,10 +13160,11 @@
           "fast_servo_controller_0/ap_clk",
           "PhaseAccumulator_Wra_0/clk",
           "gpio_pmod_trigger_0/clk",
-          "dwell_fcw_streamer_32_0/ap_clk",
-          "dwell_fcw_streamer_64_0/ap_clk",
           "axi_dma_5/m_axi_mm2s_aclk",
-          "axi_dma_6/m_axi_mm2s_aclk"
+          "axi_dma_6/m_axi_mm2s_aclk",
+          "pmod_debounce_sync_0/clk",
+          "dwell_fcw_streamer_32_0/ap_clk",
+          "dwell_fcw_streamer_64_0/ap_clk"
         ]
       },
       "xlconstant_0_dout": {

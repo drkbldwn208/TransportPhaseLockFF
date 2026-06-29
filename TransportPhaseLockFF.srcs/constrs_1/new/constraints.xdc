@@ -21,5 +21,9 @@ set_property IOSTANDARD LVCMOS18 [get_ports adc_sdata1_0]
 set_property PACKAGE_PIN N16 [get_ports adc_sclk_0]
 set_property IOSTANDARD LVCMOS18 [get_ports adc_sclk_0]
 
-set_property PACKAGE_PIN L17 [get_ports pmod_digital_out]
-set_property IOSTANDARD LVCMOS18 [get_ports pmod_digital_out]
+set_property PACKAGE_PIN L17 [get_ports pmod_digital_in_0]
+set_property IOSTANDARD LVCMOS18 [get_ports pmod_digital_in_0]
+
+set_property PACKAGE_PIN M17 [get_ports pmod_digital_in_1]
+set_property IOSTANDARD LVCMOS18 [get_ports pmod_digital_in_1]
+

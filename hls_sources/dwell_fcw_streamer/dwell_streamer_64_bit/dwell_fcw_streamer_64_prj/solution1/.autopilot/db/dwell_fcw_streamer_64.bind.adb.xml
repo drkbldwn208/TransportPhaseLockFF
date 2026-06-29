@@ -500,7 +500,7 @@ entry_ifconv:31 %br_ln46 = br i1 %state_load, void %if.then, void %if.end13
 
 <Node id="47" bw="0" op_0_bw="32" op_1_bw="32" op_2_bw="0">
 <![CDATA[
-if.then:0 %store_ln47 = store i32 185685333, i32 %current_fcw
+if.then:0 %store_ln47 = store i32 0, i32 %current_fcw
 
 ]]></Node>
 <StgValue><ssdm name="store_ln47"/></StgValue>
@@ -791,7 +791,7 @@ if.then21:0 %store_ln0 = store i1 0, i1 %state
 
 <Node id="70" bw="0" op_0_bw="32" op_1_bw="32" op_2_bw="0">
 <![CDATA[
-if.then21:1 %store_ln76 = store i32 185685333, i32 %current_fcw
+if.then21:1 %store_ln76 = store i32 0, i32 %current_fcw
 
 ]]></Node>
 <StgValue><ssdm name="store_ln76"/></StgValue>
@@ -1060,7 +1060,7 @@ if.then15:0 %store_ln0 = store i1 0, i1 %state
 
 <Node id="89" bw="0" op_0_bw="32" op_1_bw="32" op_2_bw="0">
 <![CDATA[
-if.then15:1 %store_ln69 = store i32 185685333, i32 %current_fcw
+if.then15:1 %store_ln69 = store i32 0, i32 %current_fcw
 
 ]]></Node>
 <StgValue><ssdm name="store_ln69"/></StgValue>
@@ -1544,123 +1544,123 @@ cleanup.cont:0 %ret_ln87 = ret
 </dataflow>
 <dataflow id="287" from="state_load" to="br_ln46" fromId="21" toId="33">
 </dataflow>
-<dataflow id="289" from="StgValue_288" to="store_ln47" fromId="288" toId="34">
+<dataflow id="288" from="StgValue_89" to="store_ln47" fromId="89" toId="34">
 </dataflow>
-<dataflow id="290" from="current_fcw" to="store_ln47" fromId="80" toId="34">
+<dataflow id="289" from="current_fcw" to="store_ln47" fromId="80" toId="34">
 </dataflow>
-<dataflow id="291" from="StgValue_89" to="store_ln48" fromId="89" toId="35">
+<dataflow id="290" from="StgValue_89" to="store_ln48" fromId="89" toId="35">
 </dataflow>
-<dataflow id="292" from="dwell_remaining" to="store_ln48" fromId="82" toId="35">
+<dataflow id="291" from="dwell_remaining" to="store_ln48" fromId="82" toId="35">
 </dataflow>
-<dataflow id="294" from="StgValue_293" to="store_ln49" fromId="293" toId="36">
+<dataflow id="293" from="StgValue_292" to="store_ln49" fromId="292" toId="36">
 </dataflow>
-<dataflow id="295" from="current_word_was_last" to="store_ln49" fromId="84" toId="36">
+<dataflow id="294" from="current_word_was_last" to="store_ln49" fromId="84" toId="36">
 </dataflow>
-<dataflow id="296" from="start_edge" to="br_ln51" fromId="30" toId="37">
+<dataflow id="295" from="start_edge" to="br_ln51" fromId="30" toId="37">
 </dataflow>
-<dataflow id="297" from="StgValue_280" to="store_ln0" fromId="280" toId="38">
+<dataflow id="296" from="StgValue_280" to="store_ln0" fromId="280" toId="38">
 </dataflow>
-<dataflow id="298" from="state" to="store_ln0" fromId="81" toId="38">
+<dataflow id="297" from="state" to="store_ln0" fromId="81" toId="38">
 </dataflow>
-<dataflow id="299" from="dwell_remaining_load" to="icmp_ln67" fromId="24" toId="41">
+<dataflow id="298" from="dwell_remaining_load" to="icmp_ln67" fromId="24" toId="41">
 </dataflow>
-<dataflow id="300" from="StgValue_89" to="icmp_ln67" fromId="89" toId="41">
+<dataflow id="299" from="StgValue_89" to="icmp_ln67" fromId="89" toId="41">
 </dataflow>
-<dataflow id="301" from="current_word_was_last_load" to="and_ln67" fromId="32" toId="42">
+<dataflow id="300" from="current_word_was_last_load" to="and_ln67" fromId="32" toId="42">
 </dataflow>
-<dataflow id="302" from="icmp_ln67" to="and_ln67" fromId="41" toId="42">
+<dataflow id="301" from="icmp_ln67" to="and_ln67" fromId="41" toId="42">
 </dataflow>
-<dataflow id="303" from="and_ln67" to="br_ln67" fromId="42" toId="43">
+<dataflow id="302" from="and_ln67" to="br_ln67" fromId="42" toId="43">
 </dataflow>
-<dataflow id="304" from="icmp_ln67" to="br_ln71" fromId="41" toId="44">
+<dataflow id="303" from="icmp_ln67" to="br_ln71" fromId="41" toId="44">
 </dataflow>
-<dataflow id="305" from="dwell_remaining_load" to="add_ln72" fromId="24" toId="45">
+<dataflow id="304" from="dwell_remaining_load" to="add_ln72" fromId="24" toId="45">
 </dataflow>
-<dataflow id="306" from="StgValue_118" to="add_ln72" fromId="118" toId="45">
+<dataflow id="305" from="StgValue_118" to="add_ln72" fromId="118" toId="45">
 </dataflow>
-<dataflow id="307" from="add_ln72" to="store_ln72" fromId="45" toId="46">
+<dataflow id="306" from="add_ln72" to="store_ln72" fromId="45" toId="46">
 </dataflow>
-<dataflow id="308" from="dwell_remaining" to="store_ln72" fromId="82" toId="46">
+<dataflow id="307" from="dwell_remaining" to="store_ln72" fromId="82" toId="46">
 </dataflow>
-<dataflow id="309" from="add_ln72" to="icmp_ln74" fromId="45" toId="47">
+<dataflow id="308" from="add_ln72" to="icmp_ln74" fromId="45" toId="47">
 </dataflow>
-<dataflow id="310" from="StgValue_89" to="icmp_ln74" fromId="89" toId="47">
+<dataflow id="309" from="StgValue_89" to="icmp_ln74" fromId="89" toId="47">
 </dataflow>
-<dataflow id="311" from="current_word_was_last_load" to="and_ln74" fromId="32" toId="48">
+<dataflow id="310" from="current_word_was_last_load" to="and_ln74" fromId="32" toId="48">
 </dataflow>
-<dataflow id="312" from="icmp_ln74" to="and_ln74" fromId="47" toId="48">
+<dataflow id="311" from="icmp_ln74" to="and_ln74" fromId="47" toId="48">
 </dataflow>
-<dataflow id="313" from="and_ln74" to="br_ln74" fromId="48" toId="49">
+<dataflow id="312" from="and_ln74" to="br_ln74" fromId="48" toId="49">
 </dataflow>
-<dataflow id="314" from="StgValue_293" to="store_ln0" fromId="293" toId="50">
+<dataflow id="313" from="StgValue_292" to="store_ln0" fromId="292" toId="50">
 </dataflow>
-<dataflow id="315" from="state" to="store_ln0" fromId="81" toId="50">
+<dataflow id="314" from="state" to="store_ln0" fromId="81" toId="50">
 </dataflow>
-<dataflow id="316" from="StgValue_288" to="store_ln76" fromId="288" toId="51">
+<dataflow id="315" from="StgValue_89" to="store_ln76" fromId="89" toId="51">
 </dataflow>
-<dataflow id="317" from="current_fcw" to="store_ln76" fromId="80" toId="51">
+<dataflow id="316" from="current_fcw" to="store_ln76" fromId="80" toId="51">
 </dataflow>
-<dataflow id="318" from="StgValue_293" to="store_ln77" fromId="293" toId="52">
+<dataflow id="317" from="StgValue_292" to="store_ln77" fromId="292" toId="52">
 </dataflow>
-<dataflow id="319" from="current_word_was_last" to="store_ln77" fromId="84" toId="52">
+<dataflow id="318" from="current_word_was_last" to="store_ln77" fromId="84" toId="52">
 </dataflow>
-<dataflow id="321" from="_ssdm_op_Read.axis.volatile.i64P0A.i8P0A.i8P0A.i1P0A" to="empty" fromId="320" toId="55">
+<dataflow id="320" from="_ssdm_op_Read.axis.volatile.i64P0A.i8P0A.i8P0A.i1P0A" to="empty" fromId="319" toId="55">
 </dataflow>
-<dataflow id="322" from="s_axis_cmd_V_data_V" to="empty" fromId="72" toId="55">
+<dataflow id="321" from="s_axis_cmd_V_data_V" to="empty" fromId="72" toId="55">
 </dataflow>
-<dataflow id="323" from="s_axis_cmd_V_keep_V" to="empty" fromId="73" toId="55">
+<dataflow id="322" from="s_axis_cmd_V_keep_V" to="empty" fromId="73" toId="55">
 </dataflow>
-<dataflow id="324" from="s_axis_cmd_V_strb_V" to="empty" fromId="74" toId="55">
+<dataflow id="323" from="s_axis_cmd_V_strb_V" to="empty" fromId="74" toId="55">
 </dataflow>
-<dataflow id="325" from="s_axis_cmd_V_last_V" to="empty" fromId="75" toId="55">
+<dataflow id="324" from="s_axis_cmd_V_last_V" to="empty" fromId="75" toId="55">
 </dataflow>
-<dataflow id="326" from="empty" to="command_word_data" fromId="55" toId="56">
+<dataflow id="325" from="empty" to="command_word_data" fromId="55" toId="56">
 </dataflow>
-<dataflow id="327" from="empty" to="command_word_last" fromId="55" toId="57">
+<dataflow id="326" from="empty" to="command_word_last" fromId="55" toId="57">
 </dataflow>
-<dataflow id="329" from="_ssdm_op_PartSelect.i32.i64.i32.i32" to="tmp1" fromId="328" toId="58">
+<dataflow id="328" from="_ssdm_op_PartSelect.i32.i64.i32.i32" to="tmp1" fromId="327" toId="58">
 </dataflow>
-<dataflow id="330" from="command_word_data" to="tmp1" fromId="56" toId="58">
+<dataflow id="329" from="command_word_data" to="tmp1" fromId="56" toId="58">
 </dataflow>
-<dataflow id="332" from="StgValue_331" to="tmp1" fromId="331" toId="58">
+<dataflow id="331" from="StgValue_330" to="tmp1" fromId="330" toId="58">
 </dataflow>
-<dataflow id="334" from="StgValue_333" to="tmp1" fromId="333" toId="58">
+<dataflow id="333" from="StgValue_332" to="tmp1" fromId="332" toId="58">
 </dataflow>
-<dataflow id="335" from="tmp1" to="store_ln83" fromId="58" toId="59">
+<dataflow id="334" from="tmp1" to="store_ln83" fromId="58" toId="59">
 </dataflow>
-<dataflow id="336" from="current_fcw" to="store_ln83" fromId="80" toId="59">
+<dataflow id="335" from="current_fcw" to="store_ln83" fromId="80" toId="59">
 </dataflow>
-<dataflow id="337" from="command_word_data" to="trunc_ln84" fromId="56" toId="60">
+<dataflow id="336" from="command_word_data" to="trunc_ln84" fromId="56" toId="60">
 </dataflow>
-<dataflow id="338" from="trunc_ln84" to="store_ln84" fromId="60" toId="61">
+<dataflow id="337" from="trunc_ln84" to="store_ln84" fromId="60" toId="61">
 </dataflow>
-<dataflow id="339" from="dwell_remaining" to="store_ln84" fromId="82" toId="61">
+<dataflow id="338" from="dwell_remaining" to="store_ln84" fromId="82" toId="61">
 </dataflow>
-<dataflow id="340" from="command_word_last" to="store_ln85" fromId="57" toId="62">
+<dataflow id="339" from="command_word_last" to="store_ln85" fromId="57" toId="62">
 </dataflow>
-<dataflow id="341" from="current_word_was_last" to="store_ln85" fromId="84" toId="62">
+<dataflow id="340" from="current_word_was_last" to="store_ln85" fromId="84" toId="62">
 </dataflow>
-<dataflow id="342" from="StgValue_293" to="store_ln0" fromId="293" toId="65">
+<dataflow id="341" from="StgValue_292" to="store_ln0" fromId="292" toId="65">
 </dataflow>
-<dataflow id="343" from="state" to="store_ln0" fromId="81" toId="65">
+<dataflow id="342" from="state" to="store_ln0" fromId="81" toId="65">
 </dataflow>
-<dataflow id="344" from="StgValue_288" to="store_ln69" fromId="288" toId="66">
+<dataflow id="343" from="StgValue_89" to="store_ln69" fromId="89" toId="66">
 </dataflow>
-<dataflow id="345" from="current_fcw" to="store_ln69" fromId="80" toId="66">
+<dataflow id="344" from="current_fcw" to="store_ln69" fromId="80" toId="66">
 </dataflow>
-<dataflow id="346" from="StgValue_293" to="store_ln70" fromId="293" toId="67">
+<dataflow id="345" from="StgValue_292" to="store_ln70" fromId="292" toId="67">
 </dataflow>
-<dataflow id="347" from="current_word_was_last" to="store_ln70" fromId="84" toId="67">
+<dataflow id="346" from="current_word_was_last" to="store_ln70" fromId="84" toId="67">
 </dataflow>
-<dataflow id="348" from="state_load" to="StgValue_1" fromId="21" toId="1">
+<dataflow id="347" from="state_load" to="StgValue_1" fromId="21" toId="1">
 </dataflow>
-<dataflow id="349" from="start_edge" to="StgValue_1" fromId="30" toId="1">
+<dataflow id="348" from="start_edge" to="StgValue_1" fromId="30" toId="1">
 </dataflow>
-<dataflow id="350" from="and_ln67" to="StgValue_1" fromId="42" toId="1">
+<dataflow id="349" from="and_ln67" to="StgValue_1" fromId="42" toId="1">
 </dataflow>
-<dataflow id="351" from="icmp_ln67" to="StgValue_1" fromId="41" toId="1">
+<dataflow id="350" from="icmp_ln67" to="StgValue_1" fromId="41" toId="1">
 </dataflow>
-<dataflow id="352" from="and_ln74" to="StgValue_1" fromId="48" toId="1">
+<dataflow id="351" from="and_ln74" to="StgValue_1" fromId="48" toId="1">
 </dataflow>
 </dataflows>
 

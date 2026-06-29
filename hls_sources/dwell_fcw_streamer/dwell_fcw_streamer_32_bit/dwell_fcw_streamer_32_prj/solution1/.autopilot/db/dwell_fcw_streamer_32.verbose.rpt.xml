@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'dwell_fcw_streamer_32'" level="0">
-<item name = "Date">Mon Jun 29 10:38:35 2026
+<item name = "Date">Mon Jun 29 14:41:13 2026
 </item>
 <item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
 <item name = "Project">dwell_fcw_streamer_32_prj</item>
@@ -77,19 +77,19 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln72_fu_210_p2">+, 0, 0, 23, 16, 2</column>
-<column name="and_ln67_fu_204_p2">and, 0, 0, 2, 1, 1</column>
-<column name="and_ln74_fu_228_p2">and, 0, 0, 2, 1, 1</column>
+<column name="add_ln72_fu_208_p2">+, 0, 0, 23, 16, 2</column>
+<column name="and_ln67_fu_202_p2">and, 0, 0, 2, 1, 1</column>
+<column name="and_ln74_fu_226_p2">and, 0, 0, 2, 1, 1</column>
 <column name="ap_block_state1">and, 0, 0, 2, 1, 1</column>
-<column name="ap_condition_44">and, 0, 0, 2, 1, 1</column>
-<column name="ap_condition_63">and, 0, 0, 2, 1, 1</column>
-<column name="ap_condition_66">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_43">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_62">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_65">and, 0, 0, 2, 1, 1</column>
 <column name="dwell_wait">and, 0, 0, 2, 1, 1</column>
-<column name="start_edge_fu_158_p2">and, 0, 0, 2, 1, 1</column>
-<column name="icmp_ln41_fu_135_p2">icmp, 0, 0, 23, 16, 1</column>
-<column name="icmp_ln67_fu_198_p2">icmp, 0, 0, 23, 16, 1</column>
-<column name="icmp_ln74_fu_222_p2">icmp, 0, 0, 23, 16, 1</column>
-<column name="xor_ln43_fu_152_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="start_edge_fu_156_p2">and, 0, 0, 2, 1, 1</column>
+<column name="icmp_ln41_fu_133_p2">icmp, 0, 0, 23, 16, 1</column>
+<column name="icmp_ln67_fu_196_p2">icmp, 0, 0, 23, 16, 1</column>
+<column name="icmp_ln74_fu_220_p2">icmp, 0, 0, 23, 16, 1</column>
+<column name="xor_ln43_fu_150_p2">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">

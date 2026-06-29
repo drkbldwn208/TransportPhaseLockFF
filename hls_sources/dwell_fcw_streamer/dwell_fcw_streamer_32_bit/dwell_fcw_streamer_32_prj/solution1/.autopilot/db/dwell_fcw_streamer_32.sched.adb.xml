@@ -500,7 +500,7 @@ entry_ifconv:31 %br_ln46 = br i1 %state_load, void %if.then, void %if.end13
 
 <Node id="47" bw="0" op_0_bw="16" op_1_bw="16" op_2_bw="0">
 <![CDATA[
-if.then:0 %store_ln47 = store i16 2833, i16 %current_fcw
+if.then:0 %store_ln47 = store i16 0, i16 %current_fcw
 
 ]]></Node>
 <StgValue><ssdm name="store_ln47"/></StgValue>
@@ -791,7 +791,7 @@ if.then21:0 %store_ln0 = store i1 0, i1 %state
 
 <Node id="70" bw="0" op_0_bw="16" op_1_bw="16" op_2_bw="0">
 <![CDATA[
-if.then21:1 %store_ln76 = store i16 2833, i16 %current_fcw
+if.then21:1 %store_ln76 = store i16 0, i16 %current_fcw
 
 ]]></Node>
 <StgValue><ssdm name="store_ln76"/></StgValue>
@@ -1060,7 +1060,7 @@ if.then15:0 %store_ln0 = store i1 0, i1 %state
 
 <Node id="89" bw="0" op_0_bw="16" op_1_bw="16" op_2_bw="0">
 <![CDATA[
-if.then15:1 %store_ln69 = store i16 2833, i16 %current_fcw
+if.then15:1 %store_ln69 = store i16 0, i16 %current_fcw
 
 ]]></Node>
 <StgValue><ssdm name="store_ln69"/></StgValue>

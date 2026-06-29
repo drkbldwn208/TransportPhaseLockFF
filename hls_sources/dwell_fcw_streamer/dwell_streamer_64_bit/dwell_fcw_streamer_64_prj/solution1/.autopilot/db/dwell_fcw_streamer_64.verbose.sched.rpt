@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'dwell_fcw_streamer_64'
 ================================================================
-* Date:           Mon Jun 29 10:39:42 2026
+* Date:           Mon Jun 29 14:40:04 2026
 
 * Version:        2024.1 (Build 5069499 on May 21 2024)
 * Project:        dwell_fcw_streamer_64_prj
@@ -111,7 +111,7 @@ ST_1 : Operation 30 [1/1] (0.28ns) (out node of the LUT)   --->   "%start_edge =
 ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%store_ln44 = store i1 %start_r_read, i1 %start_d" [dwell_fcw_streamer_64.cpp:44]   --->   Operation 31 'store' 'store_ln44' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%current_word_was_last_load = load i1 %current_word_was_last" [dwell_fcw_streamer_64.cpp:67]   --->   Operation 32 'load' 'current_word_was_last_load' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%br_ln46 = br i1 %state_load, void %if.then, void %if.end13" [dwell_fcw_streamer_64.cpp:46]   --->   Operation 33 'br' 'br_ln46' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 34 [1/1] (0.42ns)   --->   "%store_ln47 = store i32 185685333, i32 %current_fcw" [dwell_fcw_streamer_64.cpp:47]   --->   Operation 34 'store' 'store_ln47' <Predicate = (!state_load)> <Delay = 0.42>
+ST_1 : Operation 34 [1/1] (0.42ns)   --->   "%store_ln47 = store i32 0, i32 %current_fcw" [dwell_fcw_streamer_64.cpp:47]   --->   Operation 34 'store' 'store_ln47' <Predicate = (!state_load)> <Delay = 0.42>
 ST_1 : Operation 35 [1/1] (0.47ns)   --->   "%store_ln48 = store i32 0, i32 %dwell_remaining" [dwell_fcw_streamer_64.cpp:48]   --->   Operation 35 'store' 'store_ln48' <Predicate = (!state_load)> <Delay = 0.47>
 ST_1 : Operation 36 [1/1] (0.42ns)   --->   "%store_ln49 = store i1 0, i1 %current_word_was_last" [dwell_fcw_streamer_64.cpp:49]   --->   Operation 36 'store' 'store_ln49' <Predicate = (!state_load)> <Delay = 0.42>
 ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%br_ln51 = br i1 %start_edge, void %if.end, void %if.then12" [dwell_fcw_streamer_64.cpp:51]   --->   Operation 37 'br' 'br_ln51' <Predicate = (!state_load)> <Delay = 0.00>
@@ -128,7 +128,7 @@ ST_1 : Operation 47 [1/1] (1.01ns)   --->   "%icmp_ln74 = icmp_eq  i32 %add_ln72
 ST_1 : Operation 48 [1/1] (0.28ns)   --->   "%and_ln74 = and i1 %current_word_was_last_load, i1 %icmp_ln74" [dwell_fcw_streamer_64.cpp:74]   --->   Operation 48 'and' 'and_ln74' <Predicate = (state_load & !and_ln67 & !icmp_ln67)> <Delay = 0.28> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
 ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%br_ln74 = br i1 %and_ln74, void %if.end23, void %if.then21" [dwell_fcw_streamer_64.cpp:74]   --->   Operation 49 'br' 'br_ln74' <Predicate = (state_load & !and_ln67 & !icmp_ln67)> <Delay = 0.00>
 ST_1 : Operation 50 [1/1] (0.42ns)   --->   "%store_ln0 = store i1 0, i1 %state"   --->   Operation 50 'store' 'store_ln0' <Predicate = (state_load & !and_ln67 & !icmp_ln67 & and_ln74)> <Delay = 0.42>
-ST_1 : Operation 51 [1/1] (0.42ns)   --->   "%store_ln76 = store i32 185685333, i32 %current_fcw" [dwell_fcw_streamer_64.cpp:76]   --->   Operation 51 'store' 'store_ln76' <Predicate = (state_load & !and_ln67 & !icmp_ln67 & and_ln74)> <Delay = 0.42>
+ST_1 : Operation 51 [1/1] (0.42ns)   --->   "%store_ln76 = store i32 0, i32 %current_fcw" [dwell_fcw_streamer_64.cpp:76]   --->   Operation 51 'store' 'store_ln76' <Predicate = (state_load & !and_ln67 & !icmp_ln67 & and_ln74)> <Delay = 0.42>
 ST_1 : Operation 52 [1/1] (0.42ns)   --->   "%store_ln77 = store i1 0, i1 %current_word_was_last" [dwell_fcw_streamer_64.cpp:77]   --->   Operation 52 'store' 'store_ln77' <Predicate = (state_load & !and_ln67 & !icmp_ln67 & and_ln74)> <Delay = 0.42>
 ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%br_ln78 = br void %if.end23" [dwell_fcw_streamer_64.cpp:78]   --->   Operation 53 'br' 'br_ln78' <Predicate = (state_load & !and_ln67 & !icmp_ln67 & and_ln74)> <Delay = 0.00>
 ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%br_ln79 = br void %if.end30" [dwell_fcw_streamer_64.cpp:79]   --->   Operation 54 'br' 'br_ln79' <Predicate = (state_load & !and_ln67 & !icmp_ln67)> <Delay = 0.00>
@@ -143,7 +143,7 @@ ST_1 : Operation 62 [1/1] (0.42ns)   --->   "%store_ln85 = store i1 %command_wor
 ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%br_ln0 = br void %if.end30"   --->   Operation 63 'br' 'br_ln0' <Predicate = (state_load & !and_ln67 & icmp_ln67)> <Delay = 0.00>
 ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%br_ln0 = br void %if.end31"   --->   Operation 64 'br' 'br_ln0' <Predicate = (state_load & !and_ln67)> <Delay = 0.00>
 ST_1 : Operation 65 [1/1] (0.42ns)   --->   "%store_ln0 = store i1 0, i1 %state"   --->   Operation 65 'store' 'store_ln0' <Predicate = (state_load & and_ln67)> <Delay = 0.42>
-ST_1 : Operation 66 [1/1] (0.42ns)   --->   "%store_ln69 = store i32 185685333, i32 %current_fcw" [dwell_fcw_streamer_64.cpp:69]   --->   Operation 66 'store' 'store_ln69' <Predicate = (state_load & and_ln67)> <Delay = 0.42>
+ST_1 : Operation 66 [1/1] (0.42ns)   --->   "%store_ln69 = store i32 0, i32 %current_fcw" [dwell_fcw_streamer_64.cpp:69]   --->   Operation 66 'store' 'store_ln69' <Predicate = (state_load & and_ln67)> <Delay = 0.42>
 ST_1 : Operation 67 [1/1] (0.42ns)   --->   "%store_ln70 = store i1 0, i1 %current_word_was_last" [dwell_fcw_streamer_64.cpp:70]   --->   Operation 67 'store' 'store_ln70' <Predicate = (state_load & and_ln67)> <Delay = 0.42>
 ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%br_ln71 = br void %if.end31" [dwell_fcw_streamer_64.cpp:71]   --->   Operation 68 'br' 'br_ln71' <Predicate = (state_load & and_ln67)> <Delay = 0.00>
 ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%br_ln87 = br void %cleanup.cont" [dwell_fcw_streamer_64.cpp:87]   --->   Operation 69 'br' 'br_ln87' <Predicate = (state_load)> <Delay = 0.00>

@@ -200,7 +200,7 @@
     <RTLDesignHierarchy>
         <TopModule MAX_DEPTH="2">
             <ModuleName>dwell_fcw_streamer_64</ModuleName>
-            <BindInstances>icmp_ln41_fu_131_p2 dwell_wait xor_ln43_fu_148_p2 start_edge_fu_154_p2 icmp_ln67_fu_194_p2 and_ln67_fu_200_p2 add_ln72_fu_206_p2 icmp_ln74_fu_218_p2 and_ln74_fu_224_p2</BindInstances>
+            <BindInstances>icmp_ln41_fu_129_p2 dwell_wait xor_ln43_fu_146_p2 start_edge_fu_152_p2 icmp_ln67_fu_192_p2 and_ln67_fu_198_p2 add_ln72_fu_204_p2 icmp_ln74_fu_216_p2 and_ln74_fu_222_p2</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -250,15 +250,15 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln41_fu_131_p2" SOURCE="dwell_fcw_streamer_64.cpp:41" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln41" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op setne" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="setne" PRAGMA="" RTLNAME="icmp_ln41_fu_129_p2" SOURCE="dwell_fcw_streamer_64.cpp:41" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln41" VISIBLE="false"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="dwell_wait" SOURCE="dwell_fcw_streamer_64.cpp:41" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln41" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln43_fu_148_p2" SOURCE="dwell_fcw_streamer_64.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln43" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="start_edge_fu_154_p2" SOURCE="dwell_fcw_streamer_64.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="start_edge" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln67_fu_194_p2" SOURCE="dwell_fcw_streamer_64.cpp:67" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln67" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln67_fu_200_p2" SOURCE="dwell_fcw_streamer_64.cpp:67" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln67" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln72_fu_206_p2" SOURCE="dwell_fcw_streamer_64.cpp:72" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln72" VISIBLE="true"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln74_fu_218_p2" SOURCE="dwell_fcw_streamer_64.cpp:74" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln74" VISIBLE="false"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln74_fu_224_p2" SOURCE="dwell_fcw_streamer_64.cpp:74" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln74" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op xor" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="xor" PRAGMA="" RTLNAME="xor_ln43_fu_146_p2" SOURCE="dwell_fcw_streamer_64.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="xor_ln43" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="start_edge_fu_152_p2" SOURCE="dwell_fcw_streamer_64.cpp:43" STORAGESUBTYPE="" URAM="0" VARIABLE="start_edge" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln67_fu_192_p2" SOURCE="dwell_fcw_streamer_64.cpp:67" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln67" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln67_fu_198_p2" SOURCE="dwell_fcw_streamer_64.cpp:67" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln67" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln72_fu_204_p2" SOURCE="dwell_fcw_streamer_64.cpp:72" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln72" VISIBLE="true"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op seteq" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="seteq" PRAGMA="" RTLNAME="icmp_ln74_fu_216_p2" SOURCE="dwell_fcw_streamer_64.cpp:74" STORAGESUBTYPE="" URAM="0" VARIABLE="icmp_ln74" VISIBLE="false"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op and" DSP="0" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="and" PRAGMA="" RTLNAME="and_ln74_fu_222_p2" SOURCE="dwell_fcw_streamer_64.cpp:74" STORAGESUBTYPE="" URAM="0" VARIABLE="and_ln74" VISIBLE="false"/>
             </BindNodes>
         </Module>
     </ModuleInformation>

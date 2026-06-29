@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'dwell_fcw_streamer_32'
 ================================================================
 + General Information: 
-    * Date:           Mon Jun 29 10:38:35 2026
+    * Date:           Mon Jun 29 14:41:13 2026
     * Version:        2024.1 (Build 5069499 on May 21 2024)
     * Project:        dwell_fcw_streamer_32_prj
     * Solution:       solution1 (Vivado IP Flow Target)
@@ -86,15 +86,15 @@
 | Name                    | DSP | Pragma | Variable   | Op    | Impl   | Latency |
 +-------------------------+-----+--------+------------+-------+--------+---------+
 | + dwell_fcw_streamer_32 | 0   |        |            |       |        |         |
-|   icmp_ln41_fu_135_p2   |     |        | icmp_ln41  | setne | auto   | 0       |
+|   icmp_ln41_fu_133_p2   |     |        | icmp_ln41  | setne | auto   | 0       |
 |   dwell_wait            |     |        | and_ln41   | and   | auto   | 0       |
-|   xor_ln43_fu_152_p2    |     |        | xor_ln43   | xor   | auto   | 0       |
-|   start_edge_fu_158_p2  |     |        | start_edge | and   | auto   | 0       |
-|   icmp_ln67_fu_198_p2   |     |        | icmp_ln67  | seteq | auto   | 0       |
-|   and_ln67_fu_204_p2    |     |        | and_ln67   | and   | auto   | 0       |
-|   add_ln72_fu_210_p2    |     |        | add_ln72   | add   | fabric | 0       |
-|   icmp_ln74_fu_222_p2   |     |        | icmp_ln74  | seteq | auto   | 0       |
-|   and_ln74_fu_228_p2    |     |        | and_ln74   | and   | auto   | 0       |
+|   xor_ln43_fu_150_p2    |     |        | xor_ln43   | xor   | auto   | 0       |
+|   start_edge_fu_156_p2  |     |        | start_edge | and   | auto   | 0       |
+|   icmp_ln67_fu_196_p2   |     |        | icmp_ln67  | seteq | auto   | 0       |
+|   and_ln67_fu_202_p2    |     |        | and_ln67   | and   | auto   | 0       |
+|   add_ln72_fu_208_p2    |     |        | add_ln72   | add   | fabric | 0       |
+|   icmp_ln74_fu_220_p2   |     |        | icmp_ln74  | seteq | auto   | 0       |
+|   and_ln74_fu_226_p2    |     |        | and_ln74   | and   | auto   | 0       |
 +-------------------------+-----+--------+------------+-------+--------+---------+
 
 

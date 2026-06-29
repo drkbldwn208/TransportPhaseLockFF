@@ -9064,7 +9064,7 @@ __attribute__((sdx_kernel("dwell_fcw_streamer_64", 0))) void dwell_fcw_streamer_
 
  static streamer_state_t state = STATE_IDLE;
     static bool start_d = false;
-    static ap_uint<32> current_fcw = 0x0B115555;
+    static ap_uint<32> current_fcw = 0x0;
     static ap_uint<32> dwell_remaining = 0;
     static bool current_word_was_last = false;
 
@@ -9082,7 +9082,7 @@ __attribute__((sdx_kernel("dwell_fcw_streamer_64", 0))) void dwell_fcw_streamer_
     start_d = start;
 
     if (state == STATE_IDLE) {
-        current_fcw = 0x0B115555;
+        current_fcw = 0x0;
         dwell_remaining = 0;
         current_word_was_last = false;
 
@@ -9095,14 +9095,14 @@ __attribute__((sdx_kernel("dwell_fcw_streamer_64", 0))) void dwell_fcw_streamer_
 # 67 "dwell_fcw_streamer_64.cpp"
     if (current_word_was_last && dwell_remaining == 0) {
         state = STATE_IDLE;
-        current_fcw = 0x0B115555;
+        current_fcw = 0x0;
         current_word_was_last = false;
     } else if (dwell_remaining != 0) {
         dwell_remaining--;
 
         if (current_word_was_last && dwell_remaining == 0) {
             state = STATE_IDLE;
-            current_fcw = 0x0B115555;
+            current_fcw = 0x0;
             current_word_was_last = false;
         }
     } else {
