@@ -9518,7 +9518,7 @@
             "value": "MIX"
           },
           "C_NUM_MONITOR_SLOTS": {
-            "value": "10"
+            "value": "11"
           },
           "C_NUM_OF_PROBES": {
             "value": "14"
@@ -9811,6 +9811,11 @@
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
           },
           "SLOT_9_AXIS": {
+            "mode": "Monitor",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "SLOT_10_AXIS": {
             "mode": "Monitor",
             "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
@@ -11994,8 +11999,17 @@
       "axi_dma_6_M_AXIS_MM2S": {
         "interface_ports": [
           "axi_dma_6/M_AXIS_MM2S",
-          "dwell_fcw_streamer_32_0/s_axis_cmd"
-        ]
+          "dwell_fcw_streamer_32_0/s_axis_cmd",
+          "system_ila_0/SLOT_10_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "axi_dma_6_M_AXI_MM2S": {
         "interface_ports": [
