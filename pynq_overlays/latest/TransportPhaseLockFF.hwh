@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jul  2 08:57:21 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jul 17 12:22:47 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2"/>
 
@@ -22057,7 +22057,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="2114669113" FULLNAME="/fast_servo_controller_0" HWVERSION="1.0" INSTANCE="fast_servo_controller_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fast_servo_controller" VLNV="xilinx.com:hls:fast_servo_controller:1.0">
+    <MODULE COREREVISION="2114700560" FULLNAME="/fast_servo_controller_0" HWVERSION="1.0" INSTANCE="fast_servo_controller_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="fast_servo_controller" VLNV="xilinx.com:hls:fast_servo_controller:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="read-write" INTERFACE="s_axi_ctrl" NAME="Reg" RANGE="65536" USAGE="register">
@@ -23694,11 +23694,11 @@
             <CONNECTION INSTANCE="async_fifo_latch_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="cordic_average_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="setpoint_switch_0" PORT="rst_n"/>
-            <CONNECTION INSTANCE="fast_servo_controller_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="PhaseAccumulator_Wra_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="pmod_debounce_sync_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="dwell_fcw_streamer_32_0" PORT="ap_rst_n"/>
             <CONNECTION INSTANCE="dwell_fcw_streamer_64_0" PORT="ap_rst_n"/>
+            <CONNECTION INSTANCE="fast_servo_controller_0" PORT="ap_rst_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
@@ -34016,7 +34016,6 @@
             <CONNECTION INSTANCE="async_fifo_latch_0" PORT="clk"/>
             <CONNECTION INSTANCE="cordic_average_0" PORT="clk"/>
             <CONNECTION INSTANCE="setpoint_switch_0" PORT="clk"/>
-            <CONNECTION INSTANCE="fast_servo_controller_0" PORT="ap_clk"/>
             <CONNECTION INSTANCE="PhaseAccumulator_Wra_0" PORT="clk"/>
             <CONNECTION INSTANCE="gpio_pmod_trigger_0" PORT="clk"/>
             <CONNECTION INSTANCE="axi_dma_5" PORT="m_axi_mm2s_aclk"/>
@@ -34024,6 +34023,7 @@
             <CONNECTION INSTANCE="pmod_debounce_sync_0" PORT="clk"/>
             <CONNECTION INSTANCE="dwell_fcw_streamer_32_0" PORT="ap_clk"/>
             <CONNECTION INSTANCE="dwell_fcw_streamer_64_0" PORT="ap_clk"/>
+            <CONNECTION INSTANCE="fast_servo_controller_0" PORT="ap_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_adc2" SIGIS="clk"/>
@@ -34892,10 +34892,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
@@ -34904,10 +34904,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
@@ -34916,10 +34916,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>

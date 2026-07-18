@@ -10002,7 +10002,7 @@
       },
       "fast_servo_controller_0": {
         "vlnv": "xilinx.com:hls:fast_servo_controller:1.0",
-        "ip_revision": "2114669113",
+        "ip_revision": "2114700560",
         "xci_name": "design_1_fast_servo_controller_0_0",
         "xci_path": "ip/design_1_fast_servo_controller_0_0/design_1_fast_servo_controller_0_0.xci",
         "inst_hier_path": "fast_servo_controller_0"
@@ -13024,11 +13024,11 @@
           "async_fifo_latch_0/rst_n",
           "cordic_average_0/rst_n",
           "setpoint_switch_0/rst_n",
-          "fast_servo_controller_0/ap_rst_n",
           "PhaseAccumulator_Wra_0/rst_n",
           "pmod_debounce_sync_0/rst_n",
           "dwell_fcw_streamer_32_0/ap_rst_n",
-          "dwell_fcw_streamer_64_0/ap_rst_n"
+          "dwell_fcw_streamer_64_0/ap_rst_n",
+          "fast_servo_controller_0/ap_rst_n"
         ]
       },
       "proc_sys_reset_1_peripheral_aresetn": {
@@ -13171,14 +13171,14 @@
           "async_fifo_latch_0/clk",
           "cordic_average_0/clk",
           "setpoint_switch_0/clk",
-          "fast_servo_controller_0/ap_clk",
           "PhaseAccumulator_Wra_0/clk",
           "gpio_pmod_trigger_0/clk",
           "axi_dma_5/m_axi_mm2s_aclk",
           "axi_dma_6/m_axi_mm2s_aclk",
           "pmod_debounce_sync_0/clk",
           "dwell_fcw_streamer_32_0/ap_clk",
-          "dwell_fcw_streamer_64_0/ap_clk"
+          "dwell_fcw_streamer_64_0/ap_clk",
+          "fast_servo_controller_0/ap_clk"
         ]
       },
       "xlconstant_0_dout": {
