@@ -10002,7 +10002,7 @@
       },
       "fast_servo_controller_0": {
         "vlnv": "xilinx.com:hls:fast_servo_controller:1.0",
-        "ip_revision": "2114700560",
+        "ip_revision": "2114708075",
         "xci_name": "design_1_fast_servo_controller_0_0",
         "xci_path": "ip/design_1_fast_servo_controller_0_0/design_1_fast_servo_controller_0_0.xci",
         "inst_hier_path": "fast_servo_controller_0"
