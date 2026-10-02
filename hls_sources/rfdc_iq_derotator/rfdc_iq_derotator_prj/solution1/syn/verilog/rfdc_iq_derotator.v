@@ -2126,7 +2126,7 @@ assign RFDC_IQ_DEROTATOR_SINE_LUT_address8 = zext_ln34_7_fu_971_p1;
 
 assign RFDC_IQ_DEROTATOR_SINE_LUT_address9 = zext_ln34_6_fu_921_p1;
 
-assign add_ln134_fu_602_p2 = ($signed(bus_start_phase_fu_401_p3) + $signed(32'd2970965328));
+assign add_ln134_fu_602_p2 = ($signed(bus_start_phase_fu_401_p3) + $signed(32'd3129484968));
 
 assign add_ln14_10_fu_2528_p2 = ($signed(i_mix_5_reg_3831) + $signed(32'd16384));
 
@@ -2412,19 +2412,19 @@ assign icmp_ln19_9_fu_2490_p2 = (($signed(trunc_ln14_9_fu_2464_p4) < $signed(17'
 
 assign icmp_ln19_fu_1857_p2 = (($signed(trunc_ln_fu_1831_p4) < $signed(17'd98304)) ? 1'b1 : 1'b0);
 
-assign lane_phase_2_fu_619_p2 = (bus_start_phase_reg_3216 + 32'd742741332);
+assign lane_phase_2_fu_619_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd4003596714));
 
-assign lane_phase_3_fu_624_p2 = (bus_start_phase_reg_3216 + 32'd1114111998);
+assign lane_phase_3_fu_624_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd3857911423));
 
-assign lane_phase_4_fu_629_p2 = (bus_start_phase_reg_3216 + 32'd1485482664);
+assign lane_phase_4_fu_629_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd3712226132));
 
-assign lane_phase_5_fu_634_p2 = (bus_start_phase_reg_3216 + 32'd1856853330);
+assign lane_phase_5_fu_634_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd3566540841));
 
-assign lane_phase_6_fu_639_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd2228223996));
+assign lane_phase_6_fu_639_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd3420855550));
 
-assign lane_phase_7_fu_644_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd2599594662));
+assign lane_phase_7_fu_644_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd3275170259));
 
-assign lane_phase_fu_614_p2 = (bus_start_phase_reg_3216 + 32'd371370666);
+assign lane_phase_fu_614_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd4149282005));
 
 assign lut_addr_10_fu_862_p2 = (14'd16383 ^ addr_5_fu_844_p4);
 
@@ -2592,21 +2592,21 @@ assign or_ln16_9_fu_2514_p2 = (icmp_ln19_9_fu_2490_p2 | icmp_ln16_9_fu_2484_p2);
 
 assign or_ln16_fu_1881_p2 = (icmp_ln19_fu_1857_p2 | icmp_ln16_fu_1851_p2);
 
-assign phase_11_fu_1124_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd2930595154));
+assign phase_11_fu_1124_p2 = (bus_start_phase_reg_3216 + 32'd345315369);
 
-assign phase_13_fu_1219_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd3301965820));
+assign phase_13_fu_1219_p2 = (bus_start_phase_reg_3216 + 32'd199630078);
 
-assign phase_15_fu_1314_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd3673336486));
+assign phase_15_fu_1314_p2 = (bus_start_phase_reg_3216 + 32'd53944787);
 
 assign phase_1_fu_649_p2 = (bus_start_phase_reg_3216 + 32'd1073741824);
 
-assign phase_3_fu_744_p2 = (bus_start_phase_reg_3216 + 32'd1445112490);
+assign phase_3_fu_744_p2 = (bus_start_phase_reg_3216 + 32'd928056533);
 
-assign phase_5_fu_839_p2 = (bus_start_phase_reg_3216 + 32'd1816483156);
+assign phase_5_fu_839_p2 = (bus_start_phase_reg_3216 + 32'd782371242);
 
-assign phase_7_fu_934_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd2187853822));
+assign phase_7_fu_934_p2 = (bus_start_phase_reg_3216 + 32'd636685951);
 
-assign phase_9_fu_1029_p2 = ($signed(bus_start_phase_reg_3216) + $signed(32'd2559224488));
+assign phase_9_fu_1029_p2 = (bus_start_phase_reg_3216 + 32'd491000660);
 
 assign q_bits_fu_413_p1 = s_axis_q_TDATA_int_regslice[15:0];
 

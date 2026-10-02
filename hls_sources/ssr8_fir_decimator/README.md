@@ -120,8 +120,13 @@ So the first valid output appears after 32 accepted input beats.
 From this directory:
 
 ```bash
-vitis_hls -f run_hls.tcl
+make csim    # C simulation only
+make export  # C simulation, synthesis, and IP export (also the default)
+make clean   # Remove the generated HLS project and log
 ```
+
+Use `make VITIS_HLS=/path/to/vitis_hls export` if Vitis HLS is not on your
+`PATH`. Running `vitis_hls -f run_hls.tcl` directly still performs the full export.
 
 The script:
 

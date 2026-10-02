@@ -4,6 +4,11 @@
 #
 #   vitis_hls -f run_hls.tcl
 #
+# Optional:
+#
+#   HLS_STEP=csim   vitis_hls -f run_hls.tcl
+#   HLS_STEP=export vitis_hls -f run_hls.tcl
+#
 # The target part is copied from TransportPhaseLockFF.xpr.
 
 open_project rfdc_iq_derotator_prj
@@ -21,7 +26,21 @@ set_part {xczu49dr-ffvf1760-2-e}
 create_clock -period 4.069 -name ap_clk
 
 csim_design
-csynth_design
-export_design -format ip_catalog
+
+if {![info exists ::env(HLS_STEP)]} {
+    set hls_step "export"
+} else {
+    set hls_step $::env(HLS_STEP)
+}
+
+if {$hls_step eq "csim"} {
+    exit
+} elseif {$hls_step eq "export"} {
+    csynth_design
+    export_design -format ip_catalog
+} else {
+    puts "ERROR: HLS_STEP must be csim or export"
+    exit 1
+}
 
 exit

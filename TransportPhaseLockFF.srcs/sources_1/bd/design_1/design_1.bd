@@ -111,9 +111,6 @@
       "axis_power_mod_0": "",
       "axis_broadcaster_2": "",
       "axis_broadcaster_3": "",
-      "rfdc_iq_derotator_0": "",
-      "ssr8_fir_decimator_0": "",
-      "ssr8_fir_decimator_1": "",
       "cic_compiler_0": "",
       "cic_compiler_1": "",
       "fir_compiler_0": "",
@@ -162,7 +159,11 @@
       "axi_gpio_16": "",
       "PhaseAccumulator_Wra_1": "",
       "NCO_Wrapper_1": "",
-      "xlconstant_2": ""
+      "xlconstant_2": "",
+      "iq_split_1": "",
+      "rfdc_iq_derotator_4l_0": "",
+      "ssr4_fir_decimator_0": "",
+      "ssr4_fir_decimator_1": ""
     },
     "interface_ports": {
       "sysref_in": {
@@ -1462,10 +1463,22 @@
           "ADC2_Sampling_Rate": {
             "value": "1.96608"
           },
+          "ADC_CalOpt_Mode03": {
+            "value": "2"
+          },
           "ADC_Data_Type01": {
             "value": "1"
           },
+          "ADC_Data_Type03": {
+            "value": "1"
+          },
+          "ADC_Data_Width03": {
+            "value": "8"
+          },
           "ADC_Decimation_Mode01": {
+            "value": "2"
+          },
+          "ADC_Decimation_Mode03": {
             "value": "2"
           },
           "ADC_Decimation_Mode10": {
@@ -1480,6 +1493,9 @@
           "ADC_Dither02": {
             "value": "false"
           },
+          "ADC_Dither03": {
+            "value": "false"
+          },
           "ADC_Dither10": {
             "value": "false"
           },
@@ -1489,8 +1505,14 @@
           "ADC_Mixer_Type01": {
             "value": "2"
           },
+          "ADC_Mixer_Type03": {
+            "value": "2"
+          },
           "ADC_NCO_Freq01": {
             "value": "0.09"
+          },
+          "ADC_Nyquist03": {
+            "value": "1"
           },
           "ADC_Slice01_Enable": {
             "value": "true"
@@ -1499,7 +1521,7 @@
             "value": "true"
           },
           "ADC_Slice03_Enable": {
-            "value": "false"
+            "value": "true"
           },
           "ADC_Slice10_Enable": {
             "value": "true"
@@ -8887,27 +8909,6 @@
           }
         }
       },
-      "rfdc_iq_derotator_0": {
-        "vlnv": "xilinx.com:hls:rfdc_iq_derotator:1.0",
-        "ip_revision": "2114628560",
-        "xci_name": "design_1_rfdc_iq_derotator_0_0",
-        "xci_path": "ip/design_1_rfdc_iq_derotator_0_0/design_1_rfdc_iq_derotator_0_0.xci",
-        "inst_hier_path": "rfdc_iq_derotator_0"
-      },
-      "ssr8_fir_decimator_0": {
-        "vlnv": "xilinx.com:hls:ssr8_fir_decimator:1.0",
-        "ip_revision": "2114625740",
-        "xci_name": "design_1_ssr8_fir_decimator_0_0",
-        "xci_path": "ip/design_1_ssr8_fir_decimator_0_0/design_1_ssr8_fir_decimator_0_0.xci",
-        "inst_hier_path": "ssr8_fir_decimator_0"
-      },
-      "ssr8_fir_decimator_1": {
-        "vlnv": "xilinx.com:hls:ssr8_fir_decimator:1.0",
-        "ip_revision": "2114625740",
-        "xci_name": "design_1_ssr8_fir_decimator_0_1",
-        "xci_path": "ip/design_1_ssr8_fir_decimator_0_1/design_1_ssr8_fir_decimator_0_1.xci",
-        "inst_hier_path": "ssr8_fir_decimator_1"
-      },
       "cic_compiler_0": {
         "vlnv": "xilinx.com:ip:cic_compiler:4.0",
         "ip_revision": "19",
@@ -12622,6 +12623,243 @@
             "value": "32"
           }
         }
+      },
+      "iq_split_1": {
+        "vlnv": "xilinx.com:module_ref:iq_split:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_iq_split_1_0",
+        "xci_path": "ip/design_1_iq_split_1_0/design_1_iq_split_1_0.xci",
+        "inst_hier_path": "iq_split_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "iq_split",
+          "boundary_crc": "0x0"
+        },
+        "interface_ports": {
+          "m_axis_i": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+            "parameters": {
+              "TDATA_NUM_BYTES": {
+                "value": "8",
+                "value_src": "constant"
+              },
+              "TDEST_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TID_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TUSER_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TREADY": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TSTRB": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TKEEP": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TLAST": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "245760000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_usp_rf_data_converter_0_0_clk_adc1",
+                "value_src": "default_prop"
+              }
+            },
+            "port_maps": {
+              "TDATA": {
+                "physical_name": "m_axis_i_tdata",
+                "direction": "O",
+                "left": "63",
+                "right": "0"
+              },
+              "TVALID": {
+                "physical_name": "m_axis_i_tvalid",
+                "direction": "O"
+              }
+            }
+          },
+          "m_axis_q": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+            "parameters": {
+              "TDATA_NUM_BYTES": {
+                "value": "8",
+                "value_src": "constant"
+              },
+              "TDEST_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TID_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TUSER_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TREADY": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TSTRB": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TKEEP": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TLAST": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "245760000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_usp_rf_data_converter_0_0_clk_adc1",
+                "value_src": "default_prop"
+              }
+            },
+            "port_maps": {
+              "TDATA": {
+                "physical_name": "m_axis_q_tdata",
+                "direction": "O",
+                "left": "63",
+                "right": "0"
+              },
+              "TVALID": {
+                "physical_name": "m_axis_q_tvalid",
+                "direction": "O"
+              }
+            }
+          },
+          "s_axis": {
+            "mode": "Slave",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0",
+            "parameters": {
+              "TDATA_NUM_BYTES": {
+                "value": "16",
+                "value_src": "constant"
+              },
+              "TDEST_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TID_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "TUSER_WIDTH": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TREADY": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TSTRB": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TKEEP": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "HAS_TLAST": {
+                "value": "0",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "245760000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_usp_rf_data_converter_0_0_clk_adc1",
+                "value_src": "default_prop"
+              }
+            },
+            "port_maps": {
+              "TDATA": {
+                "physical_name": "s_axis_tdata",
+                "direction": "I",
+                "left": "127",
+                "right": "0"
+              },
+              "TVALID": {
+                "physical_name": "s_axis_tvalid",
+                "direction": "I"
+              }
+            }
+          }
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_BUSIF": {
+                "value": "m_axis_i:m_axis_q:s_axis",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "245760000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_usp_rf_data_converter_0_0_clk_adc1",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "adc_bus": {
+            "direction": "O",
+            "left": "63",
+            "right": "0"
+          }
+        }
+      },
+      "rfdc_iq_derotator_4l_0": {
+        "vlnv": "xilinx.com:hls:rfdc_iq_derotator_4lane:1.0",
+        "ip_revision": "2114811551",
+        "xci_name": "design_1_rfdc_iq_derotator_4l_0_0",
+        "xci_path": "ip/design_1_rfdc_iq_derotator_4l_0_0/design_1_rfdc_iq_derotator_4l_0_0.xci",
+        "inst_hier_path": "rfdc_iq_derotator_4l_0"
+      },
+      "ssr4_fir_decimator_0": {
+        "vlnv": "xilinx.com:hls:ssr4_fir_decimator:1.0",
+        "ip_revision": "2114811550",
+        "xci_name": "design_1_ssr4_fir_decimator_0_0",
+        "xci_path": "ip/design_1_ssr4_fir_decimator_0_0/design_1_ssr4_fir_decimator_0_0.xci",
+        "inst_hier_path": "ssr4_fir_decimator_0"
+      },
+      "ssr4_fir_decimator_1": {
+        "vlnv": "xilinx.com:hls:ssr4_fir_decimator:1.0",
+        "ip_revision": "2114811550",
+        "xci_name": "design_1_ssr4_fir_decimator_1_0",
+        "xci_path": "ip/design_1_ssr4_fir_decimator_1_0/design_1_ssr4_fir_decimator_1_0.xci",
+        "inst_hier_path": "ssr4_fir_decimator_1"
       }
     },
     "interface_nets": {
@@ -12907,22 +13145,10 @@
           "PhaseExtractor_Wrapp_1/I"
         ]
       },
-      "axis_broadcaster_2_M01_AXIS": {
-        "interface_ports": [
-          "axis_broadcaster_2/M01_AXIS",
-          "rfdc_iq_derotator_0/s_axis_i"
-        ]
-      },
       "axis_broadcaster_3_M00_AXIS": {
         "interface_ports": [
           "axis_broadcaster_3/M00_AXIS",
           "PhaseExtractor_Wrapp_1/Q"
-        ]
-      },
-      "axis_broadcaster_3_M01_AXIS": {
-        "interface_ports": [
-          "axis_broadcaster_3/M01_AXIS",
-          "rfdc_iq_derotator_0/s_axis_q"
         ]
       },
       "axis_data_fifo_0_M_AXIS": {
@@ -13114,6 +13340,18 @@
           }
         }
       },
+      "iq_split_1_m_axis_i": {
+        "interface_ports": [
+          "iq_split_1/m_axis_i",
+          "rfdc_iq_derotator_4l_0/s_axis_i"
+        ]
+      },
+      "iq_split_1_m_axis_q": {
+        "interface_ports": [
+          "iq_split_1/m_axis_q",
+          "rfdc_iq_derotator_4l_0/s_axis_q"
+        ]
+      },
       "perturbation_gen_0_perturb_err_out": {
         "interface_ports": [
           "perturbation_gen_0/perturb_err_out",
@@ -13234,16 +13472,16 @@
           "demod_err_1/s_axi_ctrl"
         ]
       },
-      "rfdc_iq_derotator_0_m_axis_i": {
+      "rfdc_iq_derotator_4l_0_m_axis_i": {
         "interface_ports": [
-          "rfdc_iq_derotator_0/m_axis_i",
-          "ssr8_fir_decimator_0/s_axis"
+          "rfdc_iq_derotator_4l_0/m_axis_i",
+          "ssr4_fir_decimator_0/s_axis"
         ]
       },
-      "rfdc_iq_derotator_0_m_axis_q": {
+      "rfdc_iq_derotator_4l_0_m_axis_q": {
         "interface_ports": [
-          "rfdc_iq_derotator_0/m_axis_q",
-          "ssr8_fir_decimator_1/s_axis"
+          "ssr4_fir_decimator_1/s_axis",
+          "rfdc_iq_derotator_4l_0/m_axis_q"
         ]
       },
       "smartconnect_0_M00_AXI": {
@@ -13252,15 +13490,15 @@
           "zynq_ultra_ps_e_0/S_AXI_HP0_FPD"
         ]
       },
-      "ssr8_fir_decimator_0_m_axis": {
+      "ssr4_fir_decimator_0_m_axis": {
         "interface_ports": [
-          "ssr8_fir_decimator_0/m_axis",
+          "ssr4_fir_decimator_0/m_axis",
           "axis_round_saturate_0/s_axis"
         ]
       },
-      "ssr8_fir_decimator_1_m_axis": {
+      "ssr4_fir_decimator_1_m_axis": {
         "interface_ports": [
-          "ssr8_fir_decimator_1/m_axis",
+          "ssr4_fir_decimator_1/m_axis",
           "axis_round_saturate_1/s_axis"
         ]
       },
@@ -13310,6 +13548,12 @@
         "interface_ports": [
           "usp_rf_data_converter_0/m02_axis",
           "PhaseExtractor_Wrapp_0/Q"
+        ]
+      },
+      "usp_rf_data_converter_0_m03_axis": {
+        "interface_ports": [
+          "usp_rf_data_converter_0/m03_axis",
+          "iq_split_1/s_axis"
         ]
       },
       "usp_rf_data_converter_0_m10_axis": {
@@ -13540,7 +13784,7 @@
         "ports": [
           "axi_gpio_13/gpio_io_o",
           "system_ila_0/probe0",
-          "rfdc_iq_derotator_0/enable"
+          "rfdc_iq_derotator_4l_0/enable"
         ]
       },
       "axi_gpio_14_gpio_io_o": {
@@ -13825,12 +14069,9 @@
           "perturbation_gen_0/ap_rst_n",
           "axis_broadcaster_3/aresetn",
           "axis_broadcaster_2/aresetn",
-          "ssr8_fir_decimator_0/ap_rst_n",
-          "ssr8_fir_decimator_1/ap_rst_n",
           "system_ila_0/resetn",
           "axis_round_saturate_0/rst_n",
           "axis_round_saturate_1/rst_n",
-          "rfdc_iq_derotator_0/ap_rst_n",
           "axis_tlast_gen_iq_0/aresetn",
           "axi_interconnect_0/M03_ARESETN",
           "sync_axis_power_mod_0/rst_n",
@@ -13850,7 +14091,10 @@
           "pmod_debounce_sync_1/rst_n",
           "dwell_fcw_streamer_64_1/ap_rst_n",
           "PhaseAccumulator_Wra_1/rst_n",
-          "NCO_Wrapper_1/rst_n"
+          "NCO_Wrapper_1/rst_n",
+          "ssr4_fir_decimator_1/ap_rst_n",
+          "ssr4_fir_decimator_0/ap_rst_n",
+          "rfdc_iq_derotator_4l_0/ap_rst_n"
         ]
       },
       "proc_sys_reset_1_peripheral_aresetn": {
@@ -13967,17 +14211,14 @@
           "perturbation_gen_0/ap_clk",
           "axis_broadcaster_3/aclk",
           "axis_broadcaster_2/aclk",
-          "ssr8_fir_decimator_0/ap_clk",
           "cic_compiler_1/aclk",
           "cic_compiler_0/aclk",
           "fir_compiler_0/aclk",
           "fir_compiler_1/aclk",
-          "ssr8_fir_decimator_1/ap_clk",
           "axi_dma_3/m_axi_s2mm_aclk",
           "system_ila_0/clk",
           "axis_round_saturate_0/clk",
           "axis_round_saturate_1/clk",
-          "rfdc_iq_derotator_0/ap_clk",
           "axis_tlast_gen_iq_0/aclk",
           "AXISConstant_1/aclk",
           "clk_wiz_0/clk_in1",
@@ -14011,7 +14252,11 @@
           "dwell_fcw_streamer_64_1/ap_clk",
           "axi_dma_7/m_axi_mm2s_aclk",
           "PhaseAccumulator_Wra_1/clk",
-          "NCO_Wrapper_1/clk"
+          "NCO_Wrapper_1/clk",
+          "iq_split_1/clk",
+          "ssr4_fir_decimator_0/ap_clk",
+          "ssr4_fir_decimator_1/ap_clk",
+          "rfdc_iq_derotator_4l_0/ap_clk"
         ]
       },
       "xlconstant_0_dout": {

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'rfdc_iq_derotator'" level="0">
-<item name = "Date">Thu May 28 12:20:47 2026
+<item name = "Date">Fri Oct  2 13:40:38 2026
 </item>
 <item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
 <item name = "Project">rfdc_iq_derotator_prj</item>
@@ -129,20 +129,20 @@
 <column name="add_ln14_9_fu_2459_p2">+, 0, 0, 39, 32, 15</column>
 <column name="add_ln14_fu_1826_p2">+, 0, 0, 39, 32, 15</column>
 <column name="lane_phase_2_fu_619_p2">+, 0, 0, 39, 32, 30</column>
-<column name="lane_phase_3_fu_624_p2">+, 0, 0, 39, 32, 31</column>
+<column name="lane_phase_3_fu_624_p2">+, 0, 0, 39, 32, 30</column>
 <column name="lane_phase_4_fu_629_p2">+, 0, 0, 39, 32, 31</column>
 <column name="lane_phase_5_fu_634_p2">+, 0, 0, 39, 32, 31</column>
-<column name="lane_phase_6_fu_639_p2">+, 0, 0, 39, 32, 32</column>
-<column name="lane_phase_7_fu_644_p2">+, 0, 0, 39, 32, 32</column>
+<column name="lane_phase_6_fu_639_p2">+, 0, 0, 39, 32, 31</column>
+<column name="lane_phase_7_fu_644_p2">+, 0, 0, 39, 32, 31</column>
 <column name="lane_phase_fu_614_p2">+, 0, 0, 39, 32, 29</column>
-<column name="phase_11_fu_1124_p2">+, 0, 0, 39, 32, 32</column>
-<column name="phase_13_fu_1219_p2">+, 0, 0, 39, 32, 31</column>
-<column name="phase_15_fu_1314_p2">+, 0, 0, 39, 32, 31</column>
+<column name="phase_11_fu_1124_p2">+, 0, 0, 39, 32, 29</column>
+<column name="phase_13_fu_1219_p2">+, 0, 0, 39, 32, 28</column>
+<column name="phase_15_fu_1314_p2">+, 0, 0, 39, 32, 26</column>
 <column name="phase_1_fu_649_p2">+, 0, 0, 39, 32, 31</column>
-<column name="phase_3_fu_744_p2">+, 0, 0, 39, 32, 31</column>
-<column name="phase_5_fu_839_p2">+, 0, 0, 39, 32, 31</column>
-<column name="phase_7_fu_934_p2">+, 0, 0, 39, 32, 32</column>
-<column name="phase_9_fu_1029_p2">+, 0, 0, 39, 32, 32</column>
+<column name="phase_3_fu_744_p2">+, 0, 0, 39, 32, 30</column>
+<column name="phase_5_fu_839_p2">+, 0, 0, 39, 32, 30</column>
+<column name="phase_7_fu_934_p2">+, 0, 0, 39, 32, 30</column>
+<column name="phase_9_fu_1029_p2">+, 0, 0, 39, 32, 29</column>
 <column name="sub_ln35_10_fu_1706_p2">-, 0, 0, 23, 1, 16</column>
 <column name="sub_ln35_11_fu_1479_p2">-, 0, 0, 23, 1, 16</column>
 <column name="sub_ln35_12_fu_1747_p2">-, 0, 0, 23, 1, 16</column>

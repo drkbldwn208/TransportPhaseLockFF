@@ -5855,8 +5855,9 @@ static const int RFDC_IQ_DEROTATOR_LANES = 8;
 static const int RFDC_IQ_DEROTATOR_SAMPLE_BITS = 16;
 # 49 "./rfdc_iq_derotator.h"
 static const ap_uint<32> RFDC_IQ_DEROTATOR_DEFAULT_FCW = 0x0B115555;
-static const ap_uint<32> RFDC_IQ_DEROTATOR_ROTATION_FCW = 0x1622AAAA;
-# 75 "./rfdc_iq_derotator.h"
+
+static const ap_uint<32> RFDC_IQ_DEROTATOR_ROTATION_FCW = 0xF75104D5;
+# 76 "./rfdc_iq_derotator.h"
 __attribute__((sdx_kernel("rfdc_iq_derotator", 0))) void rfdc_iq_derotator(
     hls::stream<axis_iq_bus_t> &s_axis_i,
     hls::stream<axis_iq_bus_t> &s_axis_q,
@@ -7999,7 +8000,7 @@ __attribute__((sdx_kernel("rfdc_iq_derotator", 0))) void rfdc_iq_derotator(
     bool enable,
     bool reset_phase,
     ap_uint<32> phase_offset) {
-#line 24 "/home/levlabcukomen/Desktop/VivadoProjects/TransportPhaseLockFF/hls_sources/rfdc_iq_derotator/run_hls.tcl"
+#line 39 "/home/levlabcukomen/Desktop/VivadoProjects/TransportPhaseLockFF/hls_sources/rfdc_iq_derotator/run_hls.tcl"
 #pragma HLSDIRECTIVE TOP name=rfdc_iq_derotator
 # 85 "rfdc_iq_derotator.cpp"
 

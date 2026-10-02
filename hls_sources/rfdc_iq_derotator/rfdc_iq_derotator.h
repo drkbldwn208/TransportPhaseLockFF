@@ -47,7 +47,8 @@ static const int RFDC_IQ_DEROTATOR_SAMPLE_BITS = 16;
  * accumulator advances by 8 * FCW after each accepted AXI stream beat.
  */
 static const ap_uint<32> RFDC_IQ_DEROTATOR_DEFAULT_FCW = 0x0B115555;
-static const ap_uint<32> RFDC_IQ_DEROTATOR_ROTATION_FCW = 0x1622AAAA;
+// static const ap_uint<32> RFDC_IQ_DEROTATOR_ROTATION_FCW = 0x1622AAAA;
+static const ap_uint<32> RFDC_IQ_DEROTATOR_ROTATION_FCW = 0xF75104D5;
 
 /*
  * Top-level HLS function.
