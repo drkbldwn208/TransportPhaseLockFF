@@ -32,16 +32,6 @@ static const int RFDC_IQ_DEROTATOR_4LANE_LANES = 4;
 static const int RFDC_IQ_DEROTATOR_4LANE_SAMPLE_BITS = 16;
 
 /*
- * At 245.76 MHz and four samples/beat, the sample rate is 983.04 MS/s.
- * Preserve the current eight-lane module's physical rotation frequency:
- * FCW_4 = 2 * 0xF75104D5 modulo 2^32 = 0xFB955555.
- * FCW is the per-sample phase increment; advance by 4 * FCW per beat.
- * The signed frequency is FCW_signed * 983.04e6 / 2^32 (Hz).
- */
-// static const ap_uint<32> RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW = 0xFB955555;
-static const ap_uint<32> RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW = 0x00000000;
-
-/*
  * Top-level HLS function.
  *
  * s_axis_i / s_axis_q:
@@ -63,6 +53,15 @@ static const ap_uint<32> RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW = 0x00000000;
  * phase_offset:
  *   Unsigned 32-bit phase word. 0x00000000 is 0 turns, 0x40000000 is +90 deg,
  *   0x80000000 is 180 deg, and 0xC0000000 is -90 deg.
+ *
+ * rotation_fcw (AXI4-Lite control register at byte offset 0x10):
+ *   Signed 32-bit phase increment per complex sample, in turns / 2^32.
+ *   FCW = round(frequency_hz / sample_rate_hz * 2^32).
+ *   At four samples per 245.76 MHz clock, sample_rate_hz = 983.04e6.
+ *   The mixer multiplies by exp(-j*phase), so a positive FCW shifts a
+ *   positive-frequency input DOWN toward DC. Updates preserve phase;
+ *   zero stops phase advance but does not reset the accumulated phase.
+ *   The block remains free-running: there is no AXI start command.
  */
 void rfdc_iq_derotator_4lane(
     hls::stream<axis_iq_bus_t> &s_axis_i,
@@ -71,6 +70,7 @@ void rfdc_iq_derotator_4lane(
     hls::stream<axis_iq_bus_t> &m_axis_q,
     bool enable,
     bool reset_phase,
-    ap_uint<32> phase_offset);
+    ap_uint<32> phase_offset,
+    ap_int<32> rotation_fcw);
 
 #endif

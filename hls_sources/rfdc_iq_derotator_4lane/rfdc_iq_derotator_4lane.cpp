@@ -76,7 +76,8 @@ void rfdc_iq_derotator_4lane(
     hls::stream<axis_iq_bus_t> &m_axis_q,
     bool enable,
     bool reset_phase,
-    ap_uint<32> phase_offset) {
+    ap_uint<32> phase_offset,
+    ap_int<32> rotation_fcw) {
 #pragma HLS INTERFACE axis port=s_axis_i
 #pragma HLS INTERFACE axis port=s_axis_q
 #pragma HLS INTERFACE axis port=m_axis_i
@@ -84,6 +85,7 @@ void rfdc_iq_derotator_4lane(
 #pragma HLS INTERFACE ap_none port=enable
 #pragma HLS INTERFACE ap_none port=reset_phase
 #pragma HLS INTERFACE ap_none port=phase_offset
+#pragma HLS INTERFACE s_axilite port=rotation_fcw bundle=control offset=0x10
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS PIPELINE II=1
 
@@ -95,6 +97,9 @@ void rfdc_iq_derotator_4lane(
     axis_iq_bus_t q_rot_word = 0;
 
     ap_uint<32> bus_start_phase = reset_phase ? phase_offset : phase_acc;
+    // Use one frequency word for all four lanes and the next beat's phase.
+    // Unsigned arithmetic implements phase wrap modulo one turn (2^32).
+    const ap_uint<32> phase_step = (ap_uint<32>)rotation_fcw;
 
 ROTATE_LANES:
     for (int lane = 0; lane < RFDC_IQ_DEROTATOR_4LANE_LANES; lane++) {
@@ -112,7 +117,7 @@ ROTATE_LANES:
         sample_t q_rot;
 
         ap_uint<32> lane_phase =
-            bus_start_phase + (ap_uint<32>)(RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW * lane);
+            bus_start_phase + (ap_uint<32>)(phase_step * lane);
 
         rotate_one_sample(i_sample, q_sample, lane_phase, enable, &i_rot, &q_rot);
 
@@ -125,7 +130,7 @@ ROTATE_LANES:
     }
 
     phase_acc =
-        bus_start_phase + (ap_uint<32>)(RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW *
+        bus_start_phase + (ap_uint<32>)(phase_step *
                                         RFDC_IQ_DEROTATOR_4LANE_LANES);
 
     m_axis_i.write(i_rot_word);

@@ -18,11 +18,11 @@ static ap_int<16> unpack_lane(axis_iq_bus_t word, int lane) {
     return (ap_int<16>)bits;
 }
 
-static axis_iq_bus_t make_bus(bool make_i, int bus_index, double amplitude) {
+static axis_iq_bus_t make_bus(bool make_i, int bus_index, double amplitude, uint32_t fcw) {
     axis_iq_bus_t word = 0;
     const double two_pi = 6.28318530717958647692;
     const double turns_per_sample =
-        (double)RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW.to_uint() / 4294967296.0;
+        (double)fcw / 4294967296.0;
 
     for (int lane = 0; lane < RFDC_IQ_DEROTATOR_4LANE_LANES; lane++) {
         int sample_index = bus_index * RFDC_IQ_DEROTATOR_4LANE_LANES + lane;
@@ -47,27 +47,32 @@ int main() {
     const int tolerance_lsb = 48;
     int errors = 0;
 
-    for (int bus = 0; bus < buses_to_test; bus++) {
-        s_i.write(make_bus(true, bus, amplitude));
-        s_q.write(make_bus(false, bus, amplitude));
+    // Zero, positive, negative, and the former fixed frequency. Each input
+    // tone must be translated to DC at the newly programmed frequency.
+    const uint32_t tone_fcws[] = {0U, 0x04700000U, 0xFB955555U, 0xEEA209AAU};
+    for (uint32_t fcw : tone_fcws) {
+        for (int bus = 0; bus < buses_to_test; bus++) {
+            s_i.write(make_bus(true, bus, amplitude, fcw));
+            s_q.write(make_bus(false, bus, amplitude, fcw));
 
-        bool reset_phase = (bus == 0);
-        rfdc_iq_derotator_4lane(s_i, s_q, m_i, m_q, true, reset_phase, 0);
+            bool reset_phase = (bus == 0);
+            rfdc_iq_derotator_4lane(s_i, s_q, m_i, m_q, true, reset_phase, 0, (ap_int<32>)fcw);
 
-        axis_iq_bus_t i_out = m_i.read();
-        axis_iq_bus_t q_out = m_q.read();
+            axis_iq_bus_t i_out = m_i.read();
+            axis_iq_bus_t q_out = m_q.read();
 
-        for (int lane = 0; lane < RFDC_IQ_DEROTATOR_4LANE_LANES; lane++) {
-            int i_sample = unpack_lane(i_out, lane).to_int();
-            int q_sample = unpack_lane(q_out, lane).to_int();
-            int i_error = std::abs(i_sample - (int)amplitude);
-            int q_error = std::abs(q_sample);
+            for (int lane = 0; lane < RFDC_IQ_DEROTATOR_4LANE_LANES; lane++) {
+                int i_sample = unpack_lane(i_out, lane).to_int();
+                int q_sample = unpack_lane(q_out, lane).to_int();
+                int i_error = std::abs(i_sample - (int)amplitude);
+                int q_error = std::abs(q_sample);
 
-            if (i_error > tolerance_lsb || q_error > tolerance_lsb) {
-                std::cerr << "FAIL bus=" << bus << " lane=" << lane
-                          << " I=" << i_sample << " Q=" << q_sample
-                          << " Ierr=" << i_error << " Qerr=" << q_error << "\n";
-                errors++;
+                if (i_error > tolerance_lsb || q_error > tolerance_lsb) {
+                    std::cerr << "FAIL bus=" << bus << " lane=" << lane
+                              << " I=" << i_sample << " Q=" << q_sample
+                              << " Ierr=" << i_error << " Qerr=" << q_error << "\n";
+                    errors++;
+                }
             }
         }
     }
@@ -76,11 +81,11 @@ int main() {
      * Verify pass-through mode on one arbitrary bus. The phase accumulator still
      * advances internally, but enable=0 should leave payload samples unchanged.
      */
-    axis_iq_bus_t pass_i = make_bus(true, 3, amplitude);
-    axis_iq_bus_t pass_q = make_bus(false, 3, amplitude);
+    axis_iq_bus_t pass_i = make_bus(true, 3, amplitude, tone_fcws[1]);
+    axis_iq_bus_t pass_q = make_bus(false, 3, amplitude, tone_fcws[1]);
     s_i.write(pass_i);
     s_q.write(pass_q);
-    rfdc_iq_derotator_4lane(s_i, s_q, m_i, m_q, false, false, 0);
+    rfdc_iq_derotator_4lane(s_i, s_q, m_i, m_q, false, false, 0, (ap_int<32>)tone_fcws[1]);
 
     axis_iq_bus_t pass_i_out = m_i.read();
     axis_iq_bus_t pass_q_out = m_q.read();
@@ -92,8 +97,10 @@ int main() {
     // Check arbitrary I/Q, phase offsets, wraparound, repeated reset,
     // clipping, and phase continuity across bypassed beats.
     uint32_t phase = 0;
-    const uint32_t fcw = RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW.to_uint();
     for (int bus = 0; bus < 80; bus++) {
+        // Change frequency without resetting phase, including while bypassed.
+        // Zero after a nonzero word must freeze phase, not jump back to zero.
+        const uint32_t fcw = tone_fcws[(bus / 5) % 4];
         const bool reset = bus == 0 || bus == 20 || bus == 21;
         const bool enable = !(bus >= 8 && bus < 12);
         const uint32_t offset = bus == 0 ? 0xF0000000U : 0x40000000U;
@@ -106,7 +113,7 @@ int main() {
         }
         s_i.write(i_word);
         s_q.write(q_word);
-        rfdc_iq_derotator_4lane(s_i, s_q, m_i, m_q, enable, reset, offset);
+        rfdc_iq_derotator_4lane(s_i, s_q, m_i, m_q, enable, reset, offset, (ap_int<32>)fcw);
         axis_iq_bus_t actual_i = m_i.read();
         axis_iq_bus_t actual_q = m_q.read();
         for (int lane = 0; lane < RFDC_IQ_DEROTATOR_4LANE_LANES; lane++) {
