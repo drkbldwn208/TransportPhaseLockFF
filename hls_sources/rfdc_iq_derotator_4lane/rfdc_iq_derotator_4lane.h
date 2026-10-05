@@ -34,11 +34,12 @@ static const int RFDC_IQ_DEROTATOR_4LANE_SAMPLE_BITS = 16;
 /*
  * At 245.76 MHz and four samples/beat, the sample rate is 983.04 MS/s.
  * Preserve the current eight-lane module's physical rotation frequency:
- * FCW_4 = 2 * 0xF75104D5 modulo 2^32 = 0xEEA209AA.
+ * FCW_4 = 2 * 0xF75104D5 modulo 2^32 = 0xFB955555.
  * FCW is the per-sample phase increment; advance by 4 * FCW per beat.
  * The signed frequency is FCW_signed * 983.04e6 / 2^32 (Hz).
  */
-static const ap_uint<32> RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW = 0xEEA209AA;
+// static const ap_uint<32> RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW = 0xFB955555;
+static const ap_uint<32> RFDC_IQ_DEROTATOR_4LANE_ROTATION_FCW = 0x00000000;
 
 /*
  * Top-level HLS function.

@@ -1511,6 +1511,9 @@
           "ADC_NCO_Freq01": {
             "value": "0.09"
           },
+          "ADC_NCO_Freq03": {
+            "value": "0.96608"
+          },
           "ADC_Nyquist03": {
             "value": "1"
           },
@@ -9861,7 +9864,7 @@
             "value": "MIX"
           },
           "C_NUM_MONITOR_SLOTS": {
-            "value": "11"
+            "value": "12"
           },
           "C_NUM_OF_PROBES": {
             "value": "14"
@@ -10159,6 +10162,11 @@
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
           },
           "SLOT_10_AXIS": {
+            "mode": "Monitor",
+            "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "SLOT_11_AXIS": {
             "mode": "Monitor",
             "vlnv_bus_definition": "xilinx.com:interface:axis:1.0",
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
@@ -12842,7 +12850,7 @@
       },
       "rfdc_iq_derotator_4l_0": {
         "vlnv": "xilinx.com:hls:rfdc_iq_derotator_4lane:1.0",
-        "ip_revision": "2114811551",
+        "ip_revision": "2114815690",
         "xci_name": "design_1_rfdc_iq_derotator_4l_0_0",
         "xci_path": "ip/design_1_rfdc_iq_derotator_4l_0_0/design_1_rfdc_iq_derotator_4l_0_0.xci",
         "inst_hier_path": "rfdc_iq_derotator_4l_0"
@@ -13553,8 +13561,17 @@
       "usp_rf_data_converter_0_m03_axis": {
         "interface_ports": [
           "usp_rf_data_converter_0/m03_axis",
-          "iq_split_1/s_axis"
-        ]
+          "iq_split_1/s_axis",
+          "system_ila_0/SLOT_11_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "usp_rf_data_converter_0_m10_axis": {
         "interface_ports": [
