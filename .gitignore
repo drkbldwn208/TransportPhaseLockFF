@@ -20,3 +20,4 @@ pynq_overlays/*
 
 *.aps
 __pycache__/
+build/
