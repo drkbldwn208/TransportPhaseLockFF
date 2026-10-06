@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Oct  5 14:33:29 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Oct  5 18:33:10 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2"/>
 
@@ -293,6 +293,51 @@
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="AxisConstant14Samples_0_m_axis" NAME="m_axis" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="0"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="28"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="m_axis_tdata"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="m_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/AxisConstant14Samples_1" HWVERSION="1.0" INSTANCE="AxisConstant14Samples_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="AxisConstant14Samples" VLNV="xilinx.com:module_ref:AxisConstant14Samples:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_AxisConstant14Samples_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="245760000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="223" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="AxisConstant14Samples_1_m_axis_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s11_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_axis_tvalid" SIGIS="undef" SIGNAME="AxisConstant14Samples_1_m_axis_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s11_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="AxisConstant14Samples_1_m_axis" NAME="m_axis" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
@@ -29228,6 +29273,32 @@
     </MODULE>
     <MODULE COREREVISION="2114815883" FULLNAME="/rfdc_iq_derotator_4l_0" HWVERSION="1.0" INSTANCE="rfdc_iq_derotator_4l_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="rfdc_iq_derotator_4lane" VLNV="xilinx.com:hls:rfdc_iq_derotator_4lane:1.0">
       <DOCUMENTS/>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="read-write" INTERFACE="s_axi_control" NAME="Reg" RANGE="65536" USAGE="register">
+          <REGISTERS>
+            <REGISTER NAME="rotation_fcw">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of rotation_fcw"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
+              <FIELDS>
+                <FIELD NAME="rotation_fcw">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 of rotation_fcw"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="32"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+          </REGISTERS>
+        </ADDRESSBLOCK>
+      </ADDRESSBLOCKS>
       <PARAMETERS>
         <PARAMETER NAME="C_S_AXI_CONTROL_ADDR_WIDTH" VALUE="5"/>
         <PARAMETER NAME="C_S_AXI_CONTROL_DATA_WIDTH" VALUE="32"/>
@@ -29238,6 +29309,8 @@
         <PARAMETER NAME="latency" VALUE="9"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_S_AXI_CONTROL_BASEADDR" VALUE="0xA01E0000"/>
+        <PARAMETER NAME="C_S_AXI_CONTROL_HIGHADDR" VALUE="0xA01EFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT CLKFREQUENCY="245760000" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
@@ -35829,8 +35902,8 @@
         <PARAMETER NAME="C_DAC1_FBDIV" VALUE="28"/>
         <PARAMETER NAME="C_DAC1_Fabric_Freq" VALUE="245.760"/>
         <PARAMETER NAME="C_DAC1_Fs_Max" VALUE="7.000"/>
-        <PARAMETER NAME="C_DAC1_Interpolation" VALUE="4"/>
-        <PARAMETER NAME="C_DAC1_Link_Coupling" VALUE="0"/>
+        <PARAMETER NAME="C_DAC1_Interpolation" VALUE="-1"/>
+        <PARAMETER NAME="C_DAC1_Link_Coupling" VALUE="1"/>
         <PARAMETER NAME="C_DAC1_Multi_Tile_Sync" VALUE="false"/>
         <PARAMETER NAME="C_DAC1_OutDiv" VALUE="2"/>
         <PARAMETER NAME="C_DAC1_Outclk_Freq" VALUE="215.040"/>
@@ -35951,7 +36024,7 @@
         <PARAMETER NAME="C_DAC_Interpolation_Mode02" VALUE="2"/>
         <PARAMETER NAME="C_DAC_Interpolation_Mode03" VALUE="4"/>
         <PARAMETER NAME="C_DAC_Interpolation_Mode10" VALUE="4"/>
-        <PARAMETER NAME="C_DAC_Interpolation_Mode11" VALUE="0"/>
+        <PARAMETER NAME="C_DAC_Interpolation_Mode11" VALUE="2"/>
         <PARAMETER NAME="C_DAC_Interpolation_Mode12" VALUE="4"/>
         <PARAMETER NAME="C_DAC_Interpolation_Mode13" VALUE="0"/>
         <PARAMETER NAME="C_DAC_Interpolation_Mode20" VALUE="0"/>
@@ -36000,7 +36073,7 @@
         <PARAMETER NAME="C_DAC_Mixer_Type02" VALUE="1"/>
         <PARAMETER NAME="C_DAC_Mixer_Type03" VALUE="2"/>
         <PARAMETER NAME="C_DAC_Mixer_Type10" VALUE="2"/>
-        <PARAMETER NAME="C_DAC_Mixer_Type11" VALUE="3"/>
+        <PARAMETER NAME="C_DAC_Mixer_Type11" VALUE="1"/>
         <PARAMETER NAME="C_DAC_Mixer_Type12" VALUE="2"/>
         <PARAMETER NAME="C_DAC_Mixer_Type13" VALUE="3"/>
         <PARAMETER NAME="C_DAC_Mixer_Type20" VALUE="3"/>
@@ -36115,7 +36188,7 @@
         <PARAMETER NAME="C_DAC_Slice02_Enable" VALUE="true"/>
         <PARAMETER NAME="C_DAC_Slice03_Enable" VALUE="true"/>
         <PARAMETER NAME="C_DAC_Slice10_Enable" VALUE="true"/>
-        <PARAMETER NAME="C_DAC_Slice11_Enable" VALUE="false"/>
+        <PARAMETER NAME="C_DAC_Slice11_Enable" VALUE="true"/>
         <PARAMETER NAME="C_DAC_Slice12_Enable" VALUE="true"/>
         <PARAMETER NAME="C_DAC_Slice13_Enable" VALUE="false"/>
         <PARAMETER NAME="C_DAC_Slice20_Enable" VALUE="false"/>
@@ -36558,7 +36631,7 @@
         <PARAMETER NAME="DAC1_Clock_Source_MX" VALUE="5"/>
         <PARAMETER NAME="DAC1_Enable" VALUE="1"/>
         <PARAMETER NAME="DAC1_Fabric_Freq" VALUE="245.760"/>
-        <PARAMETER NAME="DAC1_Link_Coupling" VALUE="0"/>
+        <PARAMETER NAME="DAC1_Link_Coupling" VALUE="1"/>
         <PARAMETER NAME="DAC1_Multi_Tile_Sync" VALUE="false"/>
         <PARAMETER NAME="DAC1_Outclk_Freq" VALUE="215.040"/>
         <PARAMETER NAME="DAC1_PLL_Enable" VALUE="true"/>
@@ -36668,7 +36741,7 @@
         <PARAMETER NAME="DAC_Interpolation_Mode02" VALUE="2"/>
         <PARAMETER NAME="DAC_Interpolation_Mode03" VALUE="4"/>
         <PARAMETER NAME="DAC_Interpolation_Mode10" VALUE="4"/>
-        <PARAMETER NAME="DAC_Interpolation_Mode11" VALUE="0"/>
+        <PARAMETER NAME="DAC_Interpolation_Mode11" VALUE="2"/>
         <PARAMETER NAME="DAC_Interpolation_Mode12" VALUE="4"/>
         <PARAMETER NAME="DAC_Interpolation_Mode13" VALUE="0"/>
         <PARAMETER NAME="DAC_Interpolation_Mode20" VALUE="0"/>
@@ -36717,7 +36790,7 @@
         <PARAMETER NAME="DAC_Mixer_Type02" VALUE="1"/>
         <PARAMETER NAME="DAC_Mixer_Type03" VALUE="2"/>
         <PARAMETER NAME="DAC_Mixer_Type10" VALUE="2"/>
-        <PARAMETER NAME="DAC_Mixer_Type11" VALUE="3"/>
+        <PARAMETER NAME="DAC_Mixer_Type11" VALUE="1"/>
         <PARAMETER NAME="DAC_Mixer_Type12" VALUE="2"/>
         <PARAMETER NAME="DAC_Mixer_Type13" VALUE="3"/>
         <PARAMETER NAME="DAC_Mixer_Type20" VALUE="3"/>
@@ -36832,7 +36905,7 @@
         <PARAMETER NAME="DAC_Slice02_Enable" VALUE="true"/>
         <PARAMETER NAME="DAC_Slice03_Enable" VALUE="true"/>
         <PARAMETER NAME="DAC_Slice10_Enable" VALUE="true"/>
-        <PARAMETER NAME="DAC_Slice11_Enable" VALUE="false"/>
+        <PARAMETER NAME="DAC_Slice11_Enable" VALUE="true"/>
         <PARAMETER NAME="DAC_Slice12_Enable" VALUE="true"/>
         <PARAMETER NAME="DAC_Slice13_Enable" VALUE="false"/>
         <PARAMETER NAME="DAC_Slice20_Enable" VALUE="false"/>
@@ -37123,6 +37196,7 @@
             <CONNECTION INSTANCE="ssr4_fir_decimator_1" PORT="ap_clk"/>
             <CONNECTION INSTANCE="rfdc_iq_derotator_4l_0" PORT="ap_clk"/>
             <CONNECTION INSTANCE="axi_interconnect_0" PORT="M16_ACLK"/>
+            <CONNECTION INSTANCE="AxisConstant14Samples_1" PORT="aclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_adc2" SIGIS="clk"/>
@@ -37300,6 +37374,16 @@
         <PORT DIR="I" NAME="s10_axis_tvalid" SIGIS="undef" SIGNAME="axis_broadcaster_0_m_axis_tvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_broadcaster_0" PORT="m_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="223" NAME="s11_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="AxisConstant14Samples_1_m_axis_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AxisConstant14Samples_1" PORT="m_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s11_axis_tvalid" SIGIS="undef" SIGNAME="AxisConstant14Samples_1_m_axis_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AxisConstant14Samples_1" PORT="m_axis_tvalid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="223" NAME="s12_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_broadcaster_0_m_axis_tdata">
@@ -37483,6 +37567,8 @@
             <CONNECTION INSTANCE="design_1_imp" PORT="vout10_v_p"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="vout11_n" SIGIS="undef"/>
+        <PORT DIR="O" NAME="vout11_p" SIGIS="undef"/>
         <PORT DIR="O" NAME="vout12_n" SIGIS="undef"/>
         <PORT DIR="O" NAME="vout12_p" SIGIS="undef"/>
       </PORTS>
@@ -37770,6 +37856,25 @@
             <PORTMAP LOGICAL="TVALID" PHYSICAL="s10_axis_tvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="AxisConstant14Samples_1_m_axis" NAME="s11_axis" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="28"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="s11_axis_tdata"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="s11_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="axis_broadcaster_0_M01_AXIS" NAME="s12_axis" TYPE="SLAVE" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
@@ -37875,6 +37980,12 @@
           <PORTMAPS>
             <PORTMAP LOGICAL="V_N" PHYSICAL="vout10_n"/>
             <PORTMAP LOGICAL="V_P" PHYSICAL="vout10_p"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="vout11" TYPE="INITIATOR" VLNV="xilinx.com:interface:diff_analog_io:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="V_N" PHYSICAL="vout11_n"/>
+            <PORTMAP LOGICAL="V_P" PHYSICAL="vout11_p"/>
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="__NOC__" NAME="vout12" TYPE="INITIATOR" VLNV="xilinx.com:interface:diff_analog_io:1.0">
@@ -38045,10 +38156,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
@@ -38069,10 +38180,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
@@ -38093,10 +38204,10 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
@@ -40761,6 +40872,7 @@
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01BFFFF" INSTANCE="axi_gpio_15" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01CFFFF" INSTANCE="axi_dma_7" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01DFFFF" INSTANCE="axi_gpio_16" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CONTROL_BASEADDR" BASEVALUE="0xA01E0000" HIGHNAME="C_S_AXI_CONTROL_HIGHADDR" HIGHVALUE="0xA01EFFFF" INSTANCE="rfdc_iq_derotator_4l_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_control"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0000000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB000FFFF" INSTANCE="demod_ctrl_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0010000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB001FFFF" INSTANCE="perturbation_gen_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0020000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB002FFFF" INSTANCE="demod_err_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
@@ -40794,6 +40906,7 @@
         <PERIPHERAL INSTANCE="axi_gpio_15"/>
         <PERIPHERAL INSTANCE="axi_dma_7"/>
         <PERIPHERAL INSTANCE="axi_gpio_16"/>
+        <PERIPHERAL INSTANCE="rfdc_iq_derotator_4l_0"/>
         <PERIPHERAL INSTANCE="demod_ctrl_0"/>
         <PERIPHERAL INSTANCE="perturbation_gen_0"/>
         <PERIPHERAL INSTANCE="demod_err_0"/>
