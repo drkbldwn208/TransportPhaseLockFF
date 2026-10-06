@@ -1612,7 +1612,7 @@
             "value": "4"
           },
           "DAC_Interpolation_Mode11": {
-            "value": "2"
+            "value": "4"
           },
           "DAC_Interpolation_Mode12": {
             "value": "4"
@@ -1622,6 +1622,9 @@
           },
           "DAC_Mixer_Mode02": {
             "value": "2"
+          },
+          "DAC_Mixer_Mode11": {
+            "value": "0"
           },
           "DAC_Mixer_Type01": {
             "value": "2"
@@ -1636,7 +1639,7 @@
             "value": "2"
           },
           "DAC_Mixer_Type11": {
-            "value": "1"
+            "value": "2"
           },
           "DAC_Mixer_Type12": {
             "value": "2"
@@ -1649,6 +1652,9 @@
           },
           "DAC_NCO_Freq03": {
             "value": "0.08"
+          },
+          "DAC_NCO_Freq11": {
+            "value": "0"
           },
           "DAC_Slice00_Enable": {
             "value": "true"
