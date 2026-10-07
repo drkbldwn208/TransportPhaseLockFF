@@ -10980,7 +10980,7 @@
             "value": "11"
           },
           "C_NUM_OF_PROBES": {
-            "value": "14"
+            "value": "16"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -11001,6 +11001,12 @@
             "value": "0"
           },
           "C_PROBE13_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE14_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE15_TYPE": {
             "value": "0"
           },
           "C_PROBE3_WIDTH": {
@@ -15255,14 +15261,32 @@
       "laser_pll_0_acquisition_status": {
         "ports": [
           "laser_pll_0/acquisition_status",
-          "pll_acquisition_status/gpio_io_i"
-        ]
+          "pll_acquisition_status/gpio_io_i",
+          "system_ila_0/probe14"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "laser_pll_0_fft_status": {
         "ports": [
           "laser_pll_0/fft_status",
-          "pll_acquisition_status/gpio2_io_i"
-        ]
+          "pll_acquisition_status/gpio2_io_i",
+          "system_ila_0/probe15"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "laser_pll_0_frequency_status": {
         "ports": [

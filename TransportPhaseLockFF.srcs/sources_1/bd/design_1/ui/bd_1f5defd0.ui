@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.173838",
-   "Default View_TopLeft":"-909,-5085",
+   "Default View_TopLeft":"431,-4360",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0 TLS
 #  -string -flagsOSRD
@@ -30,13 +30,13 @@ preplace inst ps8_0_axi_periph -pg 1 -lvl 3 -x 1251 -y -840 -defaultsOSRD
 preplace inst rst_ps8_0_99M -pg 1 -lvl 3 -x 1251 -y -310 -defaultsOSRD
 preplace inst PhaseExtractor_Wrapp_0 -pg 1 -lvl 24 -x 12020 -y -450 -defaultsOSRD
 preplace inst PhaseExtractor_Wrapp_1 -pg 1 -lvl 24 -x 12020 -y -250 -defaultsOSRD
-preplace inst PIController_Wrapper_0 -pg 1 -lvl 33 -x 15910 -y -250 -defaultsOSRD
+preplace inst PIController_Wrapper_0 -pg 1 -lvl 33 -x 15920 -y -250 -defaultsOSRD
 preplace inst PhaseAccumulator_Wra_0 -pg 1 -lvl 34 -x 16430 -y -260 -defaultsOSRD
 preplace inst proc_sys_reset_0 -pg 1 -lvl 3 -x 1251 -y 50 -defaultsOSRD
 preplace inst NCO_Wrapper_0 -pg 1 -lvl 35 -x 16800 -y -300 -defaultsOSRD
 preplace inst axi_gpio_0 -pg 1 -lvl 34 -x 16430 -y 10 -defaultsOSRD
-preplace inst axi_gpio_1 -pg 1 -lvl 33 -x 15910 -y 140 -defaultsOSRD
-preplace inst axi_gpio_2 -pg 1 -lvl 33 -x 15910 -y 300 -defaultsOSRD
+preplace inst axi_gpio_1 -pg 1 -lvl 33 -x 15920 -y 140 -defaultsOSRD
+preplace inst axi_gpio_2 -pg 1 -lvl 33 -x 15920 -y 300 -defaultsOSRD
 preplace inst AXISConstant_0 -pg 1 -lvl 2 -x 431 -y 440 -defaultsOSRD
 preplace inst axi_gpio_3 -pg 1 -lvl 24 -x 12020 -y 1260 -defaultsOSRD
 preplace inst AxisConstant14Samples_0 -pg 1 -lvl 2 -x 431 -y 590 -defaultsOSRD
@@ -102,8 +102,8 @@ preplace inst axi_gpio_10 -pg 1 -lvl 16 -x 7480 -y 1880 -defaultsOSRD
 preplace inst setpoint_switch_0 -pg 1 -lvl 11 -x 5160 -y 2140 -defaultsOSRD
 preplace inst axi_gpio_11 -pg 1 -lvl 9 -x 4358 -y 1930 -defaultsOSRD
 preplace inst gpio_pmod_trigger_0 -pg 1 -lvl 10 -x 4734 -y 1710 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 33 -x 15910 -y 540 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 33 -x 15910 -y 660 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 33 -x 15920 -y 540 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 33 -x 15920 -y 660 -defaultsOSRD
 preplace inst dwell_fcw_streamer_64_0 -pg 1 -lvl 8 -x 3952 -y 2800 -defaultsOSRD
 preplace inst axi_gpio_14 -pg 1 -lvl 6 -x 2722 -y 2780 -defaultsOSRD
 preplace inst dwell_fcw_streamer_32_0 -pg 1 -lvl 8 -x 3952 -y 3010 -defaultsOSRD
@@ -126,195 +126,195 @@ preplace inst pll_control -pg 1 -lvl 22 -x 10680 -y -10 -defaultsOSRD
 preplace inst pll_status -pg 1 -lvl 22 -x 10680 -y -810 -defaultsOSRD
 preplace inst pll_acquisition -pg 1 -lvl 22 -x 10680 -y -250 -defaultsOSRD
 preplace inst pll_acquisition_status -pg 1 -lvl 22 -x 10680 -y -650 -defaultsOSRD
-preplace netloc ErrorSignalSignExten_0_s_axis_tready 1 21 3 10500 400 11170J -210 NJ
-preplace netloc ErrorSignalSignExten_1_s_axis_tready 1 21 3 10430 -930 NJ -930 11820J
-preplace netloc ErrorSignal_Wrapper_0_error_signal_out 1 6 27 3152 -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 NJ -150 N -150 NJ -150 11820 -120 NJ -120 12730J -80 13150J -190 13790 -200 NJ -200 NJ -200 14980J -210 NJ -210 15640
-preplace netloc PIController_Wrapper_0_control_output 1 6 28 3142 -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 N -130 NJ -130 11790 -100 NJ -100 12720J -90 NJ -90 NJ -90 N -90 N -90 N -90 N -90 NJ -90 16160
-preplace netloc PhaseAccumulator_Wra_0_phase_out 1 6 29 3112 -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 10260 -1010 NJ -1010 N -1010 NJ -1010 NJ -1010 NJ -1010 NJ -1010 N -1010 N -1010 N -1010 N -1010 NJ -1010 NJ -1010 16640
+preplace netloc ErrorSignalSignExten_0_s_axis_tready 1 21 3 10520 430 11170J -210 NJ
+preplace netloc ErrorSignalSignExten_1_s_axis_tready 1 21 3 10480 -980 NJ -980 11820J
+preplace netloc ErrorSignal_Wrapper_0_error_signal_out 1 6 27 3152 -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 10220 220 NJ 220 11680 70 NJ 70 NJ 70 13150J 70 13790 -200 NJ -200 NJ -200 14980J -290 NJ -290 N
+preplace netloc PIController_Wrapper_0_control_output 1 6 28 3132 -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 NJ -130 9290J -140 N -140 NJ -140 11810 -100 NJ -100 12730J -80 NJ -80 NJ -80 N -80 N -80 N -80 N -80 NJ -80 16180
+preplace netloc PhaseAccumulator_Wra_0_phase_out 1 6 29 3102 -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 NJ -270 10250 -940 11200J -900 N -900 NJ -900 NJ -900 NJ -900 NJ -900 N -900 N -900 N -900 N -900 NJ -900 NJ -900 16640
 preplace netloc PhaseAccumulator_Wra_1_phase_out 1 6 1 2920 3200n
-preplace netloc PhaseExtractor_Wrapp_0_phase_error_out 1 21 5 10480 -980 NJ -980 N -980 12260 -330 12760
-preplace netloc PhaseExtractor_Wrapp_0_tvalid_passthrough 1 21 7 10490 -970 NJ -970 NJ -970 12250 -320 NJ -320 NJ -320 13740J
-preplace netloc PhaseExtractor_Wrapp_1_phase_error_out 1 21 5 10510 -960 NJ -960 NJ -960 12240 -180 NJ
-preplace netloc PhaseExtractor_Wrapp_1_tvalid_passthrough 1 21 4 10520 -950 NJ -950 NJ -950 12220
+preplace netloc PhaseExtractor_Wrapp_0_phase_error_out 1 21 5 10490 -970 NJ -970 N -970 12260 -330 12720
+preplace netloc PhaseExtractor_Wrapp_0_tvalid_passthrough 1 21 7 10500 -960 NJ -960 NJ -960 12250 -320 NJ -320 NJ -320 13780J
+preplace netloc PhaseExtractor_Wrapp_1_phase_error_out 1 21 5 10510 -950 NJ -950 NJ -950 12240 -180 NJ
+preplace netloc PhaseExtractor_Wrapp_1_tvalid_passthrough 1 21 4 10470 -1010 NJ -1010 NJ -1010 12220
 preplace netloc active_r 1 6 3 3152 2690 NJ 2690 4130
-preplace netloc active_r_1 1 6 3 3172 2680 NJ 2680 4140
+preplace netloc active_r_1 1 6 3 3182 2680 NJ 2680 4140
 preplace netloc adc_sdata0_0_1 1 0 3 NJ 2220 NJ 2220 851J
 preplace netloc adc_sdata1_0_1 1 0 3 NJ 2240 NJ 2240 831J
-preplace netloc axi_dma_3_s_axis_s2mm_tready 1 6 21 3212 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 11690J 1510 12240J 1690 NJ 1690 13150
+preplace netloc axi_dma_3_s_axis_s2mm_tready 1 6 21 3212 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 NJ 1420 11670J 1510 12240J 1690 NJ 1690 13150
 preplace netloc axi_gpio_0_gpio_io_o 1 33 2 16240J -380 16620
 preplace netloc axi_gpio_10_gpio_io_o 1 16 1 7778 1890n
 preplace netloc axi_gpio_11_gpio2_io_o 1 9 2 NJ 1960 4900
 preplace netloc axi_gpio_11_gpio_io_o 1 9 2 NJ 1920 4980
 preplace netloc axi_gpio_12_gpio_io_o 1 2 1 851 1110n
-preplace netloc axi_gpio_13_gpio2_io_o 1 3 21 NJ 1520 NJ 1520 2492 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 11660
-preplace netloc axi_gpio_13_gpio_io_o 1 3 4 1620J 1300 NJ 1300 NJ 1300 2920
+preplace netloc axi_gpio_13_gpio2_io_o 1 3 21 NJ 1520 NJ 1520 2492 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 NJ 1440 11640
+preplace netloc axi_gpio_13_gpio_io_o 1 3 4 1640J 1310 NJ 1310 NJ 1310 2920
 preplace netloc axi_gpio_14_gpio_io_o 1 6 2 NJ 2780 3550J
 preplace netloc axi_gpio_16_gpio_io_o 1 3 3 1570 3200 NJ 3200 NJ
-preplace netloc axi_gpio_1_gpio2_io_o 1 32 2 15680 -420 16140
-preplace netloc axi_gpio_1_gpio_io_o 1 32 2 15690 -400 16130
-preplace netloc axi_gpio_2_gpio2_io_o 1 32 2 15680 -50 16160
-preplace netloc axi_gpio_2_gpio_io_o 1 32 2 15690 -60 16150
+preplace netloc axi_gpio_1_gpio2_io_o 1 32 2 15690 -420 16160
+preplace netloc axi_gpio_1_gpio_io_o 1 32 2 15700 -400 16140
+preplace netloc axi_gpio_2_gpio2_io_o 1 32 2 15680 -70 16170
+preplace netloc axi_gpio_2_gpio_io_o 1 32 2 15700 -110 16150
 preplace netloc axi_gpio_3_gpio2_io_o 1 24 1 12240 1010n
 preplace netloc axi_gpio_3_gpio_io_o 1 24 1 12230 790n
-preplace netloc axi_gpio_4_gpio2_io_o 1 26 4 13160J 430 NJ 430 NJ 430 14590
+preplace netloc axi_gpio_4_gpio2_io_o 1 26 4 13160J 440 NJ 440 NJ 440 14600
 preplace netloc axi_gpio_4_gpio_io_o 1 26 4 13150 400 NJ 400 NJ 400 NJ
 preplace netloc axi_gpio_5_gpio_io_o 1 24 1 12270 1210n
 preplace netloc axi_gpio_6_gpio_io_o 1 2 1 831 850n
-preplace netloc axi_gpio_7_gpio_io_o 1 25 1 12710 -160n
-preplace netloc axi_gpio_8_gpio_io_o 1 19 2 NJ 2560 9450
+preplace netloc axi_gpio_7_gpio_io_o 1 25 1 12720 -160n
+preplace netloc axi_gpio_8_gpio_io_o 1 19 2 NJ 2560 9470
 preplace netloc axi_gpio_9_gpio2_io_o 1 9 7 4574 1800 NJ 1800 NJ 1800 NJ 1800 6385 1820 6750J 1940 7280
 preplace netloc axi_gpio_9_gpio_io_o 1 14 2 NJ 1900 7290
-preplace netloc axis_tlast_gen_iq_0_counter_mon 1 6 19 3232 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 11680J 1490 12220
-preplace netloc axis_tlast_gen_iq_0_m_axis_tlast 1 6 21 3222 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 11670J 1500 12270 1680 NJ 1680 13160
+preplace netloc axis_tlast_gen_iq_0_counter_mon 1 6 19 3232 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ 1450 11660J 1490 12220
+preplace netloc axis_tlast_gen_iq_0_m_axis_tlast 1 6 21 3222 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ 1470 11650J 1500 12270 1680 NJ 1680 13160
 preplace netloc clk_wiz_0_clk_out1 1 2 3 941 2120 1580 2180 NJ
-preplace netloc dwell_fcw_streamer_64_0_fcw_out 1 6 28 3242 1320 NJ 1320 4160 -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 NJ -120 11780J -90 NJ -90 12660J -70 NJ -70 NJ -70 NJ -70 NJ -70 NJ -70 NJ -70 NJ -70 16170J
+preplace netloc dwell_fcw_streamer_64_0_fcw_out 1 6 28 3252 1330 NJ 1330 4160 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 10450J 470 11190J -120 11790J -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 16190J
 preplace netloc dwell_fcw_streamer_64_1_active_r 1 3 3 NJ 3090 NJ 3090 2400
 preplace netloc dwell_fcw_streamer_64_1_fcw_out 1 3 3 NJ 3070 NJ 3070 2410
 preplace netloc fast_servo_controller_0_adc_out 1 14 2 NJ 2180 7170
 preplace netloc fast_servo_controller_0_dac_out 1 14 2 6792 2130 NJ
 preplace netloc fcw_out 1 6 5 3202 2150 NJ 2150 4150 2160 NJ 2160 NJ
-preplace netloc gpio_pmod_trigger_0_pmod_driver_out 1 6 5 3252 1300 NJ 1300 NJ 1300 NJ 1300 4900J
-preplace netloc iq_split_0_adc_bus 1 6 8 3182 2340 N 2340 NJ 2340 4574J 2320 4910 2300 N 2300 5947J 2190 NJ
-preplace netloc laser_pll_0_acquisition_status 1 22 2 11180 -580 11650
-preplace netloc laser_pll_0_fft_status 1 22 2 11160 -560 11660
-preplace netloc laser_pll_0_frequency_status 1 22 2 11200J -600 11640
+preplace netloc gpio_pmod_trigger_0_pmod_driver_out 1 6 5 3242 1410 NJ 1410 NJ 1410 NJ 1410 4900J
+preplace netloc iq_split_0_adc_bus 1 6 8 3162 2340 N 2340 NJ 2340 4574J 2320 4910 2300 N 2300 5947J 2190 NJ
+preplace netloc laser_pll_0_acquisition_status 1 6 18 3172 -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 N -110 10840 -180 11670
+preplace netloc laser_pll_0_fft_status 1 6 18 3092 -140 N -140 N -140 N -140 N -140 N -140 N -140 N -140 N -140 N -140 N -140 N -140 N -140 N -140 9270 -130 N -130 10870 -130 11680
+preplace netloc laser_pll_0_frequency_status 1 22 2 11200J -580 11640
 preplace netloc laser_pll_0_phase_status 1 22 2 NJ -820 11630
-preplace netloc pll_acquisition_gpio2_io_o 1 22 1 10850 -220n
-preplace netloc pll_acquisition_gpio_io_o 1 22 1 10870 -260n
+preplace netloc pll_acquisition_gpio2_io_o 1 22 1 10880 -220n
+preplace netloc pll_acquisition_gpio_io_o 1 22 1 10910 -260n
 preplace netloc pll_control_gpio2_io_o 1 22 1 10840 20n
-preplace netloc pll_control_gpio_io_o 1 22 1 10860 -20n
+preplace netloc pll_control_gpio_io_o 1 22 1 10900 -20n
 preplace netloc pll_frequency_gpio2_io_o 1 22 1 11160 -400n
 preplace netloc pll_frequency_gpio_io_o 1 22 1 11180 -440n
-preplace netloc pmod_ad1_adc_0_adc_cs_n 1 3 33 NJ 2210 2060J 2310 NJ 2310 NJ 2310 NJ 2310 NJ 2310 4574 2290 NJ 2290 N 2290 NJ 2290 NJ 2290 NJ 2290 NJ 2290 7768J 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 16950J
-preplace netloc pmod_ad1_adc_0_adc_sclk 1 3 33 NJ 2230 1930J 2260 NJ 2260 2920J 2320 3580J 2300 NJ 2300 4510 2270 NJ 2270 NJ 2270 NJ 2270 NJ 2270 NJ 2270 NJ 2270 7778J 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ
-preplace netloc pmod_da2_trigger_0_dac_cs 1 3 33 1580J 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 10440J 410 NJ 410 NJ 410 NJ 410 12690J 570 13150J 520 13650 440 NJ 440 14600J 460 NJ 460 N 460 NJ 460 16170J 780 NJ 780 NJ
-preplace netloc pmod_da2_trigger_0_dac_mosi 1 3 33 1590J 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 10450J 430 NJ 430 11700 540 NJ 540 12680J 580 13230J 530 13680 460 NJ 460 14580 640 NJ 640 15290 610 15680J 820 NJ 820 NJ 820 NJ
-preplace netloc pmod_da2_trigger_0_dac_sclk 1 3 33 NJ 840 NJ 840 2400 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 10470J 460 NJ 460 11650 590 NJ 590 NJ 590 13240J 540 13700 470 NJ 470 14570J 630 14950J 600 NJ 600 NJ 600 16150J 800 NJ 800 NJ
-preplace netloc pmod_debounce_sync_0_event_pulse 1 1 7 NJ 2570 NJ 2570 NJ 2570 NJ 2570 NJ 2570 3052J 2550 3540J
+preplace netloc pmod_ad1_adc_0_adc_cs_n 1 3 33 NJ 2210 2050J 2310 NJ 2310 NJ 2310 NJ 2310 NJ 2310 4574 2290 NJ 2290 N 2290 NJ 2290 NJ 2290 NJ 2290 NJ 2290 7768J 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 16950J
+preplace netloc pmod_ad1_adc_0_adc_sclk 1 3 33 NJ 2230 1930J 2260 NJ 2260 2920J 2320 3570J 2300 NJ 2300 4510 2270 NJ 2270 NJ 2270 NJ 2270 NJ 2270 NJ 2270 NJ 2270 7778J 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ 2220 NJ
+preplace netloc pmod_da2_trigger_0_dac_cs 1 3 33 1580J 620 NJ 620 NJ 620 NJ 620 3570J 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 10430J 420 NJ 420 NJ 420 NJ 420 12690J 570 13150J 530 13650 460 NJ 460 NJ 460 NJ 460 N 460 NJ 460 16200J 780 NJ 780 NJ
+preplace netloc pmod_da2_trigger_0_dac_mosi 1 3 33 1600J 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 NJ 630 10420J 440 NJ 440 11680 560 NJ 560 12680J 600 NJ 600 13770 500 NJ 500 14570 640 NJ 640 15320 610 15700J 820 NJ 820 NJ 820 NJ
+preplace netloc pmod_da2_trigger_0_dac_sclk 1 3 33 NJ 840 NJ 840 2400 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 10440J 450 NJ 450 11670 570 NJ 570 12670J 590 13240J 540 13660 470 NJ 470 14590J 630 15020J 600 NJ 600 NJ 600 16170J 800 NJ 800 NJ
+preplace netloc pmod_debounce_sync_0_event_pulse 1 1 7 NJ 2570 NJ 2570 NJ 2570 NJ 2570 NJ 2570 3032J 2550 3540J
 preplace netloc pmod_debounce_sync_1_event_pulse 1 1 2 NJ 2860 620
 preplace netloc pmod_digital_in_0_1 1 0 1 -710 2530n
 preplace netloc pmod_digital_in_1_1 1 0 1 -710 2820n
-preplace netloc proc_sys_reset_0_peripheral_aresetn 1 0 35 -510 2660 NJ 2660 871 190 1640 190 NJ 190 2482 1320 3092 2350 3782 2240 N 2240 NJ 2240 4970 2240 5526 2220 5937 2170 6365 2070 N 2070 7270 2230 N 2230 NJ 2230 NJ 2230 NJ 2230 9697 -260 10470J -110 11200 -170 11770 -80 12310 -170 12690 -550 NJ -550 NJ -550 14160 -720 14630 -720 14990 -300 15300 -310 15640 -390 16230 -390 16630
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 0 35 -510 2660 NJ 2660 871 170 1630 170 NJ 170 2482 1330 3072 2350 3782 2240 N 2240 NJ 2240 4970 2240 5526 2220 5937 2170 6365 2070 N 2070 7270 2230 N 2230 NJ 2230 NJ 2230 NJ 2230 9687 -260 10460J 230 11150 -190 11780 -80 12310 -170 12690 -550 NJ -550 NJ -550 14210 -710 14630 -690 15000 -270 15310 -310 15640 -390 16230 -390 16630
 preplace netloc proc_sys_reset_1_peripheral_aresetn 1 2 3 931 2130 1590 2130 1930J
-preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 33 221 980 801 -1360 1600J -270 NJ -270 2512 1810 NJ 1810 NJ 1810 4198 1810 NJ 1810 NJ 1810 NJ 1810 NJ 1810 6375 2000 6782 2020 7300 2030 NJ 2030 8140J 2120 8646 1460 NJ 1460 9647 1460 NJ 1460 11100 1460 11740 620 12290 620 12770 730 13190 730 13720 290 NJ 290 NJ 290 NJ 290 NJ 290 15690 30 NJ
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 33 221 980 801 -1360 1600J -270 NJ -270 2512 1810 NJ 1810 NJ 1810 4198 1810 NJ 1810 NJ 1810 NJ 1810 NJ 1810 6375 2000 6782 2020 7300 2030 NJ 2030 8140J 2120 8646 1460 NJ 1460 9637 1460 NJ 1460 11090 1460 11760 610 12290 610 12770 720 13210 720 13720 280 NJ 280 NJ 280 NJ 280 NJ 280 15650 30 NJ
 preplace netloc setpoint_switch_0_out 1 11 3 5340 2210 NJ 2210 NJ
-preplace netloc usp_rf_data_converter_0_clk_adc0 1 0 35 -500 2670 211 500 861 2080 N 2080 2159 2080 2522 2080 3072 2420 3772 2420 NJ 2420 4564 2100 4960 2250 5516 2250 5927 2250 6405 2280 6812 2240 7310 2240 7758 2200 8222 2180 8656 2180 9023 2170 9687 -110 10420 420 11190 -180 11760 750 12300 850 12700 850 13180 850 13690 -560 14170 -710 14610 -700 15000 -200 15310 -200 15630 -410 16160 -400 16650
-preplace netloc xlconstant_0_dout 1 11 23 5536 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 10270J 440 NJ 440 11690J 550 NJ 550 12670J 600 13250J 550 13730J 480 NJ 480 14620J 470 NJ 470 NJ 470 NJ 470 16200
+preplace netloc usp_rf_data_converter_0_clk_adc0 1 0 35 -500 2670 211 500 861 2080 N 2080 2159 2080 2522 2080 3052 2420 3772 2420 NJ 2420 4564 2100 4960 2250 5516 2250 5927 2250 6405 2280 6812 2240 7310 2240 7758 2200 8222 2180 8656 2180 9023 2170 9677 -280 10410 880 11200 -170 11770 750 12300 850 12710 850 13190 850 13690 -560 14170 -720 14610 -720 14990 -280 15330 -330 15610 -410 16180 -400 16650
+preplace netloc xlconstant_0_dout 1 11 23 5536 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 9290J 680 10460J 460 NJ 460 11640J 580 NJ 580 NJ 580 13250J 550 13730J 480 NJ 480 14620J 470 NJ 470 NJ 470 NJ 470 16230
 preplace netloc xlconstant_2_dout 1 4 2 1930 3220 NJ
-preplace netloc xpm_cdc_gen_0_dest_out 1 30 3 14950 -190 NJ -190 NJ
-preplace netloc xpm_cdc_gen_1_dest_out 1 30 3 15010 -170 NJ -170 NJ
-preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 1 33 251 990 821 200 1660 200 NJ 200 2502 1820 NJ 1820 NJ 1820 4188 1820 NJ 1820 NJ 1820 NJ 1820 NJ 1820 6365 2010 6802 2010 7310 2020 NJ 2020 8150J 2110 8636 1430 NJ 1430 9607 1430 NJ 1430 11160 1430 11730 600 12270 600 12660 720 13210 720 13770 450 NJ 450 14630 300 NJ 300 15280 300 15660 10 NJ
-preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 2 2 931 160 1570
+preplace netloc xpm_cdc_gen_0_dest_out 1 30 3 14990 -190 NJ -190 NJ
+preplace netloc xpm_cdc_gen_1_dest_out 1 30 3 15020 -170 NJ -170 NJ
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 1 33 251 990 821 180 1650 220 NJ 220 2502 1820 NJ 1820 NJ 1820 4188 1820 NJ 1820 NJ 1820 NJ 1820 NJ 1820 6365 2010 6802 2010 7310 2020 NJ 2020 8150J 2110 8636 1430 NJ 1430 9617 1430 NJ 1430 11190 1430 11740 590 12270 590 12660 730 13220 730 13750 450 NJ 450 14630 290 14950J 310 15290 310 15640 10 NJ
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 2 2 931 150 1570
 preplace netloc AxisConstant14Samples_0_m_axis 1 2 1 811 430n
 preplace netloc AxisConstant14Samples_1_m_axis 1 20 4 9717J -160 NJ -160 NJ -160 11620
-preplace netloc ErrorSignalSignExten_0_m_axis 1 22 3 10840 650 NJ 650 12220J
-preplace netloc ErrorSignalSignExten_1_m_axis 1 22 3 10840 880 NJ 880 12220J
+preplace netloc ErrorSignalSignExten_0_m_axis 1 22 3 10840 660 NJ 660 12220J
+preplace netloc ErrorSignalSignExten_1_m_axis 1 22 3 10840 860 NJ 860 12220J
 preplace netloc ErrorSignalTruncation_0_m_axis 1 24 5 12320 -580 NJ -580 NJ -580 NJ -580 14150
-preplace netloc ErrorSignal_Wrapper_0_raw_error_out 1 26 5 13150J -710 13660J -730 NJ -730 NJ -730 15020
+preplace netloc ErrorSignal_Wrapper_0_raw_error_out 1 26 5 13150J -700 NJ -700 NJ -700 NJ -700 14980
 preplace netloc ErrorSignal_Wrapper_0_summed_error_out 1 26 5 NJ -210 NJ -210 NJ -210 NJ -210 14970
-preplace netloc NCO_Wrapper_0_m_axis 1 20 16 9727 -140 NJ -140 NJ -140 11810 -110 NJ -110 12740J -100 N -100 NJ -100 NJ -100 NJ -100 N -100 N -100 NJ -100 NJ -100 NJ -100 16940
+preplace netloc NCO_Wrapper_0_m_axis 1 20 16 9727 -150 NJ -150 NJ -150 11820 -110 NJ -110 12740J -100 N -100 NJ -100 NJ -100 NJ -100 N -100 N -100 NJ -100 NJ -100 NJ -100 16940
 preplace netloc NCO_Wrapper_1_m_axis 1 7 14 3560 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ
-preplace netloc PIController_Wrapper_0_control_out 1 30 4 15020 -870 NJ -870 NJ -870 16150
-preplace netloc PostCordicExtension_0_m_axis 1 20 1 9667 10n
-preplace netloc adc1_clk_1 1 0 21 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 9677
-preplace netloc axi_dma_0_M_AXI_S2MM 1 28 4 14180J 670 NJ 670 NJ 670 NJ
-preplace netloc axi_dma_1_M_AXI_S2MM 1 28 4 14190 690 NJ 690 NJ 690 NJ
-preplace netloc axi_dma_2_M_AXI_S2MM 1 28 4 14210 710 NJ 710 NJ 710 NJ
-preplace netloc axi_dma_3_M_AXI_S2MM 1 27 5 13790 690 14150J 720 NJ 720 NJ 720 15320J
-preplace netloc axi_dma_4_M_AXI_S2MM 1 23 9 11790 890 NJ 890 NJ 890 NJ 890 NJ 890 14200J 760 NJ 760 NJ 760 15320J
-preplace netloc axi_dma_5_M_AXIS_MM2S 1 3 5 1660J 2700 NJ 2700 NJ 2700 NJ 2700 3570J
-preplace netloc axi_dma_5_M_AXI_MM2S 1 3 29 1610 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 10120J 470 10850J 660 NJ 660 NJ 660 NJ 660 NJ 660 13700J 680 NJ 680 NJ 680 NJ 680 15330J
-preplace netloc axi_dma_6_M_AXIS_MM2S 1 3 5 NJ 2880 NJ 2880 NJ 2880 3062J 2980 NJ
-preplace netloc axi_dma_6_M_AXI_MM2S 1 3 29 1640 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 10340J 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 13780J 500 14160J 730 NJ 730 NJ 730 15270J
-preplace netloc axi_dma_7_M_AXIS_MM2S 1 2 1 911 3060n
-preplace netloc axi_dma_7_M_AXI_MM2S 1 2 30 841 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 10460J 450 NJ 450 11660J 560 NJ 560 NJ 560 NJ 560 13760J 490 14170J 740 NJ 740 NJ 740 15260J
-preplace netloc axi_interconnect_0_M00_AXI 1 21 13 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 16180
-preplace netloc axi_interconnect_0_M01_AXI 1 2 20 881 -1350 NJ -1350 N -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 9727 -500 10090
-preplace netloc axi_interconnect_0_M02_AXI 1 21 6 NJ -1180 NJ -1180 NJ -1180 NJ -1180 NJ -1180 13220
-preplace netloc axi_interconnect_0_M03_AXI 1 13 9 6395 -330 NJ -330 NJ -330 NJ -330 NJ -330 NJ -330 NJ -330 NJ -330 10190
-preplace netloc axi_interconnect_0_M04_AXI 1 18 4 8666 -320 NJ -320 NJ -320 10180
-preplace netloc axi_interconnect_0_M05_AXI 1 21 2 NJ -1120 11120
-preplace netloc axi_interconnect_0_M06_AXI 1 1 21 241 -1370 NJ -1370 1620J -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 9637 -490 10080
-preplace netloc axi_interconnect_0_M07_AXI 1 13 9 6405 -310 NJ -310 NJ -310 NJ -310 NJ -310 NJ -310 NJ -310 NJ -310 10160
-preplace netloc axi_interconnect_0_M08_AXI 1 15 7 7310 -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 10170
-preplace netloc axi_interconnect_0_M09_AXI 1 8 14 4208 -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 NJ -280 10150
-preplace netloc axi_interconnect_0_M10_AXI 1 5 17 2532 -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 10140
-preplace netloc axi_interconnect_0_M11_AXI 1 2 20 901 -1340 NJ -1340 2060 -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 9677J -390 10130
-preplace netloc axi_interconnect_0_M12_AXI 1 2 20 891 -1320 NJ -1320 2050 -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 9707J -410 10120
-preplace netloc axi_interconnect_0_M13_AXI 1 14 8 6822 -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 10070
-preplace netloc axi_interconnect_0_M14_AXI 1 1 21 231 150 NJ 150 1590J 130 1930 -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 10110
-preplace netloc axi_interconnect_0_M15_AXI 1 2 20 921 220 1610J 140 2060 -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 10100
-preplace netloc axi_interconnect_0_M16_AXI 1 21 1 10250 -900n
-preplace netloc axi_interconnect_0_M17_AXI 1 21 1 10370 -880n
-preplace netloc axi_interconnect_0_M18_AXI 1 21 1 10400 -860n
-preplace netloc axi_interconnect_0_M19_AXI 1 21 1 10350 -840n
-preplace netloc axi_interconnect_0_M20_AXI 1 21 1 10360 -820n
-preplace netloc axis_broadcaster_0_M00_AXIS 1 3 18 1630 150 NJ 150 NJ 150 2980J 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 9627J
-preplace netloc axis_broadcaster_0_M01_AXIS 1 3 18 1650 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 9657J
+preplace netloc PIController_Wrapper_0_control_out 1 30 4 15020 -860 NJ -860 NJ -860 16150
+preplace netloc PostCordicExtension_0_m_axis 1 20 1 9657 10n
+preplace netloc adc1_clk_1 1 0 21 NJ 170 NJ 170 620J 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 9667
+preplace netloc axi_dma_0_M_AXI_S2MM 1 28 4 14160J 670 NJ 670 NJ 670 NJ
+preplace netloc axi_dma_1_M_AXI_S2MM 1 28 4 14170 690 NJ 690 NJ 690 NJ
+preplace netloc axi_dma_2_M_AXI_S2MM 1 28 4 14200 710 NJ 710 NJ 710 NJ
+preplace netloc axi_dma_3_M_AXI_S2MM 1 27 5 13790 690 14150J 700 NJ 700 NJ 700 15300J
+preplace netloc axi_dma_4_M_AXI_S2MM 1 23 9 11810 880 NJ 880 NJ 880 NJ 880 13650J 900 14180J 750 NJ 750 NJ 750 NJ
+preplace netloc axi_dma_5_M_AXIS_MM2S 1 3 5 1670J 2700 NJ 2700 NJ 2700 NJ 2700 3550J
+preplace netloc axi_dma_5_M_AXI_MM2S 1 3 29 1620 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 NJ 590 9330J 660 10090J 890 NJ 890 NJ 890 NJ 890 NJ 890 NJ 890 NJ 890 14190J 770 NJ 770 NJ 770 NJ
+preplace netloc axi_dma_6_M_AXIS_MM2S 1 3 5 NJ 2880 NJ 2880 NJ 2880 3042J 2980 NJ
+preplace netloc axi_dma_6_M_AXI_MM2S 1 3 29 1650 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 NJ 610 10130J 410 NJ 410 NJ 410 NJ 410 12700J 560 NJ 560 13740J 490 NJ 490 14580J 650 NJ 650 15320J
+preplace netloc axi_dma_7_M_AXIS_MM2S 1 2 1 901 3060n
+preplace netloc axi_dma_7_M_AXI_MM2S 1 2 30 841 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 9310J 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 13740J 680 NJ 680 NJ 680 NJ 680 15260J
+preplace netloc axi_interconnect_0_M00_AXI 1 21 13 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 NJ -1220 16200
+preplace netloc axi_interconnect_0_M01_AXI 1 2 20 881 -1350 NJ -1350 N -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 NJ -1350 9727 -500 10140
+preplace netloc axi_interconnect_0_M02_AXI 1 21 6 NJ -1180 NJ -1180 NJ -1180 NJ -1180 NJ -1180 13230
+preplace netloc axi_interconnect_0_M03_AXI 1 13 9 6395 -370 NJ -370 NJ -370 NJ -370 NJ -370 NJ -370 NJ -370 NJ -370 10090
+preplace netloc axi_interconnect_0_M04_AXI 1 18 4 8666 -330 NJ -330 NJ -330 10190
+preplace netloc axi_interconnect_0_M05_AXI 1 21 2 NJ -1120 11140
+preplace netloc axi_interconnect_0_M06_AXI 1 1 21 241 -1370 NJ -1370 1630J -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 NJ -1360 9350 -490 10130
+preplace netloc axi_interconnect_0_M07_AXI 1 13 9 6405 -320 NJ -320 NJ -320 NJ -320 NJ -320 NJ -320 NJ -320 NJ -320 10180
+preplace netloc axi_interconnect_0_M08_AXI 1 15 7 7310 -310 NJ -310 NJ -310 NJ -310 NJ -310 NJ -310 10160
+preplace netloc axi_interconnect_0_M09_AXI 1 8 14 4208 -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 10170
+preplace netloc axi_interconnect_0_M10_AXI 1 5 17 2532 -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 NJ -300 10150
+preplace netloc axi_interconnect_0_M11_AXI 1 2 20 891 -1340 NJ -1340 2050 -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 NJ -530 9717J -410 10120
+preplace netloc axi_interconnect_0_M12_AXI 1 2 20 901 -1330 NJ -1330 2040 -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 NJ -520 9707J -400 10100
+preplace netloc axi_interconnect_0_M13_AXI 1 14 8 6822 -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 10110
+preplace netloc axi_interconnect_0_M14_AXI 1 1 21 231 220 NJ 220 1590J 110 1930 -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 NJ -190 10080
+preplace netloc axi_interconnect_0_M15_AXI 1 2 20 921 200 1600J 120 2050 -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 10070
+preplace netloc axi_interconnect_0_M16_AXI 1 21 1 10270 -900n
+preplace netloc axi_interconnect_0_M17_AXI 1 21 1 10350 -880n
+preplace netloc axi_interconnect_0_M18_AXI 1 21 1 10360 -860n
+preplace netloc axi_interconnect_0_M19_AXI 1 21 1 10330 -840n
+preplace netloc axi_interconnect_0_M20_AXI 1 21 1 10340 -820n
+preplace netloc axis_broadcaster_0_M00_AXIS 1 3 18 1620 130 NJ 130 NJ 130 2980J 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 9627J
+preplace netloc axis_broadcaster_0_M01_AXIS 1 3 18 1640 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 9647J
 preplace netloc axis_broadcaster_1_M00_AXIS 1 30 1 14970 -630n
 preplace netloc axis_broadcaster_1_M01_AXIS 1 30 1 14960 -760n
 preplace netloc axis_broadcaster_1_M02_AXIS 1 30 1 14960 -590n
-preplace netloc axis_broadcaster_2_M00_AXIS 1 22 2 11130 -290 NJ
-preplace netloc axis_broadcaster_3_M00_AXIS 1 22 2 11140 -270 NJ
-preplace netloc axis_data_fifo_0_M_AXIS 1 5 2 NJ 2170 3082
-preplace netloc axis_power_mod_0_m_axis 1 3 16 1570J 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 NJ 1310 8530
-preplace netloc axis_round_saturate_0_m_axis 1 21 1 10430 980n
-preplace netloc axis_round_saturate_1_m_axis 1 21 1 10520 1120n
-preplace netloc axis_tlast_gen_0_m_axis 1 25 3 NJ 760 NJ 760 13650
+preplace netloc axis_broadcaster_2_M00_AXIS 1 22 2 10890 -290 NJ
+preplace netloc axis_broadcaster_3_M00_AXIS 1 22 2 10920 -270 NJ
+preplace netloc axis_data_fifo_0_M_AXIS 1 5 2 NJ 2170 3062
+preplace netloc axis_power_mod_0_m_axis 1 3 16 1570J 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 NJ 1320 8530
+preplace netloc axis_round_saturate_0_m_axis 1 21 1 10490 980n
+preplace netloc axis_round_saturate_1_m_axis 1 21 1 10510 1120n
+preplace netloc axis_tlast_gen_0_m_axis 1 25 3 NJ 760 NJ 760 13700
 preplace netloc axis_tlast_gen_1_m_axis 1 25 3 NJ 980 NJ 980 13650J
 preplace netloc axis_tlast_gen_2_m_axis 1 25 3 NJ 1180 NJ 1180 13650J
-preplace netloc axis_tlast_gen_3_m_axis 1 6 17 3192 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 10100 2370 NJ
+preplace netloc axis_tlast_gen_3_m_axis 1 6 17 3192 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 NJ 2330 10070 2370 NJ
 preplace netloc axis_tlast_gen_iq_0_m_axis 1 24 3 NJ 1650 NJ 1650 13200
-preplace netloc cic_compiler_0_M_AXIS_DATA 1 22 1 10850 990n
+preplace netloc cic_compiler_0_M_AXIS_DATA 1 22 1 10860 990n
 preplace netloc cic_compiler_1_M_AXIS_DATA 1 22 1 10840 1130n
-preplace netloc cic_compiler_2_M_AXIS_DATA 1 6 15 3122 2560 NJ 2560 NJ 2560 NJ 2560 NJ 2560 NJ 2560 N 2560 NJ 2560 NJ 2560 NJ 2560 NJ 2560 8140 2510 8530J 2440 NJ 2440 9270
-preplace netloc cordic_0_M_AXIS_DOUT 1 6 12 3102 2570 NJ 2570 NJ 2570 NJ 2570 NJ 2570 NJ 2570 N 2570 6310 2470 NJ 2470 7220J 2430 NJ 2430 NJ
+preplace netloc cic_compiler_2_M_AXIS_DATA 1 6 15 3112 2560 NJ 2560 NJ 2560 NJ 2560 NJ 2560 NJ 2560 N 2560 NJ 2560 NJ 2560 NJ 2560 NJ 2560 8140 2510 8530J 2440 NJ 2440 9270
+preplace netloc cordic_0_M_AXIS_DOUT 1 6 12 3082 2570 NJ 2570 NJ 2570 NJ 2570 NJ 2570 NJ 2570 N 2570 6310 2470 NJ 2470 7220J 2430 NJ 2430 NJ
 preplace netloc cordic_1_M_AXIS_DOUT 1 19 1 9010 2090n
-preplace netloc cordic_average_0_m_axis_cartesian 1 6 9 3132 2500 NJ 2500 NJ 2500 NJ 2500 4930J 2380 NJ 2380 NJ 2380 6270 2390 NJ
+preplace netloc cordic_average_0_m_axis_cartesian 1 6 9 3122 2500 NJ 2500 NJ 2500 NJ 2500 4930J 2380 NJ 2380 NJ 2380 6270 2390 NJ
 preplace netloc cordic_phase_helper_0_m_axis_phase 1 17 2 8160 2100 NJ
-preplace netloc dac1_clk_1 1 0 21 NJ 190 NJ 190 620J 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 9717
-preplace netloc fir_compiler_0_M_AXIS_DATA 1 23 1 11640 1600n
+preplace netloc dac1_clk_1 1 0 21 NJ 190 NJ 190 NJ 190 1610J 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 N
+preplace netloc fir_compiler_0_M_AXIS_DATA 1 23 1 11630 1600n
 preplace netloc fir_compiler_1_M_AXIS_DATA 1 23 1 11820 1660n
 preplace netloc iq_split_0_m_axis_i 1 10 3 NJ 2390 NJ 2390 5860
-preplace netloc iq_split_0_m_axis_q 1 6 7 3162 2490 NJ 2490 NJ 2490 NJ 2490 4900J 2460 NJ 2460 NJ
-preplace netloc perturbation_gen_0_perturb_err_out 1 25 5 12770 -700 NJ -700 NJ -700 NJ -700 14570
-preplace netloc perturbation_gen_0_perturb_nco_out 1 29 5 14580J -860 NJ -860 NJ -860 NJ -860 16190J
-preplace netloc perturbation_gen_0_ref_out 1 29 1 14590 -630n
-preplace netloc pmod_ad1_adc_0_m_axis 1 3 2 1630 2140 NJ
-preplace netloc ps8_0_axi_periph_M00_AXI 1 3 18 NJ -990 2040J -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 9320
-preplace netloc ps8_0_axi_periph_M01_AXI 1 3 18 1630J -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 9320
+preplace netloc iq_split_0_m_axis_q 1 6 7 3142 2490 NJ 2490 NJ 2490 NJ 2490 4900J 2460 NJ 2460 NJ
+preplace netloc perturbation_gen_0_perturb_err_out 1 25 5 12770 -690 NJ -690 NJ -690 NJ -690 14570
+preplace netloc perturbation_gen_0_perturb_nco_out 1 29 5 14590J -870 NJ -870 NJ -870 NJ -870 16210J
+preplace netloc perturbation_gen_0_ref_out 1 29 1 14600 -630n
+preplace netloc pmod_ad1_adc_0_m_axis 1 3 2 1670 2140 NJ
+preplace netloc ps8_0_axi_periph_M00_AXI 1 3 18 NJ -990 2020J -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 9627
+preplace netloc ps8_0_axi_periph_M01_AXI 1 3 18 1650J -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 NJ -1370 9350
 preplace netloc ps8_0_axi_periph_M02_AXI 1 3 30 1610J -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 NJ -1550 15670
-preplace netloc ps8_0_axi_periph_M03_AXI 1 3 30 1650J -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 NJ -360 10280J -940 NJ -940 NJ -940 NJ -940 NJ -940 NJ -940 NJ -940 NJ -940 NJ -940 NJ -940 NJ -940 15650
-preplace netloc ps8_0_axi_periph_M04_AXI 1 3 21 1640J -1380 2060 -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 11800
-preplace netloc ps8_0_axi_periph_M05_AXI 1 3 23 NJ -890 2030 -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 NJ -500 9717 -480 10220J -920 NJ -920 NJ -920 NJ -920 12750
-preplace netloc ps8_0_axi_periph_M06_AXI 1 3 25 NJ -870 2020 -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 9627 -470 10200J -1030 NJ -1030 NJ -1030 NJ -1030 NJ -1030 NJ -1030 13750
-preplace netloc ps8_0_axi_periph_M07_AXI 1 3 25 NJ -850 2010 -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 9667 -460 10210J -1000 NJ -1000 NJ -1000 NJ -1000 NJ -1000 NJ -1000 13710
-preplace netloc ps8_0_axi_periph_M08_AXI 1 3 25 NJ -830 2000 -470 NJ -470 N -470 NJ -470 N -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 9617 -450 10230J -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 13670
-preplace netloc ps8_0_axi_periph_M09_AXI 1 3 21 NJ -810 1990 -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 9300 -370 10330J -550 NJ -550 11750
-preplace netloc ps8_0_axi_periph_M10_AXI 1 1 3 251 -1330 NJ -1330 1570
-preplace netloc ps8_0_axi_periph_M11_AXI 1 3 22 NJ -770 1980 -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 9310J -400 10270J -910 NJ -910 NJ -910 12230
-preplace netloc ps8_0_axi_periph_M12_AXI 1 3 28 NJ -750 1970 -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 10300J -530 10840J -610 11720 -720 NJ -720 NJ -720 NJ -720 13650 -740 NJ -740 NJ -740 14950
-preplace netloc ps8_0_axi_periph_M13_AXI 1 3 26 NJ -730 1960 -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 9270J -340 NJ -340 10870J -570 NJ -570 NJ -570 NJ -570 NJ -570 NJ -570 14180J
-preplace netloc ps8_0_axi_periph_M14_AXI 1 3 28 NJ -710 1950 -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 9280 -430 10290J -560 10850J -590 N -590 NJ -590 NJ -590 NJ -590 NJ -590 14150 -690 NJ -690 15010
-preplace netloc ps8_0_axi_periph_M15_AXI 1 3 28 NJ -690 1940 -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 9290 -420 10310J -540 NJ -540 11770 -550 NJ -550 12660J -540 NJ -540 NJ -540 14180 -530 NJ -530 14950
-preplace netloc smartconnect_0_M00_AXI 1 2 31 911 -1310 1660J -680 1930 -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 NJ -400 9280 -380 10240J -1020 NJ -1020 NJ -1020 NJ -1020 NJ -1020 NJ -1020 NJ -1020 NJ -1020 N -1020 NJ -1020 NJ -1020 15610
+preplace netloc ps8_0_axi_periph_M03_AXI 1 3 30 1670J -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 NJ -350 10240J -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 15660
+preplace netloc ps8_0_axi_periph_M04_AXI 1 3 21 1660J -1380 2050 -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 NJ -1540 11800
+preplace netloc ps8_0_axi_periph_M05_AXI 1 3 23 NJ -890 2010 -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 NJ -490 9340 -480 10210J -920 NJ -920 NJ -920 NJ -920 12750
+preplace netloc ps8_0_axi_periph_M06_AXI 1 3 25 NJ -870 2000 -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 NJ -480 9330 -470 10220J -910 NJ -910 NJ -910 NJ -910 NJ -910 NJ -910 13760
+preplace netloc ps8_0_axi_periph_M07_AXI 1 3 25 1660J 280 1930 580 NJ 580 NJ 580 3580J 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 NJ 670 9270 870 NJ 870 NJ 870 NJ 870 NJ 870 NJ 870 NJ 870 13660
+preplace netloc ps8_0_axi_periph_M08_AXI 1 3 25 NJ -830 1990 -470 NJ -470 N -470 NJ -470 N -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 NJ -470 9320 -460 10200J -1000 NJ -1000 NJ -1000 NJ -1000 NJ -1000 NJ -1000 13710
+preplace netloc ps8_0_axi_periph_M09_AXI 1 3 21 NJ -810 1980 -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 NJ -460 9310 -450 10260J -550 NJ -550 11750
+preplace netloc ps8_0_axi_periph_M10_AXI 1 1 3 251 -1320 NJ -1320 1570
+preplace netloc ps8_0_axi_periph_M11_AXI 1 3 22 NJ -770 1970 -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 NJ -450 9300J -440 10230J -930 NJ -930 NJ -930 12230
+preplace netloc ps8_0_axi_periph_M12_AXI 1 3 28 NJ -750 1960 -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 NJ -440 9290J -340 NJ -340 10850J -590 11690 -710 NJ -710 NJ -710 NJ -710 13670 -730 NJ -730 NJ -730 14950
+preplace netloc ps8_0_axi_periph_M13_AXI 1 3 26 NJ -730 1950 -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 NJ -430 10310J -530 10860J -570 NJ -570 NJ -570 NJ -570 NJ -570 NJ -570 14180J
+preplace netloc ps8_0_axi_periph_M14_AXI 1 3 28 NJ -710 1940 -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 NJ -420 9270 -380 10280J -900 11180J -890 N -890 NJ -890 NJ -890 NJ -890 NJ -890 N -890 NJ -890 15010
+preplace netloc ps8_0_axi_periph_M15_AXI 1 3 28 NJ -690 1930 -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 NJ -410 9280 -420 10300J -540 NJ -540 11780 -550 NJ -550 12660J -530 NJ -530 NJ -530 N -530 NJ -530 14950
+preplace netloc smartconnect_0_M00_AXI 1 2 31 911 -1310 NJ -1310 2030 -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 NJ -510 9697 -390 10290J -560 NJ -560 NJ -560 NJ -560 12760J -540 NJ -540 NJ -540 14200J -520 14570 -300 NJ -300 NJ -300 15610
 preplace netloc ssr4_fir_decimator_0_m_axis 1 12 9 5880 1530 NJ 1530 NJ 1530 NJ 1530 NJ 1530 NJ 1530 NJ 1530 NJ 1530 NJ
 preplace netloc ssr4_fir_decimator_1_m_axis 1 12 9 5890 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ
-preplace netloc sync_axis_power_mod_0_m_axis 1 6 15 3252 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 7650 50 NJ 50 NJ 50 NJ 50 NJ
+preplace netloc sync_axis_power_mod_0_m_axis 1 6 15 3252 130 NJ 130 NJ 130 NJ 130 NJ 130 NJ 130 NJ 130 NJ 130 NJ 130 NJ 130 7650 50 NJ 50 NJ 50 NJ 50 NJ
 preplace netloc sysref_in_1 1 0 21 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 9270
-preplace netloc usp_rf_data_converter_0_m00_axis 1 6 18 3182 -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 10340 -520 11200J -490 NJ
-preplace netloc usp_rf_data_converter_0_m01_axis 1 6 16 3192 10 NJ 10 NJ 10 4554 -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 10080
-preplace netloc usp_rf_data_converter_0_m02_axis 1 21 3 10320 -900 NJ -900 11810J
-preplace netloc usp_rf_data_converter_0_m03_axis 1 6 17 3232J 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 NJ 20 9270J -90 10380 -100 11150
-preplace netloc usp_rf_data_converter_0_m10_axis 1 21 1 10390 120n
-preplace netloc usp_rf_data_converter_0_m12_axis 1 21 1 10270 170n
-preplace netloc usp_rf_data_converter_0_vout00 1 21 15 10100 230 NJ 230 NJ 230 NJ 230 NJ 230 NJ 230 NJ 230 NJ 230 NJ 230 NJ 230 NJ 230 15630J 400 16210J 380 NJ 380 16940
-preplace netloc usp_rf_data_converter_0_vout10 1 21 15 10380 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 15620J 390 NJ 390 NJ 390 16950
+preplace netloc usp_rf_data_converter_0_m00_axis 1 6 18 3162 -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 N -170 10290 -120 10900J -240 11670J
+preplace netloc usp_rf_data_converter_0_m01_axis 1 6 16 3192 10 NJ 10 NJ 10 4554 -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 NJ -100 10070
+preplace netloc usp_rf_data_converter_0_m02_axis 1 21 3 10320 -520 11200J -470 NJ
+preplace netloc usp_rf_data_converter_0_m03_axis 1 6 17 3232J 20 NJ 20 NJ 20 4510J -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 NJ -90 10340 -100 10930
+preplace netloc usp_rf_data_converter_0_m10_axis 1 21 1 10350 120n
+preplace netloc usp_rf_data_converter_0_m12_axis 1 21 1 10150 170n
+preplace netloc usp_rf_data_converter_0_vout00 1 21 15 10130 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 15630J 390 NJ 390 NJ 390 16940
+preplace netloc usp_rf_data_converter_0_vout10 1 21 15 10100 400 11180J 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 14570J 300 NJ 300 NJ 300 15620J 400 NJ 400 NJ 400 16950
 preplace netloc vin00_1 1 0 21 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 NJ 210 9727
 preplace netloc vin10_1 1 0 21 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 N
 preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 2 2 921 -1300 1580J
 preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM1_FPD 1 2 2 931 -1290 1590
-levelinfo -pg 1 -730 -350 431 1251 1839 2279 2722 3392 3952 4358 4734 5160 5696 6107 6575 6992 7480 7958 8372 8836 9143 9897 10680 11410 12020 12490 12960 13450 13970 14390 14790 15140 15470 15910 16430 16800 16970
+levelinfo -pg 1 -730 -350 431 1251 1839 2279 2722 3392 3952 4358 4734 5160 5696 6107 6575 6992 7480 7958 8372 8836 9143 9897 10680 11410 12020 12490 12960 13450 13970 14390 14790 15140 15470 15920 16430 16800 16970
 pagesize -pg 1 -db -bbox -sgen -910 -1560 17130 3690
 "
 }
