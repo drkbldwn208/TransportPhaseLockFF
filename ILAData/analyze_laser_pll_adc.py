@@ -3,7 +3,8 @@
 
 Usage: python3 ILAData/analyze_laser_pll_adc.py ILAData/iladata.ila
 
-Requires the laser PLL design's real, bypassed ADC stream in ILA slot 11:
+Requires the laser PLL design's real, bypassed ADC stream (old ILA slot 11;
+use --adc-slot 9 for the October 7, 2026 BD):
 eight chronological signed 16-bit words per 245.76 MHz clock, low word first.
 Full-scale sine peak is 32768 AXIS counts; physical ADC codes are left aligned.
 Assumes a continuous capture at 1.96608 GS/s with one dominant sinusoid.
@@ -36,7 +37,7 @@ REFERENCE_HZ = 800_000_000.0
 FULL_SCALE_COUNTS = 32768
 
 
-def read_adc_counts(path):
+def read_adc_counts(path, slot=11):
     """Read embedded CSV without modifying the original .ila archive."""
     if path.suffix.lower() == ".ila":
         with zipfile.ZipFile(path) as archive:
@@ -45,9 +46,9 @@ def read_adc_counts(path):
         csv_text = path.read_text()
     reader = csv.DictReader(io.StringIO(csv_text))
     radix = next(reader)
-    column = next(k for k in radix if "net_slot_11_axis_tdata[127:0]" in k)
+    column = next(k for k in radix if f"net_slot_{slot}_axis_tdata[127:0]" in k)
     if radix[column] != "HEX":
-        raise ValueError("Export ILA slot 11 tdata in hexadecimal radix.")
+        raise ValueError(f"Export ILA slot {slot} tdata in hexadecimal radix.")
     rows = list(reader)
     prefix = column.split("tdata")[0]
     if any(row[prefix + "tvalid"] != "1" or row[prefix + "tready"] != "1"
@@ -110,8 +111,9 @@ def phase_noise_model(adc_counts):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("capture", type=Path)
+    parser.add_argument("--adc-slot", type=int, default=11, help="ADC 224/3 ILA slot: 9 in new BD, 11 in old captures")
     args = parser.parse_args()
-    adc = read_adc_counts(args.capture)
+    adc = read_adc_counts(args.capture, args.adc_slot)
     frequency_hz, coefficients, fit = fit_tone(adc)
     amplitude_counts = np.hypot(*coefficients[:2])
     residual = adc-fit

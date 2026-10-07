@@ -75,6 +75,7 @@ foreach {gpio pin} {
 } {
     connect_bd_net [get_bd_pins $gpio] [get_bd_pins laser_pll_0/$pin]
 }
+source $pll_root/scripts/upgrade_laser_pll_acquisition.tcl
 validate_bd_design
 save_bd_design
 puts "Laser PLL integrated. Rebuild bitstream and deploy matching bit/hwh together."

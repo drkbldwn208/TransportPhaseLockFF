@@ -15,20 +15,25 @@ module laser_pll (
     input wire [31:0] frequency_high,
     input wire [31:0] control,
     input wire [31:0] phase_offset,
+    input wire [31:0] acquisition_control,
+    input wire [31:0] test_dc,
     output wire [31:0] phase_status,
-    output wire [31:0] frequency_status
+    output wire [31:0] frequency_status,
+    output wire [31:0] acquisition_status,
+    output wire [31:0] fft_status
 );
     wire enable = control[0];
     wire clear = control[3];
     wire [15:0] minimum_amplitude = control[31:16];
     wire [143:0] mixed_i, mixed_q;
     wire mixed_valid, frequency_ack;
+    wire [47:0] committed_frequency;
     // NCO always runs, even while the phase detector/output are disabled.
     laser_pll_mixer mixer (
         .clk(clk), .rst_n(rst_n), .adc_data(s_axis_tdata), .adc_valid(s_axis_tvalid),
         .frequency_low(frequency_low), .frequency_high(frequency_high),
         .i_data(mixed_i), .q_data(mixed_q), .mixed_valid(mixed_valid),
-        .frequency_ack(frequency_ack)
+        .frequency_ack(frequency_ack), .committed_frequency(committed_frequency)
     );
     assign s_axis_tready = 1'b1;
     wire detector_rst_n = rst_n && enable && !clear;
@@ -52,15 +57,36 @@ module laser_pll (
         .phase(measured_phase), .phase_valid(phase_valid));
 
     wire signed [17:0] phase_error, frequency_error;
-    wire signed [15:0] dac_target;
+    wire signed [15:0] dac_target, capture_target, unwrapped_target, output_target;
     wire error_valid, target_valid, target_saturated, saturated, stalled;
+    wire capture_saturated, unwrapped_saturated, output_valid, output_saturated, unwrap_arm;
+    wire signed [23:0] turns;
     laser_pll_error error_detector (.clk(clk), .rst_n(detector_rst_n),
         .measured_phase(measured_phase), .phase_valid(phase_valid),
-        .control(control), .phase_offset(phase_offset), .phase_error(phase_error),
+        .control(control), .phase_offset(phase_offset), .unwrap_arm(unwrap_arm),
+        .phase_error(phase_error),
         .frequency_error(frequency_error), .error_valid(error_valid),
-        .dac_target(dac_target), .target_valid(target_valid), .target_saturated(target_saturated));
-    laser_pll_dac dac_output (.clk(clk), .rst_n(rst_n), .enable(enable), .clear(clear),
         .dac_target(dac_target), .target_valid(target_valid), .target_saturated(target_saturated),
+        .capture_target(capture_target), .capture_saturated(capture_saturated),
+        .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated), .turns(turns));
+    wire [9:0] fft_bin;
+    wire fft_valid;
+    laser_pll_fft coarse_estimator (.clk(clk), .rst_n(rst_n && !clear),
+        .adc_data(s_axis_tdata), .adc_valid(s_axis_tvalid),
+        .minimum_peak(acquisition_control[31:16]), .peak_bin(fft_bin),
+        .estimate_valid(fft_valid), .fft_status(fft_status));
+    laser_pll_acquisition acquisition (.clk(clk), .rst_n(detector_rst_n), .ready(m_axis_tready),
+        .acquisition_control(acquisition_control), .test_dc(test_dc), .control(control),
+        .reference_frequency(committed_frequency), .fft_bin(fft_bin), .fft_valid(fft_valid),
+        .frequency_error(frequency_error), .error_valid(error_valid),
+        .legacy_target(dac_target), .legacy_saturated(target_saturated),
+        .capture_target(capture_target), .capture_saturated(capture_saturated),
+        .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated),
+        .target_valid(target_valid), .turns(turns), .unwrap_arm(unwrap_arm),
+        .dac_target(output_target), .output_valid(output_valid),
+        .output_saturated(output_saturated), .acquisition_status(acquisition_status));
+    laser_pll_dac dac_output (.clk(clk), .rst_n(rst_n), .enable(enable), .clear(clear),
+        .dac_target(output_target), .target_valid(output_valid), .target_saturated(output_saturated),
         .m_axis_tdata(m_axis_tdata), .m_axis_tvalid(m_axis_tvalid), .m_axis_tready(m_axis_tready),
         .saturated(saturated), .stalled(stalled));
     assign phase_status = {9'b0, frequency_ack, stalled, saturated, error_valid,

@@ -11,10 +11,12 @@ module laser_pll_mixer (
     output wire [143:0] i_data,
     output wire [143:0] q_data,
     output wire mixed_valid,
-    output reg frequency_ack
+    output reg frequency_ack,
+    output wire [47:0] committed_frequency
 );
     reg [47:0] phase_accumulator = 0;
     reg [47:0] frequency_word = 0;
+    assign committed_frequency = frequency_word;
     reg [3:0] valid_pipe = 0;
     wire commit = frequency_high[16] != frequency_ack;
     // Commit latches both GPIO words atomically. Frequency changes preserve phase.

@@ -31,7 +31,8 @@ def wrap(x):
 
 def run():
     WORK.mkdir(exist_ok=True, parents=True)
-    shutil.copy(SRC / 'laser_pll_sine.mem', WORK)
+    for filename in ('laser_pll_sine.mem', 'laser_pll_hann.mem'):
+        shutil.copy(SRC / filename, WORK)
     h = firwin(32, 120e6, fs=FS, window=('kaiser', 7))
     hq = np.rint(h * 131072).astype(int)
     hq[15:17] += (131072-hq.sum())//2
@@ -99,10 +100,13 @@ def run():
             if high & (1<<17): acc=0
         nco_expected.append((acc,fcw));cycle+=1
     (WORK/'stimulus.txt').write_text(''.join(vectors))
-    sources=[str(SRC/f'laser_pll{x}.sv') for x in ('_mixer','_fir','_cordic','_error','')]
+    sources=[str(SRC/f'laser_pll{x}.sv') for x in ('_mixer','_fir','_cordic','_unwrap','_error','_fft','_handoff','_acquisition','')]
     sources.append(str(SRC/'laser_pll_dac.v'))
-    commands=[['xvlog','--sv','-i',str(SRC),*sources,str(ROOT/'tests/laser_pll_tb.sv')],
-              ['xelab','laser_pll_tb','-s','laser_pll_sim'], ['xsim','laser_pll_sim','-runall']]
+    fft_wrapper = ROOT/'TransportPhaseLockFF.srcs/sources_1/ip/laser_pll_fft_core/sim/laser_pll_fft_core.vhd'
+    if not fft_wrapper.exists():
+        fft_wrapper = ROOT/'TransportPhaseLockFF.gen/sources_1/ip/laser_pll_fft_core/sim/laser_pll_fft_core.vhd'
+    commands=[['xvhdl',str(fft_wrapper)], ['xvlog','--sv','-i',str(SRC),*sources,str(ROOT/'tests/laser_pll_tb.sv')],
+              ['xelab','-L','xfft_v9_1_12','laser_pll_tb','-s','laser_pll_sim'], ['xsim','laser_pll_sim','-runall']]
     for command in commands:
         p=subprocess.run([str(BIN/command[0]),*command[1:]],cwd=WORK,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
         (WORK/f'{command[0]}.txt').write_text(p.stdout)
@@ -127,9 +131,9 @@ def run():
         measured_hz=f*(FS/8)/PHASE
         freq_errors.setdefault(name,[]).append(measured_hz+delta_hz)
         assert abs(measured_hz+delta_hz)<100000, (name,measured_hz,delta_hz)
-        # DAC has two additional registers beyond phase_status; check the
+        # DAC has three additional registers beyond phase_status; check the
         # actual arithmetic, not just the phase probe, to measure its latency.
-        dc=signed(int(rows[c+2].split()[3],16),16)
+        dc=signed(int(rows[c+3].split()[3],16),16)
         if capture:
             assert dc==(-32768 if delta_hz>0 else 32767), (name,dc)
         else:
@@ -139,7 +143,7 @@ def run():
     for name,err in errors.items():
         print(f'{name}: max phase error {max(abs(np.array(err)))*1e6:.1f} urad; max frequency error {max(abs(np.array(freq_errors[name]))):.0f} Hz')
     print(f'PASS: {checked} phase samples; +/-100 MHz capture polarity; zero-signal mute; coherent/staged DDS updates; AXIS packing/stalls')
-    print('ADC word -> DAC register latency: 17 clocks = 69.17 ns; FIR group delay: 7.884 ns (converter latency excluded).')
+    print('ADC word -> DAC register latency: 18 clocks = 73.24 ns; FIR group delay: 7.884 ns (converter latency excluded).')
     print(f'Artifacts: {WORK}')
 
 

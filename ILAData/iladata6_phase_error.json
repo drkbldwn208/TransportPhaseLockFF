@@ -1,0 +1,36 @@
+{
+  "capture": "ILAData/iladata6.ila",
+  "sha256": "d60d28b5b57e41a7142cc472aa98c2857910fad96d1608a8ef2e2bbb5da67aad",
+  "sample_rate_hz": 1966080000.0,
+  "reference_hz": 800000000.0000024,
+  "assumed_control": "0x400601",
+  "assumed_phase_offset_code": 0,
+  "assumed_nco_phase_at_capture_start_rad": 0,
+  "duration_us": 8.333333333333334,
+  "strongest_fitted_tone_hz": 289471193.1153599,
+  "strongest_fitted_tone_peak_counts": 790.237674874526,
+  "strongest_fitted_tone_dbfs": -32.3538440794011,
+  "raw_peak_counts": 2796.0,
+  "raw_rms_counts": 820.0809083960957,
+  "raw_minimum_counts": -2796.0,
+  "raw_maximum_counts": 2732.0,
+  "reference_plus_minus_100mhz_rms_counts": 299.07987261072617,
+  "reference_plus_minus_100mhz_dbfs": -37.782955002705314,
+  "tone_fit_residual_rms_counts": 600.243394141663,
+  "mixed_vector_median_counts": 171.34069906668128,
+  "valid_fraction": 0.8918918918918919,
+  "rtl_vs_float_max_phase_error_rad": 0.002755938358379062,
+  "note": "Strongest-tone fit is not a measure of the 800 MHz beat amplitude. Absolute NCO phase and live GPIO settings are not in this ILA. DAC traces include validity gating and clipping, but not RFDC/analog filtering.",
+  "phase_only": {
+    "dac_rms_about_mean_counts": 17421.603778763896,
+    "dac_pp_counts": 65487,
+    "dac_rms_fraction_full_span": 0.2658325771906112,
+    "rail_fraction": 0.0
+  },
+  "capture_on": {
+    "dac_rms_about_mean_counts": 29462.942169702867,
+    "dac_pp_counts": 65535,
+    "dac_rms_fraction_full_span": 0.4495688197281321,
+    "rail_fraction": 0.7692692692692693
+  }
+}

@@ -14,8 +14,12 @@ module laser_pll_wrapper (
     input wire [31:0] frequency_high,
     input wire [31:0] control,
     input wire [31:0] phase_offset,
+    input wire [31:0] acquisition_control,
+    input wire [31:0] test_dc,
     output wire [31:0] phase_status,
-    output wire [31:0] frequency_status
+    output wire [31:0] frequency_status,
+    output wire [31:0] acquisition_status,
+    output wire [31:0] fft_status
 );
     laser_pll detector (
         .clk(clk), .rst_n(rst_n), .s_axis_tdata(s_axis_tdata),
@@ -23,6 +27,8 @@ module laser_pll_wrapper (
         .m_axis_tdata(m_axis_tdata), .m_axis_tvalid(m_axis_tvalid),
         .m_axis_tready(m_axis_tready), .frequency_low(frequency_low),
         .frequency_high(frequency_high), .control(control), .phase_offset(phase_offset),
-        .phase_status(phase_status), .frequency_status(frequency_status)
+        .acquisition_control(acquisition_control), .test_dc(test_dc),
+        .phase_status(phase_status), .frequency_status(frequency_status),
+        .acquisition_status(acquisition_status), .fft_status(fft_status)
     );
 endmodule

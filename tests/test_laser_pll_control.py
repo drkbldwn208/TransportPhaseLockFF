@@ -23,7 +23,9 @@ class GPIO:
 
 class Controls(unittest.TestCase):
     def setUp(self):
-        self.ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO())
+        self.ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
+                                pll_acquisition=GPIO(),pll_acquisition_status=GPIO())
+        self.ol.pll_acquisition_status.values[8]=0xA3000000
 
     def test_frequency_units_and_commit_order(self):
         self.ol.pll_status.values[0]=1<<22
@@ -81,7 +83,7 @@ class Controls(unittest.TestCase):
         self.ol.usp_rf_data_converter_0=SimpleNamespace(dac_tiles=[None,SimpleNamespace(blocks=[None,dac])])
         self.ol.ip_dict={'usp_rf_data_converter_0':{'parameters':{
             'ADC_Data_Type03':'0','ADC_Decimation_Mode03':'1','ADC_Data_Width03':'8',
-            'ADC_Mixer_Type03':'1','ADC0_Sampling_Rate':'1.96608',
+            'ADC_Mixer_Type03':'1','ADC_Nyquist03':'0','ADC0_Sampling_Rate':'1.96608',
             'DAC_Data_Width11':'14','DAC_Interpolation_Mode11':'4'}}}
         self.ol.pll_status.values[0]=1<<22
         xrfdc=SimpleNamespace(EVNT_SRC_IMMEDIATE=0,MIXER_TYPE_FINE=2,
@@ -91,6 +93,43 @@ class Controls(unittest.TestCase):
         self.assertEqual(dac.MixerSettings['Freq'],0)
         self.assertEqual(dac.MixerSettings['PhaseOffset'],0)
         self.assertFalse(self.ol.pll_control.values[0]&1)
+        self.assertTrue(self.ol.pll_control.values[0]&4)
+        self.assertEqual(self.ol.pll_acquisition.values[0],0x00200041)
+
+    def test_stage_request_preserves_fields_and_clears_dc(self):
+        self.ol.pll_acquisition.values[0]=0x00200045
+        pll.select_stage(self.ol,3,wait=False)
+        self.assertEqual(self.ol.pll_acquisition.values[0],0x00200043)
+        with self.assertRaises(ValueError): pll.enable_capture(self.ol,False)
+
+    def test_dc_literal_signed_code(self):
+        self.ol.pll_acquisition.values[0]=0x00200043
+        self.ol.pll_control.values[0]=5
+        pll.set_dc_output(self.ol,-8192)
+        self.assertEqual(self.ol.pll_acquisition.values[8],0xe000)
+        self.assertEqual(self.ol.pll_acquisition.values[0],0x00200047)
+        self.assertEqual(self.ol.pll_control.values[0],5)
+
+    def test_acquisition_status_units(self):
+        self.ol.pll_acquisition_status.values[0]=3|128|(0xffffff<<8)
+        self.ol.pll_acquisition_status.values[8]=0xA3010000|1024|417
+        state=pll.acquisition_status(self.ol)
+        self.assertEqual(state['remembered_turns'],-1)
+        self.assertEqual(state['fft_frequency_hz'],800640000)
+        self.assertTrue(state['fft_valid'])
+        self.assertEqual(state['stage'],3)
+
+    def test_stage_wait_timeout_restores_request(self):
+        self.ol.pll_control.values[0]=1
+        self.ol.pll_acquisition.values[0]=0x00200041
+        with patch.object(pll.time,'monotonic',side_effect=[0,2]):
+            with self.assertRaises(TimeoutError): pll.select_stage(self.ol,3,timeout_s=1)
+        self.assertEqual(self.ol.pll_acquisition.values[0],0x00200041)
+
+    def test_acquisition_parameters_require_mute(self):
+        self.ol.pll_control.values[0]=1
+        with self.assertRaises(ValueError): pll.configure_acquisition(self.ol)
+        self.assertEqual(self.ol.pll_acquisition.writes,[])
 
 
 if __name__=='__main__': unittest.main()

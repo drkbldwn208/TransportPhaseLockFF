@@ -6,6 +6,10 @@ from scipy.signal import firwin
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "TransportPhaseLockFF.srcs/sources_1/new"
 
+# Periodic Hann for the serial coarse FFT, unsigned Q0.15 (one is 32768).
+window = np.rint(32767 * (0.5 - 0.5*np.cos(2*np.pi*np.arange(1024)/1024))).astype(int)
+(OUT / "laser_pll_hann.mem").write_text("".join(f"{x:04x}\n" for x in window))
+
 # Midpoint sampling makes quadrant reflection exact, without a special endpoint.
 angle_rad = (np.arange(16384) + 0.5) * np.pi / 32768
 sine = np.rint(131071 * np.sin(angle_rad)).astype(int)

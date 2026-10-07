@@ -1,0 +1,54 @@
+{
+  "source_replay": "ILAData/iladata7_phase_error.csv",
+  "capture_sha256": "306c497a1fba081a9624e0eafaa27b0facd4a85b776c0bebb7823a4d8b1d8078",
+  "full_scale_vpp": 2.0,
+  "phase_gain": 1,
+  "fitted_input_minus_reference_hz": 1999997.8714779427,
+  "analyzed_duration_us": 8.1298828125,
+  "phase_residual_rms_rad": 0.0010673531793451462,
+  "phase_residual_peak_to_peak_rad": 0.006437721876871194,
+  "capture_weight_noise_before_clipping": {
+    "0": {
+      "rms_mv": 0.33974906903526064,
+      "peak_to_peak_mv": 2.049190517909769,
+      "frequency_term_dc_mv": -0.0
+    },
+    "1": {
+      "rms_mv": 0.7063425336352235,
+      "peak_to_peak_mv": 4.229251416068157,
+      "frequency_term_dc_mv": -16.27602434470982
+    },
+    "2": {
+      "rms_mv": 1.1251280199713931,
+      "peak_to_peak_mv": 6.922427685599407,
+      "frequency_term_dc_mv": -32.55204868941964
+    },
+    "4": {
+      "rms_mv": 1.9875634478178674,
+      "peak_to_peak_mv": 12.30878022466191,
+      "frequency_term_dc_mv": -65.10409737883928
+    },
+    "8": {
+      "rms_mv": 3.7311438666637993,
+      "peak_to_peak_mv": 23.08148530278691,
+      "frequency_term_dc_mv": -130.20819475767857
+    },
+    "16": {
+      "rms_mv": 7.229912028467229,
+      "peak_to_peak_mv": 44.626895459036916,
+      "frequency_term_dc_mv": -260.41638951535714
+    },
+    "32": {
+      "rms_mv": 14.233923545391082,
+      "peak_to_peak_mv": 87.71771577153693,
+      "frequency_term_dc_mv": -520.8327790307143
+    },
+    "64": {
+      "rms_mv": 28.24536673068632,
+      "peak_to_peak_mv": 173.89935639653694,
+      "frequency_term_dc_mv": -1041.6655580614286
+    }
+  },
+  "ideal_saw_step_mv": 16.27602434470982,
+  "notes": "Constant phase and linear drift removed. No extra digital filtering. Capture weight zero means capture disabled. RMS/peak-to-peak are noise about the ramp, not the RMS of the whole sawtooth. Capture predictions exclude clipping and RFDC/analog/scope response. Voltage calibration and gain settings are assumptions; this ILA does not record live controls."
+}

@@ -21,3 +21,6 @@ pynq_overlays/*
 *.aps
 __pycache__/
 build/
+# Keep the reproducible FFT configuration; Vivado regenerates vendor products.
+TransportPhaseLockFF.srcs/sources_1/ip/laser_pll_fft_core/*
+!TransportPhaseLockFF.srcs/sources_1/ip/laser_pll_fft_core/laser_pll_fft_core.xci

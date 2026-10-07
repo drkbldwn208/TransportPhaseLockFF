@@ -18,6 +18,8 @@ if {![string match {*write_bitstream Complete*} [get_property STATUS $run]]} {
     error "Bitstream generation failed; inspect impl_1/runme.log"
 }
 file mkdir $out
+open_run impl_1
+write_debug_probes -force $out/laser_pll.ltx
 file copy -force $root/TransportPhaseLockFF.runs/impl_1/design_1_wrapper.bit $out/laser_pll.bit
 file copy -force $root/TransportPhaseLockFF.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh $out/laser_pll.hwh
 file copy -force $root/python_scripts/laser_pll.py $out/laser_pll.py

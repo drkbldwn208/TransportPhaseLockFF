@@ -5,13 +5,16 @@ set src [file join $root TransportPhaseLockFF.srcs sources_1 new]
 set out [file join $root build laser_pll_timing]
 file mkdir $out
 create_project -in_memory -part xczu49dr-ffvf1760-2-e
+source $root/scripts/create_laser_pll_fft.tcl
+set_property generate_synth_checkpoint false [get_files */laser_pll_fft_core.xci]
 set_property include_dirs [list $src] [current_fileset]
 read_verilog -sv [glob $src/laser_pll*.sv]
 read_verilog $src/laser_pll_dac.v
 read_verilog -sv $root/tests/laser_pll_timing_top.sv
-add_files $src/laser_pll_sine.mem
+add_files [glob $src/laser_pll*.mem]
 # Work outside the source tree: Vivado cleans staged memory files on exit.
 file copy -force $src/laser_pll_sine.mem $out/laser_pll_sine.mem
+file copy -force $src/laser_pll_hann.mem $out/laser_pll_hann.mem
 cd $out
 synth_design -top laser_pll_timing_top -part xczu49dr-ffvf1760-2-e -mode out_of_context
 create_clock -name pll_clk -period 4.069010417 [get_ports clk]

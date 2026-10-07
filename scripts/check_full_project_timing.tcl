@@ -2,16 +2,24 @@
 set root [file normalize [file join [file dirname [info script]] ..]]
 set out $root/build/full_project
 file mkdir $out
-open_project $root/TransportPhaseLockFF.xpr
+if {[current_project -quiet] eq ""} {open_project $root/TransportPhaseLockFF.xpr}
+# Use actual OOC runs for the new inferred XCI/module reference.
+config_ip_cache -disable_cache
 update_compile_order -fileset sources_1
 generate_target all [get_files design_1.bd]
 create_ip_run [get_files design_1.bd]
+create_ip_run [get_files */laser_pll_fft_core.xci]
+reset_run [get_runs design_1_laser_pll_0_0_synth_1]
 reset_run synth_1
+foreach run [get_runs] {file mkdir [get_property DIRECTORY $run]}
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
 puts "FULL_PROJECT_SYNTH_STATUS [get_property STATUS [get_runs synth_1]]"
 if {[get_property PROGRESS [get_runs synth_1]] ne "100%"} {
     error "Full project synthesis did not complete; inspect .runs/*/runme.log"
+}
+if {![file exists $root/TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_laser_pll_0_0/design_1_laser_pll_0_0.dcp]} {
+    error "PLL checkpoint missing: revalidate BD and rebuild without editing RTL during the run"
 }
 launch_runs impl_1 -to_step route_design -jobs 4
 wait_on_run impl_1
