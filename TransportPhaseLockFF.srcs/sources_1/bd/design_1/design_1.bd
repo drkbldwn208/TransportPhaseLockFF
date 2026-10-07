@@ -1481,7 +1481,7 @@
             "value": "1.96608"
           },
           "ADC_CalOpt_Mode03": {
-            "value": "2"
+            "value": "0"
           },
           "ADC_Coarse_Mixer_Freq03": {
             "value": "3"
@@ -1535,7 +1535,7 @@
             "value": "0.09"
           },
           "ADC_Nyquist03": {
-            "value": "1"
+            "value": "0"
           },
           "ADC_Slice01_Enable": {
             "value": "true"
@@ -14397,7 +14397,15 @@
         "interface_ports": [
           "usp_rf_data_converter_0/m00_axis",
           "PhaseExtractor_Wrapp_0/I"
-        ]
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "usp_rf_data_converter_0_m01_axis": {
         "interface_ports": [
