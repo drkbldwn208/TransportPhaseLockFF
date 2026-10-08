@@ -10,11 +10,14 @@ phase-wrap counter**, reversed default output polarity, and a literal DC test
 output. The coarse stage uses one AMD xFFT radix-2-lite burst core on occasional
 raw-ADC snapshots. It is outside the fast phase pipeline.
 
-**Manual stage-3 entry update (October 7, 2026):** stage 3 now requires only
-valid fine-phase data and three clocks of wrap-memory preparation. Its frequency
-bands, FFT qualification and 4096-sample dwell have been removed. This requires
-a rebuilt bitstream; the previously exported overlay still contains the old
-entry gates. Stage-2 entry, output gains and the 18-clock fast path are unchanged.
+**Wide-phase mapping update (October 7, 2026, signature `0xA4`):** stage 3 now
+maps approximately **±80 turns to the DAC rails at phase gain shift 0**, reducing
+its previous slope by 160. The existing phase gain doubles that slope per shift.
+This changes stage 3 only; stages 0/1/2 retain their scaling. Stage-3 entry remains
+manual, with valid fine data and five clocks of wrap/scaler preparation, without
+frequency/FFT/dwell gates. Stage 3 adds two pipeline clocks (8.138 ns).
+Rebuild the bitstream and deploy the matching `.bit`, `.hwh`, and Python helper;
+the helper rejects the earlier `0xA3` mapping before configuration writes.
 
 ## Specifications
 
@@ -30,8 +33,9 @@ Numerical resolution is not the physical phase-noise floor.
 | Reference DDS | 48-bit accumulator; 6.985 µHz tuning granularity; 16-bit lookup angle, 18-bit sin/cos |
 | Phase code | 18-bit full turn: 23.969 µrad/code = 0.001373°/code |
 | Tested arithmetic phase error | <65 µrad versus the same quantized FIR and an ideal complex mixer, for supplied tone tests |
-| Nominal physical DAC phase step | 383.5 µrad at phase gain 1, 23.97 µrad at gain 16; assumes a 14-bit DAC |
-| Linear phase range | Approximately ±π / phase gain; phase gain is `2**phase_gain_shift` |
+| Nominal physical DAC phase step | At shift 0: 383.5 µrad in stages 0/2, 61.36 mrad (3.516°) in stage 3; divided by `2**phase_gain_shift`, assuming a 14-bit DAC |
+| Linear phase range | Stage 0: ±½ turn / phase gain; stage 3: approximately ±80 turns / phase gain. Stage 2 can also rail from its derivative term. |
+| Stage-3 slope at nominal 2 Vpp | 1.989 mV/rad at shift 0, doubled per phase gain shift; reciprocal approximation error +3.815 ppm |
 | Fine frequency-code step | 937.5 Hz; obtained from adjacent phase samples, without averaging |
 | Fine discriminator ambiguity limit | Strictly less than ±122.88 MHz; tested acquisition band ±100 MHz at an 800 MHz reference |
 | Coarse RF search | FFT bins 104–495: 199.68–950.40 MHz, covering the requested 200–900 MHz |
@@ -39,10 +43,10 @@ Numerical resolution is not the physical phase-noise floor.
 | Raw snapshot duration | 0.520833 µs |
 | Measured FFT update interval in RTL | **14,508 clocks = 59.0332 µs** (about 16.94 kHz); not the fast-loop sample rate |
 | Phase-wrap memory | Signed 24-bit turns: −8,388,608…+8,388,607; saturates at endpoints, never wraps numerically |
-| Extra fast-path latency versus the original detector | **1 clock = 4.069 ns**; manual stage-3 entry adds none |
-| ADC word → DAC output register | **18 clocks = 73.242 ns** |
+| Extra latency from this scaling revision | **2 clocks = 8.138 ns in stage 3**; stages 0/2 retain their previous latency |
+| ADC word → DAC output register | Stages 0/2: **18 clocks = 73.242 ns**; stage 3: **20 clocks = 81.380 ns** |
 | FIR group delay | 15.5 ADC samples = 7.884 ns |
-| Digital delay including next DAC acceptance edge | **85.195 ns**; ADC packing, RFDC converter/interpolator and analog delays are additional |
+| Digital delay including FIR and next DAC acceptance edge | Stages 0/2: **85.195 ns**; stage 3: **93.333 ns**. ADC packing, RFDC converter/interpolator and analog delays are additional. |
 
 The raw RF range is a first-Nyquist-zone requirement. Frequencies above 983.04 MHz
 alias into this band and cannot be distinguished by this real-sampled FFT. An RF
@@ -62,11 +66,12 @@ flowchart LR
     CORDIC --> ERR["Phase subtraction and frequency difference"]
     ERR --> CAP["Stage 2: phase + frequency"]
     ERR --> UNWRAP["Stage 3: 24-bit wrap memory + phase"]
+    UNWRAP --> SCALE["Unwrapped scaling: gain / 160, then DAC saturation"]
     ADC --> FFT["Snapshot → Hann → serial AMD FFT → peak frequency"]
     FFT --> WIDE["Stage 1: coarse frequency error"]
     WIDE --> SELECT["Qualified selection + temporary handoff offset"]
     CAP --> SELECT
-    UNWRAP --> SELECT
+    SCALE --> SELECT
     DC["GPIO signed DC code"] --> SELECT
     SELECT --> DAC["DAC 229/1 → external analog controllers"]
 ```
@@ -80,6 +85,7 @@ flowchart LR
 | `laser_pll_unwrap.sv` | Count signed branch-cut crossings, preserving the desired phase modulo one turn |
 | `laser_pll_fft.sv` | Capture 1024 raw samples, serialize/window them, run vendor FFT, qualify strongest in-band bin |
 | `laser_pll_acquisition.sv` | Coarse error scaling, stage-entry qualification, detector/DC selection |
+| `laser_pll_phase_scale.sv` | Three-register stage-3 reciprocal scaling, gain/polarity alignment, rounding and saturation |
 | `laser_pll_handoff.sv` | One registered output and a temporary decaying offset for continuous stage changes |
 | `laser_pll_dac.v` | RFDC packing, mute, backpressure hold and stall diagnostic |
 | `laser_pll.sv`, `laser_pll_wrapper.v` | Wiring, amplitude gate, GPIO status, block-design boundary |
@@ -230,7 +236,7 @@ Legacy mode 0 can hand off directly to stage 3 with `select_stage(ol, 3)`;
 leave its capture flag enabled and do not call `configure()` between modes.
 The same offset fade applies. Stage 3 has no FFT or frequency-band requirement,
 so this also works when coarse FFT validity is missing. Valid fine-phase data
-and three clocks of wrap-memory preparation are still required.
+and five clocks of wrap/scaler preparation are still required.
 
 The derivative's small-signal multiplier is
 `1 + G_capture*(1-exp(-j*2*pi*f/Fe))`. It adds noise and changes loop gain/phase.
@@ -244,7 +250,7 @@ it; a jump above +π decrements it. The full error is
 
 ```text
 u[n] = e[n] + P * signed_turn_count[n]
-DAC = sat16(polarity * (u[n] << phase_gain_shift) >> 2)
+DAC ≈ sat16(round(polarity * u[n] * 2**phase_gain_shift / 640))
 ```
 
 The wrap decision uses a 19-bit subtraction so the jump itself cannot wrap.
@@ -255,24 +261,43 @@ At 1 MHz mismatch the positive capacity is about 8.39 s of slips; at 3 MHz it is
 phase-sampling ambiguity range: adjacent valid samples must still differ by
 less than half a turn.
 
-The fast DAC computation does not need a 43-bit gain barrel shifter. With the
-available gains ≥1, any nonzero whole-turn count necessarily rails the final
-DAC. It therefore selects the appropriate saturated phase endpoint for nonzero
-counts and the ordinary wrapped phase for count zero, then uses the existing
-gain pipeline. This is mathematically equivalent to saturating the full scaled
-unwrapped error, including both polarity settings. **The counter keeps counting
-while the output is railed**; clipping its DAC representation does not discard
-remembered turns.
+The widest linear range is approximately ±80 turns. Only the DAC representation
+is bounded at ±128 turns so it fits in signed 26 bits; values outside that bound
+already rail the output at every allowed gain. The full 24-bit turn count is not
+bounded there. A separate `laser_pll_phase_scale.sv` registers the bounded phase
+and controls, multiplies by **104858**, then rounds/shifts/clips the result.
+`104858/2**26` approximates `1/640` with +3.815 ppm gain error, less than 0.126 DAC
+command code at a rail. Rounding is nearest with half-code ties toward +infinity;
+comparison with exact rounded division differs by at most one command code.
+The 26×18-bit multiplication fits one DSP48E2. Its third register carries an
+independent valid flag; old wrapped/capture candidates keep their shorter path.
+**The counter keeps counting while the DAC rails**, and unwinding crosses the
+±128-turn implementation boundary continuously through an already-railed output.
+
+| `phase_gain_shift` | Stage-3 slope relative to the old detector | Approximate rail phase | Slope at 2 Vpp |
+|---|---:|---:|---:|
+| 0 | 1/160 | ±80 turns | 1.989 mV/rad |
+| 1 | 1/80 | ±40 turns | 3.979 mV/rad |
+| 2 | 1/40 | ±20 turns | 7.958 mV/rad |
+| 3 | 1/20 | ±10 turns | 15.92 mV/rad |
+| 7 | 0.8 | ±0.625 turn | 254.6 mV/rad |
+
+The existing gain field is shared with stages 0/2. Live gain writes are not
+crossfaded and can step the output: set shift 0 before this acquisition test and
+keep it fixed while tuning the FALC. No automatic narrowing/high-gain stage is
+added. Greater phase range trades volts/radian and phase-per-DAC-step resolution
+for acquisition headroom; it does not extend the physical EOM tuning range.
 
 Stage 3 is a **manual handoff**: there is no fine-frequency band, dwell timer or
 FFT qualification. An explicit request is accepted once fine phase/target data
-are valid, the wrap memory has been armed for three clocks, and the DAC is ready.
+are valid, the wrap/scaler pipeline has been prepared for five clocks, and the DAC is ready.
 The previous ±3 MHz fine / ±8 MHz FFT / 4096-consecutive-sample gate is removed;
 isolated frequency excursions no longer delay entry or reset a qualification timer.
 `fine_ready` now reports fine-data validity only, not proximity to lock.
 
-The preparation interval handles a branch-cut crossing during entry. It adds no
-steady-state latency. The first handoff sample still equals the previous output,
+The preparation interval handles a branch-cut crossing during entry. Waiting for
+preparation adds no steady-state latency beyond the new three-register scaler.
+The first handoff sample still equals the previous output,
 and the temporary offset decays at the configured rate. No higher-gain fourth
 stage or automatic gain increase is implemented.
 
@@ -333,6 +358,70 @@ not buffered. A stalled DAC is abnormal operation.
 
 ## Pipeline and phase-margin budget
 
+### Bench rationale: divided-PFD slope and FALC settings
+
+The previous ADF4108 used N=80. For charge-pump current `Icp` and a linear
+current-to-voltage gain `Z`, its local raw-beat phase slope is
+`Icp*Z/(2*pi*N)`, while full positive/negative current gives rails `+/-Icp*Z`.
+The earlier FPGA mapping reached equal rails at `+/-pi`, making its slope
+**2*N = 160 times larger** for the same total rail-to-rail span. The A4 mapping
+matches that ideal local slope and retains full rail voltage for large errors.
+This assumes the old amplifier was linear up to the full-current rails; clipping
+before then or different output spans changes the calibration. It is a slope
+match, not an emulation of the PFD's pulse sequence or its behavior after slips.
+See the [ADF4108 datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/adf4108.pdf)
+and [ADI's charge-pump PLL model](https://www.analog.com/en/resources/technical-articles/2022/07/16/07/45/phaselock-loop-applications-using-the-max9382.html).
+
+Reported FALC settings: SLI 8 is a **lead–lag section** whose gain begins
+falling from its high plateau at **24 Hz** and levels at its low plateau around
+**1.4 kHz**. These describe the two ends of the falling-gain region. Under a
+first-order, minimum-phase model they correspond to a 24 Hz pole and a 1.4 kHz
+zero: `H(s) = K_DC * (1 + s/(2*pi*1400)) / (1 + s/(2*pi*24))`.
+This is an assumed model of that section, not a measured transfer function of
+the complete controller. FLI 8/9 selects intermediate
+corners between 6.5–80 kHz and 3–37 kHz; FLD 9/10 selects intermediate corners
+between 42–230 kHz and 19–100 kHz; XSLI 6 is flat. Multiple switches select one
+intermediate response within each bank, **not multiple cascaded filters**.
+R/C and RNG do not control the piezo path. The exact role of those controls in
+the connected EOM path is not inferred without its output-routing information.
+
+Treating the quoted bands as the pole/zero corners of first-order lead–lag
+sections, a section with falling gain between its plateaus contributes
+`atan(f/f_high)-atan(f/f_low)`; a limited differentiator has the opposite sign.
+The following bounds use the two individual switch settings as endpoints;
+they are calculated nominal filter contributions, not measured loop margins.
+
+| FALC section | Phase at 173 kHz | Phase at 1 MHz |
+|---|---:|---:|
+| SLI 8 | −0.46° | −0.079° |
+| FLI 8/9 | −22.7°…−11.1° | −4.20°…−1.95° |
+| FLD 9/10 | +23.8°…+39.4° | +4.62°…+10.55° |
+| XSLI 6 | 0° | 0° |
+| Total filter shaping | +0.64°…+27.87° | +0.34°…+8.52° |
+
+In this SLI model the pole contributes lag and the zero contributes lead.
+Their contributions nearly cancel above both corners. Maximum lag is about
+75.1° at 183 Hz; at 173 kHz the remaining lag is only 0.46°. The high-frequency
+plateau is still `24/1400` of the DC gain (−35.3 dB relative to DC): reduced
+gain does not imply a persistent 90° phase lag. See
+[ADI's pole/zero phase discussion](https://www.analog.com/en/resources/technical-articles/model-transfer-functions-by-applying-the-laplace-transform-in-ltspice.html).
+The FLI/FLD entries remain conditional on interpreting their quoted ranges as
+pole/zero pairs. Intracavity EOM frequency tuning contributes a frequency-to-phase
+integration, and RFDC, output electronics, actuator response and controller
+bandwidth remain outside this table. Gain matching remains a controlled test;
+keep FALC switch settings fixed and raise its gain from the lowest useful value
+only after the wide-phase handoff has settled. A saturated limit cycle cannot
+establish the small-signal phase margin.
+
+The BLP-1.9+ was removed for this test. The user reports little change beyond
+faster ringing, so its delay is not included in the current loop budget. If it
+is reinstalled, its [datasheet](https://www.minicircuits.com/pdfs/BLP-1.9%2B.pdf)
+gives approximately 391 ns group delay at 1 MHz under the specified 50-ohm
+conditions; its typical −3 dB point is about 2.3 MHz. Group delay at one frequency
+must not be substituted for total phase divided by frequency.
+
+### Register pipeline
+
 For a raw ADC word sampled at edge **n**, with valid input and ready output:
 
 | Edge | Registered result |
@@ -349,15 +438,17 @@ For a raw ADC word sampled at edge **n**, with valid input and ready output:
 | n+9…n+14 | Six groups of three CORDIC vectoring iterations |
 | n+14 | Rounded measured phase |
 | n+15 | Wrapped phase error and frequency difference |
-| n+16 | Parallel gain-weighted detector targets; updated slip decision is used on this same sample |
-| n+17 | Selected target plus handoff offset |
-| n+18 | DAC word registered |
-| n+19 | RFDC accepts the registered DAC word |
+| n+16 | Stages 0/2: gain-weighted targets. Stage 3: bounded unwrapped phase and gain/polarity registered; same-sample slip correction. |
+| n+17 | Stages 0/2: handoff. Stage 3: reciprocal product and aligned controls. |
+| n+18 | Stages 0/2: DAC word. Stage 3: rounded/saturated target, valid and saturation flag. |
+| n+19 | Stages 0/2: RFDC acceptance. Stage 3: handoff offset and selection. |
+| n+20 | Stage 3: DAC word registered. |
+| n+21 | Stage 3: RFDC accepts the registered DAC word. |
 
 Add the FIR's 7.884 ns signal group delay to the register timing. This gives
-85.195 ns through digital processing and the following acceptance edge,
-excluding converter/packing and analog delays. At 1 MHz this delay contributes
-30.67° of phase lag. The revision's extra clock costs 1.465° at 1 MHz.
+85.195 ns for stages 0/2 and **93.333 ns for stage 3**, including the following
+acceptance edge but excluding converter/packing and analog delays. At 1 MHz the
+stage-3 digital delay contributes **33.60°**. The new two clocks cost **2.93°**.
 
 For comparison, 90 ns of pure delay costs 32.4°. A laser frequency actuator also
 contributes the frequency-to-phase integrator: with that single −90° term and no
@@ -418,13 +509,13 @@ Acquisition status: bits 1:0 active stage; bit 2 DC active; bit 3 transition off
 nonzero; bit 4 request pending; bit 5 near-stage entry ready; bit 6 fine-stage entry
 ready; bit 7 selected output valid; bits **31:8 signed 24-bit remembered turns**.
 With manual stage-3 entry, bit 6 means fine phase and target data are valid;
-it does not test frequency, FFT validity or lock, nor include the three-clock
+it does not test frequency, FFT validity or lock, nor include the five-clock
 preparation triggered by the request. Register addresses and bit positions are unchanged.
 When DC is active its internal mode is 4, so the low two stage bits read zero.
 
 FFT status: bits 9:0 peak bin; bit 10 estimate valid; bit 11 weak/insufficiently
 dominant peak; bits 12/13 sticky overflow/protocol fault; bits 15:14 reserved;
-23:16 frame counter modulo 256; 31:24 signature `0xA3`. DDS commits stage the low
+23:16 frame counter modulo 256; 31:24 signature `0xA4`. DDS commits stage the low
 word first and toggle the high-word commit bit, then wait for acknowledgment.
 Normal updates preserve accumulated reference phase. GPIO writes are software
 timed; deterministic chirps would need a hardware FCW trajectory source.
@@ -513,24 +604,25 @@ print(laser_pll.acquisition_status(ol))  # monitor remembered_turns
    occasional Python readings. Wait for the remaining oscillation to fit the
    EOM's available tuning excursion and for the piezo command to have headroom.
 
-4. **Engage the fast analog branch on the stage-2 error.** With the piezo still
-   on, configure the EOM's intended tracking filter at a conservative gain,
-   then toggle it on from its reset/off state. Both controllers receive the
-   same DAC error. Avoid changing analog filter switches and the FPGA stage
-   simultaneously, so each effect can be observed. If the EOM immediately hits
-   its integrator limit, turn it off/reset and continue centering with the piezo;
-   a transient zero crossing of the frequency error is not sufficient evidence
-   that the EOM has enough throw. Fine-data validity does not measure EOM headroom.
+4. **For the wide-phase comparison, prepare EOM settings while it remains off.**
+   Keep the piezo on. Use phase gain shift 0, selected during muted setup, to
+   obtain the nominal divided-PFD slope in stage 3. Keep the FALC's current filter
+   settings and start its main gain at the lowest useful value. Both controllers
+   receive the same DAC error; widening the phase range also lowers the piezo's
+   local error slope. Its output voltage rails remain available for large errors.
 
 5. **Request stage 3 with the analog settings held fixed.**
    `select_stage(ol, 3)` requests the manual handoff, waiting only for valid fine
    data, wrap-memory preparation and the offset ramp. There is no frequency-band,
-   dwell or FFT veto. Keep both analog branches on. Monitor `remembered_turns`,
+   dwell or FFT veto. For this test leave EOM off until the handoff settles, then
+   engage it and raise FALC gain gradually with the FPGA mapping fixed.
+   Monitor `remembered_turns`,
    the DAC error, beat frequency and both actuator commands. Turns can accumulate
    and then unwind; a railed error during that transient is expected. Acquisition
-   is convincing when the remembered count returns to zero, the error remains
-   within its local phase range, the beat is stationary and the actuator commands
-   stay off their limits. A single zero-count read is not proof of lock. Do not
+   is convincing when phase/count stop drifting, the error remains inside the
+   linear range, the beat is stationary and actuator commands stay off their
+   limits. Analog offsets can leave a nonzero stationary count; a single count
+   read is not proof of lock. Do not
    call `enable_capture(False)` here: stage 3 already excludes the derivative.
 
 6. **Tune only after acquisition, or reacquire deliberately.** Adjust the analog
@@ -559,8 +651,9 @@ print("Remembered turns:", acq["remembered_turns"],
 
 `select_stage(..., wait=True)` waits up to five seconds, then restores the previous
 request on timeout. `wait=False` leaves a request pending until qualified. A
-settled digital handoff is not proof of optical phase lock. In stage 3, phase gain
-stays unchanged and the derivative is absent. The piezo remains on. If capture
+settled digital handoff is not proof of optical phase lock. Stage 3 removes the
+derivative and divides the phase slope by 160 relative to stages 0/2 with the same
+gain field. The piezo remains on. If capture
 fails, manage EOM headroom using its existing on/off reset and request stage 1;
 there is no automatic controller switching or automatic stage fallback.
 
@@ -577,7 +670,11 @@ laser_pll.enable(ol)
 At nominal 2 Vpp full scale and phase gain 1, sensitivity is approximately
 0.3183 V/rad. Compare measured noise here with the DC test at similar output
 levels. In stage 2, the derivative can greatly magnify rapid phase fluctuations;
-in stage 3 with count zero, local sensitivity/noise is the phase-only value.
+stage 3 has 1/160 of that slope at the same phase gain, including across wraps.
+For an open-loop stage-3 tone test, a 100 kHz detuning changes the output by about
+2.5 V/ms at nominal 2 Vpp; starting near zero, it takes about 0.8 ms to reach a
+rail. It stays there until the accumulated phase unwinds. The sign follows the
+configured inversion and analog path polarity. Test with controllers disconnected.
 FFT frequency bins are too coarse to judge MHz/sub-MHz oscillations accurately;
 use fine frequency status within its valid range and a scope/ILA for fast motion.
 Python polling cannot resolve every phase slip or MHz modulation.
@@ -622,6 +719,27 @@ design; do not rerun that migration on an already integrated BD. Vendor FFT
 products regenerate from the tracked XCI/Tcl; the generated Hann ROM is tracked.
 Existing external transport HLS repositories are still required.
 
+If synthesis reports a missing `laser_pll_fft_core_ooc.xdc`, regenerate the
+standalone FFT's output products; regenerating the BD alone does not cover this
+IP. With runs stopped, source `scripts/repair_laser_pll_fft.tcl` in the main
+project's Vivado Tcl console, then resume the normal build. Alternatively, close
+the GUI project and run `vivado -mode batch -source scripts/repair_laser_pll_fft.tcl`.
+This repairs and verifies FFT synthesis only; it does not build a bitstream.
+The isolated timing script now uses an XCI copy under `build/laser_pll_timing/ip/`
+so its global-synthesis setting cannot invalidate the main project's OOC products.
+The full-project timing script also explicitly generates the standalone FFT
+before launching synthesis.
+
+New PLL RTL modules must be registered in the project and in the BD module
+reference's dependency list. `refresh_laser_pll_sources.tcl` performs both steps;
+the acquisition upgrade and full-project timing scripts call it automatically.
+For an existing GUI project reporting `laser_pll_phase_scale` not found, stop
+runs and source `scripts/repair_laser_pll_sources.tcl` in its Tcl console. It
+refreshes the sources, regenerates the BD products, and verifies full-project
+synthesis without changing the saved wiring or producing a bitstream. For batch
+use, close the GUI project first. Editing the XPR while its GUI is open can lose
+the added source when the GUI later saves its older in-memory file list.
+
 The RTL tests are xsim simulations, **not bitstream timing measurements**:
 
 - `test_laser_pll.py`: 6528 numerical phase comparisons; quadrants, input amplitude,
@@ -635,7 +753,10 @@ The RTL tests are xsim simulations, **not bitstream timing measurements**:
   at both signs of 93.75 kHz / 10 MHz / 20 MHz / 100 MHz detuning, continuous
   and retriggered handoffs, no steady-state smoothing, DC bypass/stalls, positive
   and negative slip accumulation, missing-sample history reset, counts exceeding
-  16 bits and seeded saturation at both 24-bit numeric endpoints.
+  16 bits and seeded saturation at both 24-bit numeric endpoints. Also checks
+  11,636 scaler vectors against exact /640 arithmetic over every gain/polarity,
+  changing valid/control metadata, three-register scaler latency, accumulation
+  beyond 300 turns in both directions, and complete unwinding through the rails.
 - `test_laser_pll_stages.py`: full top-level RTL with the vendor FFT and real
   200/750/800 MHz ADC tones; stages 1 → 2 → 3, manual fine entry at 50 MHz
   detuning, retained turns after centering the beat, first-sample continuity,
@@ -649,16 +770,86 @@ These tests do not model ADC/DAC analog behavior, converter latency, optical noi
 analog filters, piezo/EOM dynamics, or closed-loop lock acquisition. Full-project
 synthesis and routed timing are separate, in `build/full_project/`.
 
+### Wide-phase verification, October 7, 2026 — current A4 sources
+
+The numerical PLL, acquisition/scaler, full ADC-tone-to-DAC, host control and
+notebook regressions all pass. The host suite has 13 tests, including rejecting
+old A3 firmware before configuration writes; all 15 notebook cells execute
+against GPIO/RFDC mocks, with no board connection.
+
+Vivado 2024.1 synthesized, placed and routed the **isolated PLL timing harness**
+at 245.76 MHz on `xczu49dr-ffvf1760-2-e`. This is actual implementation timing,
+not an RTL simulation and not a new full-board bitstream build.
+
+| Isolated implementation check | Result |
+|---|---:|
+| Worst setup slack | **+0.362 ns**, zero failing endpoints/TNS |
+| Worst hold slack | **+0.045 ns**, zero failing endpoints/THS |
+| Worst pulse-width slack | **+1.492 ns** |
+| DRC errors | **0**; pipelining and isolated-port advisories remain |
+| DSP48E2 | **95**, including the scaler's one additional DSP; 2.22% of device |
+| LUTs | **4,637**, 1.09% of device |
+| Registers | **3,466**, 0.41% of device, including timing-harness registers |
+| RAM-tile equivalents | **76**, 7.04% of device |
+
+Reports: [timing](../build/laser_pll_timing/timing_summary.rpt),
+[utilization](../build/laser_pll_timing/utilization.rpt),
+[DRC](../build/laser_pll_timing/drc.rpt). The harness registers ADC/control inputs
+and DAC/status outputs; outer harness ports have no board I/O delay model.
+Placement and clocking in the full BD can change slack, so the user's subsequent
+full build must pass its own timing checks. The completed full-board A4 build is
+reported below. The scaler is now registered through Vivado in both the saved
+project and the refreshed BD module-reference synthesis dependency list.
+
+### Full-board A4 verification, October 7, 2026
+
+The current wide-phase design completed full-project synthesis, placement,
+routing and bitstream generation in Vivado 2024.1. Both the FFT OOC constraints
+and the PLL module dependencies were regenerated and verified in actual project
+runs. The saved BD nets, interface nets, addresses and component configurations
+were preserved. This build does not add any RTL pipeline stages: stage 3 remains
+20 clocks from the sampled ADC word to the DAC register; legacy/stage 2 remain
+18 clocks.
+
+| Full-board check | Result |
+|---|---:|
+| Worst setup slack | **+0.294 ns**, zero failing endpoints/TNS |
+| Worst hold slack | **+0.006 ns**, zero failing endpoints/THS |
+| Worst pulse-width slack | **+0.534 ns**, zero failing endpoints |
+| Worst setup path touching the PLL | **+0.294 ns** |
+| Worst reported hold path into the PLL | **+0.012 ns** |
+| Worst reported bus-skew slack | **+3.320 ns**, zero violations in 83 reported checks |
+| Registers without a clock | **0** |
+| Unconstrained internal endpoints | **0** |
+| Routed and bitstream-generation DRC errors | **0** |
+
+The limiting setup path is now from `error_detector/capture_scaled_reg` to
+`acquisition/handoff/dac_target_reg`, with 3.567 ns data-path delay at the
+4.069 ns RF fabric clock period. Reports:
+[timing](../build/full_project/timing_summary.rpt),
+[PLL setup](../build/full_project/pll_setup_paths.rpt),
+[PLL hold](../build/full_project/pll_hold_paths.rpt),
+[utilization](../build/full_project/utilization.rpt), and
+[DRC](../build/full_project/drc.rpt). Existing clock and external-I/O constraint
+limitations described below still apply.
+
+| Resource | Complete laser PLL block | Whole design, including transport and ILA |
+|---|---:|---:|
+| LUTs | 4,647 (1.093%) | 66,444 (15.624%) |
+| Flip-flops | 3,135 (0.369%) | 85,730 (10.079%) |
+| 36-kbit RAM-tile equivalents | 76 (7.037%) | 241 (22.315%) |
+| DSP48E2 blocks | 95 (2.224%) | 363 (8.497%) |
+
+The 13 host-control tests and all 15 notebook code cells also pass with the
+regenerated HWH metadata and mocked hardware. The matching A4 bitstream, HWH,
+debug probes, Python helper and notebook are exported to
+`build/laser_pll_overlay/`. No board programming is performed.
+
 ### Routed verification, October 7, 2026 — before manual stage-3 entry
 
 The results below apply to the earlier ±3 MHz fine / ±8 MHz FFT entry-gate
-revision. The manual-entry RTL update has not been synthesized or routed here;
-the existing Vivado GUI project remains available for the user to rebuild.
-The current `build/laser_pll_overlay/` and ZIP still contain that earlier bitstream.
-Updating/reloading Python alone cannot remove its hardware entry gates.
-For this manual-entry update, the acquisition/144-case handoff RTL regression
-and the complete ADC-tone-to-DAC simulation both pass. These are functional
-simulations, not new implementation timing or resource measurements.
+revision, **not the current A4 mapping**. They are retained as the historical
+full-board baseline; use the A4 export described above for the wide-phase test.
 
 The complete saved BD, including the user's updated ILA wiring, was regenerated,
 synthesized and routed in Vivado 2024.1. All user-specified timing constraints
@@ -688,8 +879,9 @@ the measured ADC-word-to-DAC-register latency remains **18 clocks**.
 | DSP48E2 blocks | 94 (2.200%) | 362 (8.474%) |
 
 The complete PLL row includes the FFT and acquisition logic but not its five
-external AXI GPIO IPs. Detailed timing, hierarchy utilization, clock interaction,
-CDC and design-rule reports are in `build/full_project/`.
+external AXI GPIO IPs. The reports in `build/full_project/` for timing, hierarchy
+utilization, clock interaction and DRC have been replaced by the current A4
+build. The historical CDC and clock-audit files retain their original timestamps.
 
 Existing project warnings remain and limit broader board-level sign-off:
 

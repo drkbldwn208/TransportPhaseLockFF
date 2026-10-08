@@ -41,7 +41,7 @@ def run():
         if address==8: return 0
         return ((ol.pll_frequency.read(8)>>16)&1)<<22 | (ol.pll_control.read(0)&1)<<18 | 1<<19
     def read_acquisition(address):
-        if address==8: return 0xA3010000 | 1024 | 417
+        if address==8: return 0xA4010000 | 1024 | 417
         config=ol.pll_acquisition.read(0)
         return (4 if config&4 else config&3) | 0xe0
     ol.pll_status.read=read_status

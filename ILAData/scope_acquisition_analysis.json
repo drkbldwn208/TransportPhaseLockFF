@@ -1,0 +1,108 @@
+{
+  "interpretation": "Voltage-domain measurements only; no optical phase reconstruction from saturated data.",
+  "user_report": "Stage 3; EOM gain decreased across captures; CH1 controller output, CH2 error.",
+  "cautions": [
+    "CH1 plateaus do not alone prove that the controller itself is clipping.",
+    "A fitted fundamental phase is not a loop phase-margin or propagation-delay measurement.",
+    "Edge-ring fit is descriptive and does not identify the ringing component.",
+    "CSV scope voltages used as exported; no subtraction of screen position."
+  ],
+  "traces": [
+    {
+      "file": "scope_3.csv",
+      "sha256": "60f4b03c72204c572527f9a7c46e35fd76f29e32bc5931c82c7c8755542147cc",
+      "samples": 49968,
+      "sample_interval_s": 2.0000000000009973e-09,
+      "duration_s": 9.993600000004983e-05,
+      "frequency_hz": 171924.0635027076,
+      "controller_to_error_fundamental_ratio": 2.224935179822335,
+      "controller_relative_phase_deg": -8.5086438593725,
+      "median_period_s": 5.823481481482739e-06,
+      "period_std_s": 1.4227733758987238e-08,
+      "averaged_rising_edges": 17,
+      "controller": {
+        "low_plateau_V": -2.533040195704,
+        "high_plateau_V": 2.532286383212,
+        "plateau_span_V": 5.065326578916,
+        "minimum_V": -2.746105520683,
+        "maximum_V": 2.69309040159,
+        "fraction_within_100mV_of_plateaus": 0.8532660902977905
+      },
+      "error": {
+        "low_plateau_V": -1.197738729417,
+        "high_plateau_V": 1.053517527878,
+        "plateau_span_V": 2.251256257295,
+        "minimum_V": -1.680150784552,
+        "maximum_V": 1.535929583013,
+        "fraction_within_100mV_of_plateaus": 0.7927673711175152
+      },
+      "edge_ring_frequency_hz": 2492416.2046366967,
+      "edge_ring_decay_s": 3.3618334903386163e-07,
+      "edge_fit_rms_V": 0.013383335446695165
+    },
+    {
+      "file": "scope_4.csv",
+      "sha256": "23b9cfe40be8563d2ac72e95a2b278ea13e3bcd35fa06ccd687c9ef74e268f5d",
+      "samples": 62489,
+      "sample_interval_s": 8.000000000003989e-09,
+      "duration_s": 0.0004999120000002493,
+      "frequency_hz": 171910.62602189917,
+      "controller_to_error_fundamental_ratio": 2.2259007690326924,
+      "controller_relative_phase_deg": -8.492748530133502,
+      "median_period_s": 5.81599999998722e-06,
+      "period_std_s": 1.4843137165750165e-08,
+      "averaged_rising_edges": 85,
+      "controller": {
+        "low_plateau_V": -2.533040195704,
+        "high_plateau_V": 2.532286383212,
+        "plateau_span_V": 5.065326578916,
+        "minimum_V": -2.693844214082,
+        "maximum_V": 2.69309040159,
+        "fraction_within_100mV_of_plateaus": 0.860167389460545
+      },
+      "error": {
+        "low_plateau_V": -1.197738729417,
+        "high_plateau_V": 1.053517527878,
+        "plateau_span_V": 2.251256257295,
+        "minimum_V": -1.644472394263,
+        "maximum_V": 1.500251192964,
+        "fraction_within_100mV_of_plateaus": 0.7914192897950039
+      },
+      "edge_ring_frequency_hz": 2483184.297568439,
+      "edge_ring_decay_s": 3.415615639324951e-07,
+      "edge_fit_rms_V": 0.0098422563948672
+    },
+    {
+      "file": "scope_5.csv",
+      "sha256": "d464775a0bf4c9331e8fcc74cedb8dc663b456b13032dcd66e65b91801424582",
+      "samples": 62473,
+      "sample_interval_s": 8.000000000003989e-09,
+      "duration_s": 0.0004997840000002492,
+      "frequency_hz": 174572.75225818483,
+      "controller_to_error_fundamental_ratio": 0.5221711025513502,
+      "controller_relative_phase_deg": -8.663269612218878,
+      "median_period_s": 5.730513065293485e-06,
+      "period_std_s": 1.2002370945047292e-07,
+      "averaged_rising_edges": 87,
+      "controller": {
+        "low_plateau_V": -0.656155794616,
+        "high_plateau_V": 0.522236153483,
+        "plateau_span_V": 1.1783919480990002,
+        "minimum_V": -0.79183418349,
+        "maximum_V": 0.683040171862,
+        "fraction_within_100mV_of_plateaus": 0.9065196164743169
+      },
+      "error": {
+        "low_plateau_V": -1.197738729417,
+        "high_plateau_V": 1.053517527878,
+        "plateau_span_V": 2.251256257295,
+        "minimum_V": -1.680150784552,
+        "maximum_V": 1.5082913942,
+        "fraction_within_100mV_of_plateaus": 0.7832023434123542
+      },
+      "edge_ring_frequency_hz": 2494413.8854605556,
+      "edge_ring_decay_s": 3.3962460236482983e-07,
+      "edge_fit_rms_V": 0.009497253199293529
+    }
+  ]
+}

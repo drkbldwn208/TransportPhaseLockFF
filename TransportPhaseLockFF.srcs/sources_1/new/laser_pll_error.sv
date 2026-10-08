@@ -17,6 +17,7 @@ module laser_pll_error (
     output wire target_saturated,
     output wire signed [15:0] unwrapped_target,
     output wire unwrapped_saturated,
+    output wire unwrapped_valid,
     output wire signed [15:0] capture_target,
     output wire capture_saturated,
     output wire signed [23:0] turns
@@ -26,15 +27,16 @@ module laser_pll_error (
     wire signed [17:0] delta_now = previous_phase - measured_phase;
     reg previous_valid;
     reg signed [48:0] combined_error;
-    reg signed [48:0] unwrapped_scaled;
     reg signed [48:0] capture_scaled;
-    wire signed [17:0] unwrapped_limited;
+    wire signed [25:0] unwrapped_limited;
     laser_pll_unwrap slip_memory (.clk(clk), .rst_n(rst_n), .arm(unwrap_arm),
         .phase_valid(error_valid), .phase_error(phase_error),
         .turns(turns), .unwrapped_error(), .phase_for_dac(unwrapped_limited));
-    wire signed [48:0] unwrapped_wide = {{31{unwrapped_limited[17]}},unwrapped_limited};
-    wire signed [48:0] unwrapped_dac =
-        (control[2] ? -unwrapped_scaled : unwrapped_scaled) >>> 2;
+    laser_pll_phase_scale fine_scale (.clk(clk), .rst_n(rst_n),
+        .phase_codes(unwrapped_limited), .phase_valid(error_valid && unwrap_arm),
+        .gain_shift(control[7:4]), .invert(control[2]),
+        .dac_target(unwrapped_target), .target_valid(unwrapped_valid),
+        .saturated(unwrapped_saturated));
     wire signed [48:0] phase_wide = {{31{phase_error[17]}},phase_error};
     wire signed [48:0] frequency_wide = {{31{frequency_error[17]}},frequency_error};
     wire signed [48:0] combined_now = phase_wide +
@@ -53,7 +55,6 @@ module laser_pll_error (
             frequency_error <= 0;
             error_valid <= 0;
             combined_error <= 0;
-            unwrapped_scaled <= 0;
             capture_scaled <= 0;
             target_valid <= 0;
         end else begin
@@ -65,7 +66,6 @@ module laser_pll_error (
                 frequency_error <= previous_valid ? delta_now : 18'sd0;
             end
             combined_error <= combined_now <<< control[7:4];
-            unwrapped_scaled <= unwrapped_wide <<< control[7:4];
             capture_scaled <= capture_now <<< control[7:4];
             target_valid <= error_valid;
         end
@@ -74,9 +74,6 @@ module laser_pll_error (
     assign target_saturated = scaled_error > 32767 || scaled_error < -32768;
     assign dac_target = scaled_error > 32767 ? 16'sh7fff :
                         scaled_error < -32768 ? 16'sh8000 : scaled_error[15:0];
-    assign unwrapped_saturated = turns != 0 || unwrapped_dac > 32767 || unwrapped_dac < -32768;
-    assign unwrapped_target = unwrapped_dac > 32767 ? 16'sh7fff :
-                             unwrapped_dac < -32768 ? 16'sh8000 : unwrapped_dac[15:0];
     assign capture_saturated = capture_dac > 32767 || capture_dac < -32768;
     assign capture_target = capture_dac > 32767 ? 16'sh7fff :
                             capture_dac < -32768 ? 16'sh8000 : capture_dac[15:0];

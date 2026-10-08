@@ -11,8 +11,10 @@ BIN=Path(os.environ.get('VIVADO_BIN','/home/levlabcukomen/tools/Vivado/2024.1/bi
 
 def run():
     WORK.mkdir(exist_ok=True)
-    sources=[SRC/f'laser_pll_{name}.sv' for name in ('unwrap','error','handoff','acquisition')]
-    commands=[['xvlog','--sv',*map(str,sources),str(ROOT/'tests/laser_pll_acquisition_tb.sv'),str(ROOT/'tests/laser_pll_fine_entry_tb.sv')],
+    sources=[SRC/f'laser_pll_{name}.sv' for name in ('unwrap','phase_scale','error','handoff','acquisition')]
+    commands=[['xvlog','--sv',*map(str,sources),str(ROOT/'tests/laser_pll_acquisition_tb.sv'),str(ROOT/'tests/laser_pll_fine_entry_tb.sv'),str(ROOT/'tests/laser_pll_phase_scale_tb.sv')],
+              ['xelab','laser_pll_phase_scale_tb','-s','phase_scale_sim'],
+              ['xsim','phase_scale_sim','-runall'],
               ['xelab','laser_pll_acquisition_tb','-s','acquisition_sim'],
               ['xsim','acquisition_sim','-runall'],
               ['xelab','laser_pll_fine_entry_tb','-s','fine_entry_sim'],

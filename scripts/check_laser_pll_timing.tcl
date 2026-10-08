@@ -4,9 +4,16 @@ set root [file normalize [file join [file dirname [info script]] ..]]
 set src [file join $root TransportPhaseLockFF.srcs sources_1 new]
 set out [file join $root build laser_pll_timing]
 file mkdir $out
+# Global synthesis regenerates IP products without OOC constraints. Use a local
+# XCI copy so this check cannot invalidate the main project's FFT output products.
+set fft_check_dir $out/ip/laser_pll_fft_core
+file mkdir $fft_check_dir
+file copy -force $root/TransportPhaseLockFF.srcs/sources_1/ip/laser_pll_fft_core/laser_pll_fft_core.xci \
+    $fft_check_dir/laser_pll_fft_core.xci
 create_project -in_memory -part xczu49dr-ffvf1760-2-e
-source $root/scripts/create_laser_pll_fft.tcl
+read_ip $fft_check_dir/laser_pll_fft_core.xci
 set_property generate_synth_checkpoint false [get_files */laser_pll_fft_core.xci]
+source $root/scripts/create_laser_pll_fft.tcl
 set_property include_dirs [list $src] [current_fileset]
 read_verilog -sv [glob $src/laser_pll*.sv]
 read_verilog $src/laser_pll_dac.v

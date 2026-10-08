@@ -1,0 +1,89 @@
+{
+  "method": "Conditional reconstruction of phase-only voltage as exp(i*2*pi*V/phase_span_V)",
+  "phase_span_V": 2.0,
+  "capture_derivative_off_required": true,
+  "feedback": "Slow piezo on; EOM off; narrow optical reference (user reports)",
+  "files": [
+    {
+      "name": "TEK0003.CSV",
+      "sha256": "dfdd5ae00e4ca1634d2d4499acccf5e17e7167cc1912dc5f0440fe604fb0366f",
+      "samples": 2500,
+      "sample_interval_s": 4.000000000000531e-06,
+      "duration_s": 0.010000000000001327,
+      "metadata": {
+        "Record Length": "2.500000e+03",
+        "Sample Interval": "4.000000e-06",
+        "Trigger Point": "-1.300000000000e+03",
+        "Source": "CH2",
+        "Vertical Units": "V",
+        "Vertical Scale": "1.000000e+00",
+        "Vertical Offset": "1.680000e+00",
+        "Horizontal Units": "s",
+        "Horizontal Scale": "1.000000e-03",
+        "Pt Fmt": "Y",
+        "Yzero": "0.000000e+00",
+        "Probe Atten": "1.000000e+00",
+        "Model Number": "TDS2004C",
+        "Serial Number": "C040472",
+        "Firmware Version": "FV:v24.26"
+      }
+    },
+    {
+      "name": "TEK0004.CSV",
+      "sha256": "a5a580fe9411b79b32eb1133d99f1c4f28c7b26e19e78027d03201c3143a10a6",
+      "samples": 2500,
+      "sample_interval_s": 3.999999999993592e-07,
+      "duration_s": 0.000999999999998398,
+      "metadata": {
+        "Record Length": "2.500000e+03",
+        "Sample Interval": "4.000000e-07",
+        "Trigger Point": "-2.425000000000e+04",
+        "Source": "CH2",
+        "Vertical Units": "V",
+        "Vertical Scale": "1.000000e+00",
+        "Vertical Offset": "1.680000e+00",
+        "Horizontal Units": "s",
+        "Horizontal Scale": "1.000000e-04",
+        "Pt Fmt": "Y",
+        "Yzero": "0.000000e+00",
+        "Probe Atten": "1.000000e+00",
+        "Model Number": "TDS2004C",
+        "Serial Number": "C040472",
+        "Firmware Version": "FV:v24.26"
+      }
+    }
+  ],
+  "tek4_voigt_coherence_fit": {
+    "fwhm_hz": 310913.69799375755,
+    "correlation_amplitude": 0.9430927803212656,
+    "lorentz_fwhm_hz": 48868.50438319091,
+    "gaussian_fwhm_hz": 283943.8481831595,
+    "a_per_us": 0.15352493436215317,
+    "b_per_us2": 0.286998231601548
+  },
+  "bootstrap_width_percentiles_2p5_50_97p5_hz": [
+    239125.85890461915,
+    290221.3188237273,
+    361034.2206895565
+  ],
+  "calibration_sensitivity_span_V_to_width_Hz": {
+    "1.8": 327744.21840882575,
+    "2.0": 310913.69799375755,
+    "2.2": 301474.07965556934
+  },
+  "widths_of_five_200us_segments_hz": [
+    228221.50340744082,
+    220950.9662412012,
+    314606.65685522987,
+    223273.65005680776,
+    238714.43552285404
+  ],
+  "limitations": [
+    "Valid only for phase-only output, not phase-plus-frequency or railed unwrapped error.",
+    "2 V per 2*pi is approximate; scope acquisition mode and analog transfer are unverified.",
+    "The line is not purely Lorentzian; fitted Lorentzian term is not an intrinsic linewidth measurement.",
+    "Slow piezo feedback remains active; the 1-ms line can include servo effects and drift.",
+    "TEK3 Nyquist span is only +/-125 kHz, insufficient for the inferred broad line.",
+    "Finite-record scatter does not include instrument systematic error."
+  ]
+}

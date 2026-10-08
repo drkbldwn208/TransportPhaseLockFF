@@ -9,6 +9,7 @@ import time
 ADC_SAMPLE_RATE_HZ = 1_966_080_000.0
 ERROR_SAMPLE_RATE_HZ = ADC_SAMPLE_RATE_HZ / 8
 PHASE_CODES_PER_TURN = 1 << 18
+STAGE3_PHASE_DIVISOR = 160
 
 
 def _signed(value, bits):
@@ -49,7 +50,8 @@ def configure(overlay, *, reference_frequency_hz=800e6, phase_offset_rad=0.0,
     DAC code = saturate((e + capture * 2**capture_gain_shift * d)
                         * 2**phase_gain_shift / 4), with optional sign inversion.
     minimum_amplitude is max(|I|,|Q|) in post-mixer ADC counts (input peak/2).
-    One phase radian gives 32768/pi DAC codes at phase_gain_shift=0.
+    At phase_gain_shift=0, stages 0/2 give 32768/pi DAC codes/radian.
+    Stage 3 divides that slope by 160, with full DAC span across 160 turns.
     """
     for name, value, maximum in (("phase_gain_shift", phase_gain_shift, 15),
                                   ("capture_gain_shift", capture_gain_shift, 15),
@@ -59,8 +61,8 @@ def configure(overlay, *, reference_frequency_hz=800e6, phase_offset_rad=0.0,
     if not math.isfinite(phase_offset_rad):
         raise ValueError("phase_offset_rad must be finite.")
     # Refuse an old overlay before touching outputs or the RFDC.
-    if overlay.pll_acquisition_status.read(0x08) >> 24 != 0xA3:
-        raise ValueError("Load the matching three-stage PLL .bit/.hwh pair.")
+    if overlay.pll_acquisition_status.read(0x08) >> 24 != 0xA4:
+        raise ValueError("Load the matching A4 wide-phase PLL .bit/.hwh pair.")
     p = overlay.ip_dict['usp_rf_data_converter_0']['parameters']
     expected = {'ADC_Data_Type03': 0, 'ADC_Decimation_Mode03': 1,
                 'ADC_Data_Width03': 8, 'ADC_Mixer_Type03': 1, 'ADC_Nyquist03': 0,
@@ -107,9 +109,11 @@ def enable_capture(overlay, enabled=True):
 def set_gains(overlay, *, phase_gain_shift, capture_gain_shift):
     """Set both GPIO gain fields atomically, preserving enable and other flags.
 
-    Each shift is 0..15 (gain 1..32768 in powers of two). Phase gain scales
-    the whole error; capture gain is the frequency term relative to phase.
-    Live changes pass through the gain, handoff and DAC output registers.
+    Each shift is 0..15. Stages 0/2 retain their original phase sensitivity.
+    Stage 3 slope is 2**phase_gain_shift/160 times that original sensitivity:
+    shifts 0/1/2 give +/-80/40/20 turns at the DAC rails. Capture gain is the
+    frequency term relative to phase in stages 0/2. Gain writes are immediate,
+    not ramped handoffs; change at low error or between acquisition attempts.
     """
     for value in (phase_gain_shift, capture_gain_shift):
         if not isinstance(value, int) or not 0 <= value <= 15:
@@ -163,7 +167,7 @@ def acquisition_status(overlay):
     """
     a = overlay.pll_acquisition_status.read(0x00)
     f = overlay.pll_acquisition_status.read(0x08)
-    if f >> 24 != 0xA3:
+    if f >> 24 != 0xA4:
         raise ValueError("Acquisition register version mismatch.")
     return dict(stage=a&3, dc_test=bool(a&4), transitioning=bool(a&8),
                 pending=bool(a&16), near_ready=bool(a&32), fine_ready=bool(a&64),
@@ -178,9 +182,9 @@ def select_stage(overlay, stage, *, wait=True, timeout_s=5.0):
     """Request a qualified, continuous handoff without changing NCO phase/gains.
 
     Stage 2 waits for FFT detuning <80 MHz and valid fine phase. Stage 3 is
-    manual: only valid fine data and three clocks of wrap-memory preparation
+    manual: only valid fine data and five clocks of wrap/scaler preparation
     are required, with no frequency, dwell or FFT gate. This requires the
-    manual-entry FPGA bitstream; updating this helper alone is insufficient.
+    A4 wide-phase FPGA bitstream; updating this helper alone is insufficient.
     Frequency offsets can accumulate remembered turns and rail the DAC.
     With wait=False the request remains pending until qualified. With wait=True,
     timeout cancels the request by restoring the previous request (also ramped).

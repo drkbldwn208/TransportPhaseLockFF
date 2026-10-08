@@ -59,7 +59,7 @@ module laser_pll (
     wire signed [17:0] phase_error, frequency_error;
     wire signed [15:0] dac_target, capture_target, unwrapped_target, output_target;
     wire error_valid, target_valid, target_saturated, saturated, stalled;
-    wire capture_saturated, unwrapped_saturated, output_valid, output_saturated, unwrap_arm;
+    wire capture_saturated, unwrapped_saturated, unwrapped_valid, output_valid, output_saturated, unwrap_arm;
     wire signed [23:0] turns;
     laser_pll_error error_detector (.clk(clk), .rst_n(detector_rst_n),
         .measured_phase(measured_phase), .phase_valid(phase_valid),
@@ -68,7 +68,8 @@ module laser_pll (
         .frequency_error(frequency_error), .error_valid(error_valid),
         .dac_target(dac_target), .target_valid(target_valid), .target_saturated(target_saturated),
         .capture_target(capture_target), .capture_saturated(capture_saturated),
-        .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated), .turns(turns));
+        .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated),
+        .unwrapped_valid(unwrapped_valid), .turns(turns));
     wire [9:0] fft_bin;
     wire fft_valid;
     laser_pll_fft coarse_estimator (.clk(clk), .rst_n(rst_n && !clear),
@@ -82,6 +83,7 @@ module laser_pll (
         .legacy_target(dac_target), .legacy_saturated(target_saturated),
         .capture_target(capture_target), .capture_saturated(capture_saturated),
         .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated),
+        .unwrapped_valid(unwrapped_valid),
         .target_valid(target_valid), .turns(turns), .unwrap_arm(unwrap_arm),
         .dac_target(output_target), .output_valid(output_valid),
         .output_saturated(output_saturated), .acquisition_status(acquisition_status));

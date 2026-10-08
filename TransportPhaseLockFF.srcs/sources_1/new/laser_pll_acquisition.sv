@@ -17,6 +17,7 @@ module laser_pll_acquisition (
     input wire capture_saturated,
     input wire signed [15:0] unwrapped_target,
     input wire unwrapped_saturated,
+    input wire unwrapped_valid,
     input wire target_valid,
     input wire signed [23:0] turns,
     output wire unwrap_arm,
@@ -53,13 +54,13 @@ module laser_pll_acquisition (
     // Stage 3 is manual: no frequency-band, FFT or dwell qualification.
     // Valid fine data and wrap-memory preparation are still needed for handoff.
     wire fine_ready = error_valid && target_valid;
-    reg [2:0] unwrap_prepared;
+    reg [4:0] unwrap_prepared;
     // Start memory before switching the output, so a crossing at entry cannot
     // reach the DAC as an uncounted +/-pi jump through the error pipeline.
     assign unwrap_arm = active_mode==3 || (request==3 && fine_ready);
     always @(posedge clk) begin
         if (!rst_n || !unwrap_arm || !target_valid) unwrap_prepared <= 0;
-        else unwrap_prepared <= {unwrap_prepared[1:0],1'b1};
+        else unwrap_prepared <= {unwrap_prepared[3:0],1'b1};
     end
     reg signed [15:0] active_target, requested_target;
     reg active_valid, requested_valid, active_saturated;
@@ -70,7 +71,7 @@ module laser_pll_acquisition (
         case (active_mode)
             1: begin active_target=coarse_target; active_valid=coarse_valid2 && fft_valid; active_saturated=coarse_saturated; end
             2: begin active_target=capture_target; active_saturated=capture_saturated; end
-            3: begin active_target=unwrapped_target; active_saturated=unwrapped_saturated; end
+            3: begin active_target=unwrapped_target; active_valid=unwrapped_valid; active_saturated=unwrapped_saturated; end
             4: begin active_target=test_dc[15:0]; active_valid=1; active_saturated=0; end
         endcase
         requested_target=legacy_target; requested_valid=target_valid;
@@ -78,7 +79,8 @@ module laser_pll_acquisition (
         case (request)
             1: begin requested_target=coarse_target; requested_valid=coarse_valid2 && fft_valid; end
             2: begin requested_target=capture_target; request_allowed=near_ready; end
-            3: begin requested_target=unwrapped_target; request_allowed=fine_ready && unwrap_prepared[2]; end
+            3: begin requested_target=unwrapped_target; requested_valid=unwrapped_valid;
+                     request_allowed=fine_ready && unwrap_prepared[4]; end
             4: begin requested_target=test_dc[15:0]; requested_valid=1; end
         endcase
     end

@@ -10,7 +10,7 @@ module laser_pll_fine_entry_tb;
     reg fft_valid=1;
     wire signed [17:0] phase_error, frequency_error;
     wire signed [15:0] legacy, capture, unwrapped, dac;
-    wire valid, target_valid, legacy_sat, capture_sat, unwrapped_sat, arm, output_valid;
+    wire valid, target_valid, legacy_sat, capture_sat, unwrapped_sat, unwrapped_valid, arm, output_valid;
     wire signed [23:0] turns;
     wire [31:0] status;
     laser_pll_error detector(.clk(clk),.rst_n(rst_n),.measured_phase(measured_phase),
@@ -18,7 +18,7 @@ module laser_pll_fine_entry_tb;
         .phase_error(phase_error),.frequency_error(frequency_error),.error_valid(valid),
         .dac_target(legacy),.target_valid(target_valid),.target_saturated(legacy_sat),
         .capture_target(capture),.capture_saturated(capture_sat),
-        .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),.turns(turns));
+        .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),.unwrapped_valid(unwrapped_valid),.turns(turns));
     laser_pll_acquisition acquisition(.clk(clk),.rst_n(rst_n),.ready(1'b1),
         .acquisition_control(cfg),.test_dc(32'd0),.control(32'h00000607),
         .reference_frequency(48'd114532461226667),.fft_bin(fft_bin),.fft_valid(fft_valid),
@@ -26,6 +26,7 @@ module laser_pll_fine_entry_tb;
         .legacy_target(legacy),.legacy_saturated(legacy_sat),
         .capture_target(capture),.capture_saturated(capture_sat),
         .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),
+        .unwrapped_valid(unwrapped_valid),
         .target_valid(target_valid),.turns(turns),.unwrap_arm(arm),
         .dac_target(dac),.output_valid(output_valid),.output_saturated(),.acquisition_status(status));
     integer previous, delta, base, phase_step, maximum_step;
@@ -35,7 +36,7 @@ module laser_pll_fine_entry_tb;
         // 93.75 kHz, approximately 10 MHz, 20 MHz and 100 MHz detuning.
         for (integer rate=0;rate<4;rate=rate+1) begin
         phase_step=rate==0 ? 100 : rate==1 ? 10667 : rate==2 ? 21333 : 106667;
-        maximum_step=(phase_step+3)/4+1; // phase gain 1 plus one offset-decay code
+        maximum_step=(phase_step+639)/640+2; // /160 slope, rounding and offset decay
         for (integer initial_stage=0;initial_stage<=2;initial_stage=initial_stage+2) begin
         for (integer direction=-1;direction<=1;direction=direction+2) begin
             for (integer crossing=-4;crossing<=4;crossing=crossing+1) begin
@@ -50,8 +51,10 @@ module laser_pll_fine_entry_tb;
                     previous=dac;
                     @(posedge clk); #0.1;
                     if (k==90 && status[2:0]!=initial_stage) $fatal(1,"Initial stage was not entered");
-                    if (target_valid && turns!=0 && !unwrapped_sat)
-                        $fatal(1,"Nonzero turn count must report DAC saturation");
+                    // Allow pipeline history near the +/-80-turn rail. Multiple
+                    // remembered turns inside that range must remain linear.
+                    if (unwrapped_valid && (turns>82 || turns < -82) && !unwrapped_sat)
+                        $fatal(1,"Large unwrapped error must report DAC saturation");
                     if (status[2:0]==3) begin
                         delta=$signed(dac)-previous;
                         if (!previously_fine && delta!=0) $fatal(1,"Entry discontinuity %d",delta);

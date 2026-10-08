@@ -18,7 +18,7 @@ def run():
     if not wrapper.exists():
         wrapper=ROOT/'TransportPhaseLockFF.srcs/sources_1/ip/laser_pll_fft_core/sim/laser_pll_fft_core.vhd'
     sources=[SRC/f'laser_pll{name}.sv' for name in
-             ('_mixer','_fir','_cordic','_unwrap','_error','_fft','_handoff','_acquisition','')]
+             ('_mixer','_fir','_cordic','_unwrap','_phase_scale','_error','_fft','_handoff','_acquisition','')]
     commands=[['xvhdl',str(wrapper)],
               ['xvlog','--sv','-i',str(SRC),*map(str,sources),str(SRC/'laser_pll_dac.v'),str(ROOT/'tests/laser_pll_stages_tb.sv')],
               ['xelab','-L','xfft_v9_1_12','laser_pll_stages_tb','-s','stages_sim'],

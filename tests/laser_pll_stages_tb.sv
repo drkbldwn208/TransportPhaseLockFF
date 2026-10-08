@@ -60,7 +60,8 @@ module laser_pll_stages_tb;
             if (cycle==189000) begin
                 if (acquisition_status[2:0]!=3 || acquisition_status[4:3]!=0 ||
                     acquisition_status[31:8]!=0 || !phase_status[19]) $fatal(1,"Fine stage did not settle");
-                phase_code=$signed(phase_status[17:0]); expected_dac=(-phase_code)>>>2;
+                phase_code=$signed(phase_status[17:0]);
+                expected_dac=$rtoi($floor(-phase_code/640.0+0.5));
                 if ($signed(dac_data[15:0])-expected_dac>4 ||
                     $signed(dac_data[15:0])-expected_dac < -4) $fatal(1,"Fine phase-to-DAC scaling");
             end

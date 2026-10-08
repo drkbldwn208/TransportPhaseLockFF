@@ -25,7 +25,7 @@ class Controls(unittest.TestCase):
     def setUp(self):
         self.ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
                                 pll_acquisition=GPIO(),pll_acquisition_status=GPIO())
-        self.ol.pll_acquisition_status.values[8]=0xA3000000
+        self.ol.pll_acquisition_status.values[8]=0xA4000000
 
     def test_frequency_units_and_commit_order(self):
         self.ol.pll_status.values[0]=1<<22
@@ -49,6 +49,13 @@ class Controls(unittest.TestCase):
         for frequency in [0,-1,1e9,float('nan'),float('inf')]:
             with self.assertRaises(ValueError): pll.set_reference_frequency(self.ol,frequency)
         self.assertEqual(self.ol.pll_frequency.writes,[])
+
+    def test_old_stage3_mapping_is_rejected_before_writes(self):
+        self.ol.pll_acquisition_status.values[8]=0xA3000000
+        with self.assertRaisesRegex(ValueError,'A4 wide-phase'):
+            pll.configure(self.ol)
+        self.assertEqual(self.ol.pll_control.writes,[])
+        self.assertEqual(self.ol.pll_acquisition.writes,[])
 
     def test_capture_toggle_preserves_gain_and_enable(self):
         value=(64<<16)|(6<<8)|1
@@ -112,7 +119,7 @@ class Controls(unittest.TestCase):
 
     def test_acquisition_status_units(self):
         self.ol.pll_acquisition_status.values[0]=3|128|(0xffffff<<8)
-        self.ol.pll_acquisition_status.values[8]=0xA3010000|1024|417
+        self.ol.pll_acquisition_status.values[8]=0xA4010000|1024|417
         state=pll.acquisition_status(self.ol)
         self.assertEqual(state['remembered_turns'],-1)
         self.assertEqual(state['fft_frequency_hz'],800640000)

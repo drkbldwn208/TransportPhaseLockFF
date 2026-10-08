@@ -1,12 +1,7 @@
 # Idempotent update of the existing laser_pll_0 block and its GPIOs.
 set upgrade_root [file normalize [file join [file dirname [info script]] ..]]
 source $upgrade_root/scripts/create_laser_pll_fft.tcl
-set upgrade_src $upgrade_root/TransportPhaseLockFF.srcs/sources_1/new
-add_files -norecurse [glob $upgrade_src/laser_pll*.sv $upgrade_src/laser_pll*.v \
-    $upgrade_src/laser_pll*.vh $upgrade_src/laser_pll*.mem]
-set_property include_dirs [list $upgrade_src] [get_filesets sources_1]
-update_compile_order -fileset sources_1
-update_module_reference [get_ips design_1_laser_pll_0_0]
+source $upgrade_root/scripts/refresh_laser_pll_sources.tcl
 # GUI enums: Nyquist 0=zone 1; calibration 2=AutoCal. PYNQ enums differ.
 # The 200..950 MHz search band is entirely inside the first Nyquist zone.
 set_property -dict [list CONFIG.ADC_Nyquist03 {0} CONFIG.ADC_CalOpt_Mode03 {2}] \

@@ -16,7 +16,7 @@ module laser_pll_acquisition_tb;
         .reference_frequency(48'd114532461226667), // exactly 800 MHz to FCW rounding
         .fft_bin(bin),.fft_valid(fft_valid),.error_valid(valid),
         .legacy_target(legacy),.legacy_saturated(1'b0),.capture_target(capture),.capture_saturated(1'b0),
-        .unwrapped_target(unwrapped),.unwrapped_saturated(1'b0),.target_valid(valid),.turns(24'sd0),
+        .unwrapped_target(unwrapped),.unwrapped_saturated(1'b0),.unwrapped_valid(valid),.target_valid(valid),.turns(24'sd0),
         .unwrap_arm(arm),.dac_target(output_code),.output_valid(output_valid),
         .output_saturated(saturated),.acquisition_status(status));
     reg slip_arm=0, slip_valid=0;
