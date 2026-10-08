@@ -78,7 +78,7 @@ module laser_pll (
     laser_pll_acquisition acquisition (.clk(clk), .rst_n(detector_rst_n), .ready(m_axis_tready),
         .acquisition_control(acquisition_control), .test_dc(test_dc), .control(control),
         .reference_frequency(committed_frequency), .fft_bin(fft_bin), .fft_valid(fft_valid),
-        .frequency_error(frequency_error), .error_valid(error_valid),
+        .error_valid(error_valid),
         .legacy_target(dac_target), .legacy_saturated(target_saturated),
         .capture_target(capture_target), .capture_saturated(capture_saturated),
         .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated),

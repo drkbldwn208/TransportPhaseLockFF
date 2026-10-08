@@ -156,9 +156,10 @@ def configure_acquisition(overlay, *, stage=1, transition_interval_log2=4,
 def acquisition_status(overlay):
     """Read stage/FFT diagnostics; reads are live, not an atomic snapshot.
 
-    Stage 3 removes the derivative term. 'fine_ready' is an entry qualification,
-    NOT a measurement of closed-loop phase lock. A settled handoff is likewise
-    only a digital condition. Verify phase lock on the scope before proceeding.
+    Stage 3 removes the derivative term. With the manual-entry FPGA revision,
+    'fine_ready' means valid fine-phase data, NOT frequency qualification or lock.
+    A settled handoff is likewise only a digital condition. Verify phase lock
+    on the scope before proceeding.
     """
     a = overlay.pll_acquisition_status.read(0x00)
     f = overlay.pll_acquisition_status.read(0x08)
@@ -176,8 +177,11 @@ def acquisition_status(overlay):
 def select_stage(overlay, stage, *, wait=True, timeout_s=5.0):
     """Request a qualified, continuous handoff without changing NCO phase/gains.
 
-    Stage 2 waits for FFT detuning <80 MHz and valid fine phase. Stage 3 waits
-    for FFT detuning <8 MHz and |fine frequency error| <=3 MHz for 16.67 us.
+    Stage 2 waits for FFT detuning <80 MHz and valid fine phase. Stage 3 is
+    manual: only valid fine data and three clocks of wrap-memory preparation
+    are required, with no frequency, dwell or FFT gate. This requires the
+    manual-entry FPGA bitstream; updating this helper alone is insufficient.
+    Frequency offsets can accumulate remembered turns and rail the DAC.
     With wait=False the request remains pending until qualified. With wait=True,
     timeout cancels the request by restoring the previous request (also ramped).
     There is no automatic fallback: inspect diagnostics and select stage 1 to

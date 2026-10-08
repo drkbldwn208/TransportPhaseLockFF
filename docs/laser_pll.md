@@ -10,6 +10,12 @@ phase-wrap counter**, reversed default output polarity, and a literal DC test
 output. The coarse stage uses one AMD xFFT radix-2-lite burst core on occasional
 raw-ADC snapshots. It is outside the fast phase pipeline.
 
+**Manual stage-3 entry update (October 7, 2026):** stage 3 now requires only
+valid fine-phase data and three clocks of wrap-memory preparation. Its frequency
+bands, FFT qualification and 4096-sample dwell have been removed. This requires
+a rebuilt bitstream; the previously exported overlay still contains the old
+entry gates. Stage-2 entry, output gains and the 18-clock fast path are unchanged.
+
 ## Specifications
 
 These numbers assume continuous ADC valid, DAC ready, and the saved RFDC rates.
@@ -33,7 +39,7 @@ Numerical resolution is not the physical phase-noise floor.
 | Raw snapshot duration | 0.520833 µs |
 | Measured FFT update interval in RTL | **14,508 clocks = 59.0332 µs** (about 16.94 kHz); not the fast-loop sample rate |
 | Phase-wrap memory | Signed 24-bit turns: −8,388,608…+8,388,607; saturates at endpoints, never wraps numerically |
-| Extra fast-path latency in this revision | **1 clock = 4.069 ns** |
+| Extra fast-path latency versus the original detector | **1 clock = 4.069 ns**; manual stage-3 entry adds none |
 | ADC word → DAC output register | **18 clocks = 73.242 ns** |
 | FIR group delay | 15.5 ADC samples = 7.884 ns |
 | Digital delay including next DAC acceptance edge | **85.195 ns**; ADC packing, RFDC converter/interpolator and analog delays are additional |
@@ -196,7 +202,7 @@ Stage 2 forces the derivative term on; the legacy capture-enable bit does not
 control it. Default frequency weight is 64, adjustable in powers of two down to
 1. The FIR passes a ±100 MHz residual with about 3.72 dB attenuation at the edges.
 Outside ±122.88 MHz, the sampled phase derivative aliases and can have the wrong
-sign. The raw FFT is therefore required for wide capture and entry qualification.
+sign. The raw FFT is therefore required for wide capture and stage-2 entry qualification.
 
 A stage-2 request waits for a valid FFT with detuning strictly inside about
 ±80 MHz and a valid fine target. The margin protects the entry from the DDC
@@ -222,10 +228,9 @@ not relax the separate strongest-bin/total-band-power dominance requirement.
 
 Legacy mode 0 can hand off directly to stage 3 with `select_stage(ol, 3)`;
 leave its capture flag enabled and do not call `configure()` between modes.
-The same offset fade applies, but stage-3 FFT/fine-frequency qualifications still
-apply. If FFT validity is missing, mode 0 continues while the request is pending;
-the blocking helper restores the mode-0 request on timeout. This is not an
-FFT-independent way into stage 3.
+The same offset fade applies. Stage 3 has no FFT or frequency-band requirement,
+so this also works when coarse FFT validity is missing. Valid fine-phase data
+and three clocks of wrap-memory preparation are still required.
 
 The derivative's small-signal multiplier is
 `1 + G_capture*(1-exp(-j*2*pi*f/Fe))`. It adds noise and changes loop gain/phase.
@@ -259,16 +264,23 @@ unwrapped error, including both polarity settings. **The counter keeps counting
 while the output is railed**; clipping its DAC representation does not discard
 remembered turns.
 
-Entry requires all of the following:
-
-- The independent FFT places the beat within about ±8 MHz of the reference.
-- 4096 consecutive valid fine phase samples have `|frequency_error| <= 3 MHz`
-  (16.67 µs at the fabric clock).
-- The wrap memory has been armed for three clocks before its target is selected.
+Stage 3 is a **manual handoff**: there is no fine-frequency band, dwell timer or
+FFT qualification. An explicit request is accepted once fine phase/target data
+are valid, the wrap memory has been armed for three clocks, and the DAC is ready.
+The previous ±3 MHz fine / ±8 MHz FFT / 4096-consecutive-sample gate is removed;
+isolated frequency excursions no longer delay entry or reset a qualification timer.
+`fine_ready` now reports fine-data validity only, not proximity to lock.
 
 The preparation interval handles a branch-cut crossing during entry. It adds no
-steady-state latency. Entry is a frequency/amplitude qualification, **not a lock
-detector**. No higher-gain fourth stage or automatic gain increase is implemented.
+steady-state latency. The first handoff sample still equals the previous output,
+and the temporary offset decays at the configured rate. No higher-gain fourth
+stage or automatic gain increase is implemented.
+
+Removing the gates does not extend the tested ±100 MHz fine-detector band or its
+±122.88 MHz ambiguity boundary. Check the beat independently before requesting
+stage 3; the FPGA no longer vetoes an unsuitable frequency offset. For example,
+10 MHz mismatch lasting 1 ms accumulates 10,000 remembered turns. Entry can succeed
+while the DAC rails, without the analog controllers acquiring phase lock.
 
 #### Remembered turns and windup
 
@@ -405,6 +417,9 @@ capture, transition interval 16 clocks, coarse gain 1 and FFT threshold 32.
 Acquisition status: bits 1:0 active stage; bit 2 DC active; bit 3 transition offset
 nonzero; bit 4 request pending; bit 5 near-stage entry ready; bit 6 fine-stage entry
 ready; bit 7 selected output valid; bits **31:8 signed 24-bit remembered turns**.
+With manual stage-3 entry, bit 6 means fine phase and target data are valid;
+it does not test frequency, FFT validity or lock, nor include the three-clock
+preparation triggered by the request. Register addresses and bit positions are unchanged.
 When DC is active its internal mode is 4, so the low two stage bits read zero.
 
 FFT status: bits 9:0 peak bin; bit 10 estimate valid; bit 11 weak/insufficiently
@@ -488,7 +503,7 @@ print(laser_pll.acquisition_status(ol))  # monitor remembered_turns
    mute the FPGA error and check polarity instead of increasing gain.
 
 3. **Request stage 2 as soon as coarse capture is inside the fine range.**
-   `select_stage(overlay, 2)` is permitted when `near_ready=True`: FFT detuning
+   `select_stage(ol, 2)` is permitted when `near_ready=True`: FFT detuning
    <80 MHz and valid fine phase. There is no need to get a zero FFT error first;
    its 1.92 MHz bins cannot resolve that condition. Keep EOM off while the
    digital handoff settles (`stage==2`, `pending=False`, `transitioning=False`).
@@ -505,13 +520,12 @@ print(laser_pll.acquisition_status(ol))  # monitor remembered_turns
    simultaneously, so each effect can be observed. If the EOM immediately hits
    its integrator limit, turn it off/reset and continue centering with the piezo;
    a transient zero crossing of the frequency error is not sufficient evidence
-   that the EOM has enough throw. FPGA qualification is a minimum condition,
-   not a measurement of EOM headroom.
+   that the EOM has enough throw. Fine-data validity does not measure EOM headroom.
 
 5. **Request stage 3 with the analog settings held fixed.**
-   `select_stage(overlay, 3)` waits for the sustained ±3 MHz fine-frequency
-   condition and independent FFT check, then removes the derivative through
-   the offset ramp. Keep both analog branches on. Monitor `remembered_turns`,
+   `select_stage(ol, 3)` requests the manual handoff, waiting only for valid fine
+   data, wrap-memory preparation and the offset ramp. There is no frequency-band,
+   dwell or FFT veto. Keep both analog branches on. Monitor `remembered_turns`,
    the DAC error, beat frequency and both actuator commands. Turns can accumulate
    and then unwind; a railed error during that transient is expected. Acquisition
    is convincing when the remembered count returns to zero, the error remains
@@ -616,13 +630,16 @@ The RTL tests are xsim simulations, **not bitstream timing measurements**:
 - `test_laser_pll_fft.py`: actual AMD FFT model, 17 cases including 200–950 MHz,
   off-bin tones, a dominant tone plus interference/noise, zero input, weak tones,
   broadband noise, an out-of-band tone and an ADC gap; 59.033 µs update interval.
-- `test_laser_pll_acquisition.py`: qualified/rejected entries, dwell, continuous
+- `test_laser_pll_acquisition.py`: manual stage-3 entry without dwell or FFT
+  qualification, invalid-data rejection, 144 branch-cut handoffs from modes 0/2
+  at both signs of 93.75 kHz / 10 MHz / 20 MHz / 100 MHz detuning, continuous
   and retriggered handoffs, no steady-state smoothing, DC bypass/stalls, positive
   and negative slip accumulation, missing-sample history reset, counts exceeding
   16 bits and seeded saturation at both 24-bit numeric endpoints.
 - `test_laser_pll_stages.py`: full top-level RTL with the vendor FFT and real
-  200/750/800 MHz ADC tones; stages 1 → 2 → 3, rejected premature fine entry,
-  first-sample continuity, correct settled sign/scaling, DC with no ADC and mute.
+  200/750/800 MHz ADC tones; stages 1 → 2 → 3, manual fine entry at 50 MHz
+  detuning, retained turns after centering the beat, first-sample continuity,
+  correct settled sign/scaling after deliberate re-entry, DC with no ADC and mute.
 - `test_laser_pll_control.py`: host register units, atomic FCW commits, reversed
   default polarity, DC code/sign, stage fields/status, timeout cancellation and mute.
 - `test_laser_pll_notebook.py`: executes all 15 notebook code cells against mocked
@@ -632,7 +649,16 @@ These tests do not model ADC/DAC analog behavior, converter latency, optical noi
 analog filters, piezo/EOM dynamics, or closed-loop lock acquisition. Full-project
 synthesis and routed timing are separate, in `build/full_project/`.
 
-### Routed verification, October 7, 2026
+### Routed verification, October 7, 2026 — before manual stage-3 entry
+
+The results below apply to the earlier ±3 MHz fine / ±8 MHz FFT entry-gate
+revision. The manual-entry RTL update has not been synthesized or routed here;
+the existing Vivado GUI project remains available for the user to rebuild.
+The current `build/laser_pll_overlay/` and ZIP still contain that earlier bitstream.
+Updating/reloading Python alone cannot remove its hardware entry gates.
+For this manual-entry update, the acquisition/144-case handoff RTL regression
+and the complete ADC-tone-to-DAC simulation both pass. These are functional
+simulations, not new implementation timing or resource measurements.
 
 The complete saved BD, including the user's updated ILA wiring, was regenerated,
 synthesized and routed in Vivado 2024.1. All user-specified timing constraints

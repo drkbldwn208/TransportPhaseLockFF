@@ -33,6 +33,9 @@ module laser_pll_stages_tb;
             end
             if (cycle==75000) acquisition_control[1:0]=2;
             if (cycle==85000) acquisition_control[1:0]=3;
+            // Re-enter after centering the source to check local phase scaling.
+            if (cycle==102000) acquisition_control[1:0]=2;
+            if (cycle==120000) acquisition_control[1:0]=3;
             if (cycle==190000) begin acquisition_control[2]=1; test_dc=12000; end
             if (cycle==220000) test_dc=-12000;
             if (cycle==220010) control[0]=0;
@@ -48,10 +51,12 @@ module laser_pll_stages_tb;
             // one-code steps needed to reach the stage-2 negative rail.
             if (cycle==84000 && (acquisition_status[2:0]!=2 || !phase_status[19] ||
                 $signed(dac_data[15:0])>=0)) $fatal(1,"750 MHz near capture stage/sign");
-            if (cycle==99000 && (acquisition_status[2:0]!=2 || !acquisition_status[4] ||
-                $signed(dac_data[15:0])!=-32768))
-                $fatal(1,"Premature unwrapped entry at -50 MHz detuning");
-            // Allow a fresh FFT frame, the fine dwell, and a full-span ramp.
+            if (cycle==99000 && (acquisition_status[2:0]!=3 || acquisition_status[4] ||
+                $signed(acquisition_status[31:8])<1000))
+                $fatal(1,"Manual entry at +50 MHz ref-minus-beat did not accumulate turns");
+            if (cycle==101000 && $signed(acquisition_status[31:8])<1000)
+                $fatal(1,"Centering the beat silently erased remembered turns");
+            // After deliberate re-entry at zero detuning, allow the offset ramp.
             if (cycle==189000) begin
                 if (acquisition_status[2:0]!=3 || acquisition_status[4:3]!=0 ||
                     acquisition_status[31:8]!=0 || !phase_status[19]) $fatal(1,"Fine stage did not settle");
@@ -65,7 +70,7 @@ module laser_pll_stages_tb;
             if (cycle==220004 && $signed(dac_data[15:0])!=-12000) $fatal(1,"Negative DC code");
             if (cycle==220014 && dac_data!=0) $fatal(1,"Final mute");
         end
-        $display("PASS: real tones 200/750/800 MHz; stages 1/2/3; rejected premature entry; continuous handoffs; no-ADC DC; final mute");
+        $display("PASS: real tones 200/750/800 MHz; manual fine entry at 50 MHz; retained turns; continuous handoffs; no-ADC DC; final mute");
         $finish;
     end
 endmodule

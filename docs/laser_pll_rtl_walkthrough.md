@@ -191,30 +191,29 @@ This is a source-line guide to every synthesizable handwritten PLL module. Adjac
 |---|---|
 | 1–3 | Defines detector selection/qualification without feedback control or reference retuning. |
 | 4–10 | Receives clock/reset/ready, control words, DC code and the active 48-bit reference FCW. |
-| 11–14 | Receives independent coarse bin/valid and fine frequency error/valid for entry checks. |
-| 15–22 | Receives all parallel fine DAC candidates, common validity and the 24-bit remembered-turn status. |
-| 23–28 | Returns wrap-memory arm, selected registered output/valid/saturation and packed acquisition status. |
-| 29–33 | Decodes DC override as internal mode 4, otherwise uses requested stage 0…3. |
-| 34–39 | Allocates widened coarse frequency/gain registers so far-detuned errors retain their true sign. |
-| 40–42 | Converts committed reference FCW and FFT bin into 937.5 Hz frequency codes and subtracts beat from reference. |
-| 43–44 | Applies independent coarse gain in a second register; phase gain does not affect stage 1. |
-| 45–47 | Aligns coarse validity with these two registers. |
-| 48–50 | Clamps the coarse error to signed DAC range and flags clipping. |
-| 51–53 | Permits stage-2 entry only inside approximately ±80 MHz with both coarse and fine validity. |
-| 54–57 | Allocates the 4096-clock fine-entry dwell and three-clock memory preparation pipeline. |
-| 58–60 | Arms wrap memory when fine mode is active or a qualified fine request is being prepared. |
-| 61–64 | Requires three clocks of armed, valid history before the unwrapped target may take over. |
-| 65–69 | Resets fine-entry dwell on invalid phase/FFT, FFT detuning beyond 8 MHz or instantaneous fine detuning beyond 3 MHz. |
-| 70–71 | Saturates the dwell at 4096 qualifying clocks; it cannot wrap and falsely lose qualification. |
-| 72–77 | Defaults current output selection to the legacy target, with explicit combinational defaults avoiding latches. |
-| 78–79 | Current wide mode uses coarse frequency and its own validity, independent of I/Q amplitude. |
-| 80–81 | Current stages 2/3 select forced-capture/unwrapped targets respectively. |
-| 82–83 | Current DC mode uses the literal signed code and is valid without ADC input. |
-| 84–87 | Builds the independently requested target; a coarse request waits for coarse validity. |
-| 88–89 | Applies near/fine qualification only to entry; already-active modes do not automatically fall back. |
-| 90–92 | A DC request is immediately qualified; closes the combinational mux. |
-| 93–100 | Feeds old/new target candidates and transition interval into the one-register handoff block. |
-| 101–103 | Exports the full turn count in bits 31:8, then validity/readiness/pending/ramp/active-mode flags. |
+| 11–13 | Receives independent coarse bin/valid and fine phase validity. Fine frequency is no longer an input to the selector. |
+| 14–21 | Receives all parallel fine DAC candidates, common validity and the 24-bit remembered-turn status. |
+| 22–27 | Returns wrap-memory arm, selected registered output/valid/saturation and packed acquisition status. |
+| 28–32 | Decodes DC override as internal mode 4, otherwise uses requested stage 0…3. |
+| 33–38 | Allocates widened coarse frequency/gain registers so far-detuned errors retain their true sign. |
+| 39–41 | Converts committed reference FCW and FFT bin into 937.5 Hz frequency codes and subtracts beat from reference. |
+| 42–43 | Applies independent coarse gain in a second register; phase gain does not affect stage 1. |
+| 44–46 | Aligns coarse validity with these two registers. |
+| 47–49 | Clamps the coarse error to signed DAC range and flags clipping. |
+| 50–52 | Permits stage-2 entry only inside approximately ±80 MHz with both coarse and fine validity. |
+| 53–55 | Makes stage 3 manual: only fine phase/target validity is checked. There is no frequency-band, FFT or dwell gate. |
+| 56–59 | Allocates three-clock memory preparation and arms wrap memory when fine mode is active or a valid manual request is pending. |
+| 60–63 | Requires three clocks of armed, valid history before the unwrapped target may take over; gaps/disarm reset preparation. |
+| 64–70 | Defaults current output selection to the legacy target, with explicit combinational defaults avoiding latches. |
+| 71 | Current wide mode uses coarse frequency and its own validity, independent of I/Q amplitude. |
+| 72–73 | Current stages 2/3 select forced-capture/unwrapped targets respectively. |
+| 74–75 | Current DC mode uses the literal signed code and is valid without ADC input. |
+| 76–79 | Builds the independently requested target; a coarse request waits for coarse validity. |
+| 80 | Applies the FFT-based near qualification to stage-2 entry only. |
+| 81 | Accepts manual stage-3 entry with valid fine data and prepared wrap memory, regardless of frequency or FFT. |
+| 82–84 | A DC request is immediately qualified; closes the combinational mux. |
+| 85–92 | Feeds old/new target candidates and transition interval into the one-register handoff block. |
+| 93–95 | Exports the full turn count in bits 31:8 and status flags; bit 6 now means fine-data validity only. |
 
 ## laser_pll_handoff.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_handoff.sv).

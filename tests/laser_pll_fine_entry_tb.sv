@@ -6,6 +6,8 @@ module laser_pll_fine_entry_tb;
     reg rst_n=0;
     reg signed [17:0] measured_phase=0;
     reg [31:0] cfg=32'h00200002;
+    reg [9:0] fft_bin=417;
+    reg fft_valid=1;
     wire signed [17:0] phase_error, frequency_error;
     wire signed [15:0] legacy, capture, unwrapped, dac;
     wire valid, target_valid, legacy_sat, capture_sat, unwrapped_sat, arm, output_valid;
@@ -19,34 +21,41 @@ module laser_pll_fine_entry_tb;
         .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),.turns(turns));
     laser_pll_acquisition acquisition(.clk(clk),.rst_n(rst_n),.ready(1'b1),
         .acquisition_control(cfg),.test_dc(32'd0),.control(32'h00000607),
-        .reference_frequency(48'd114532461226667),.fft_bin(10'd417),.fft_valid(1'b1),
-        .frequency_error(frequency_error),.error_valid(valid),
+        .reference_frequency(48'd114532461226667),.fft_bin(fft_bin),.fft_valid(fft_valid),
+        .error_valid(valid),
         .legacy_target(legacy),.legacy_saturated(legacy_sat),
         .capture_target(capture),.capture_saturated(capture_sat),
         .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),
         .target_valid(target_valid),.turns(turns),.unwrap_arm(arm),
         .dac_target(dac),.output_valid(output_valid),.output_saturated(),.acquisition_status(status));
-    integer previous, delta, base;
+    integer previous, delta, base, phase_step, maximum_step;
     reg previously_fine;
     initial begin
+        // FFT becomes invalid or far away at entry: it must not veto stage 3.
+        // 93.75 kHz, approximately 10 MHz, 20 MHz and 100 MHz detuning.
+        for (integer rate=0;rate<4;rate=rate+1) begin
+        phase_step=rate==0 ? 100 : rate==1 ? 10667 : rate==2 ? 21333 : 106667;
+        maximum_step=(phase_step+3)/4+1; // phase gain 1 plus one offset-decay code
         for (integer initial_stage=0;initial_stage<=2;initial_stage=initial_stage+2) begin
         for (integer direction=-1;direction<=1;direction=direction+2) begin
             for (integer crossing=-4;crossing<=4;crossing=crossing+1) begin
                 @(negedge clk); rst_n=0; cfg=32'h00200000 | initial_stage; previously_fine=0;
+                fft_valid=1; fft_bin=417; // permit initial stage 2 before disabling its FFT guard
                 repeat(4) @(posedge clk);
-                base=direction*(131072+crossing*100-4500*100);
-                for (integer k=0;k<6500;k=k+1) begin
+                base=direction*(131072+crossing*phase_step-100*phase_step);
+                for (integer k=0;k<2100;k=k+1) begin
                     @(negedge clk);
-                    rst_n=1; measured_phase=-(base+direction*k*100);
-                    if (k==4500) cfg=32'h00200003;
+                    rst_n=1; measured_phase=-(base+direction*k*phase_step);
+                    if (k==100) begin cfg=32'h00200003; fft_valid=crossing>=0; fft_bin=104; end
                     previous=dac;
                     @(posedge clk); #0.1;
+                    if (k==90 && status[2:0]!=initial_stage) $fatal(1,"Initial stage was not entered");
                     if (target_valid && turns!=0 && !unwrapped_sat)
                         $fatal(1,"Nonzero turn count must report DAC saturation");
                     if (status[2:0]==3) begin
                         delta=$signed(dac)-previous;
                         if (!previously_fine && delta!=0) $fatal(1,"Entry discontinuity %d",delta);
-                        if (previously_fine && (delta>26 || delta < -26))
+                        if (previously_fine && (delta>maximum_step || delta < -maximum_step))
                             $fatal(1,"Uncounted branch cut near handoff: dir=%d crossing=%d k=%d delta=%d",direction,crossing,k,delta);
                         previously_fine=1;
                     end
@@ -55,7 +64,8 @@ module laser_pll_fine_entry_tb;
             end
         end
         end
-        $display("PASS: legacy 0 and stage 2 -> stage 3; both crossing directions at nine phase-wrap alignments");
+        end
+        $display("PASS: manual fine entry without FFT; both signs; 9 wrap alignments; 93.75 kHz / 10 MHz / 20 MHz / 100 MHz detuning");
         $finish;
     end
 endmodule

@@ -1,0 +1,50 @@
+{
+  "capture_sha256": "9f6fd10093e76b231772dd1b15ba40692aad46c9a3c662abbd889a8fbb8d9267",
+  "reference_hz": 800000000.0000024,
+  "assumed_control": "0x400605",
+  "analyzed_samples": 1998,
+  "analyzed_duration_us": 8.1298828125,
+  "phase_valid_fraction": 1.0,
+  "amplitude_counts_min_median_max": [
+    4241.561224809777,
+    4634.628082588357,
+    5041.453332091973
+  ],
+  "phase_rms_about_mean_rad": 0.3345624319702806,
+  "phase_peak_to_peak_rad": 1.7244340900815678,
+  "phase_linear_fit_residual_rms_rad": 0.3331829394831386,
+  "largest_adjacent_phase_step_rad": 0.13113138891441162,
+  "fitted_ref_minus_beat_hz": -2058.219253654802,
+  "instantaneous_ref_minus_beat_hz": {
+    "min": -5121562.5,
+    "max": 5129062.5,
+    "rms_about_mean": 1522271.2666751673
+  },
+  "average_frequency_interval_ns": 101.72526041666667,
+  "average_ref_minus_beat_hz": {
+    "min": -438899.99999999994,
+    "max": 581812.5,
+    "rms_about_mean": 168968.82442616724
+  },
+  "old_gate": {
+    "outside_3MHz_samples": 94,
+    "outside_fraction": 0.04704704704704705,
+    "longest_in_band_clocks": 132,
+    "longest_in_band_us": 0.537109375,
+    "required_in_band_clocks": 4096,
+    "required_in_band_us": 16.666666666666668
+  },
+  "rtl_vs_float_max_phase_error_rad": 7.249683963062026e-05,
+  "voltage_predictions_assuming_2Vpp_gain1": {
+    "phase_only_rms_about_mean_V": 0.10649452964183224,
+    "phase_only_peak_to_peak_V": 0.5489044189453125,
+    "capture64_rail_fraction": 0.22172172172172172
+  },
+  "limitations": [
+    "Reference/gain/phase origin are replay assumptions, not live settings.",
+    "ILA 8 captures raw ADC, not this PLL's actual extracted phase or DAC bus.",
+    "ILA acquisition/FFT status probes 14/15 are only one bit wide.",
+    "Incorrect scope export excluded at user request.",
+    "Short records cannot establish millisecond optical capture or controller stability."
+  ]
+}

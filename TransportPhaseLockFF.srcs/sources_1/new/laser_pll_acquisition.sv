@@ -10,7 +10,6 @@ module laser_pll_acquisition (
     input wire [47:0] reference_frequency,
     input wire [9:0] fft_bin,
     input wire fft_valid,
-    input wire signed [17:0] frequency_error,
     input wire error_valid,
     input wire signed [15:0] legacy_target,
     input wire legacy_saturated,
@@ -51,23 +50,16 @@ module laser_pll_acquisition (
     // 80 MHz leaves margin inside the +/-100 MHz tested DDC range.
     wire near_ready = coarse_valid2 && fft_valid && target_valid &&
                       coarse_frequency_error < 22'sd85333 && coarse_frequency_error > -22'sd85333;
-    // Fine entry requires 4096 consecutive valid, low-frequency-error samples
-    // (16.67 us), plus an independent FFT check against aliased false lock.
-    reg [12:0] fine_dwell;
+    // Stage 3 is manual: no frequency-band, FFT or dwell qualification.
+    // Valid fine data and wrap-memory preparation are still needed for handoff.
+    wire fine_ready = error_valid && target_valid;
     reg [2:0] unwrap_prepared;
     // Start memory before switching the output, so a crossing at entry cannot
     // reach the DAC as an uncounted +/-pi jump through the error pipeline.
-    assign unwrap_arm = active_mode==3 || (request==3 && fine_dwell[12]);
+    assign unwrap_arm = active_mode==3 || (request==3 && fine_ready);
     always @(posedge clk) begin
         if (!rst_n || !unwrap_arm || !target_valid) unwrap_prepared <= 0;
         else unwrap_prepared <= {unwrap_prepared[1:0],1'b1};
-    end
-    always @(posedge clk) begin
-        if (!rst_n || !error_valid || !fft_valid ||
-            coarse_frequency_error > 22'sd8533 || coarse_frequency_error < -22'sd8533 ||
-            frequency_error > 18'sd3200 || frequency_error < -18'sd3200)
-            fine_dwell <= 0;
-        else if (!fine_dwell[12]) fine_dwell <= fine_dwell+1'b1;
     end
     reg signed [15:0] active_target, requested_target;
     reg active_valid, requested_valid, active_saturated;
@@ -86,7 +78,7 @@ module laser_pll_acquisition (
         case (request)
             1: begin requested_target=coarse_target; requested_valid=coarse_valid2 && fft_valid; end
             2: begin requested_target=capture_target; request_allowed=near_ready; end
-            3: begin requested_target=unwrapped_target; request_allowed=fine_dwell[12] && unwrap_prepared[2]; end
+            3: begin requested_target=unwrapped_target; request_allowed=fine_ready && unwrap_prepared[2]; end
             4: begin requested_target=test_dc[15:0]; requested_valid=1; end
         endcase
     end
@@ -98,6 +90,6 @@ module laser_pll_acquisition (
         .active_valid(active_valid), .active_saturated(active_saturated),
         .active_mode(active_mode), .dac_target(dac_target), .target_valid(output_valid),
         .target_saturated(output_saturated), .transitioning(transitioning));
-    assign acquisition_status = {turns,output_valid,fine_dwell[12],near_ready,
+    assign acquisition_status = {turns,output_valid,fine_ready,near_ready,
                                  (request!=active_mode),transitioning,active_mode};
 endmodule

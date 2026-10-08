@@ -7,7 +7,6 @@ module laser_pll_acquisition_tb;
     reg [31:0] cfg=32'h00200000, dc=0, control=5;
     reg [9:0] bin=104;
     reg fft_valid=1, valid=1;
-    reg signed [17:0] frequency_error=0;
     reg signed [15:0] legacy=800, capture=-200, unwrapped=300;
     wire signed [15:0] output_code;
     wire output_valid, saturated, arm;
@@ -15,7 +14,7 @@ module laser_pll_acquisition_tb;
     laser_pll_acquisition dut(.clk(clk),.rst_n(rst_n),.ready(ready),
         .acquisition_control(cfg),.test_dc(dc),.control(control),
         .reference_frequency(48'd114532461226667), // exactly 800 MHz to FCW rounding
-        .fft_bin(bin),.fft_valid(fft_valid),.frequency_error(frequency_error),.error_valid(valid),
+        .fft_bin(bin),.fft_valid(fft_valid),.error_valid(valid),
         .legacy_target(legacy),.legacy_saturated(1'b0),.capture_target(capture),.capture_saturated(1'b0),
         .unwrapped_target(unwrapped),.unwrapped_saturated(1'b0),.target_valid(valid),.turns(24'sd0),
         .unwrap_arm(arm),.dac_target(output_code),.output_valid(output_valid),
@@ -28,11 +27,13 @@ module laser_pll_acquisition_tb;
         .phase_error(wrapped),.turns(turns),.unwrapped_error(continuous_phase),.phase_for_dac());
     integer before_code, old_mode, true_phase, expected_turns;
     task request_stage(input integer mode);
+        integer cycles;
         begin
             @(negedge clk); before_code=output_code; cfg=(cfg & ~7)|mode;
             tick;
             if (mode==3) begin
-                while (status[2:0]!=3) begin before_code=output_code; tick; end
+                cycles=0;
+                while (status[2:0]!=3 && cycles<8) begin before_code=output_code; tick; cycles=cycles+1; end
             end
             if (status[2:0]!==mode[2:0]) $fatal(1,"Qualified stage was not accepted %d %h",mode,status);
             if (output_code!==before_code) $fatal(1,"Mode switch stepped from %d to %d",before_code,output_code);
@@ -66,24 +67,32 @@ module laser_pll_acquisition_tb;
         if (output_code<160 || output_code>180) $fatal(1,"FFT frequency units %d",output_code);
         request_stage(2); settle;
         if (output_code!=-200) $fatal(1,"Capture target");
-        // A single instantaneous zero crossing must not qualify fine entry.
-        @(negedge clk); frequency_error=4000;
-        repeat(3) tick;
-        @(negedge clk); frequency_error=0; cfg=(cfg & ~7)|3;
-        repeat(100) tick;
-        if (status[2:0]!=2) $fatal(1,"Fine dwell bypassed");
+        // Invalid fine data still blocks entry, even with an explicit request.
+        @(negedge clk); valid=0; cfg=(cfg & ~7)|3;
+        repeat(10) tick;
+        if (status[2:0]!=2 || !status[4] || status[6] || arm) $fatal(1,"Invalid phase permitted entry");
         @(negedge clk); cfg=(cfg & ~7)|2;
-        repeat(4100) tick;
-        if (!status[6]) $fatal(1,"Fine qualification missing");
+        tick;
+        // Entry has no dwell or FFT requirement, including a distant/stale bin.
+        @(negedge clk); valid=1; fft_valid=0; bin=104;
+        tick;
+        if (!status[6]) $fatal(1,"Valid fine data not ready");
         request_stage(3); settle;
         if (output_code!=300 || !arm) $fatal(1,"Unwrapped target");
         // Once settled, fast changes pass through exactly one register.
         @(negedge clk); unwrapped=1300;
         tick; if (output_code!=1300) $fatal(1,"Unexpected steady-state smoothing");
+        @(negedge clk); fft_valid=1; bin=417;
+        repeat(4) tick;
         request_stage(2);
         repeat(100) tick;
         request_stage(3); // retrigger during a ramp, preserving current output
         settle;
+        request_stage(2); settle;
+        // An apparently far-away valid FFT also must not veto manual stage 3.
+        @(negedge clk); bin=104;
+        repeat(4) tick;
+        request_stage(3); settle;
         // DC works without ADC/fine validity and bypasses inverted polarity.
         @(negedge clk); valid=0; fft_valid=0; dc=-1234;
         request_stage(4); settle;
@@ -129,7 +138,7 @@ module laser_pll_acquisition_tb;
         @(negedge clk); memory.turns=24'sd32767; wrapped=-130000;
         tick;
         if (turns!=32768) $fatal(1,"Counter accidentally limited to 16 bits");
-        $display("PASS: stage signs/qualification/dwell; continuous and retriggered ramps; one-cycle settled path; DC/stalls; 24-bit slips/gaps");
+        $display("PASS: manual fine entry without dwell/FFT gates; invalid-data rejection; handoffs; one-cycle path; DC/stalls; 24-bit slips/gaps");
         $finish;
     end
 endmodule
