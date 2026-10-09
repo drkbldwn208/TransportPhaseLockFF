@@ -1,4 +1,8 @@
-"""Debug helper for the post-decimation I/Q DMA capture path.
+"""Legacy debug helper for the pre-PLL post-decimation I/Q DMA capture path.
+
+For A5 laser PLL firmware use laser_pll.capture_iq(ol) instead. The same
+axi_dma_3 receiver now has a separate monitor arm/length/averaging control;
+axi_gpio_13 no longer controls its input stream.
 
 Run this on the PYNQ target, not on the development host.  It assumes the
 overlay exposes:

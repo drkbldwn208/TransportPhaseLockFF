@@ -6,7 +6,9 @@ source $upgrade_root/scripts/refresh_laser_pll_sources.tcl
 # The 200..950 MHz search band is entirely inside the first Nyquist zone.
 set_property -dict [list CONFIG.ADC_Nyquist03 {0} CONFIG.ADC_CalOpt_Mode03 {2}] \
     [get_bd_cells usp_rf_data_converter_0]
-set_property CONFIG.NUM_MI 21 [get_bd_cells axi_interconnect_0]
+if {[get_property CONFIG.NUM_MI [get_bd_cells axi_interconnect_0]] < 21} {
+    set_property CONFIG.NUM_MI 21 [get_bd_cells axi_interconnect_0]
+}
 foreach {name index address input_only} {
     pll_acquisition        19 0xA0210000 0
     pll_acquisition_status 20 0xA0220000 1
@@ -41,3 +43,4 @@ foreach {gpio pin} {
 # Reset remains muted; bit 2 selects the requested reversed default polarity.
 set_property CONFIG.C_DOUT_DEFAULT {0x00000004} [get_bd_cells pll_control]
 set_property CONFIG.C_DOUT_DEFAULT {0x00200041} [get_bd_cells pll_acquisition]
+source $upgrade_root/scripts/upgrade_laser_pll_tracking.tcl

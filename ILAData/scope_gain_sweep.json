@@ -1,0 +1,591 @@
+{
+  "hardware": "Old undivided stage 3; these captures do not test the new A4 /160 mapping.",
+  "feedback": "Piezo on throughout. Fast output disabled/reset in 6/7; filter switches unchanged.",
+  "cautions": [
+    "Switching rate of clipped error is not optical frequency detuning.",
+    "Plateau proximity is a voltage estimate, not a recorded saturation flag.",
+    "CH1 plateaus alone do not locate the internal controller limiter.",
+    "Use CSV record times; TXT display timebases/statistics need not describe the full record.",
+    "No linewidth, phase-margin, or EOM tuning coefficient is inferred from clipped traces."
+  ],
+  "traces": [
+    {
+      "file": "scope_6.csv",
+      "sha256": "7f271f3eaf4936fb14b6bd0e7c4851cdff0cbd0ca29a8487b89591a5b1dca722",
+      "samples": 62468,
+      "sample_interval_s": 1.6000000000009063e-06,
+      "duration_s": 0.09994880000005661,
+      "error_low_plateau_V": -1.11733672,
+      "error_high_plateau_V": 0.982160747,
+      "fraction_error_within_100mV_of_plateaus": 0.9877537299097138,
+      "fraction_error_in_central_half_span": 6.403278478581034e-05,
+      "fraction_error_above_midpoint": 0.5000320163923929,
+      "controller_mean_V": -0.07236133945964333,
+      "controller_1st_99th_percentile_V": [
+        -0.183291473,
+        0.030778871
+      ],
+      "fraction_controller_outside_4V": 0.0,
+      "error_rising_edges": 33,
+      "median_rising_period_s": 0.0030503815497881226,
+      "inverse_median_rising_period_hz": 327.82784175620895,
+      "rising_period_10th_90th_percentile_s": [
+        0.0028467203370460127,
+        0.003211848977819436
+      ],
+      "rising_periods_over_twice_median_s": [],
+      "controller_recovery_after_error_rise": [],
+      "setting": "Fast output disabled/reset"
+    },
+    {
+      "file": "scope_7.csv",
+      "sha256": "e52c2ce6229fc5ba5cd558e877a5dd991dc85d5c38b9de3a1779ab3adf49c481",
+      "samples": 62474,
+      "sample_interval_s": 1.5999999999991715e-07,
+      "duration_s": 0.009995839999994824,
+      "error_low_plateau_V": -1.1173367202,
+      "error_high_plateau_V": 1.0384421498,
+      "fraction_error_within_100mV_of_plateaus": 0.9886672855908057,
+      "fraction_error_in_central_half_span": 3.201331754009668e-05,
+      "fraction_error_above_midpoint": 0.46260844511316707,
+      "controller_mean_V": -0.07338540763698499,
+      "controller_1st_99th_percentile_V": [
+        -0.1863065489,
+        0.032286409
+      ],
+      "fraction_controller_outside_4V": 0.0,
+      "error_rising_edges": 3,
+      "median_rising_period_s": 0.0031304054908861114,
+      "inverse_median_rising_period_hz": 319.4474335390122,
+      "rising_period_10th_90th_percentile_s": [
+        0.0030735638662042603,
+        0.0031872471155679626
+      ],
+      "rising_periods_over_twice_median_s": [],
+      "controller_recovery_after_error_rise": [],
+      "setting": "Fast output disabled/reset"
+    },
+    {
+      "file": "scope_8.csv",
+      "sha256": "863cc18e724a4fe4c120bb23aa27b6f438cbd50a444e94b3f7775bb780af5cae",
+      "samples": 62474,
+      "sample_interval_s": 1.5999999999991715e-07,
+      "duration_s": 0.009995839999994824,
+      "error_low_plateau_V": -1.205276418,
+      "error_high_plateau_V": 1.1263818472,
+      "fraction_error_within_100mV_of_plateaus": 0.9886992989083458,
+      "fraction_error_in_central_half_span": 4.801997631014502e-05,
+      "fraction_error_above_midpoint": 0.5051701507827256,
+      "controller_mean_V": -0.22730455193923552,
+      "controller_1st_99th_percentile_V": [
+        -0.9250000119,
+        0.8438441902
+      ],
+      "fraction_controller_outside_4V": 0.0,
+      "error_rising_edges": 18,
+      "median_rising_period_s": 0.0005673659953332891,
+      "inverse_median_rising_period_hz": 1762.5307265948636,
+      "rising_period_10th_90th_percentile_s": [
+        0.0005296127636135288,
+        0.0006069161551669767
+      ],
+      "rising_periods_over_twice_median_s": [],
+      "controller_recovery_after_error_rise": [],
+      "setting": "Fast gain below rapid oscillation"
+    },
+    {
+      "file": "scope_9.csv",
+      "sha256": "67cfc9f8a8fb6012359a7943b8a63d4385342f48e39fb2a94bfbdce9b9f1ab63",
+      "samples": 62470,
+      "sample_interval_s": 8.000000000017542e-09,
+      "duration_s": 0.0004997600000010958,
+      "error_low_plateau_V": -1.197738729417,
+      "error_high_plateau_V": 1.06608034252,
+      "fraction_error_within_100mV_of_plateaus": 0.9610052825356171,
+      "fraction_error_in_central_half_span": 0.002225068032655675,
+      "fraction_error_above_midpoint": 0.5112053785817192,
+      "controller_mean_V": -0.026580156892401827,
+      "controller_1st_99th_percentile_V": [
+        -1.339572872527,
+        1.2885678013081399
+      ],
+      "fraction_controller_outside_4V": 0.0,
+      "error_rising_edges": 87,
+      "median_rising_period_s": 5.695423670250796e-06,
+      "inverse_median_rising_period_hz": 175579.56315407268,
+      "rising_period_10th_90th_percentile_s": [
+        5.097434807697763e-06,
+        6.332970810939023e-06
+      ],
+      "rising_periods_over_twice_median_s": [],
+      "controller_recovery_after_error_rise": [],
+      "setting": "Fast gain just above onset"
+    },
+    {
+      "file": "scope_10.csv",
+      "sha256": "c7cc8e89f527a55d6eaff9fd8d1a996e369eff4ca2244fbca8bfe12e16d3907d",
+      "samples": 62500,
+      "sample_interval_s": 8.000000000017542e-09,
+      "duration_s": 0.0005000000000010964,
+      "error_low_plateau_V": -1.197738729417,
+      "error_high_plateau_V": 1.0535175291085,
+      "fraction_error_within_100mV_of_plateaus": 0.96312,
+      "fraction_error_in_central_half_span": 0.001776,
+      "fraction_error_above_midpoint": 0.551008,
+      "controller_mean_V": -0.17773859278650767,
+      "controller_1st_99th_percentile_V": [
+        -4.30188439580201,
+        4.220728575587009
+      ],
+      "fraction_controller_outside_4V": 0.684224,
+      "error_rising_edges": 78,
+      "median_rising_period_s": 5.861466666646803e-06,
+      "inverse_median_rising_period_hz": 170605.7642006646,
+      "rising_period_10th_90th_percentile_s": [
+        5.19084190476618e-06,
+        6.515918840606534e-06
+      ],
+      "rising_periods_over_twice_median_s": [
+        2.8962335403744303e-05,
+        2.4092888888864938e-05
+      ],
+      "controller_recovery_after_error_rise": [
+        {
+          "error_rising_time_s": 9.520000000035183e-07,
+          "release_delay_s": 5.599999999646933e-08,
+          "zero_crossing_delay_s": 2.2399999999651244e-07
+        },
+        {
+          "error_rising_time_s": 6.827199999995438e-06,
+          "release_delay_s": 5.28000000045771e-08,
+          "zero_crossing_delay_s": 9.280000000455639e-08
+        },
+        {
+          "error_rising_time_s": 1.2033523809523783e-05,
+          "release_delay_s": 6.247619047623163e-08,
+          "zero_crossing_delay_s": 2.224761904762301e-07
+        },
+        {
+          "error_rising_time_s": 1.7201142857146716e-05,
+          "release_delay_s": 5.4857142853283056e-08,
+          "zero_crossing_delay_s": 2.308571428532895e-07
+        },
+        {
+          "error_rising_time_s": 4.616347826089102e-05,
+          "release_delay_s": 5.252173910897344e-08,
+          "zero_crossing_delay_s": 2.1252173910899901e-07
+        },
+        {
+          "error_rising_time_s": 5.245270588238819e-05,
+          "release_delay_s": 3.529411761181195e-08,
+          "zero_crossing_delay_s": 2.0329411761180085e-07
+        },
+        {
+          "error_rising_time_s": 5.851586206899316e-05,
+          "release_delay_s": 3.6137931006857596e-08,
+          "zero_crossing_delay_s": 2.041379310068465e-07
+        },
+        {
+          "error_rising_time_s": 6.417333333337786e-05,
+          "release_delay_s": 3.4666666622141314e-08,
+          "zero_crossing_delay_s": 6.666666662213017e-08
+        },
+        {
+          "error_rising_time_s": 7.012200000002986e-05,
+          "release_delay_s": 2.99999999701418e-08,
+          "zero_crossing_delay_s": 1.979999999701578e-07
+        },
+        {
+          "error_rising_time_s": 7.591600000004933e-05,
+          "release_delay_s": 3.5999999950679976e-08,
+          "zero_crossing_delay_s": 2.0399999995066888e-07
+        },
+        {
+          "error_rising_time_s": 8.250880000006443e-05,
+          "release_delay_s": 2.7199999935563165e-08,
+          "zero_crossing_delay_s": 1.9519999993557917e-07
+        },
+        {
+          "error_rising_time_s": 8.881085714289948e-05,
+          "release_delay_s": 2.114285710053056e-08,
+          "zero_crossing_delay_s": 1.97142857100537e-07
+        },
+        {
+          "error_rising_time_s": 9.47059200000491e-05,
+          "release_delay_s": 3.007999995088926e-08,
+          "zero_crossing_delay_s": 1.9807999995090527e-07
+        },
+        {
+          "error_rising_time_s": 0.00010042100000006522,
+          "release_delay_s": 2.699999993477668e-08,
+          "zero_crossing_delay_s": 1.949999999347927e-07
+        },
+        {
+          "error_rising_time_s": 0.00010594258823538797,
+          "release_delay_s": 3.3411764612035805e-08,
+          "zero_crossing_delay_s": 2.014117646120247e-07
+        },
+        {
+          "error_rising_time_s": 0.00011225200000008178,
+          "release_delay_s": 3.599999991820812e-08,
+          "zero_crossing_delay_s": 2.0399999991822413e-07
+        },
+        {
+          "error_rising_time_s": 0.00011754964705892086,
+          "release_delay_s": 3.435294107914709e-08,
+          "zero_crossing_delay_s": 2.1035294107915354e-07
+        },
+        {
+          "error_rising_time_s": 0.0001238420869565925,
+          "release_delay_s": 4.591304340751247e-08,
+          "zero_crossing_delay_s": 7.791304340750132e-08
+        },
+        {
+          "error_rising_time_s": 0.0001284265600000682,
+          "release_delay_s": 4.543999993181116e-08,
+          "zero_crossing_delay_s": 2.1343999993182717e-07
+        },
+        {
+          "error_rising_time_s": 0.0001347305714286324,
+          "release_delay_s": 5.342857136759766e-08,
+          "zero_crossing_delay_s": 2.2142857136761367e-07
+        },
+        {
+          "error_rising_time_s": 0.00014002133333342075,
+          "release_delay_s": 5.0666666579255544e-08,
+          "zero_crossing_delay_s": 9.066666657926194e-08
+        },
+        {
+          "error_rising_time_s": 0.0001460593846154492,
+          "release_delay_s": 5.261538455080439e-08,
+          "zero_crossing_delay_s": 2.206153845507933e-07
+        },
+        {
+          "error_rising_time_s": 0.00015113700000004594,
+          "release_delay_s": 4.699999995406512e-08,
+          "zero_crossing_delay_s": 2.2299999995407157e-07
+        },
+        {
+          "error_rising_time_s": 0.00015683200000013686,
+          "release_delay_s": 5.599999986313385e-08,
+          "zero_crossing_delay_s": 2.2399999986314986e-07
+        },
+        {
+          "error_rising_time_s": 0.00016223408695658617,
+          "release_delay_s": 4.5913043413827945e-08,
+          "zero_crossing_delay_s": 2.2991304341385193e-07
+        },
+        {
+          "error_rising_time_s": 0.0001689337777778664,
+          "release_delay_s": 4.222222213358189e-08,
+          "zero_crossing_delay_s": 8.222222213361539e-08
+        },
+        {
+          "error_rising_time_s": 0.0001741859310345329,
+          "release_delay_s": 3.806896546710106e-08,
+          "zero_crossing_delay_s": 2.140689654671075e-07
+        },
+        {
+          "error_rising_time_s": 0.00018057726315796896,
+          "release_delay_s": 3.873684203105029e-08,
+          "zero_crossing_delay_s": 1.9873684203104876e-07
+        },
+        {
+          "error_rising_time_s": 0.00018603800000008595,
+          "release_delay_s": 4.199999991406065e-08,
+          "zero_crossing_delay_s": 7.39999999140495e-08
+        },
+        {
+          "error_rising_time_s": 0.00019220320000008136,
+          "release_delay_s": 3.6799999918630004e-08,
+          "zero_crossing_delay_s": 2.0479999991864601e-07
+        },
+        {
+          "error_rising_time_s": 0.00019806466666672816,
+          "release_delay_s": 3.133333327184646e-08,
+          "zero_crossing_delay_s": 6.333333327183531e-08
+        },
+        {
+          "error_rising_time_s": 0.0002045126153846736,
+          "release_delay_s": 2.338461532641373e-08,
+          "zero_crossing_delay_s": 1.9938461532642018e-07
+        },
+        {
+          "error_rising_time_s": 0.0002109050909091538,
+          "release_delay_s": 3.090909084620596e-08,
+          "zero_crossing_delay_s": 1.9890909084619487e-07
+        },
+        {
+          "error_rising_time_s": 0.00021623569230778427,
+          "release_delay_s": 2.8307692215734804e-08,
+          "zero_crossing_delay_s": 2.0430769221574125e-07
+        },
+        {
+          "error_rising_time_s": 0.00022268355555563226,
+          "release_delay_s": 3.644444436775381e-08,
+          "zero_crossing_delay_s": 2.044444443677427e-07
+        },
+        {
+          "error_rising_time_s": 0.00022790678260875834,
+          "release_delay_s": 2.9217391241668405e-08,
+          "zero_crossing_delay_s": 1.972173912416573e-07
+        },
+        {
+          "error_rising_time_s": 0.0002345016000000835,
+          "release_delay_s": 4.2399999916500983e-08,
+          "zero_crossing_delay_s": 2.10399999916517e-07
+        },
+        {
+          "error_rising_time_s": 0.00023942258823539205,
+          "release_delay_s": 4.941176460796447e-08,
+          "zero_crossing_delay_s": 2.0941176460796294e-07
+        },
+        {
+          "error_rising_time_s": 0.0002457170909091665,
+          "release_delay_s": 5.090909083351044e-08,
+          "zero_crossing_delay_s": 2.1890909083349935e-07
+        },
+        {
+          "error_rising_time_s": 0.00025109160000006753,
+          "release_delay_s": 5.239999993248779e-08,
+          "zero_crossing_delay_s": 2.203999999324767e-07
+        },
+        {
+          "error_rising_time_s": 0.00025753333333343475,
+          "release_delay_s": 5.866666656525977e-08,
+          "zero_crossing_delay_s": 2.2666666656524868e-07
+        },
+        {
+          "error_rising_time_s": 0.00026238320000011574,
+          "release_delay_s": 4.879999988426e-08,
+          "zero_crossing_delay_s": 2.2479999988426645e-07
+        },
+        {
+          "error_rising_time_s": 0.0002682694736842935,
+          "release_delay_s": 5.8526315706503625e-08,
+          "zero_crossing_delay_s": 2.2652631570649253e-07
+        },
+        {
+          "error_rising_time_s": 0.00027362040000007074,
+          "release_delay_s": 5.959999992925097e-08,
+          "zero_crossing_delay_s": 2.2759999992923987e-07
+        },
+        {
+          "error_rising_time_s": 0.0002789506666667619,
+          "release_delay_s": 5.733333323810347e-08,
+          "zero_crossing_delay_s": 2.3333333323810991e-07
+        },
+        {
+          "error_rising_time_s": 0.0002838697777778653,
+          "release_delay_s": 1.8222222134694783e-08,
+          "zero_crossing_delay_s": 3.142222221346933e-07
+        },
+        {
+          "error_rising_time_s": 0.00030796266666673023,
+          "release_delay_s": 4.533333326979007e-08,
+          "zero_crossing_delay_s": 2.0533333326976143e-07
+        },
+        {
+          "error_rising_time_s": 0.000313515294117731,
+          "release_delay_s": 3.670588226905658e-08,
+          "zero_crossing_delay_s": 2.1270588226900882e-07
+        },
+        {
+          "error_rising_time_s": 0.0003200829090909794,
+          "release_delay_s": 2.9090909020622942e-08,
+          "zero_crossing_delay_s": 1.9709090902061185e-07
+        },
+        {
+          "error_rising_time_s": 0.00032564842105269927,
+          "release_delay_s": 3.157894730074478e-08,
+          "zero_crossing_delay_s": 1.9957894730073368e-07
+        },
+        {
+          "error_rising_time_s": 0.0003320697777778645,
+          "release_delay_s": 3.422222213548881e-08,
+          "zero_crossing_delay_s": 2.022222221354777e-07
+        },
+        {
+          "error_rising_time_s": 0.0003375634285714803,
+          "release_delay_s": 3.657142851970713e-08,
+          "zero_crossing_delay_s": 6.857142851972309e-08
+        },
+        {
+          "error_rising_time_s": 0.00034372486956528523,
+          "release_delay_s": 3.5130434714795815e-08,
+          "zero_crossing_delay_s": 2.0313043471478472e-07
+        },
+        {
+          "error_rising_time_s": 0.0003502746666667704,
+          "release_delay_s": 2.9333333229639505e-08,
+          "zero_crossing_delay_s": 1.973333332296284e-07
+        },
+        {
+          "error_rising_time_s": 0.00035607133333343373,
+          "release_delay_s": 2.4666666566242317e-08,
+          "zero_crossing_delay_s": 1.9266666656628543e-07
+        },
+        {
+          "error_rising_time_s": 0.0003674206666667248,
+          "release_delay_s": 3.533333327521626e-08,
+          "zero_crossing_delay_s": 2.113333332752227e-07
+        },
+        {
+          "error_rising_time_s": 0.0003739140000000789,
+          "release_delay_s": 4.599999992108963e-08,
+          "zero_crossing_delay_s": 2.059999999211152e-07
+        },
+        {
+          "error_rising_time_s": 0.0003784805714286699,
+          "release_delay_s": 4.7428571330152425e-08,
+          "zero_crossing_delay_s": 2.1542857133008712e-07
+        },
+        {
+          "error_rising_time_s": 0.0003847770000000442,
+          "release_delay_s": 5.499999995581739e-08,
+          "zero_crossing_delay_s": 2.229999999558605e-07
+        },
+        {
+          "error_rising_time_s": 0.00039039648000006676,
+          "release_delay_s": 5.151999993323938e-08,
+          "zero_crossing_delay_s": 2.1951999993322828e-07
+        },
+        {
+          "error_rising_time_s": 0.00039680000000008283,
+          "release_delay_s": 4.7999999917163784e-08,
+          "zero_crossing_delay_s": 2.159999999172069e-07
+        },
+        {
+          "error_rising_time_s": 0.0004017360000000152,
+          "release_delay_s": 4.799999998476379e-08,
+          "zero_crossing_delay_s": 2.159999999848069e-07
+        },
+        {
+          "error_rising_time_s": 0.00040753233333341437,
+          "release_delay_s": 5.966666658565852e-08,
+          "zero_crossing_delay_s": 2.1966666658562988e-07
+        },
+        {
+          "error_rising_time_s": 0.00041283415384622244,
+          "release_delay_s": 5.384615377760022e-08,
+          "zero_crossing_delay_s": 2.218461537775349e-07
+        },
+        {
+          "error_rising_time_s": 0.00041828400000009226,
+          "release_delay_s": 5.1999999907739996e-08,
+          "zero_crossing_delay_s": 2.2799999990774644e-07
+        },
+        {
+          "error_rising_time_s": 0.0004240185600000776,
+          "release_delay_s": 5.343999992242325e-08,
+          "zero_crossing_delay_s": 2.294399999224297e-07
+        },
+        {
+          "error_rising_time_s": 0.0004295396666667508,
+          "release_delay_s": 5.2333333249192024e-08,
+          "zero_crossing_delay_s": 2.2033333324918093e-07
+        },
+        {
+          "error_rising_time_s": 0.000435659272727372,
+          "release_delay_s": 4.472727262795932e-08,
+          "zero_crossing_delay_s": 2.1272727262800243e-07
+        },
+        {
+          "error_rising_time_s": 0.0004414713846155542,
+          "release_delay_s": 4.8615384445817745e-08,
+          "zero_crossing_delay_s": 8.061538444577949e-08
+        },
+        {
+          "error_rising_time_s": 0.0004474183333334167,
+          "release_delay_s": 3.766666658330635e-08,
+          "zero_crossing_delay_s": 6.96666665833223e-08
+        },
+        {
+          "error_rising_time_s": 0.00045315309090920175,
+          "release_delay_s": 3.890909079824756e-08,
+          "zero_crossing_delay_s": 2.0690909079823646e-07
+        },
+        {
+          "error_rising_time_s": 0.00045907476923085985,
+          "release_delay_s": 3.7230769140165695e-08,
+          "zero_crossing_delay_s": 2.052307691401546e-07
+        },
+        {
+          "error_rising_time_s": 0.0004647942222223562,
+          "release_delay_s": 3.7777777643762875e-08,
+          "zero_crossing_delay_s": 2.05777777643806e-07
+        },
+        {
+          "error_rising_time_s": 0.000471256444444593,
+          "release_delay_s": 2.355555540705344e-08,
+          "zero_crossing_delay_s": 1.9955555540700567e-07
+        },
+        {
+          "error_rising_time_s": 0.00047682211764723246,
+          "release_delay_s": 3.3882352767542444e-08,
+          "zero_crossing_delay_s": 2.0188235276753135e-07
+        },
+        {
+          "error_rising_time_s": 0.00048290450000017677,
+          "release_delay_s": 2.3499999823211378e-08,
+          "zero_crossing_delay_s": 1.914999998232545e-07
+        },
+        {
+          "error_rising_time_s": 0.0004892378947370202,
+          "release_delay_s": 2.6105262979840387e-08,
+          "zero_crossing_delay_s": 1.8610526297986596e-07
+        },
+        {
+          "error_rising_time_s": 0.0004954533333334898,
+          "release_delay_s": 2.6666666510166345e-08,
+          "zero_crossing_delay_s": 1.9466666651020946e-07
+        }
+      ],
+      "setting": "High fast gain, original offset"
+    },
+    {
+      "file": "scope_11.csv",
+      "sha256": "a73c5a5bb702cd76f0264856e552cb300719956183144f63ad313dce86888588",
+      "samples": 62500,
+      "sample_interval_s": 3.200000000007017e-08,
+      "duration_s": 0.0020000000000043854,
+      "error_low_plateau_V": -1.19773873054,
+      "error_high_plateau_V": 1.05351753014,
+      "fraction_error_within_100mV_of_plateaus": 0.986736,
+      "fraction_error_in_central_half_span": 1.6e-05,
+      "fraction_error_above_midpoint": 0.568656,
+      "controller_mean_V": -1.82175671670157,
+      "controller_1st_99th_percentile_V": [
+        -4.25866828859,
+        4.2639446834902
+      ],
+      "fraction_controller_outside_4V": 0.903376,
+      "error_rising_edges": 4,
+      "median_rising_period_s": 0.0005636486023167272,
+      "inverse_median_rising_period_hz": 1774.155024761468,
+      "rising_period_10th_90th_percentile_s": [
+        0.0005534356462290922,
+        0.000604349916019084
+      ],
+      "rising_periods_over_twice_median_s": [],
+      "controller_recovery_after_error_rise": [
+        {
+          "error_rising_time_s": 1.6108888888862332e-05,
+          "release_delay_s": 0.00015243511111113773,
+          "zero_crossing_delay_s": 0.00016881911111113766
+        },
+        {
+          "error_rising_time_s": 0.0006306341333335354,
+          "release_delay_s": 0.00013675786666646455,
+          "zero_crossing_delay_s": 0.00015355786666646453
+        },
+        {
+          "error_rising_time_s": 0.0011815165405407188,
+          "release_delay_s": 0.00012734745945928126,
+          "zero_crossing_delay_s": 0.00014382745945928119
+        }
+      ],
+      "setting": "High fast gain, changed offset"
+    }
+  ]
+}

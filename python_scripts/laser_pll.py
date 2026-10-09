@@ -10,6 +10,14 @@ ADC_SAMPLE_RATE_HZ = 1_966_080_000.0
 ERROR_SAMPLE_RATE_HZ = ADC_SAMPLE_RATE_HZ / 8
 PHASE_CODES_PER_TURN = 1 << 18
 STAGE3_PHASE_DIVISOR = 160
+FPGA_VERSION = 0xA5
+
+
+def _check_version(overlay):
+    actual = overlay.pll_acquisition_status.read(0x08) >> 24
+    if actual != FPGA_VERSION:
+        raise ValueError(f"Helper requires A5 tracking/IQ firmware; FPGA reports 0x{actual:02x}. "
+                         "Load the matching .bit/.hwh/helper package; reload laser_pll after replacing it.")
 
 
 def _signed(value, bits):
@@ -61,8 +69,7 @@ def configure(overlay, *, reference_frequency_hz=800e6, phase_offset_rad=0.0,
     if not math.isfinite(phase_offset_rad):
         raise ValueError("phase_offset_rad must be finite.")
     # Refuse an old overlay before touching outputs or the RFDC.
-    if overlay.pll_acquisition_status.read(0x08) >> 24 != 0xA4:
-        raise ValueError("Load the matching A4 wide-phase PLL .bit/.hwh pair.")
+    _check_version(overlay)
     p = overlay.ip_dict['usp_rf_data_converter_0']['parameters']
     expected = {'ADC_Data_Type03': 0, 'ADC_Decimation_Mode03': 1,
                 'ADC_Data_Width03': 8, 'ADC_Mixer_Type03': 1, 'ADC_Nyquist03': 0,
@@ -73,6 +80,8 @@ def configure(overlay, *, reference_frequency_hz=800e6, phase_offset_rad=0.0,
     if not math.isclose(float(p['ADC0_Sampling_Rate']) * 1e9, ADC_SAMPLE_RATE_HZ):
         raise ValueError("ADC tile 224 must run at 1.96608 GS/s.")
     overlay.pll_control.write(0x00, 0)
+    overlay.pll_tracking.write(0x00, 14 << 4)
+    overlay.pll_monitor.write(0x00, 0)
     configure_acquisition(overlay)
     import xrfdc
     dac = overlay.usp_rf_data_converter_0.dac_tiles[1].blocks[1]
@@ -100,7 +109,7 @@ def enable(overlay, enabled=True):
 
 def enable_capture(overlay, enabled=True):
     """Toggle the derivative ONLY in legacy mode 0; use select_stage for stages 1..3."""
-    if overlay.pll_acquisition.read(0x00) & 7:
+    if overlay.pll_acquisition.read(0x00) & 15:
         raise ValueError("Capture flag applies only to legacy mode 0; use select_stage().")
     value = overlay.pll_control.read(0x00)
     overlay.pll_control.write(0x00, (value & ~2) | (int(bool(enabled)) << 1))
@@ -115,6 +124,8 @@ def set_gains(overlay, *, phase_gain_shift, capture_gain_shift):
     frequency term relative to phase in stages 0/2. Gain writes are immediate,
     not ramped handoffs; change at low error or between acquisition attempts.
     """
+    if overlay.pll_acquisition.read(0x00) & 8:
+        raise ValueError("Use set_tracking_gain() for smooth sensitivity changes in stage 4.")
     for value in (phase_gain_shift, capture_gain_shift):
         if not isinstance(value, int) or not 0 <= value <= 15:
             raise ValueError("Gain shifts must be integers in [0, 15].")
@@ -167,9 +178,9 @@ def acquisition_status(overlay):
     """
     a = overlay.pll_acquisition_status.read(0x00)
     f = overlay.pll_acquisition_status.read(0x08)
-    if f >> 24 != 0xA4:
+    if f >> 24 != FPGA_VERSION:
         raise ValueError("Acquisition register version mismatch.")
-    return dict(stage=a&3, dc_test=bool(a&4), transitioning=bool(a&8),
+    return dict(stage=a&7, dc_test=(a&7)==5, transitioning=bool(a&8),
                 pending=bool(a&16), near_ready=bool(a&32), fine_ready=bool(a&64),
                 output_valid=bool(a&128), remembered_turns=_signed(a>>8,24),
                 fft_frequency_hz=(f&1023)*ADC_SAMPLE_RATE_HZ/1024,
@@ -184,21 +195,30 @@ def select_stage(overlay, stage, *, wait=True, timeout_s=5.0):
     Stage 2 waits for FFT detuning <80 MHz and valid fine phase. Stage 3 is
     manual: only valid fine data and five clocks of wrap/scaler preparation
     are required, with no frequency, dwell or FFT gate. This requires the
-    A4 wide-phase FPGA bitstream; updating this helper alone is insufficient.
+    A5 tracking/IQ FPGA bitstream; updating this helper alone is insufficient.
+    Stage 4 follows a settled stage 3 and saves its current phase/DAC operating
+    point. Set its target with set_tracking_gain(); no optical-lock detector is
+    implied. Stage-4 gain ramps are separate from the mode handoff's offset ramp.
     Frequency offsets can accumulate remembered turns and rail the DAC.
     With wait=False the request remains pending until qualified. With wait=True,
     timeout cancels the request by restoring the previous request (also ramped).
     There is no automatic fallback: inspect diagnostics and select stage 1 to
     reacquire after loss of signal. Analog controller enables remain external.
     """
-    if not isinstance(stage,int) or not 0 <= stage <= 3:
-        raise ValueError("stage must be 0, 1, 2, or 3.")
+    if not isinstance(stage,int) or not 0 <= stage <= 4:
+        raise ValueError("stage must be 0, 1, 2, 3, or 4.")
     if not math.isfinite(timeout_s) or timeout_s <= 0:
         raise ValueError("timeout_s must be positive and finite.")
     if wait and not overlay.pll_control.read(0x00) & 1:
         raise ValueError("Output is muted; use wait=False to select the startup stage.")
     old = overlay.pll_acquisition.read(0x00)
-    overlay.pll_acquisition.write(0x00,(old & ~7) | stage)
+    if stage == 4:
+        state = acquisition_status(overlay)
+        if state['stage'] not in (3, 4) or state['transitioning'] or state['pending']:
+            raise ValueError("Enter tracking from settled stage 3 after verifying optical lock.")
+        if ((overlay.pll_control.read(0x00) >> 4) & 15) > 8:
+            raise ValueError("Stage-4 entry supports initial phase gain shifts 0..8.")
+    overlay.pll_acquisition.write(0x00,(old & ~15) | (8 if stage == 4 else stage))
     if not wait: return acquisition_status(overlay)
     deadline=time.monotonic()+timeout_s
     while True:
@@ -209,6 +229,111 @@ def select_stage(overlay, stage, *, wait=True, timeout_s=5.0):
             overlay.pll_acquisition.write(0x00,old)
             raise TimeoutError(f"Stage {stage} did not qualify/settle; restored previous request. Last state: {state}")
         time.sleep(0.005)
+
+
+def tracking_status(overlay):
+    """Actual sensitivity relative to stage-3 shift 0; all quantities are live."""
+    _check_version(overlay)
+    value = overlay.pll_tracking.read(0x08)
+    return dict(initialized=bool(value & (1 << 31)), ramping=bool(value & (1 << 30)),
+                saturated=bool(value & (1 << 29)), valid=bool(value & (1 << 28)),
+                gain_relative_to_stage3=(value & 0x3ffffff) / 104858.0,
+                target_shift=overlay.pll_tracking.read(0x00) & 15)
+
+
+def set_tracking_gain(overlay, shift, *, ramp_interval_log2=14, wait=True, timeout_s=5.0):
+    """Stage 4: slew toward 2**shift times the stage-3 shift-0 sensitivity.
+
+    shift 0..8; each update is <=1/256 of current gain. Default interval 14
+    gives about 12 ms per doubling, 95 ms for 1x -> 256x. Phase fluctuations
+    still pass at full rate; only gain changes slowly. The saved phase and DAC
+    bias persist across updates. Increasing sensitivity raises analog loop gain
+    too: test one doubling at a time, or reduce controller gain correspondingly.
+    In stage 3, use wait=False to prepare the target before select_stage(ol,4).
+    A timeout leaves the requested ramp active; it does not reset the lock.
+    """
+    for name, value, maximum in (("shift",shift,8), ("ramp_interval_log2",ramp_interval_log2,20)):
+        if not isinstance(value,int) or not 0 <= value <= maximum:
+            raise ValueError(f"{name} must be an integer in [0, {maximum}].")
+    if not math.isfinite(timeout_s) or timeout_s <= 0:
+        raise ValueError("timeout_s must be positive and finite.")
+    _check_version(overlay)
+    if wait and acquisition_status(overlay)['stage'] != 4:
+        raise ValueError("Use wait=False to prepare tracking gain before entering stage 4.")
+    overlay.pll_tracking.write(0x00, shift | (ramp_interval_log2 << 4))
+    if not wait:
+        return tracking_status(overlay)
+    target = 104858 << shift
+    deadline = time.monotonic() + timeout_s
+    while True:
+        value = overlay.pll_tracking.read(0x08)
+        if value & (1 << 28) and not value & (1 << 30) and (value & 0x3ffffff) == target:
+            return tracking_status(overlay)
+        if time.monotonic() >= deadline:
+            raise TimeoutError("Tracking gain has not settled; requested ramp remains active.")
+        time.sleep(0.001)
+
+
+def capture_iq(overlay, samples=65536, *, decimation_log2=4, timeout_s=None):
+    """Capture post-DDC I/Q before CORDIC/gains; never changes the laser controls.
+
+    Returns dict(i_adc_counts, q_adc_counts, sample_rate_hz, decimation_log2).
+    Each output is a signed boxcar mean over 2**decimation_log2 fabric samples,
+    retaining 8 fractional ADC bits. Default rate 15.36 MS/s, 246 MB/s to DMA.
+    Boxcar filtering has limited alias rejection: repeat PSDs at different rates.
+    At zero decimation DMA needs 3.93 GB/s; long captures may overflow. Any lost
+    or invalid samples raise an error rather than silently distorting a PSD.
+    Separate captures have gaps; do not concatenate them as one uniform record.
+    """
+    for name, value, low, high in (("samples",samples,1,1048575),
+                                   ("decimation_log2",decimation_log2,0,16)):
+        if not isinstance(value,int) or not low <= value <= high:
+            raise ValueError(f"{name} must be an integer in [{low}, {high}].")
+    sample_rate_hz = ERROR_SAMPLE_RATE_HZ / (1 << decimation_log2)
+    if timeout_s is None:
+        timeout_s = samples / sample_rate_hz + 2.0
+    if not math.isfinite(timeout_s) or timeout_s <= 0:
+        raise ValueError("timeout_s must be positive and finite.")
+    _check_version(overlay)
+    if not overlay.pll_control.read(0x00) & 1:
+        raise ValueError("Enable the PLL detector before taking I/Q data.")
+    import numpy as np
+    from pynq import allocate
+    monitor = overlay.pll_monitor
+    dma = overlay.axi_dma_3
+    if monitor.read(0x00) & 1:
+        raise RuntimeError("An I/Q capture is already armed.")
+    # Arm DMA first. Raising monitor enable releases/empties only its own FIFO.
+    buffer = allocate(shape=(samples,2), dtype=np.int64)
+    transfer_started = False
+    try:
+        dma.recvchannel.transfer(buffer)
+        transfer_started = True
+        monitor.write(0x00, (samples << 12) | (decimation_log2 << 1) | 1)
+        deadline = time.monotonic() + timeout_s
+        while not dma.recvchannel.idle:
+            if dma.mmio.read(0x34) & 0x70:
+                raise RuntimeError("I/Q DMA reported a transfer error.")
+            if time.monotonic() >= deadline:
+                raise TimeoutError("I/Q DMA capture timed out.")
+            time.sleep(0.001)
+        dma.recvchannel.wait()  # complete driver bookkeeping and invalidate cache
+        transfer_started = False
+        status_word = monitor.read(0x08)
+        if status_word & 0xc or not status_word & 2 or status_word >> 12 != samples:
+            raise RuntimeError(f"I/Q record has lost/invalid samples or wrong length (status 0x{status_word:08x}); "
+                               "increase decimation if overflow bit 2 is set.")
+        return dict(i_adc_counts=np.array(buffer[:,1],dtype=float)/256.0,
+                    q_adc_counts=np.array(buffer[:,0],dtype=float)/256.0,
+                    sample_rate_hz=sample_rate_hz, decimation_log2=decimation_log2)
+    finally:
+        monitor.write(0x00, 0)
+        if transfer_started:
+            # Stop this S2MM receiver before freeing memory still owned by DMA.
+            # The PLL and the other DMA engines are unaffected.
+            dma.recvchannel.stop()
+            dma.recvchannel.start()
+        buffer.freebuffer()
 
 
 def set_dc_output(overlay, code, *, enabled=True):

@@ -3,6 +3,7 @@ import importlib.util
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
+import numpy as np
 from unittest.mock import patch
 
 spec=importlib.util.spec_from_file_location('laser_pll',Path(__file__).resolve().parents[1]/'python_scripts/laser_pll.py')
@@ -24,8 +25,9 @@ class GPIO:
 class Controls(unittest.TestCase):
     def setUp(self):
         self.ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
-                                pll_acquisition=GPIO(),pll_acquisition_status=GPIO())
-        self.ol.pll_acquisition_status.values[8]=0xA4000000
+                                pll_acquisition=GPIO(),pll_acquisition_status=GPIO(),
+                                pll_tracking=GPIO(),pll_monitor=GPIO())
+        self.ol.pll_acquisition_status.values[8]=0xA5000000
 
     def test_frequency_units_and_commit_order(self):
         self.ol.pll_status.values[0]=1<<22
@@ -52,7 +54,7 @@ class Controls(unittest.TestCase):
 
     def test_old_stage3_mapping_is_rejected_before_writes(self):
         self.ol.pll_acquisition_status.values[8]=0xA3000000
-        with self.assertRaisesRegex(ValueError,'A4 wide-phase'):
+        with self.assertRaisesRegex(ValueError,'A5 tracking/IQ'):
             pll.configure(self.ol)
         self.assertEqual(self.ol.pll_control.writes,[])
         self.assertEqual(self.ol.pll_acquisition.writes,[])
@@ -119,7 +121,7 @@ class Controls(unittest.TestCase):
 
     def test_acquisition_status_units(self):
         self.ol.pll_acquisition_status.values[0]=3|128|(0xffffff<<8)
-        self.ol.pll_acquisition_status.values[8]=0xA4010000|1024|417
+        self.ol.pll_acquisition_status.values[8]=0xA5010000|1024|417
         state=pll.acquisition_status(self.ol)
         self.assertEqual(state['remembered_turns'],-1)
         self.assertEqual(state['fft_frequency_hz'],800640000)
@@ -137,6 +139,79 @@ class Controls(unittest.TestCase):
         self.ol.pll_control.values[0]=1
         with self.assertRaises(ValueError): pll.configure_acquisition(self.ol)
         self.assertEqual(self.ol.pll_acquisition.writes,[])
+
+    def test_tracking_stage_encoding_and_legacy_gain_protection(self):
+        self.ol.pll_control.values[0]=1
+        self.ol.pll_acquisition_status.values[0]=3|128
+        self.ol.pll_acquisition.values[0]=0x00200043
+        pll.select_stage(self.ol,4,wait=False)
+        self.assertEqual(self.ol.pll_acquisition.values[0],0x00200048)
+        with self.assertRaises(ValueError): pll.set_gains(self.ol,phase_gain_shift=1,capture_gain_shift=6)
+        with self.assertRaises(ValueError): pll.enable_capture(self.ol,False)
+        pll.select_stage(self.ol,3,wait=False)
+        self.assertEqual(self.ol.pll_acquisition.values[0],0x00200043)
+
+    def test_tracking_requires_settled_stage3(self):
+        for state in (2,3|8,3|16,5):
+            self.ol.pll_acquisition_status.values[0]=state
+            with self.assertRaises(ValueError): pll.select_stage(self.ol,4,wait=False)
+        self.assertEqual(self.ol.pll_acquisition.writes,[])
+
+    def test_tracking_gain_units_and_status(self):
+        self.ol.pll_acquisition_status.values[0]=4
+        self.ol.pll_tracking.values[8]=(1<<31)|(1<<28)|(104858<<3)
+        state=pll.set_tracking_gain(self.ol,3)
+        self.assertEqual(self.ol.pll_tracking.writes,[(0,(14<<4)|3)])
+        self.assertEqual(state['gain_relative_to_stage3'],8.0)
+        self.assertTrue(state['initialized'] and state['valid'])
+        self.assertFalse(state['ramping'])
+        for shift in (-1,9):
+            with self.assertRaises(ValueError): pll.set_tracking_gain(self.ol,shift)
+
+    def test_tracking_timeout_leaves_requested_ramp_intact(self):
+        self.ol.pll_acquisition_status.values[0]=4
+        with patch.object(pll.time,'monotonic',side_effect=[0,2]):
+            with self.assertRaises(TimeoutError): pll.set_tracking_gain(self.ol,2,timeout_s=1)
+        self.assertEqual(self.ol.pll_tracking.values[0],(14<<4)|2)
+
+    def capture_fixture(self, flags=0):
+        # A tiny signed buffer with the physical {I64,Q64} DMA packing.
+        released=[]
+        class Buffer(np.ndarray):
+            def freebuffer(self): released.append(True)
+        buffer=np.zeros((16,2),dtype=np.int64).view(Buffer)
+        receiver=SimpleNamespace(idle=False, transfer=lambda b:None, wait=lambda:None)
+        self.ol.axi_dma_3=SimpleNamespace(recvchannel=receiver,mmio=SimpleNamespace(read=lambda _:0))
+        old_write=self.ol.pll_monitor.write
+        def write(address,value):
+            old_write(address,value)
+            if value&1:
+                buffer[:,0]=-512; buffer[:,1]=1024
+                self.ol.pll_monitor.values[8]=(16<<12)|2|flags
+                receiver.idle=True
+        self.ol.pll_monitor.write=write
+        self.ol.pll_control.values[0]=1
+        return buffer,released
+
+    def test_iq_capture_units_and_no_laser_control_writes(self):
+        buffer,released=self.capture_fixture()
+        with patch.dict('sys.modules',pynq=SimpleNamespace(allocate=lambda **_:buffer)):
+            capture=pll.capture_iq(self.ol,16,decimation_log2=4)
+        np.testing.assert_array_equal(capture['i_adc_counts'],4*np.ones(16))
+        np.testing.assert_array_equal(capture['q_adc_counts'],-2*np.ones(16))
+        self.assertEqual(capture['sample_rate_hz'],15.36e6)
+        self.assertEqual(self.ol.pll_monitor.values[0],0)
+        self.assertEqual(self.ol.pll_control.writes,[])
+        self.assertEqual(self.ol.pll_acquisition.writes,[])
+        self.assertEqual(released,[True])
+
+    def test_invalid_or_dropped_iq_is_rejected(self):
+        for flag in (4,8):
+            buffer,released=self.capture_fixture(flags=flag)
+            with patch.dict('sys.modules',pynq=SimpleNamespace(allocate=lambda **_:buffer)):
+                with self.assertRaisesRegex(RuntimeError,'lost/invalid'): pll.capture_iq(self.ol,16)
+            self.assertEqual(released,[True])
+            self.assertEqual(self.ol.pll_monitor.values[0],0)
 
 
 if __name__=='__main__': unittest.main()

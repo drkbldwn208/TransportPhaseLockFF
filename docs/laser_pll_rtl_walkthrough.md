@@ -4,29 +4,26 @@ This is a source-line guide to every synthesizable handwritten PLL module. Adjac
 
 ## laser_pll.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll.sv).
+
 | Source lines | What the hardware does |
 |---|---|
-| 1–4 | Defines simulation time units and the top-level real-ADC phase detector. |
-| 5–7 | Associates the stream interfaces and active-low reset with the RF fabric clock for Vivado. |
-| 8–10 | Receives eight chronological real ADC words and the AXIS valid/ready handshake. |
-| 11–13 | Exposes the seven-pair DAC stream and its ready input. |
-| 14–19 | Receives staged DDS frequency, main controls, phase setpoint, acquisition controls and literal DC code. |
-| 20–24 | Returns fine phase/frequency, acquisition stage/turn count, and FFT diagnostics. |
-| 25–27 | Decodes enable, clear, and minimum post-mixer amplitude in ADC counts. |
-| 28–30 | Declares the eight complex mixer samples, validity, DDS acknowledgment and committed FCW. |
-| 31–37 | Instantiates the mixer on the global reset, allowing the DDS to keep physical time while the detector is muted. |
-| 38–39 | Never backpressures the ADC. Detector history is reset on mute or clear. |
-| 40–45 | Instantiates identical I/Q FIRs, both reset/qualified identically. |
-| 46–47 | Computes unsigned I/Q magnitudes, including the magnitude of the most-negative signed input. |
-| 48–51 | Applies the max-norm amplitude threshold with eight fractional bits and explicitly rejects zero input. |
-| 52–57 | Sends qualified I/Q into full-circle atan2; the phase-valid flag follows its pipeline. |
-| 59–63 | Declares three detector targets and their validity/saturation diagnostics, plus signed 24-bit turns. |
-| 64–72 | Instantiates phase subtraction, derivative capture and wide-phase scaling, with independent stage-3 validity. |
-| 73–78 | Taps the raw ADC into the FFT estimator. It runs while muted, but clear resets its state and sticky faults. |
-| 79–89 | Connects coarse and fine candidates to stage selection. Uses the committed FCW, not half-written GPIO data. |
-| 90–93 | Registers/packs the selected target for DAC 229/1 and retains stall diagnostics. |
-| 94–95 | Packs the existing phase-status ABI; this valid flag describes fine phase, not wide/DC validity. |
-| 96–97 | Sign-extends the 18-bit fine frequency error to a 32-bit GPIO read. |
+| 1–7 | Declares the real-ADC top, RF clock and reset/interface metadata. |
+| 8–13 | Receives eight real ADC samples and returns seven packed DAC I/Q pairs per clock. |
+| 14–21 | Receives DDS, acquisition, tracking and independent monitor GPIO controls. |
+| 22–32 | Exports tracking/monitor status, the I/Q AXIS/FIFO reset, and existing diagnostics. |
+| 34–39 | Decodes detector enable/clear/threshold and declares mixer/DDS signals. |
+| 40–46 | Instantiates the continuously running coherent mixer; muting does not restart its phase. |
+| 47–54 | Always accepts ADC words; resets only the detector on mute/clear and runs matched I/Q FIRs. |
+| 55–60 | Computes the max-norm amplitude gate in post-mixer ADC counts with eight fractional bits. |
+| 61–66 | Runs atan2 only on valid, sufficiently strong filtered vectors. |
+| 68–75 | Declares parallel detector candidates, full unwrapped phase, turn count and tracking handshakes. |
+| 76–84 | Runs wrapped error/frequency detection and unchanged /160 stage-3 scaling. |
+| 85–89 | Runs tracking about a saved phase and the previous selected DAC output; its gain is independent. |
+| 90–95 | Taps I/Q before amplitude gating; monitor reset/backpressure never resets or stalls the detector. |
+| 96–101 | Runs the parallel sparse FFT estimator from real ADC data. |
+| 102–113 | Selects coarse, capture, unwrapped, tracking or DC targets through the common handoff. |
+| 114–117 | Packs the selected signed error into the RFDC stream and handles mute/stall reporting. |
+| 118–121 | Packs live fine phase, validity, saturation, stall, commit acknowledgement and frequency status. |
 
 ## laser_pll_mixer.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_mixer.sv).
@@ -103,25 +100,18 @@ This is a source-line guide to every synthesizable handwritten PLL module. Adjac
 
 | Source lines | What the hardware does |
 |---|---|
-| 1–4 | Defines phase/frequency detection; one turn is 2^18 phase codes. |
-| 5–11 | Receives phase, validity, gain/polarity controls, setpoint and wrap-memory arm. |
-| 12–17 | Returns wrapped error/frequency and the shorter legacy candidate with validity/clipping. |
-| 18–24 | Returns the independently valid wide-phase target, capture target and 24-bit winding counter. |
-| 25 | Subtracts the measured phase modulo one turn to form the principal error. |
-| 26–28 | Keeps previous measured phase and forms a wrapped first difference; validity prevents differencing across gaps. |
-| 29–31 | Allocates legacy/capture gain registers and the bounded 26-bit unwrapped representation. |
-| 32–34 | Counts principal-error wraps. The DAC representation preserves phase over many turns; full 43-bit debug arithmetic is unused here. |
-| 35–39 | Instantiates the three-register stage-3 scaler. Passes aligned validity, gain and polarity; output slope is reduced by 160. |
-| 40–41 | Sign-extends phase and derivative so maximum GPIO gains cannot overflow the working representation. |
-| 42–43 | Forms the legacy detector with an optional derivative. |
-| 44–46 | Forms forced capture and converts the existing registered candidates to signed DAC units, including inversion. |
-| 48–50 | States the consecutive-sample frequency ambiguity bound and starts the synchronous detector. |
-| 51–59 | Reset clears phase history, valid flags and legacy/capture gain registers. |
-| 60–67 | Tracks validity, stores measured phase, and registers wrapped error and derivative. |
-| 68–70 | Applies common phase gain to stages 0/2 and aligns their target validity. |
-| 71–73 | Closes sequential logic; 49-bit working values preserve both maximum gain shifts. |
-| 74–76 | Flags/clamps the legacy DAC output instead of allowing sign wrap. |
-| 77–80 | Flags/clamps the forced-capture output and closes the module. |
+| 1–11 | Defines signed phase-error detection and its clock, validity, controls and wrap-memory arm. |
+| 12–25 | Returns legacy/capture/stage-3 targets, validity/saturation, 24-bit turns and full 43-bit phase for tracking. |
+| 26–29 | Forms principal phase error and adjacent-sample wrapped frequency difference; keeps previous validity. |
+| 30–32 | Allocates wide legacy/capture gain registers and bounded stage-3 phase. |
+| 33–35 | Counts slips and exports both full phase for origin subtraction and bounded phase for the old scaler. |
+| 36–40 | Runs the unchanged three-register /160 scaler for stage 3. |
+| 41–44 | Sign-extends phase/frequency and forms optional legacy frequency capture. |
+| 45–47 | Forms forced capture and polarity-adjusted DAC candidates. |
+| 49–60 | States the frequency ambiguity bound; reset clears phase history, validity and gain registers. |
+| 61–68 | Tracks valid phase, saves the previous sample, and registers phase/frequency errors without differencing across gaps. |
+| 69–71 | Applies the original gain fields to stages 0/2 and aligns their validity. |
+| 73–81 | Flags and saturates both legacy/capture candidates, preserving sign at maximum shifts. |
 
 ## laser_pll_unwrap.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_unwrap.sv).
@@ -205,25 +195,23 @@ This is a source-line guide to every synthesizable handwritten PLL module. Adjac
 
 | Source lines | What the hardware does |
 |---|---|
-| 1–3 | Defines coarse/fine/DC selection without reference retuning or feedback filtering. |
-| 4–13 | Receives clock/reset/ready, controls, committed reference frequency and coarse/fine validity. |
-| 14–22 | Receives candidate DAC codes/clipping and separate validity for the longer stage-3 pipeline, plus winding count. |
-| 23–28 | Returns arm, selected output, validity/clipping and acquisition status. |
-| 29–33 | Selects DC as internal mode 4 or a requested stage 0…3. |
-| 34–39 | Allocates widened coarse-frequency/gain registers and their validity flags. |
-| 40–47 | Subtracts the FFT frequency from the reference in 937.5 Hz codes, registers independent coarse gain and aligns validity. |
-| 48–50 | Clamps the coarse candidate into DAC range and flags clipping. |
-| 51–53 | Allows stage 2 inside ±80 MHz when the FFT and fine target are valid. |
-| 54–57 | Keeps stage-3 entry manual; fine_ready reports fine input/legacy-target validity, and preparation has five bits. |
-| 58–60 | Arms memory while stage 3 is active or a valid request is pending. |
-| 61–64 | Requires five valid armed clocks to prepare the counter and longer scaler before handoff. |
-| 65–71 | Declares/defaults independent active and requested target multiplexers. |
-| 72–76 | Selects the active coarse, capture, unwrapped or DC candidate. Stage 3 uses its own delayed validity; DC is always valid. |
-| 77–81 | Builds the requested candidate and applies the existing stage-2 qualification. |
-| 82–83 | Requires both the new scaler valid flag and prepared memory for stage-3 acceptance. |
-| 84–86 | DC bypass needs no detector validity; closes the target mux. |
-| 87–94 | Runs the common one-register continuous handoff for all stages. |
-| 95–97 | Packs the full winding counter and live status flags into GPIO. |
+| 1–13 | Defines detector selection and receives coarse/fine data, control and DAC readiness. |
+| 14–25 | Receives the four fine candidates, separate pipeline valid flags and 24-bit winding count. |
+| 26–32 | Returns memory/tracking arm, selected DAC target and acquisition diagnostics. |
+| 33–38 | Decodes stage 4 from request bit 3 and DC as mode 5 from priority bit 2. |
+| 39–44 | Allocates widened coarse frequency/scaling registers; coarse error cannot wrap at the fine ambiguity limit. |
+| 45–52 | Registers reference-minus-FFT-bin frequency, coarse gain and its validity. |
+| 53–58 | Clips the coarse DAC code and qualifies stage 2 within ±80 MHz with valid fine data. |
+| 59–64 | Defines manual fine-data readiness and five-clock wrap/scaler preparation. |
+| 65–67 | Keeps wrap memory armed across stages 3↔4; prepares tracking while its request is pending. |
+| 68–71 | Shifts preparation validity or resets it after invalid/disarmed data. |
+| 72–78 | Defines separate active/requested multiplexers; legacy is the default. |
+| 79–84 | Selects the active coarse, capture, unwrapped, tracking or literal-DC output with its own validity. |
+| 85–89 | Defaults the requested candidate and applies stage-2 frequency qualification. |
+| 90–93 | Requires valid prepared memory and the chosen pipeline output for stages 3/4; no frequency or dwell gate. |
+| 94–96 | DC needs no detector validity; closes the request mux. |
+| 97–104 | Uses the unchanged registered tracking-offset handoff for every mode change. |
+| 105–107 | Packs signed turns, validity/readiness, pending, transition and the three-bit active mode. |
 
 ## laser_pll_handoff.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_handoff.sv).
@@ -264,16 +252,65 @@ This is a source-line guide to every synthesizable handwritten PLL module. Adjac
 
 ## laser_pll_wrapper.v
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_wrapper.v).
+
 | Source lines | What the hardware does |
 |---|---|
-| 1–3 | Supplies the Verilog top boundary needed for this Vivado module reference. |
-| 4–6 | Declares stream clock association and active-low reset metadata. |
-| 7–12 | Declares the ADC and DAC AXIS ports with the same widths as laser_pll.sv. |
-| 13–18 | Declares staged frequency and detector/acquisition/DC control ports for GPIO wiring. |
-| 19–23 | Declares four 32-bit GPIO status outputs. |
-| 24–28 | Instantiates the SystemVerilog top and passes clocks, reset and stream handshakes directly. |
-| 29–30 | Passes control words directly; no new registers, clock crossings or latency. |
-| 31–34 | Passes status words directly and closes the wrapper. |
+| 1–6 | Declares the Verilog module-reference boundary and associates stream/FIFO resets with the RF clock. |
+| 7–18 | Exposes the existing ADC/DAC stream and DDS/acquisition controls without extra logic. |
+| 19–23 | Adds tracking/monitor controls, status and active-low monitor FIFO reset. |
+| 24–27 | Explicit AXIS metadata identifies I/Q TDATA, TVALID, TREADY and TLAST for block-design wiring. |
+| 28–32 | Returns existing fine, acquisition and FFT diagnostics. |
+| 33–39 | Passes original ports directly to the SystemVerilog top. |
+| 40–44 | Passes new GPIO, FIFO reset and monitor stream ports directly; no added registers or crossings. |
+| 45–48 | Passes the original status words and closes the wrapper. |
+
+## laser_pll_tracking.sv
+[Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_tracking.sv).
+
+| Source lines | What the hardware does |
+|---|---|
+| 1–6 | Defines the anchored tracking law and fixed-point units; one turn is 2^18 input phase codes. |
+| 7–20 | Receives full unwrapped phase, entry DAC bias, initial sensitivity/polarity and GPIO target; emits a DAC candidate. |
+| 21–25 | Stores origin, bias, positive sensitivity coefficient and interval counter. |
+| 26–30 | Bounds target/initial shifts to 0..8 and interval to 0..20; constructs update mask and exact target coefficient. |
+| 31–33 | Sets a <=1/256 relative coefficient step and reports whether a ramp remains. |
+| 34–37 | Reset/disarm/invalid data clears unobservable origin history and restores the base coefficient. |
+| 38–40 | On first valid armed sample, saves phase and DAC bias and starts at the main phase-gain setting. |
+| 41–43 | Counts RF clocks between coefficient updates only while a change remains. |
+| 44–46 | Increases sensitivity by the bounded relative step, stopping exactly at the target. |
+| 47–52 | Decreases similarly; a changed request never jumps the coefficient. |
+| 54–61 | Allocates six pipeline boundaries, a full-width origin difference, DSP product and aligned validity/polarity. |
+| 62 | Rounds fixed-point product to DAC codes using the retained half-code bit. |
+| 63 | Adds saved DAC bias in a width that cannot wrap before saturation. |
+| 64–68 | Clears the complete candidate pipeline immediately after reset/disarm/invalid phase. |
+| 69–72 | Registers full phase, then its signed 44-bit difference from the saved origin. |
+| 73–74 | Bounds only the relative DAC representation to signed 26 bits (±128 turns); upstream slip memory is untouched. |
+| 75 | Multiplies relative phase by the slowly changing, always-positive coefficient. |
+| 76 | Registers rounded DAC deviation and applies the delayed polarity; saved bias is not inverted again. |
+| 77–79 | Advances validity/polarity and marks the sixth-register output valid. |
+| 80–84 | Flags and clips bias-plus-deviation to DAC range; invalid output is zero. |
+| 85–86 | Packs origin initialized, ramping, clipping, valid and actual coefficient into read-only GPIO status. |
+
+## laser_pll_monitor.sv
+[Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_monitor.sv).
+
+| Source lines | What the hardware does |
+|---|---|
+| 1–7 | Defines finite nonblocking I/Q capture, boxcar averaging and old {I64,Q64} memory layout. |
+| 8–20 | Receives post-DDC samples/valid and arm configuration; exposes independent AXIS and FIFO reset/status. |
+| 21–26 | Stores one-shot capture state, latched averaging/count, window index and wide signed sums. |
+| 27 | Builds the 2^D-sample window endpoint; 16 bits cover the largest 65536-sample average. |
+| 28–29 | Includes each sample, substituting zero for missing input so the monitor clock grid is retained. |
+| 30–31 | Arithmetic right shift divides each complete sum by the power-of-two window length. |
+| 32–33 | Resets only the capture FIFO when disarmed and exposes queued-count and sticky data-quality flags. |
+| 34–39 | Reset/disarm clears capture state, sums, pending AXIS word and diagnostics. |
+| 40–45 | Latches settings once per arm, rejecting zero length by never starting collection. |
+| 46–49 | Releases a pending word only after READY; last-word acceptance marks source completion. |
+| 50–51 | Flags missing filtered data while a capture is collecting. |
+| 52–53 | At a window boundary, starts the next nonoverlapping averaging interval. |
+| 54–58 | If the output slot is available, sign-extends both means into the 128-bit word, asserts valid/TLAST, and counts it. |
+| 59–60 | Stops after exactly N queued samples; an unavailable slot instead sets the persistent loss flag without stalling the PLL. |
+| 61–68 | Otherwise accumulates the current window and closes the clocked logic/module. |
 
 ## Generated data and vendor IP
 `laser_pll_fir_coeffs.vh` is a constant Q1.17 tap lookup: entries 0…31 give the 32 Kaiser-window FIR coefficients, and the default case gives zero. `scripts/generate_laser_pll_tables.py` generates it together with the midpoint quarter-wave sine table and periodic Hann ROM. The FIR coefficients sum to 131072 (unity DC gain). `.mem` rows are hexadecimal ROM contents, not sequential instructions.

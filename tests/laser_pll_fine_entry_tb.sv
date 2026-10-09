@@ -12,13 +12,21 @@ module laser_pll_fine_entry_tb;
     wire signed [15:0] legacy, capture, unwrapped, dac;
     wire valid, target_valid, legacy_sat, capture_sat, unwrapped_sat, unwrapped_valid, arm, output_valid;
     wire signed [23:0] turns;
+    wire signed [42:0] full_phase;
+    wire signed [15:0] tracking_target;
+    wire tracking_arm, tracking_valid, tracking_sat;
     wire [31:0] status;
     laser_pll_error detector(.clk(clk),.rst_n(rst_n),.measured_phase(measured_phase),
         .phase_valid(rst_n),.control(32'h00000607),.phase_offset(32'd0),.unwrap_arm(arm),
         .phase_error(phase_error),.frequency_error(frequency_error),.error_valid(valid),
         .dac_target(legacy),.target_valid(target_valid),.target_saturated(legacy_sat),
         .capture_target(capture),.capture_saturated(capture_sat),
-        .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),.unwrapped_valid(unwrapped_valid),.turns(turns));
+        .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),.unwrapped_valid(unwrapped_valid),
+        .turns(turns),.unwrapped_phase(full_phase));
+    laser_pll_tracking tracking(.clk(clk),.rst_n(rst_n),.arm(tracking_arm),
+        .phase_codes(full_phase),.phase_valid(valid && arm),.held_dac(dac),
+        .initial_gain_shift(4'd0),.invert(1'b1),.tracking_control(32'd0),
+        .dac_target(tracking_target),.target_valid(tracking_valid),.saturated(tracking_sat),.tracking_status());
     laser_pll_acquisition acquisition(.clk(clk),.rst_n(rst_n),.ready(1'b1),
         .acquisition_control(cfg),.test_dc(32'd0),.control(32'h00000607),
         .reference_frequency(48'd114532461226667),.fft_bin(fft_bin),.fft_valid(fft_valid),
@@ -26,10 +34,11 @@ module laser_pll_fine_entry_tb;
         .legacy_target(legacy),.legacy_saturated(legacy_sat),
         .capture_target(capture),.capture_saturated(capture_sat),
         .unwrapped_target(unwrapped),.unwrapped_saturated(unwrapped_sat),
+        .tracking_target(tracking_target), .tracking_saturated(tracking_sat), .tracking_valid(tracking_valid),
         .unwrapped_valid(unwrapped_valid),
-        .target_valid(target_valid),.turns(turns),.unwrap_arm(arm),
+        .target_valid(target_valid),.turns(turns),.unwrap_arm(arm),.tracking_arm(tracking_arm),
         .dac_target(dac),.output_valid(output_valid),.output_saturated(),.acquisition_status(status));
-    integer previous, delta, base, phase_step, maximum_step;
+    integer previous, previous_mode, delta, base, phase_step, maximum_step;
     reg previously_fine;
     initial begin
         // FFT becomes invalid or far away at entry: it must not veto stage 3.
@@ -48,27 +57,29 @@ module laser_pll_fine_entry_tb;
                     @(negedge clk);
                     rst_n=1; measured_phase=-(base+direction*k*phase_step);
                     if (k==100) begin cfg=32'h00200003; fft_valid=crossing>=0; fft_bin=104; end
-                    previous=dac;
+                    if (k==1100) cfg[3]=1;
+                    previous=dac; previous_mode=status[2:0];
                     @(posedge clk); #0.1;
                     if (k==90 && status[2:0]!=initial_stage) $fatal(1,"Initial stage was not entered");
                     // Allow pipeline history near the +/-80-turn rail. Multiple
                     // remembered turns inside that range must remain linear.
                     if (unwrapped_valid && (turns>82 || turns < -82) && !unwrapped_sat)
                         $fatal(1,"Large unwrapped error must report DAC saturation");
-                    if (status[2:0]==3) begin
+                    if (status[2:0]==3 || status[2:0]==4) begin
                         delta=$signed(dac)-previous;
-                        if (!previously_fine && delta!=0) $fatal(1,"Entry discontinuity %d",delta);
+                        if (status[2:0]!=previous_mode && delta!=0) $fatal(1,"Entry discontinuity %d",delta);
                         if (previously_fine && (delta>maximum_step || delta < -maximum_step))
                             $fatal(1,"Uncounted branch cut near handoff: dir=%d crossing=%d k=%d delta=%d",direction,crossing,k,delta);
                         previously_fine=1;
                     end
                 end
                 if (!previously_fine) $fatal(1,"Fine entry never accepted");
+                if (status[2:0]!=4) $fatal(1,"Tracking handoff never accepted");
             end
         end
         end
         end
-        $display("PASS: manual fine entry without FFT; both signs; 9 wrap alignments; 93.75 kHz / 10 MHz / 20 MHz / 100 MHz detuning");
+        $display("PASS: manual fine/tracking entry without FFT; both signs; 9 wrap alignments; 93.75 kHz / 10 MHz / 20 MHz / 100 MHz detuning");
         $finish;
     end
 endmodule

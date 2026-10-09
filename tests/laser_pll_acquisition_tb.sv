@@ -16,7 +16,8 @@ module laser_pll_acquisition_tb;
         .reference_frequency(48'd114532461226667), // exactly 800 MHz to FCW rounding
         .fft_bin(bin),.fft_valid(fft_valid),.error_valid(valid),
         .legacy_target(legacy),.legacy_saturated(1'b0),.capture_target(capture),.capture_saturated(1'b0),
-        .unwrapped_target(unwrapped),.unwrapped_saturated(1'b0),.unwrapped_valid(valid),.target_valid(valid),.turns(24'sd0),
+        .unwrapped_target(unwrapped),.unwrapped_saturated(1'b0),.tracking_target(16'sd500), .tracking_saturated(1'b0), .tracking_valid(valid),
+        .unwrapped_valid(valid),.target_valid(valid),.turns(24'sd0),
         .unwrap_arm(arm),.dac_target(output_code),.output_valid(output_valid),
         .output_saturated(saturated),.acquisition_status(status));
     reg slip_arm=0, slip_valid=0;
@@ -29,7 +30,7 @@ module laser_pll_acquisition_tb;
     task request_stage(input integer mode);
         integer cycles;
         begin
-            @(negedge clk); before_code=output_code; cfg=(cfg & ~7)|mode;
+            @(negedge clk); before_code=output_code; cfg=(cfg & ~15)|(mode==5 ? 4 : mode==4 ? 8 : mode);
             tick;
             if (mode==3) begin
                 cycles=0;
@@ -93,9 +94,12 @@ module laser_pll_acquisition_tb;
         @(negedge clk); bin=104;
         repeat(4) tick;
         request_stage(3); settle;
+        request_stage(4); settle;
+        if (output_code!=500 || !arm) $fatal(1,"Tracking stage/unwrap memory");
+        request_stage(3); settle;
         // DC works without ADC/fine validity and bypasses inverted polarity.
         @(negedge clk); valid=0; fft_valid=0; dc=-1234;
-        request_stage(4); settle;
+        request_stage(5); settle;
         if (output_code!=-1234 || !output_valid) $fatal(1,"DC bypass depends on detector");
         @(negedge clk); ready=0; dc=1234;
         repeat(10) begin tick; if (output_code!=-1234) $fatal(1,"Stalled output changed"); end

@@ -18,17 +18,22 @@ module laser_pll_acquisition (
     input wire signed [15:0] unwrapped_target,
     input wire unwrapped_saturated,
     input wire unwrapped_valid,
+    input wire signed [15:0] tracking_target,
+    input wire tracking_saturated,
+    input wire tracking_valid,
     input wire target_valid,
     input wire signed [23:0] turns,
     output wire unwrap_arm,
+    output wire tracking_arm,
     output wire signed [15:0] dac_target,
     output wire output_valid,
     output wire output_saturated,
     output wire [31:0] acquisition_status
 );
     // Mode 0 retains the old wrapped detector for comparison; 1/2/3 are stages.
-    // Mode 4 is literal signed DC, independent of input signal and polarity.
-    wire [2:0] request = acquisition_control[2] ? 3'd4 : {1'b0,acquisition_control[1:0]};
+    // Mode 4 is tracking; bit 3 requests it. Bit 2 overrides with DC (mode 5).
+    wire [2:0] request = acquisition_control[2] ? 3'd5 :
+                         acquisition_control[3] ? 3'd4 : {1'b0,acquisition_control[1:0]};
     wire [2:0] active_mode;
     wire transitioning;
     // Frequency codes are turns per fabric clock, as in the fine discriminator,
@@ -57,7 +62,9 @@ module laser_pll_acquisition (
     reg [4:0] unwrap_prepared;
     // Start memory before switching the output, so a crossing at entry cannot
     // reach the DAC as an uncounted +/-pi jump through the error pipeline.
-    assign unwrap_arm = active_mode==3 || (request==3 && fine_ready);
+    assign unwrap_arm = active_mode==3 || active_mode==4 ||
+                        ((request==3 || request==4) && fine_ready);
+    assign tracking_arm = active_mode==4 || request==4;
     always @(posedge clk) begin
         if (!rst_n || !unwrap_arm || !target_valid) unwrap_prepared <= 0;
         else unwrap_prepared <= {unwrap_prepared[3:0],1'b1};
@@ -72,7 +79,8 @@ module laser_pll_acquisition (
             1: begin active_target=coarse_target; active_valid=coarse_valid2 && fft_valid; active_saturated=coarse_saturated; end
             2: begin active_target=capture_target; active_saturated=capture_saturated; end
             3: begin active_target=unwrapped_target; active_valid=unwrapped_valid; active_saturated=unwrapped_saturated; end
-            4: begin active_target=test_dc[15:0]; active_valid=1; active_saturated=0; end
+            4: begin active_target=tracking_target; active_valid=tracking_valid; active_saturated=tracking_saturated; end
+            5: begin active_target=test_dc[15:0]; active_valid=1; active_saturated=0; end
         endcase
         requested_target=legacy_target; requested_valid=target_valid;
         request_allowed=1;
@@ -81,7 +89,9 @@ module laser_pll_acquisition (
             2: begin requested_target=capture_target; request_allowed=near_ready; end
             3: begin requested_target=unwrapped_target; requested_valid=unwrapped_valid;
                      request_allowed=fine_ready && unwrap_prepared[4]; end
-            4: begin requested_target=test_dc[15:0]; requested_valid=1; end
+            4: begin requested_target=tracking_target; requested_valid=tracking_valid;
+                     request_allowed=fine_ready && unwrap_prepared[4]; end
+            5: begin requested_target=test_dc[15:0]; requested_valid=1; end
         endcase
     end
     laser_pll_handoff handoff (.clk(clk), .rst_n(rst_n), .ready(ready),

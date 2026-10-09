@@ -20,7 +20,8 @@ module laser_pll_error (
     output wire unwrapped_valid,
     output wire signed [15:0] capture_target,
     output wire capture_saturated,
-    output wire signed [23:0] turns
+    output wire signed [23:0] turns,
+    output wire signed [42:0] unwrapped_phase
 );
     wire signed [17:0] error_now = phase_offset[17:0] - measured_phase;
     reg signed [17:0] previous_phase;
@@ -31,7 +32,7 @@ module laser_pll_error (
     wire signed [25:0] unwrapped_limited;
     laser_pll_unwrap slip_memory (.clk(clk), .rst_n(rst_n), .arm(unwrap_arm),
         .phase_valid(error_valid), .phase_error(phase_error),
-        .turns(turns), .unwrapped_error(), .phase_for_dac(unwrapped_limited));
+        .turns(turns), .unwrapped_error(unwrapped_phase), .phase_for_dac(unwrapped_limited));
     laser_pll_phase_scale fine_scale (.clk(clk), .rst_n(rst_n),
         .phase_codes(unwrapped_limited), .phase_valid(error_valid && unwrap_arm),
         .gain_shift(control[7:4]), .invert(control[2]),

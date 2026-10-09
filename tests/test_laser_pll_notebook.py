@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 
 import matplotlib
 matplotlib.use('Agg')
+import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('laser_pll',ROOT/'python_scripts/laser_pll.py')
@@ -29,7 +30,8 @@ class GPIO:
 
 def run():
     ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
-                       pll_acquisition=GPIO(),pll_acquisition_status=GPIO())
+                       pll_acquisition=GPIO(),pll_acquisition_status=GPIO(),
+                       pll_tracking=GPIO(),pll_monitor=GPIO())
     hwh=ROOT/'TransportPhaseLockFF.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh'
     rfdc=next(m for m in ET.parse(hwh).iter('MODULE') if m.get('INSTANCE')=='usp_rf_data_converter_0')
     parameters={p.get('NAME'):p.get('VALUE') for p in rfdc.iter('PARAMETER')}
@@ -41,16 +43,30 @@ def run():
         if address==8: return 0
         return ((ol.pll_frequency.read(8)>>16)&1)<<22 | (ol.pll_control.read(0)&1)<<18 | 1<<19
     def read_acquisition(address):
-        if address==8: return 0xA4010000 | 1024 | 417
+        if address==8: return 0xA5010000 | 1024 | 417
         config=ol.pll_acquisition.read(0)
-        return (4 if config&4 else config&3) | 0xe0
+        return (5 if config&4 else 4 if config&8 else config&3) | 0xe0
     ol.pll_status.read=read_status
     ol.pll_acquisition_status.read=read_acquisition
+    old_tracking_read=ol.pll_tracking.read
+    ol.pll_tracking.read=lambda address: ((1<<31)|(1<<28)|(104858<<(old_tracking_read(0)&15))) if address==8 else old_tracking_read(address)
+    class Buffer(np.ndarray):
+        def freebuffer(self): pass
+    def allocate(shape,dtype):
+        result=np.zeros(shape,dtype=dtype).view(Buffer)
+        # Small sinusoidal phase modulation of a finite-amplitude test tone.
+        phi=.01*np.sin(2*np.pi*np.arange(shape[0])/200)
+        result[:,1]=np.rint(256000*np.cos(phi)); result[:,0]=np.rint(256000*np.sin(phi))
+        return result
+    ol.axi_dma_3=SimpleNamespace(recvchannel=SimpleNamespace(idle=True,transfer=lambda _:None,wait=lambda:None))
+    old_monitor_read=ol.pll_monitor.read
+    ol.pll_monitor.read=lambda address: (old_monitor_read(0)&0xfffff000)|2 if address==8 else old_monitor_read(address)
     xrfdc=SimpleNamespace(EVNT_SRC_IMMEDIATE=0,MIXER_TYPE_FINE=2,
                          MIXER_MODE_C2R=3,MIXER_SCALE_1P0=1,EVENT_MIXER=1)
     namespace={}
     cells=json.loads((ROOT/'python_scripts/laser_pll_bringup.ipynb').read_text())['cells']
-    with patch.dict(sys.modules,laser_pll=pll,pynq=SimpleNamespace(Overlay=lambda _:ol),xrfdc=xrfdc), \
+    with patch.object(sys,'path',[str(ROOT/'python_scripts'),*sys.path]), \
+         patch.dict(sys.modules,laser_pll=pll,pynq=SimpleNamespace(Overlay=lambda _:ol,allocate=allocate),xrfdc=xrfdc), \
          patch.object(pll.time,'sleep',lambda _:None), contextlib.redirect_stdout(io.StringIO()):
         for index,cell in enumerate(cells):
             if cell['cell_type']=='code':

@@ -2,7 +2,7 @@
 // ADC 224/3 -> coherent internal quadrature mixer -> FIR -> atan2 -> error.
 // All ports, including GPIO controls, use the 245.76 MHz RF fabric clock.
 module laser_pll (
-    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis, ASSOCIATED_RESET rst_n" *)
+    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_monitor, ASSOCIATED_RESET rst_n" *)
     input wire clk,
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *) input wire rst_n,
     input wire [127:0] s_axis_tdata,
@@ -17,6 +17,15 @@ module laser_pll (
     input wire [31:0] phase_offset,
     input wire [31:0] acquisition_control,
     input wire [31:0] test_dc,
+    input wire [31:0] tracking_control,
+    input wire [31:0] monitor_control,
+    output wire [31:0] tracking_status,
+    output wire [31:0] monitor_status,
+    output wire monitor_fifo_rst_n,
+    output wire [127:0] m_monitor_tdata,
+    output wire m_monitor_tvalid,
+    input wire m_monitor_tready,
+    output wire m_monitor_tlast,
     output wire [31:0] phase_status,
     output wire [31:0] frequency_status,
     output wire [31:0] acquisition_status,
@@ -61,6 +70,9 @@ module laser_pll (
     wire error_valid, target_valid, target_saturated, saturated, stalled;
     wire capture_saturated, unwrapped_saturated, unwrapped_valid, output_valid, output_saturated, unwrap_arm;
     wire signed [23:0] turns;
+    wire signed [42:0] unwrapped_phase;
+    wire tracking_arm, tracking_valid, tracking_saturated;
+    wire signed [15:0] tracking_target;
     laser_pll_error error_detector (.clk(clk), .rst_n(detector_rst_n),
         .measured_phase(measured_phase), .phase_valid(phase_valid),
         .control(control), .phase_offset(phase_offset), .unwrap_arm(unwrap_arm),
@@ -69,7 +81,18 @@ module laser_pll (
         .dac_target(dac_target), .target_valid(target_valid), .target_saturated(target_saturated),
         .capture_target(capture_target), .capture_saturated(capture_saturated),
         .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated),
-        .unwrapped_valid(unwrapped_valid), .turns(turns));
+        .unwrapped_valid(unwrapped_valid), .turns(turns), .unwrapped_phase(unwrapped_phase));
+    laser_pll_tracking tracking (.clk(clk), .rst_n(detector_rst_n), .arm(tracking_arm),
+        .phase_codes(unwrapped_phase), .phase_valid(error_valid && unwrap_arm),
+        .held_dac(output_target), .initial_gain_shift(control[7:4]), .invert(control[2]),
+        .tracking_control(tracking_control), .dac_target(tracking_target),
+        .target_valid(tracking_valid), .saturated(tracking_saturated), .tracking_status(tracking_status));
+    laser_pll_monitor monitor (.clk(clk), .rst_n(rst_n),
+        .i_sample(filtered_i), .q_sample(filtered_q),
+        .sample_valid(filtered_valid && filtered_q_valid), .monitor_control(monitor_control),
+        .monitor_status(monitor_status), .fifo_rst_n(monitor_fifo_rst_n),
+        .m_axis_tdata(m_monitor_tdata), .m_axis_tvalid(m_monitor_tvalid),
+        .m_axis_tready(m_monitor_tready), .m_axis_tlast(m_monitor_tlast));
     wire [9:0] fft_bin;
     wire fft_valid;
     laser_pll_fft coarse_estimator (.clk(clk), .rst_n(rst_n && !clear),
@@ -84,7 +107,8 @@ module laser_pll (
         .capture_target(capture_target), .capture_saturated(capture_saturated),
         .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated),
         .unwrapped_valid(unwrapped_valid),
-        .target_valid(target_valid), .turns(turns), .unwrap_arm(unwrap_arm),
+        .tracking_target(tracking_target), .tracking_saturated(tracking_saturated), .tracking_valid(tracking_valid),
+        .target_valid(target_valid), .turns(turns), .unwrap_arm(unwrap_arm), .tracking_arm(tracking_arm),
         .dac_target(output_target), .output_valid(output_valid),
         .output_saturated(output_saturated), .acquisition_status(acquisition_status));
     laser_pll_dac dac_output (.clk(clk), .rst_n(rst_n), .enable(enable), .clear(clear),
