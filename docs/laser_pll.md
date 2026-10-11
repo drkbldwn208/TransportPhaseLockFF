@@ -12,12 +12,20 @@ raw-ADC snapshots. It is outside the fast phase pipeline. A fourth stage raises
 tracking sensitivity after acquisition, and an independent I/Q DMA monitor
 preserves amplitude information for noise analysis.
 
+**Loop-analyzer update (October 9, 2026, signature `0xA6`):** a small sine is
+added to the selected error immediately before the existing DAC register. Two
+copies of the original HLS demodulator simultaneously measure the error and
+resulting DAC command. Their ratio measures the complete return path, including
+the active FPGA discriminator, from 10 Hz to 1 MHz. This adds **no feedback
+pipeline clocks**. Deploy matching A6 hardware, helpers and notebooks; the helper
+checks the FPGA signature before configuration. The A5 archive is retained.
+
 **Tracking/IQ update (October 8, 2026, signature `0xA5`):** the bench test achieved
 phase lock with the /160 mapping, even at high controller gain. That working
 stage 3 is unchanged. Stage 4 saves its phase/DAC operating point and slews toward
 1–256 times its nominal sensitivity. Stage 4 adds three clocks relative to stage
 3; stages 0–3 keep their latency. `axi_dma_3` is restored for post-DDC I/Q snapshots.
-Deploy the matching A5 bitstream, HWH and helper; the new helper rejects A3/A4.
+This behavior is retained in A6.
 
 **Wide-phase mapping update (October 7, 2026, signature `0xA4`):** stage 3 now
 maps approximately **±80 turns to the DAC rails at phase gain shift 0**, reducing
@@ -39,14 +47,14 @@ importlib.invalidate_caches()
 laser_pll = importlib.reload(laser_pll)
 print("Helper:", laser_pll.__file__)
 print("Stage-3 divisor:", laser_pll.STAGE3_PHASE_DIVISOR)  # 160
-print("FPGA version:", hex(ol.pll_acquisition_status.read(0x08) >> 24))  # 0xa5
+print("FPGA version:", hex(ol.pll_acquisition_status.read(0x08) >> 24))  # 0xa6
 ```
 
 This does not write GPIOs or reprogram the FPGA. Retry calls through
 `laser_pll.function_name(...)`; repeat any `from laser_pll import ...` imports
 to replace their old function references. A missing constant with an updated
 file indicates stale imported code; do not bypass the version check. Divisor 160
-alone does not distinguish A4/A5: the current helper also has `FPGA_VERSION=0xA5`.
+alone does not distinguish A4/A5/A6: the current helper has `FPGA_VERSION=0xA6`.
 
 ## Specifications
 
@@ -107,7 +115,10 @@ flowchart LR
     SCALE --> SELECT
     TRACK --> SELECT
     DC["GPIO signed DC code"] --> SELECT
-    SELECT --> DAC["DAC 229/1 → external analog controllers"]
+    SELECT --> INJECT["Optional sine addition: no new feedback register"]
+    INJECT --> DAC["DAC 229/1 → external analog controllers"]
+    SELECT --> DEMOD["Two synchronous demodulators: error E, command U"]
+    INJECT --> DEMOD
 ```
 
 | Module | Physical function |
@@ -122,6 +133,7 @@ flowchart LR
 | `laser_pll_phase_scale.sv` | Three-register stage-3 reciprocal scaling, gain/polarity alignment, rounding and saturation |
 | `laser_pll_tracking.sv` | Six-register phase-deviation scaling about a saved phase/DAC bias; gradual coefficient changes |
 | `laser_pll_monitor.sv` | Independent signed I/Q means, finite packet/TLAST, explicit loss/invalid flags; never stalls the loop |
+| `laser_pll_fra.sv` | Smooth test-tone envelope, combinational injection, simultaneous error/command probes and measurement window |
 | `laser_pll_handoff.sv` | One registered output and a temporary decaying offset for continuous stage changes |
 | `laser_pll_dac.v` | RFDC packing, mute, backpressure hold and stall diagnostic |
 | `laser_pll.sv`, `laser_pll_wrapper.v` | Wiring, amplitude gate, GPIO status, block-design boundary |
@@ -472,6 +484,202 @@ averaged I/Q equals averaged phase only in the small-fluctuation regime. Records
 are contiguous only if the monitor flags are clear; separate DMA captures have
 software gaps and must not be concatenated for a single uniform-sampling FFT.
 
+### Measured I/Q spectra, October 9, 2026
+
+The user confirmed identical loop settings for `laser_iq_fast.npz` and
+`laser_iq_slow.npz`; only the capture rate/duration changed. Both contain 262144
+baseband samples. Reproduce the plots with
+`python3 ILAData/analyze_laser_iq_captures.py`. The script verifies spectral
+normalization with Parseval's relation and a synthetic AM/PM signal, records
+input hashes, and saves numerical PSD/cross-PSD CSVs beside the original NPZs.
+
+| Capture | Sample rate | Duration | Fractional amplitude RMS | Phase-PSD bin spacing |
+|---|---:|---:|---:|---:|
+| Fast, D=4 | 15.36 MS/s | 17.067 ms | 0.7115% | 234.375 Hz |
+| Slow, D=12 | 60 kS/s | 4.369 s | 17.630% apparent AM | 0.91553 Hz |
+
+The [spectra](../ILAData/laser_iq_psd_comparison.png) show direct complex-envelope
+power for `z/mean(abs(z))` and the amplitude-normalized `z/abs(z)`, plus separate
+phase and fractional-amplitude PSDs. Positive and negative envelope offsets are
+summed. Their dB/Hz normalization is to mean amplitude squared, **not coherent
+carrier power or conventional single-sideband dBc/Hz**. Phase fluctuations are
+large, so the usual small-phase conversion is not applied. Phase is
+`unwrap(angle(z))` with one global best-fit phase line removed; Welch uses
+65536-point Hann windows, 50% overlap and seven segment averages.
+
+The fast record has 1.92 rad RMS detrended phase, substantial low-frequency
+motion around 0.5 kHz, and a narrow feature near 175.3 kHz. The latter contributes
+about 0.32 rad RMS in the 170–180 kHz band. This is near the earlier scope-9
+ringing frequency, making loop peaking a plausible hypothesis, not an established
+cause. At the cross-spectrum's 175.3 kHz bin, AM–phase coherence is 0.981 and
+cross phase is −102.8 degrees. Correlation alone does not establish AM-to-PM
+conversion or its direction.
+
+The [cross spectra](../ILAData/laser_iq_cross_psd.png) use 16384-point Hann
+windows and 31 averages. The convention is `conj(AM_fft)*phase_fft`, with
+`AM=abs(z)/mean(abs(z))-1`; positive cross phase means phase leads AM, as in
+[SciPy CSD](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.csd.html).
+AM here is fractional **voltage amplitude**, not fractional optical/RF power.
+In the small-AM limit the fractional-power PSD is four times this AM PSD.
+Cross-phase points below the approximate per-bin coherence threshold are gray;
+the threshold is not corrected for searching many bins.
+
+The slow record's large AM is strongly explained by averaging rotating vectors.
+Averaging each group of 256 fast I/Q samples to emulate D=12 gives **17.782% AM**;
+normalizing the fast vectors to constant amplitude *before* that averaging still
+gives **17.781%**. Both closely match the slow record's 17.630%. See the
+[averaging check](../ILAData/laser_iq_averaging_check.png). This comparison uses a
+17 ms subset of behavior, not a simultaneous 4.37 s measurement, but shows that
+the observed AM does not require increased physical RF-amplitude noise.
+
+The slow vectors sometimes nearly vanish, and 4.3% of successive phase steps
+exceed π/2. Thus its large apparent low-frequency phase PSD and apparent turn
+count cannot reliably quantify optical slips, linewidth or detuning. Normalizing
+amplitude after averaging does not undo cancellation. For this measured state,
+the earlier generic D=12 suggestion is unsuitable for trustworthy phase noise.
+Try D=7 with about one million samples (1.92 MS/s, 0.52 s), compare D=6, then
+unwrap the adequately sampled phase before further offline filtering/decimation.
+Those records retain the 175 kHz feature while improving low-frequency coverage;
+still check nonvanishing vectors and sampling convergence.
+
+### Comparison with the previous analog lock
+
+The user identified `Desktop/DyAnalysis/10-05-26/PSD_data_light_on (1)` as the
+baseline. This is the October 5 light-on capture, **not** the earlier October 2
+`PSD_data` whose +1.311 kHz candidate was contaminated. The comparison reads the
+baseline without modifying it. After excluding its first 0.2 s, it supplies 222
+nonoverlapping 17.067 ms records, equal in duration to the single new fast record.
+Each record has one fitted phase line removed and seven Hann Welch averages with
+4.267 ms windows: identical 234.375 Hz frequency bins in both receivers.
+
+| Integrated phase-noise band | Old RMS (rad) | New RMS (rad) | New/old noise power |
+|---|---:|---:|---:|
+| First nonzero bin (234 Hz)–1 kHz | 1.975 | 1.756 | −1.0 dB; within old record-to-record variation |
+| 1–10 kHz | 0.646 | 0.176 | **−11.3 dB** |
+| 10–100 kHz | 2.324 | 0.719 | **−10.2 dB** |
+| 100–200 kHz | 0.249 | 0.463 | +5.4 dB; receiver passbands differ |
+| 170–180 kHz | 0.0544 | 0.321 | **+15.4 dB**, dominated by the new narrow line |
+
+The [comparison plot](../ILAData/laser_lock_psd_comparison.png) includes phase,
+AM, full/phase-only envelope and cross spectra. Gray shading shows the old
+10th–90th percentile over equal-duration records, not confidence in the mean.
+The new 10–100 kHz RMS is below even the old 10th percentile (1.75 rad); the
+few-hundred-Hz motion lies within the old distribution. The higher near-carrier
+full-I/Q spectral density indicates power concentrated closer to the carrier;
+it must not be read directly as a larger phase-noise floor. Use the rad²/Hz
+phase panel for that comparison. Resampling new I/Q to
+960 kS/s with an anti-alias filter changes its 1–100 kHz phase results by less
+than 0.01 dB. Thus the observed improvement is not simply its higher sample rate.
+Different acquisition filters and physical settings still prevent assigning all
+of the difference to the FPGA detector. The old record has occasional near-zero
+vectors; the new D=12 record is omitted from improvement ratios because its
+pre-arctan averaging makes phase tracking ambiguous. No improved sub-200-Hz
+performance, optical linewidth or long-term stability is established here.
+
+The [175 kHz detail](../ILAData/laser_iq_175khz_detail.png) uses the full 17 ms
+record: the feature is near **175.33 kHz**, with approximately **112 Hz apparent
+FWHM** on a 58.6 Hz grid. Its width is close to that of a pure sine viewed through
+the same finite Hann window, although there are skirts/nearby structure. This is
+an apparently coherent line, not a measurement of unity-gain crossover. A narrow
+loop oscillation, lightly damped resonance or periodic disturbance amplified by
+the loop are possibilities. A broad servo bump and a narrow oscillation near
+crossover can coexist. No intrinsic linewidth is inferred from this short record.
+
+Measure L around 150–200 kHz with several injection amplitudes and denser frequency
+spacing. A small controller-gain reduction followed by another fast I/Q capture
+can test whether the line collapses or changes frequency; a fixed-frequency line
+remaining as gain changes instead motivates checking periodic pickup or drive
+electronics. The sharp line alone cannot identify the source. The current
+hundreds-of-Hz motion and residual 10–100 kHz broad hump also deserve attention;
+one unity-gain-frequency number is insufficient to optimize both actuator paths.
+
+Reproduce using `python3 ILAData/compare_laser_lock_psds.py`; CSV data, hashes,
+band integrals and qualifications are saved in `ILAData/laser_lock_psd_comparison.*`.
+
+## Combined-loop transfer measurement — A6
+
+Use `laser_pll_loop_sweep.ipynb` after loading A6 and acquiring lock with the
+bring-up notebook. Keep the existing `ol`; importing the helper does not
+reconfigure the PLL. The analyzer reuses the original `perturbation_gen` and
+`demod_err` HLS implementations from the transport transfer-function project,
+with new IP instances. It uses lane 0 of the eight-lane generator and zeros the
+other seven probe lanes. The original transport measurement path remains wired.
+
+Let `e` be the selected FPGA error, `d` the small injected sine, and `u=e+d` the
+DAC command. Both probes are sampled on the same edge with the same sine/cosine
+reference. For the negative-feedback convention:
+
+```text
+E = -L U
+D = U - E
+L = -E/U                complete loop return ratio
+S = U/(U-E) = 1/(1+L)  closed-loop sensitivity
+T = -E/(U-E)           complementary sensitivity
+```
+
+`L` includes the DAC and output electronics, the combined piezo/EOM controllers
+and actuators, laser, ADC, mixer/FIR, CORDIC, and **the selected discriminator**.
+Stage 2 includes its phase-difference frequency term; stages 3/4 include their
+active unwrapped phase mapping. It measures the operating stage, not a disabled
+stage in parallel. Do not subtract the digital delay from this measured ratio.
+It cannot separately identify the piezo and EOM responses or the FALC alone.
+The ratio requires a stationary, approximately linear locked operating point.
+
+```python
+import laser_pll_loop_sweep as fra
+import numpy as np
+
+point = fra.measure_point(ol, 1000, amplitude_codes=32)
+print(point["frequency_hz"], -point["error"] / point["drive"])
+# Check another amplitude and the scope before the full sweep.
+rows = fra.sweep(ol, np.geomspace(20, 1e6, 61), amplitude_codes=32,
+                 repeats=3, csv_path="laser_loop.csv")
+# Optional cleanup after interruption; keeps the feedback enabled:
+fra.stop(ol)
+```
+
+The original DDS advances eight 32-bit phase steps per fabric clock, giving
+0.457764 Hz frequency resolution. Software reports actual frequencies and rounds
+the integration interval to a whole number of those cycles within half a clock.
+Default settling is at least five cycles/20 ms; measurement is at least sixteen
+cycles/20 ms. Each interval fits 32 bits, at most 17.476 s. Requested frequencies
+from 10 Hz through 1 MHz are accepted. One 20 Hz point takes about 1.05 s before
+repeats. Increase settling time for a slow physical transient.
+
+The envelope rises/falls in 4096 steps, one step per 64 clocks: **1.066667 ms**
+each way. Measurement starts after the full-amplitude settling interval. An
+operator abort follows the same ramp down. The old generator freezes at its
+last sine value when idle, so software keeps it advancing in its long settling
+state while this adapter independently controls measurement and ramps to zero.
+This avoids leaving a DC stimulus after completion. A 16-clock drain follows
+the ramp. Detector bias is subtracted only from the monitor probes; their signed
+20-bit range accommodates the difference between two 16-bit DAC codes.
+
+The injection product/reference have their own aligned pipeline. Feedback sees
+only a combinational signed addition and saturation before the existing DAC
+register: **A6 adds zero feedback clocks**, including when measuring. Stage-4
+anchoring still uses the original selected error, before injection. The demod
+probes never stall feedback. Clipping, invalid phase/target, DAC stalls, dropped
+probe samples, generator gaps or abort invalidate the point. These are data
+quality checks, not an optical lock detector.
+
+The demodulators return signed 72-bit sums. `I=sum(x*sin)` and `Q=sum(x*cos)`;
+`2*(I+jQ)/(N*32768)` gives peak phasors in signed 16-bit DAC codes, with positive
+phase for a leading response. At nominal 2 Vpp, 32 codes is 0.977 mV peak,
+equivalent to about 0.49 rad at the /160 detector slope. This is a starting
+amplitude, not a validated small-signal level: compare half amplitude and check
+error/controller headroom. The physical DAC resolves groups of four codes.
+
+The CSV is saved in the notebook's current directory and checkpointed after each
+frequency; the notebook also saves timestamped settings and a Bode plot. CSVs
+contain actual/requested frequencies, E/U/D phasors, L/S, measurement duration,
+FPGA stage/gain words, repeat standard errors and a repeatability flag. `reliable`
+requires both E and U to exceed five estimated standard errors; deterministic
+distortion can still pass. When |L| is large, U is small and the ratio is poorly
+conditioned. Near the upper end E may instead be small. Increase integration or
+adjust stimulus after checking linearity rather than trusting a noisy ratio.
+Record FALC/piezo settings manually and change one setting between sweeps.
+
 ## Handoffs: what is continuous, and what is not
 
 Stage requests are manual GPIO writes. Hardware waits for the requested target
@@ -738,6 +946,8 @@ Each AXI GPIO has channel 1 at `+0x00`, channel 2 at `+0x08`.
 | `pll_acquisition_status` | `0xA0220000` | Stage and 24-bit turn count | FFT status |
 | `pll_tracking` | `0xA0230000` | Tracking sensitivity/ramp control (output) | Tracking status (input) |
 | `pll_monitor` | `0xA0240000` | I/Q arm/averaging/length control (output) | I/Q capture status (input) |
+| `pll_fra` | `0xA0250000` | Analyzer arm, bit 0 (output) | Analyzer status (input) |
+| `pll_fra_window` | `0xA0260000` | Settling clocks (output) | Measurement clocks (output) |
 
 Main control: bit 0 enable; bit 1 capture term **in legacy mode 0 only**; bit 2
 invert; bit 3 clear; bits 7:4 phase gain shift; 11:8 capture gain shift; 15:12
@@ -765,7 +975,7 @@ use the matching helper, not the old `bit 2 = DC` interpretation.
 
 FFT status: bits 9:0 peak bin; bit 10 estimate valid; bit 11 weak/insufficiently
 dominant peak; bits 12/13 sticky overflow/protocol fault; bits 15:14 reserved;
-23:16 frame counter modulo 256; 31:24 signature `0xA5`. DDS commits stage the low
+23:16 frame counter modulo 256; 31:24 signature `0xA6`. DDS commits stage the low
 word first and toggle the high-word commit bit, then wait for acknowledgment.
 Normal updates preserve accumulated reference phase. GPIO writes are software
 timed; deterministic chirps would need a hardware FCW trajectory source.
@@ -782,6 +992,22 @@ settings are latched at entry. Status: bit 0 collecting, 1 last word accepted
 by FIFO, 2 sticky lost-output-window flag, 3 sticky invalid-input flag; 11:4
 reserved; 31:12 queued sample count. DMA completion is separate from bit 1.
 Arm=0 clears monitor state and its FIFO, without touching the feedback path.
+
+Analyzer control: bit 0 arm, other bits reserved. Status: bit 0 busy, bit 1
+measuring, bit 2 done; bits 3–7 sticky clipping, invalid phase/target or DAC stall,
+probe loss, generator gap, abort; bits 18:8 reserved; bits 31:19 envelope 0..4096.
+Both new GPIOs reset to zero. Window counts use the 245.76 MHz RF clock.
+
+The three HLS AXI-Lite peripherals are `pll_fra_tone` at `0xA0270000`,
+`pll_fra_error` at `0xA0280000`, and `pll_fra_drive` at `0xA0290000`.
+The generator uses offsets `0x10` frequency word, `0x18` error amplitude,
+`0x20` unused NCO amplitude (zero), `0x28/2C` 40-bit settling count,
+`0x34/38` 40-bit measurement count, and `0x40` rising-edge start.
+Each demodulator has `0x10` done, `0x14` done-valid (clear on read), signed
+72-bit I at `0x20/24/28`, I-valid at `0x2C`, signed 72-bit Q at `0x40/44/48`,
+and Q-valid at `0x4C`; both result-valid flags clear on read. Use the helper to
+handle their ordering and freshness. These peripherals use the RF clock/reset;
+the interconnect handles PS-to-RF AXI crossings.
 
 ## Jupyter workflow
 
@@ -891,7 +1117,7 @@ must not be used with this restored stream.
    The approximately 59 µs processing interval plus sample-and-hold gives roughly
    88 µs of coarse-path delay at low modulation frequencies, already about 32°
    at 1 kHz. This stage cannot support the intended 100 kHz–1 MHz fast lock.
-   Call `enable(overlay)` and watch `fft_frequency_hz` move toward 800 MHz.
+   Call `enable(ol)` and watch `fft_frequency_hz` move toward 800 MHz.
    With the configured feedback sign, the piezo should pull in the correcting
    direction. Far from target the DAC rail is intentional. FFT capture range
    does not increase the piezo's physical tuning range. If the beat runs away,
@@ -1015,6 +1241,9 @@ python3 tests/test_laser_pll_acquisition.py
 python3 tests/test_laser_pll_stages.py
 python3 tests/test_laser_pll_control.py
 python3 tests/test_laser_pll_notebook.py
+python3 tests/test_laser_pll_fra.py
+python3 tests/test_laser_pll_loop_sweep.py
+python3 tests/test_laser_pll_loop_notebook.py
 vivado -mode batch -source scripts/check_full_project_timing.tcl
 vivado -mode batch -source scripts/export_laser_pll_overlay.tcl
 ```
@@ -1073,12 +1302,81 @@ The RTL tests are xsim simulations, **not bitstream timing measurements**:
   correct settled sign/scaling after deliberate re-entry, DC with no ADC and mute.
 - `test_laser_pll_control.py`: host register units, atomic FCW commits, reversed
   default polarity, DC code/sign, stage fields/status, timeout cancellation and mute.
-- `test_laser_pll_notebook.py`: executes all 15 notebook code cells against mocked
+- `test_laser_pll_notebook.py`: executes all 19 notebook code cells against mocked
   GPIO/RFDC hardware and the generated HWH metadata, ending with the output muted.
 
 These tests do not model ADC/DAC analog behavior, converter latency, optical noise,
 analog filters, piezo/EOM dynamics, or closed-loop lock acquisition. Full-project
 synthesis and routed timing are separate, in `build/full_project/`.
+
+### Loop-analyzer verification, October 9, 2026 — A6
+
+`test_laser_pll_fra.py` simulates the **original generated HLS tone and both
+HLS demodulator RTL cores**, connected through the new adapter to a known
+negative-feedback model with gain 0.5 and four clocks of return delay. It
+recovers the expected complex L at 60 kHz and 960 kHz within 0.002 absolute
+error. It also checks simultaneous records, exact integration length, repeated
+runs, zero stimulus after completion, operator-abort ramp, DAC clipping and
+explicit sample-loss flags under backpressure. This is a digital protocol and
+transfer-ratio test, not a model of the physical laser or FALC.
+
+The 6528-sample phase/DDS regression and full real-ADC-tone acquisition/tracking/
+monitor/DC simulation pass with the analyzer idle, preserving their measured
+18/20/23-clock pipelines. All 19 host control tests and 19 bring-up notebook cells
+pass. Eight analyzer host tests cover actual-frequency/window units, signed
+72-bit conversion, result freshness, fault rejection/cleanup, firmware mismatch,
+changed settings and saved response signs. All seven sweep-notebook code cells
+execute with register/DMA mocks; CSV/NPZ files and the Bode plot are checked,
+with feedback still enabled and stimulus off afterward.
+
+BD comparison against the saved A5 design confirms unchanged RFDC parameters
+and preservation of every original scalar/interface net endpoint group. A6 adds
+two GPIOs, one tone core, two demodulators and one constant; the AXI interconnect
+adds five ports. Full-project implementation is a separate check reported below.
+
+The complete board was synthesized, placed and routed with Vivado 2024.1:
+
+| A6 routed check | Result |
+|---|---:|
+| Setup WNS / TNS | **+0.229 ns / 0 ns**, zero failing endpoints |
+| Hold WHS / THS | **+0.010 ns / 0 ns**, zero failing endpoints |
+| Pulse-width slack | **+0.534 ns**, zero failing endpoints |
+| Unclocked registers / unconstrained internal endpoints | **0 / 0** |
+| Routed DRC errors | **0** |
+
+The final timing report after reopening the checkpoint gives the values above;
+the route-progress estimate was +0.221/+0.009 ns. The limiting setup path is
+phase-error/wrap-and-scale logic, with 3.727 ns data-path delay. The analyzer's
+addition/saturation meets timing without a new feedback register. These are
+full-board internal timing results, with the existing external-I/O/clock
+limitations described below. Reports: [timing](../build/full_project/timing_summary.rpt),
+[PLL paths](../build/full_project/pll_setup_paths.rpt),
+[utilization](../build/full_project/utilization.rpt), [DRC](../build/full_project/drc.rpt).
+
+| A6 resource | PLL block, including adapter | Whole board design |
+|---|---:|---:|
+| LUTs | 5,774 (1.358%) | 66,163 (15.558%) |
+| Flip-flops | 3,856 (0.453%) | 87,172 (10.249%) |
+| 36-kbit RAM tile equivalents | 76 (7.037%) | 249 (23.056%) |
+| DSP48E2 | 98 (2.294%) | 231 (5.407%) |
+
+The analyzer adapter itself uses 180 LUTs, 242 FFs and one DSP. Together with
+its two GPIOs, generator and two HLS demodulators, the analyzer uses 1,634 LUTs,
+2,476 FFs, four RAMB36s and 34 DSPs: **0.384%, 0.291%, 0.370%, and 0.796%** of
+the board totals respectively, excluding additional AXI interconnect logic.
+The whole-board DSP increase from A5 is 34. The original eight-lane demodulator
+implementations are reused unchanged; resource minimization of these cores is
+not required to meet the current timing/resource budget.
+
+Bitstream generation completed with zero DRC errors. The matched package is
+[laser_pll_overlay_A6.zip](../build/laser_pll_overlay_A6.zip), also available as
+[laser_pll_overlay.zip](../build/laser_pll_overlay.zip). It includes the bitstream,
+HWH, ILA probes, both helpers, both notebooks, README and verification metadata.
+Source/export equality, HWH peripheral addresses, file hashes and ZIP CRCs pass.
+The prior [A5 archive](../build/laser_pll_overlay_A5.zip) is preserved. No hardware
+was programmed, and both batch Vivado sessions have exited; the original project
+can be reopened. A6 bitstream SHA-256:
+`00f4a3dd78883f00de411da53f275ac3703b99b75be6fd3436c9da164d5eb24e`.
 
 ### Tracking and monitor verification, October 8, 2026 — A5
 
@@ -1116,7 +1414,7 @@ The limiting path is the stage-2 `capture_scaled_reg[2]` through detector
 selection/handoff to `dac_target_reg[12]`, with 3.816 ns data-path delay.
 Timing margin is positive but small; another build or RTL change needs its own
 check. Existing clock/external-I/O constraint limitations below remain applicable.
-Reports: [timing](../build/full_project/timing_summary.rpt),
+The following report paths now contain the latest build, rather than an archived A5 run: [timing](../build/full_project/timing_summary.rpt),
 [PLL setup](../build/full_project/pll_setup_paths.rpt),
 [PLL hold](../build/full_project/pll_hold_paths.rpt),
 [utilization](../build/full_project/utilization.rpt),
@@ -1137,9 +1435,9 @@ filter chain is no longer connected to DMA and is pruned; it is not a reduction
 in the new detector's arithmetic. The previous A4 package is retained at
 `build/laser_pll_overlay_A4.zip` for reproducible bench comparisons.
 
-Bitstream generation completed with zero DRC errors. The matching A5 deployment
-files are in [laser_pll_overlay.zip](../build/laser_pll_overlay.zip) and
-`build/laser_pll_overlay/`; the archive includes the bitstream, HWH, ILA probes,
+Bitstream generation completed with zero DRC errors. The historical A5 deployment
+files are retained in [laser_pll_overlay_A5.zip](../build/laser_pll_overlay_A5.zip);
+the archive includes the bitstream, HWH, ILA probes,
 Python helper, notebook and verification metadata. Source/export equality,
 HWH addresses, notebook syntax and archive CRCs were checked. No board was
 programmed. The A5 bitstream SHA-256 is
@@ -1167,7 +1465,7 @@ not an RTL simulation and not a new full-board bitstream build.
 | Registers | **3,466**, 0.41% of device, including timing-harness registers |
 | RAM-tile equivalents | **76**, 7.04% of device |
 
-Reports: [timing](../build/laser_pll_timing/timing_summary.rpt),
+The following report paths now contain the latest build, rather than an archived A5 run: [timing](../build/laser_pll_timing/timing_summary.rpt),
 [utilization](../build/laser_pll_timing/utilization.rpt),
 [DRC](../build/laser_pll_timing/drc.rpt). The harness registers ADC/control inputs
 and DAC/status outputs; outer harness ports have no board I/O delay model.
@@ -1200,7 +1498,7 @@ were preserved. This build does not add any RTL pipeline stages: stage 3 remains
 
 For that historical A4 build the limiting setup path was from `error_detector/capture_scaled_reg` to
 `acquisition/handoff/dac_target_reg`, with 3.567 ns data-path delay at the
-4.069 ns RF fabric clock period. The linked reports now describe A5:
+4.069 ns RF fabric clock period. The linked reports are overwritten by the current build; these numbers describe the historical A3 result:
 [timing](../build/full_project/timing_summary.rpt),
 [PLL setup](../build/full_project/pll_setup_paths.rpt),
 [PLL hold](../build/full_project/pll_hold_paths.rpt),
@@ -1224,7 +1522,7 @@ is now preserved as `build/laser_pll_overlay_A4.zip`. No board programming was p
 
 The results below apply to the earlier ±3 MHz fine / ±8 MHz FFT entry-gate
 revision, **not the later A4/A5 mappings**. They are retained as historical
-full-board results; current tracking hardware requires the A5 export.
+full-board results; current hardware requires the A6 export.
 
 The complete saved BD, including the user's updated ILA wiring, was regenerated,
 synthesized and routed in Vivado 2024.1. All user-specified timing constraints
@@ -1255,7 +1553,7 @@ the measured ADC-word-to-DAC-register latency remains **18 clocks**.
 
 The complete PLL row includes the FFT and acquisition logic but not its five
 external AXI GPIO IPs. The reports in `build/full_project/` for timing, hierarchy
-utilization, clock interaction and DRC have been replaced by the current A5
+utilization, clock interaction and DRC have been replaced by the current A6
 build. The historical CDC and clock-audit files retain their original timestamps.
 
 Existing project warnings remain and limit broader board-level sign-off:
@@ -1266,7 +1564,8 @@ Existing project warnings remain and limit broader board-level sign-off:
   PLL uses `RFADC1_CLK` directly and its internal paths are constrained.
 - External PMOD and serial ADC/DAC ports lack complete board I/O delay constraints.
   The positive internal timing result does not verify those external interfaces.
-- ILA scalar probes 6/7/8 are still one bit wide on wider transport buses, as in
+- ILA scalar probes 6/7/8 and PLL-status probes 14/15 are still one bit wide
+  on wider buses, as in
   the saved BD. The new raw ADC 224/3 stream remains the full 128-bit slot 9 bus.
 - Existing unused test/control inputs are implicitly tied low. The stale
   `TransportPhaseLock/auto_export.tcl` project file reference remains.

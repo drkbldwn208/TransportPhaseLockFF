@@ -26,8 +26,8 @@ class Controls(unittest.TestCase):
     def setUp(self):
         self.ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
                                 pll_acquisition=GPIO(),pll_acquisition_status=GPIO(),
-                                pll_tracking=GPIO(),pll_monitor=GPIO())
-        self.ol.pll_acquisition_status.values[8]=0xA5000000
+                                pll_tracking=GPIO(),pll_monitor=GPIO(),pll_fra=GPIO())
+        self.ol.pll_acquisition_status.values[8]=0xA6000000
 
     def test_frequency_units_and_commit_order(self):
         self.ol.pll_status.values[0]=1<<22
@@ -54,7 +54,7 @@ class Controls(unittest.TestCase):
 
     def test_old_stage3_mapping_is_rejected_before_writes(self):
         self.ol.pll_acquisition_status.values[8]=0xA3000000
-        with self.assertRaisesRegex(ValueError,'A5 tracking/IQ'):
+        with self.assertRaisesRegex(ValueError,'A6 loop-analyzer'):
             pll.configure(self.ol)
         self.assertEqual(self.ol.pll_control.writes,[])
         self.assertEqual(self.ol.pll_acquisition.writes,[])
@@ -121,7 +121,7 @@ class Controls(unittest.TestCase):
 
     def test_acquisition_status_units(self):
         self.ol.pll_acquisition_status.values[0]=3|128|(0xffffff<<8)
-        self.ol.pll_acquisition_status.values[8]=0xA5010000|1024|417
+        self.ol.pll_acquisition_status.values[8]=0xA6010000|1024|417
         state=pll.acquisition_status(self.ol)
         self.assertEqual(state['remembered_turns'],-1)
         self.assertEqual(state['fft_frequency_hz'],800640000)

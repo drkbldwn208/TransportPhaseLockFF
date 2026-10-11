@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 // Vivado 2024.1 block-design module references require a Verilog top file.
 module laser_pll_wrapper (
-    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_monitor, ASSOCIATED_RESET rst_n:monitor_fifo_rst_n" *)
+    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n:monitor_fifo_rst_n" *)
     input wire clk,
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *) input wire rst_n,
     input wire [127:0] s_axis_tdata,
@@ -25,6 +25,26 @@ module laser_pll_wrapper (
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_monitor TVALID" *) output wire m_monitor_tvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_monitor TREADY" *) input wire m_monitor_tready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_monitor TLAST" *) output wire m_monitor_tlast,
+    input wire [31:0] fra_control, fra_settle_clocks, fra_measure_clocks,
+    output wire [31:0] fra_status,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_fra_tone TDATA" *) input wire [159:0] s_fra_tone_tdata,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_fra_tone TVALID" *) input wire s_fra_tone_tvalid,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_fra_tone TREADY" *) output wire s_fra_tone_tready,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_fra_ref TDATA" *) input wire [271:0] s_fra_ref_tdata,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_fra_ref TVALID" *) input wire s_fra_ref_tvalid,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_fra_ref TREADY" *) output wire s_fra_ref_tready,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_error TDATA" *) output wire [159:0] m_fra_error_tdata,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_error TVALID" *) output wire m_fra_error_tvalid,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_error TREADY" *) input wire m_fra_error_tready,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_drive TDATA" *) output wire [159:0] m_fra_drive_tdata,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_drive TVALID" *) output wire m_fra_drive_tvalid,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_drive TREADY" *) input wire m_fra_drive_tready,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_error_ref TDATA" *) output wire [271:0] m_fra_error_ref_tdata,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_error_ref TVALID" *) output wire m_fra_error_ref_tvalid,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_error_ref TREADY" *) input wire m_fra_error_ref_tready,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_drive_ref TDATA" *) output wire [271:0] m_fra_drive_ref_tdata,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_drive_ref TVALID" *) output wire m_fra_drive_ref_tvalid,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_fra_drive_ref TREADY" *) input wire m_fra_drive_ref_tready,
     output wire [31:0] phase_status,
     output wire [31:0] frequency_status,
     output wire [31:0] acquisition_status,
@@ -42,6 +62,14 @@ module laser_pll_wrapper (
         .monitor_fifo_rst_n(monitor_fifo_rst_n), .m_monitor_tdata(m_monitor_tdata),
         .m_monitor_tvalid(m_monitor_tvalid), .m_monitor_tready(m_monitor_tready),
         .m_monitor_tlast(m_monitor_tlast),
+        .fra_control(fra_control), .fra_settle_clocks(fra_settle_clocks),
+        .fra_measure_clocks(fra_measure_clocks), .fra_status(fra_status),
+        .s_fra_tone_tdata(s_fra_tone_tdata), .s_fra_tone_tvalid(s_fra_tone_tvalid), .s_fra_tone_tready(s_fra_tone_tready),
+        .s_fra_ref_tdata(s_fra_ref_tdata), .s_fra_ref_tvalid(s_fra_ref_tvalid), .s_fra_ref_tready(s_fra_ref_tready),
+        .m_fra_error_tdata(m_fra_error_tdata), .m_fra_error_tvalid(m_fra_error_tvalid), .m_fra_error_tready(m_fra_error_tready),
+        .m_fra_drive_tdata(m_fra_drive_tdata), .m_fra_drive_tvalid(m_fra_drive_tvalid), .m_fra_drive_tready(m_fra_drive_tready),
+        .m_fra_error_ref_tdata(m_fra_error_ref_tdata), .m_fra_error_ref_tvalid(m_fra_error_ref_tvalid), .m_fra_error_ref_tready(m_fra_error_ref_tready),
+        .m_fra_drive_ref_tdata(m_fra_drive_ref_tdata), .m_fra_drive_ref_tvalid(m_fra_drive_ref_tvalid), .m_fra_drive_ref_tready(m_fra_drive_ref_tready),
         .phase_status(phase_status), .frequency_status(frequency_status),
         .acquisition_status(acquisition_status), .fft_status(fft_status)
     );

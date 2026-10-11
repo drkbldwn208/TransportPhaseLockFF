@@ -1,0 +1,186 @@
+{
+  "captures": [
+    {
+      "file": "laser_iq_fast.npz",
+      "sha256": "92b807d4802c5eae07a204c8ce9b25df46a8e56d8da5de48dbffe675f780a8d0",
+      "samples": 262144,
+      "fs_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "decimation_log2": 4,
+      "amplitude_mean_adc_counts": 6718.522967477052,
+      "amplitude_fractional_rms": 0.007115018524015151,
+      "amplitude_percentiles_adc_counts": [
+        6456.658437717665,
+        6605.046001080224,
+        6718.975572256803,
+        6827.406622794622,
+        6934.10875323283
+      ],
+      "detrended_phase_rms_rad": 1.919056039932228,
+      "phase_span_turns": 2.059768160549379,
+      "fitted_phase_slope_hz": -2.8555065504715667,
+      "coherent_mean_power_fraction": 0.009462775768481226,
+      "fraction_phase_steps_over_pi_over_2": 0.0,
+      "psd_bin_spacing_hz": 234.375,
+      "psd_hann_enbw_hz": 351.5625,
+      "psd_segments": 7,
+      "cross_bin_spacing_hz": 937.5,
+      "cross_segments": 31,
+      "approximate_per_bin_coherence_95_threshold": 0.10004935377460189,
+      "band_phase_rms_rad": {
+        "100-1000 Hz": 1.7558425619367324,
+        "1000-10000 Hz": 0.17598799882224697,
+        "10000-100000 Hz": 0.7187295446373289,
+        "100000-1e+06 Hz": 0.5252930894809579,
+        "170000-180000 Hz": 0.32145476582126625
+      },
+      "largest_phase_psd_peaks": [
+        {
+          "frequency_hz": 468.75,
+          "psd_rad2_per_hz": 0.007696317449515647
+        },
+        {
+          "frequency_hz": 175312.5,
+          "psd_rad2_per_hz": 0.00021560819130721128
+        },
+        {
+          "frequency_hz": 1171.875,
+          "psd_rad2_per_hz": 5.97285875158149e-05
+        },
+        {
+          "frequency_hz": 19453.125,
+          "psd_rad2_per_hz": 2.665065372744788e-05
+        },
+        {
+          "frequency_hz": 19921.875,
+          "psd_rad2_per_hz": 2.4485093343407182e-05
+        },
+        {
+          "frequency_hz": 18515.625,
+          "psd_rad2_per_hz": 2.3870949476860203e-05
+        },
+        {
+          "frequency_hz": 17812.5,
+          "psd_rad2_per_hz": 2.3014956477852884e-05
+        },
+        {
+          "frequency_hz": 29531.25,
+          "psd_rad2_per_hz": 2.1481019537301694e-05
+        }
+      ],
+      "cross_near_500_Hz": {
+        "frequency_hz": 937.5,
+        "coherence": 0.112062574176457,
+        "phase_deg": 50.863807089352825
+      },
+      "cross_near_20000_Hz": {
+        "frequency_hz": 19687.5,
+        "coherence": 0.2518527617894169,
+        "phase_deg": -90.05972820911951
+      },
+      "cross_near_175000_Hz": {
+        "frequency_hz": 175312.5,
+        "coherence": 0.981148988573132,
+        "phase_deg": -102.78264526733618
+      }
+    },
+    {
+      "file": "laser_iq_slow.npz",
+      "sha256": "33a301aa704821cb97cd1be64835386c22fbba7b09f41565e2bac1724b5d8869",
+      "samples": 262144,
+      "fs_hz": 60000.0,
+      "duration_s": 4.369066666666667,
+      "decimation_log2": 12,
+      "amplitude_mean_adc_counts": 4709.942585136048,
+      "amplitude_fractional_rms": 0.17630237418970895,
+      "amplitude_percentiles_adc_counts": [
+        26.33209933838178,
+        2064.573580988146,
+        4831.174993438605,
+        6102.960942669115,
+        6760.56877722273
+      ],
+      "detrended_phase_rms_rad": 76.090009847003,
+      "phase_span_turns": 78.19935143985782,
+      "fitted_phase_slope_hz": -8.816937534071023,
+      "coherent_mean_power_fraction": 0.0851139318908075,
+      "fraction_phase_steps_over_pi_over_2": 0.042991802184303984,
+      "psd_bin_spacing_hz": 0.91552734375,
+      "psd_hann_enbw_hz": 1.373291015625,
+      "psd_segments": 7,
+      "cross_bin_spacing_hz": 3.662109375,
+      "cross_segments": 31,
+      "approximate_per_bin_coherence_95_threshold": 0.10004935377460189,
+      "band_phase_rms_rad": {
+        "10-100 Hz": 4.390670792130945,
+        "100-1000 Hz": 1.9003886149176668,
+        "1000-10000 Hz": 0.401298386700595,
+        "10000-100000 Hz": 0.3781429264585834
+      },
+      "largest_phase_psd_peaks": [
+        {
+          "frequency_hz": 0.91552734375,
+          "psd_rad2_per_hz": 490.86569898189913
+        },
+        {
+          "frequency_hz": 4.57763671875,
+          "psd_rad2_per_hz": 19.589461344904937
+        },
+        {
+          "frequency_hz": 10.07080078125,
+          "psd_rad2_per_hz": 2.8343223355930527
+        },
+        {
+          "frequency_hz": 13.73291015625,
+          "psd_rad2_per_hz": 2.2575363279998943
+        },
+        {
+          "frequency_hz": 17.39501953125,
+          "psd_rad2_per_hz": 0.8952343895936483
+        },
+        {
+          "frequency_hz": 21.97265625,
+          "psd_rad2_per_hz": 0.5663190433346509
+        },
+        {
+          "frequency_hz": 32.04345703125,
+          "psd_rad2_per_hz": 0.25738556466819734
+        },
+        {
+          "frequency_hz": 36.62109375,
+          "psd_rad2_per_hz": 0.24333784049578983
+        }
+      ],
+      "cross_near_500_Hz": {
+        "frequency_hz": 501.708984375,
+        "coherence": 0.0169940843875983,
+        "phase_deg": -32.100000711982226
+      },
+      "cross_near_20000_Hz": {
+        "frequency_hz": 19998.779296875,
+        "coherence": 0.018415085732261745,
+        "phase_deg": 64.74166342143374
+      }
+    }
+  ],
+  "averaging_test": {
+    "Fast original": 0.007115018524015151,
+    "Fast re-averaged to 60 kS/s": 0.17782032008267445,
+    "Fast phase-only, then averaged": 0.1778137129263296,
+    "Slow measured": 0.17630237418970895
+  },
+  "conventions": {
+    "phase": "unwrap(angle(I+jQ)), one global best-fit line removed; Welch removes each segment mean",
+    "amplitude": "abs(I+jQ)/mean(abs(I+jQ))-1",
+    "envelope": "direct complex PSD of z/mean(abs(z)) and z/abs(z), positive+negative offsets summed",
+    "cross": "conj(AM_fft)*phase_fft; rad/Hz; positive phase means phase leads AM"
+  },
+  "cautions": [
+    "Slow I/Q averaging can create apparent AM and phase ambiguity from rapid phase motion.",
+    "Slow phase span/slope are properties of averaged vectors, not a proven optical slip count or detuning.",
+    "Spectra are normalized to mean amplitude, not coherent-carrier power; no small-phase dBc/Hz approximation.",
+    "Record-to-record differences need identical loop settings and stationarity to be interpreted physically.",
+    "Coherence indicates correlation, not causal AM-to-PM conversion."
+  ],
+  "acquisition_conditions": "User confirmed identical loop settings; only acquisition duration/rate changed."
+}

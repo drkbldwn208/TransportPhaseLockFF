@@ -10,13 +10,13 @@ ADC_SAMPLE_RATE_HZ = 1_966_080_000.0
 ERROR_SAMPLE_RATE_HZ = ADC_SAMPLE_RATE_HZ / 8
 PHASE_CODES_PER_TURN = 1 << 18
 STAGE3_PHASE_DIVISOR = 160
-FPGA_VERSION = 0xA5
+FPGA_VERSION = 0xA6
 
 
 def _check_version(overlay):
     actual = overlay.pll_acquisition_status.read(0x08) >> 24
     if actual != FPGA_VERSION:
-        raise ValueError(f"Helper requires A5 tracking/IQ firmware; FPGA reports 0x{actual:02x}. "
+        raise ValueError(f"Helper requires A6 loop-analyzer firmware; FPGA reports 0x{actual:02x}. "
                          "Load the matching .bit/.hwh/helper package; reload laser_pll after replacing it.")
 
 
@@ -82,6 +82,7 @@ def configure(overlay, *, reference_frequency_hz=800e6, phase_offset_rad=0.0,
     overlay.pll_control.write(0x00, 0)
     overlay.pll_tracking.write(0x00, 14 << 4)
     overlay.pll_monitor.write(0x00, 0)
+    overlay.pll_fra.write(0x00, 0)
     configure_acquisition(overlay)
     import xrfdc
     dac = overlay.usp_rf_data_converter_0.dac_tiles[1].blocks[1]
@@ -195,7 +196,7 @@ def select_stage(overlay, stage, *, wait=True, timeout_s=5.0):
     Stage 2 waits for FFT detuning <80 MHz and valid fine phase. Stage 3 is
     manual: only valid fine data and five clocks of wrap/scaler preparation
     are required, with no frequency, dwell or FFT gate. This requires the
-    A5 tracking/IQ FPGA bitstream; updating this helper alone is insufficient.
+    A6 loop-analyzer FPGA bitstream; updating this helper alone is insufficient.
     Stage 4 follows a settled stage 3 and saves its current phase/DAC operating
     point. Set its target with set_tracking_gain(); no optical-lock detector is
     implied. Stage-4 gain ramps are separate from the mode handoff's offset ramp.

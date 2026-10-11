@@ -2,7 +2,7 @@
 // ADC 224/3 -> coherent internal quadrature mixer -> FIR -> atan2 -> error.
 // All ports, including GPIO controls, use the 245.76 MHz RF fabric clock.
 module laser_pll (
-    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_monitor, ASSOCIATED_RESET rst_n" *)
+    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n" *)
     input wire clk,
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *) input wire rst_n,
     input wire [127:0] s_axis_tdata,
@@ -26,6 +26,20 @@ module laser_pll (
     output wire m_monitor_tvalid,
     input wire m_monitor_tready,
     output wire m_monitor_tlast,
+    input wire [31:0] fra_control, fra_settle_clocks, fra_measure_clocks,
+    output wire [31:0] fra_status,
+    input wire [159:0] s_fra_tone_tdata,
+    input wire s_fra_tone_tvalid,
+    output wire s_fra_tone_tready,
+    input wire [271:0] s_fra_ref_tdata,
+    input wire s_fra_ref_tvalid,
+    output wire s_fra_ref_tready,
+    output wire [159:0] m_fra_error_tdata, m_fra_drive_tdata,
+    output wire m_fra_error_tvalid, m_fra_drive_tvalid,
+    input wire m_fra_error_tready, m_fra_drive_tready,
+    output wire [271:0] m_fra_error_ref_tdata, m_fra_drive_ref_tdata,
+    output wire m_fra_error_ref_tvalid, m_fra_drive_ref_tvalid,
+    input wire m_fra_error_ref_tready, m_fra_drive_ref_tready,
     output wire [31:0] phase_status,
     output wire [31:0] frequency_status,
     output wire [31:0] acquisition_status,
@@ -111,8 +125,21 @@ module laser_pll (
         .target_valid(target_valid), .turns(turns), .unwrap_arm(unwrap_arm), .tracking_arm(tracking_arm),
         .dac_target(output_target), .output_valid(output_valid),
         .output_saturated(output_saturated), .acquisition_status(acquisition_status));
+    wire signed [15:0] driven_target;
+    wire driven_saturated;
+    laser_pll_fra loop_measurement (.clk(clk), .rst_n(rst_n),
+        .error_code(output_target), .error_valid(output_valid), .error_saturated(output_saturated),
+        .dac_ready(m_axis_tready), .phase_valid(error_valid),
+        .control(fra_control), .settle_clocks(fra_settle_clocks), .measure_clocks(fra_measure_clocks),
+        .status(fra_status), .drive_code(driven_target), .drive_saturated(driven_saturated),
+        .s_tone_tdata(s_fra_tone_tdata), .s_tone_tvalid(s_fra_tone_tvalid), .s_tone_tready(s_fra_tone_tready),
+        .s_ref_tdata(s_fra_ref_tdata), .s_ref_tvalid(s_fra_ref_tvalid), .s_ref_tready(s_fra_ref_tready),
+        .m_error_tdata(m_fra_error_tdata), .m_error_tvalid(m_fra_error_tvalid), .m_error_tready(m_fra_error_tready),
+        .m_drive_tdata(m_fra_drive_tdata), .m_drive_tvalid(m_fra_drive_tvalid), .m_drive_tready(m_fra_drive_tready),
+        .m_error_ref_tdata(m_fra_error_ref_tdata), .m_error_ref_tvalid(m_fra_error_ref_tvalid), .m_error_ref_tready(m_fra_error_ref_tready),
+        .m_drive_ref_tdata(m_fra_drive_ref_tdata), .m_drive_ref_tvalid(m_fra_drive_ref_tvalid), .m_drive_ref_tready(m_fra_drive_ref_tready));
     laser_pll_dac dac_output (.clk(clk), .rst_n(rst_n), .enable(enable), .clear(clear),
-        .dac_target(output_target), .target_valid(output_valid), .target_saturated(output_saturated),
+        .dac_target(driven_target), .target_valid(output_valid), .target_saturated(driven_saturated),
         .m_axis_tdata(m_axis_tdata), .m_axis_tvalid(m_axis_tvalid), .m_axis_tready(m_axis_tready),
         .saturated(saturated), .stalled(stalled));
     assign phase_status = {9'b0, frequency_ack, stalled, saturated, error_valid,

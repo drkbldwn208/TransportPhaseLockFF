@@ -1,0 +1,91 @@
+{
+  "baseline": "/home/levlabcukomen/Desktop/DyAnalysis/10-05-26/PSD_data_light_on (1)",
+  "baseline_sha256": "d41c55333ad087b5e4ad85cb5bd6c70ce25ea0e64204e2944117b46eec93f2c0",
+  "baseline_confirmed_by_user": true,
+  "old_sample_rate_hz": 960000.0,
+  "new_sample_rate_hz": 15360000.0,
+  "old_start_trim_s": 0.2,
+  "comparison_record_duration_s": 0.017066666666666667,
+  "old_comparison_records": 222,
+  "bands": [
+    {
+      "low_hz": 234.375,
+      "high_hz": 1000,
+      "old_rms_rad": 1.975265586050453,
+      "new_rms_rad": 1.7558425619367326,
+      "old_17ms_rms_percentiles_rad": [
+        1.237975856434199,
+        1.7776156619722063,
+        2.6521519099340467
+      ],
+      "new_minus_old_db": -1.0227985027620103,
+      "resampled_new_rms_rad": 1.7559859075192863
+    },
+    {
+      "low_hz": 1000,
+      "high_hz": 10000,
+      "old_rms_rad": 0.6458233979235786,
+      "new_rms_rad": 0.17598799882224697,
+      "old_17ms_rms_percentiles_rad": [
+        0.22185049634011275,
+        0.4294604752194351,
+        1.0163008229899566
+      ],
+      "new_minus_old_db": -11.292614447416705,
+      "resampled_new_rms_rad": 0.17592897239305064
+    },
+    {
+      "low_hz": 10000,
+      "high_hz": 100000,
+      "old_rms_rad": 2.3241106344713964,
+      "new_rms_rad": 0.7187295446373289,
+      "old_17ms_rms_percentiles_rad": [
+        1.7514695723256606,
+        2.359567512526861,
+        2.735903141581265
+      ],
+      "new_minus_old_db": -10.193826004800089,
+      "resampled_new_rms_rad": 0.7184108437201203
+    },
+    {
+      "low_hz": 100000,
+      "high_hz": 200000,
+      "old_rms_rad": 0.24870812929571814,
+      "new_rms_rad": 0.4630577449534024,
+      "old_17ms_rms_percentiles_rad": [
+        0.2416580225656818,
+        0.24819357054709484,
+        0.25556017147964527
+      ],
+      "new_minus_old_db": 5.398903431549732,
+      "resampled_new_rms_rad": 0.4597269581276876
+    },
+    {
+      "low_hz": 170000,
+      "high_hz": 180000,
+      "old_rms_rad": 0.054392225968870826,
+      "new_rms_rad": 0.3213013957762944,
+      "old_17ms_rms_percentiles_rad": [
+        0.05038093353368279,
+        0.05428676197374392,
+        0.058548774988599485
+      ],
+      "new_minus_old_db": 15.427515595435628,
+      "resampled_new_rms_rad": 0.3184214609429588
+    }
+  ],
+  "line_detail": {
+    "peak_frequency_hz": 175330.03191033492,
+    "bin_spacing_hz": 58.59375,
+    "apparent_fwhm_hz": 112.26049676619887,
+    "fwhm_left_hz": 175275.5268735752,
+    "fwhm_right_hz": 175387.7873703414,
+    "note": "Single 17 ms record; apparent width is window/drift limited, not an intrinsic linewidth or crossover measurement."
+  },
+  "limitations": [
+    "Different receiver filters, carrier frequencies and possibly analog settings; comparison is of measured records, not isolated FPGA hardware noise.",
+    "Old record contains occasional near-zero vectors; unwrap-derived low-frequency noise requires caution.",
+    "Current slow capture is omitted from quantitative improvement ratios because pre-arctan averaging creates phase ambiguity.",
+    "Only one new 17 ms record; no established long-term improvement or optical linewidth."
+  ]
+}

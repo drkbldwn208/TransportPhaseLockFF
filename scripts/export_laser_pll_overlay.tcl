@@ -24,4 +24,6 @@ file copy -force $root/TransportPhaseLockFF.runs/impl_1/design_1_wrapper.bit $ou
 file copy -force $root/TransportPhaseLockFF.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh $out/laser_pll.hwh
 file copy -force $root/python_scripts/laser_pll.py $out/laser_pll.py
 file copy -force $root/python_scripts/laser_pll_bringup.ipynb $out/laser_pll_bringup.ipynb
+file copy -force $root/python_scripts/laser_pll_loop_sweep.py $out/laser_pll_loop_sweep.py
+file copy -force $root/python_scripts/laser_pll_loop_sweep.ipynb $out/laser_pll_loop_sweep.ipynb
 puts "LASER_PLL_OVERLAY $out"
