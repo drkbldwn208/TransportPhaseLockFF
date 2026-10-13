@@ -14,6 +14,7 @@ if {![string match {*write_bitstream Complete*} [get_property STATUS $run]]} {
 if {![string match {*write_bitstream Complete*} [get_property STATUS $run]]} {error "Bitstream generation failed"}
 file mkdir $out
 open_run impl_1
+source $root/scripts/check_intensity_servo_routed.tcl
 report_route_status -file $root/build/full_project/route_status.rpt
 report_bus_skew -warn_on_violation -file $root/build/full_project/bus_skew.rpt
 write_debug_probes -force $out/laser_pll.ltx

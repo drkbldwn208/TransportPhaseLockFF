@@ -7750,8 +7750,8 @@
           "tier2_xbar_0": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_0_18",
-            "xci_path": "ip/design_1_tier2_xbar_0_18/design_1_tier2_xbar_0_18.xci",
+            "xci_name": "design_1_tier2_xbar_0_22",
+            "xci_path": "ip/design_1_tier2_xbar_0_22/design_1_tier2_xbar_0_22.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_0",
             "parameters": {
               "NUM_MI": {
@@ -7781,8 +7781,8 @@
           "tier2_xbar_1": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_1_18",
-            "xci_path": "ip/design_1_tier2_xbar_1_18/design_1_tier2_xbar_1_18.xci",
+            "xci_name": "design_1_tier2_xbar_1_22",
+            "xci_path": "ip/design_1_tier2_xbar_1_22/design_1_tier2_xbar_1_22.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_1",
             "parameters": {
               "NUM_MI": {
@@ -7812,8 +7812,8 @@
           "tier2_xbar_2": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_2_18",
-            "xci_path": "ip/design_1_tier2_xbar_2_18/design_1_tier2_xbar_2_18.xci",
+            "xci_name": "design_1_tier2_xbar_2_22",
+            "xci_path": "ip/design_1_tier2_xbar_2_22/design_1_tier2_xbar_2_22.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_2",
             "parameters": {
               "NUM_MI": {
@@ -7843,8 +7843,8 @@
           "tier2_xbar_3": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_3_18",
-            "xci_path": "ip/design_1_tier2_xbar_3_18/design_1_tier2_xbar_3_18.xci",
+            "xci_name": "design_1_tier2_xbar_3_22",
+            "xci_path": "ip/design_1_tier2_xbar_3_22/design_1_tier2_xbar_3_22.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_3",
             "parameters": {
               "NUM_MI": {
@@ -17070,8 +17070,8 @@
           "tier2_xbar_0": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_0_19",
-            "xci_path": "ip/design_1_tier2_xbar_0_19/design_1_tier2_xbar_0_19.xci",
+            "xci_name": "design_1_tier2_xbar_0_23",
+            "xci_path": "ip/design_1_tier2_xbar_0_23/design_1_tier2_xbar_0_23.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_0",
             "parameters": {
               "NUM_MI": {
@@ -17101,8 +17101,8 @@
           "tier2_xbar_1": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_1_19",
-            "xci_path": "ip/design_1_tier2_xbar_1_19/design_1_tier2_xbar_1_19.xci",
+            "xci_name": "design_1_tier2_xbar_1_23",
+            "xci_path": "ip/design_1_tier2_xbar_1_23/design_1_tier2_xbar_1_23.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_1",
             "parameters": {
               "NUM_MI": {
@@ -17132,8 +17132,8 @@
           "tier2_xbar_2": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_2_19",
-            "xci_path": "ip/design_1_tier2_xbar_2_19/design_1_tier2_xbar_2_19.xci",
+            "xci_name": "design_1_tier2_xbar_2_23",
+            "xci_path": "ip/design_1_tier2_xbar_2_23/design_1_tier2_xbar_2_23.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_2",
             "parameters": {
               "NUM_MI": {
@@ -17163,8 +17163,8 @@
           "tier2_xbar_3": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_3_19",
-            "xci_path": "ip/design_1_tier2_xbar_3_19/design_1_tier2_xbar_3_19.xci",
+            "xci_name": "design_1_tier2_xbar_3_23",
+            "xci_path": "ip/design_1_tier2_xbar_3_23/design_1_tier2_xbar_3_23.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_3",
             "parameters": {
               "NUM_MI": {
@@ -23337,16 +23337,6 @@
           "pll_rf_source/s_axi_aclk",
           "laser_pll_0/clk",
           "laser_pll_1/clk"
-        ]
-      },
-      "usp_rf_data_converter_0_m01_axis_tdata": {
-        "ports": [
-          "usp_rf_data_converter_0/m01_axis_tdata"
-        ]
-      },
-      "usp_rf_data_converter_0_m01_axis_tvalid": {
-        "ports": [
-          "usp_rf_data_converter_0/m01_axis_tvalid"
         ]
       },
       "xlconstant_0_dout": {

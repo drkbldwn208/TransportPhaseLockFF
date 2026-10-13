@@ -13,6 +13,8 @@ set fft_xci [get_files */laser_pll_fft_core.xci]
 set_property generate_synth_checkpoint true $fft_xci
 generate_target all $fft_xci
 generate_target all [get_files design_1.bd]
+# Catch scalar overrides that BD interface validation alone does not detect.
+puts [exec python3 $root/scripts/check_intensity_servo.py]
 create_ip_run [get_files design_1.bd]
 create_ip_run $fft_xci
 reset_run [get_runs design_1_laser_pll_*_0_synth_1]

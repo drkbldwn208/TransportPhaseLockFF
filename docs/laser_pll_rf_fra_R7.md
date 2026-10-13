@@ -6,6 +6,22 @@ The objective is to separate instability in the optical feedback loop from dispe
 
 ## Physical paths
 
+The October 13 intensity-servo repair removes two orphan scalar nets on RFDC
+`m01_axis_tdata/tvalid`. In A8 and the initial R7 FRA build these overrode the
+drawn ADC224/1 interface and made the generated `iq_split_0` inputs constant zero.
+The corrected connection restores ADC224/1 downconverted I/Q to the intensity
+receiver and fast PI. The DAC228/1 mixer LO, DAC228/3 intensity output, 32-bit
+command streamer, RFDC settings and PI parameters retain the original R7 values.
+No registers or latency are added. `scripts/check_intensity_servo.py` checks actual
+driver/sink nets in generated HWH and Verilog before synthesis and packaging;
+`verification.json` includes its result. The original A7 archive passes this
+check; the initial A8 and R7 FRA archives fail it. Register version remains A7,
+so identify the repaired build by its manifest/hashes, not that version alone.
+The final implemented-netlist audit also traces every PI input bit to tile 224's
+`DATA_ADC1` hardware pins and checks the four 16-bit I-lane bit mappings. Timing
+fan-in alone is insufficient for this check because it traces through the RFDC
+data output to the converter's fabric clock.
+
 The normal PLLs remain ADC224/3 → DAC229/1 and ADC225/1 → DAC229/3. Their NCOs, acquisition stages, 24-bit winding memories, stage-4 gain ramps, selectable IIRs, I/Q DMA monitors and legacy error/drive FRA remain available. ADC225/0 and ADC225/2 and all RFDC configuration parameters retain their prior settings. The new phase-FRA helper operates on the primary PLL only; the legacy error/drive helper remains usable for either PLL.
 
 ### Closed optical loop
@@ -98,6 +114,6 @@ Data are saved in `phase_fra_data/`: point CSV, per-block CSV, JSON conditions/s
 
 Build with `scripts/build_laser_pll_rf_fra.tcl`, then package with `scripts/package_laser_pll_rf_fra.py`. The package directory is `build/laser_pll_R7_FRA/`, separate from A8. Its `verification.json` records routed timing, resource use, file hashes and test evidence. Actual HLS RTL simulations verify legacy E/U, closed raw-phase and RF phase transfer recovery, wrap crossings, clipping/faults and source alignment. Host/notebook models check units, a known 403 ns delay, both sweep modes, state-preserving cleanup and files. These tests do not certify an optical lock or converter hardware performance.
 
-The October 13 implementation in Vivado 2024.1 passes the existing constraints after post-route optimization: setup **+0.002 ns**, hold **+0.010 ns**, pulse width **+0.534 ns**, with zero failing endpoints. Setup margin is tight. Existing clock/external-I/O constraint limitations remain; these numbers are not a board-level delay measurement. Full-design utilization is 80,545 LUTs, 107,402 flip-flops, 344.5 equivalent 36-kbit BRAMs and 380 DSPs. The initial ADC-to-clipping-counter timing failure was removed by registering each lane's diagnostic, without changing the feedback pipeline.
+The October 13 implementation with the intensity-servo connection restored in Vivado 2024.1 passes the existing constraints after post-route optimization: setup **+0.015 ns**, hold **+0.011 ns**, pulse width **+0.534 ns**, with zero failing endpoints. Setup margin is tight. Existing clock/external-I/O constraint limitations remain; these numbers are not a board-level delay measurement. Full-design utilization is 80,731 LUTs, 107,411 flip-flops, 344.5 equivalent 36-kbit BRAMs and 380 DSPs. The initial ADC-to-clipping-counter timing failure was removed by registering each lane's diagnostic, without changing the feedback pipeline.
 
 Source details, including line groups for each new module, are in [the RTL walkthrough](laser_pll_rtl_walkthrough.md). The fixed RF carrier uses the existing [AMD RFDC mixer](https://docs.amd.com/r/en-US/pg269-rf-data-converter/Mixer-Settings); time-varying phase is applied in programmable-logic I/Q, consistent with quadrature DDS phase-offset modulation ([AMD DDS implementation](https://docs.amd.com/r/en-US/pg141-dds-compiler/Implementation-Tab)). Stability must be assessed from the full return ratio at its gain crossovers ([phase-margin definition](https://www.mathworks.com/help/control/ref/dynamicsystem.margin.html)).

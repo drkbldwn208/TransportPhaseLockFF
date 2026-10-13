@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 from datetime import datetime
 from pathlib import Path
+from check_intensity_servo import verify as verify_intensity_servo
 
 ROOT=Path(__file__).resolve().parents[1]
 BUILD=ROOT/'build'
@@ -20,6 +21,7 @@ def sha256(path):
 
 
 def main():
+    intensity_servo = verify_intensity_servo()
     freeze=json.loads((WORK/'rtl_freeze.json').read_text())
     for name,digest in freeze['files'].items():
         assert sha256(ROOT/name)==digest, f'RTL changed after freeze: {name}'
@@ -72,6 +74,13 @@ def main():
     assert skew.stat().st_mtime>freeze['timestamp'] and 'VIOLATED' not in skew.read_text()
     assert route.stat().st_mtime>freeze['timestamp']
     assert re.search(r'nets with routing errors\.+\s*:\s*0\s*:',route.read_text())
+    intensity_route=REPORTS/'intensity_servo_routed.rpt'
+    assert intensity_route.stat().st_mtime>freeze['timestamp']
+    assert 'PASS: all 64 intensity ADC input bits driven by RFDC' in intensity_route.read_text()
+    intensity_bits=re.findall(r'adc_bus\[(\d+)\] <- .*rx0_u_adc/DATA_ADC1\[(\d+)\]',intensity_route.read_text())
+    assert len(intensity_bits)==64 and len({b for b,_ in intensity_bits})==64
+    # Four 16-bit I words from the interleaved I/Q ADC bus; Q stays on the monitor path.
+    assert all(int(source)==32*(int(sink)//16)+int(sink)%16 for sink,source in intensity_bits)
     top=next(line for line in (REPORTS/'utilization.rpt').read_text().splitlines()
              if re.match(r'\|\s*design_1_wrapper\s*\|',line))
     counts=[int(x.strip()) for x in top.split('|')[3:-1]]
@@ -89,6 +98,7 @@ def main():
         'bringup_notebook':('tests/test_laser_pll_notebook.py','PASS: 19 notebook code cells'),
         'legacy_notebook':('tests/test_laser_pll_loop_notebook.py','PASS: all'),
         'dual_bd':('tests/test_laser_pll_dual_bd.py','PASS: independent dual PLL'),
+        'intensity_servo':('tests/test_intensity_servo.py','PASS: regenerated intensity path connected'),
     }
     for directory in ('reports','docs','tests'): (OUT/directory).mkdir(exist_ok=True)
     results={}
@@ -100,6 +110,7 @@ def main():
                            log_sha256=sha256(log),completed=datetime.fromtimestamp(log.stat().st_mtime).isoformat())
         shutil.copy2(log,OUT/'tests'/log.name)
     (OUT/'tests/results.json').write_text(json.dumps(results,indent=2)+'\n')
+    (OUT/'tests/intensity_servo_connections.json').write_text(json.dumps(intensity_servo,indent=2)+'\n')
     for name in ('laser_pll.py','laser_pll_loop_sweep.py','laser_pll_phase_fra.py',
                  'laser_pll_bringup.ipynb','laser_pll_loop_sweep.ipynb','laser_pll_phase_fra.ipynb'):
         shutil.copy2(ROOT/'python_scripts'/name,OUT/name)
@@ -108,16 +119,19 @@ def main():
     shutil.copy2(OUT/'laser_pll.py',OUT/'laser_pll_R7.py')
     for name in report_names:shutil.copy2(REPORTS/name,OUT/'reports'/name)
     shutil.copy2(skew,OUT/'reports/bus_skew.rpt');shutil.copy2(route,OUT/'reports/route_status.rpt')
-    for name in ('laser_pll_rf_fra_R7.md','laser_pll_A7.md','laser_pll_loopback_A8.md','laser_pll_rtl_walkthrough.md','laser_pll.md'):
+    shutil.copy2(intensity_route,OUT/'reports/intensity_servo_routed.rpt')
+    for name in ('laser_pll_rf_fra_R7.md','laser_pll_A7.md','laser_pll_loopback_A8.md','laser_pll_rtl_walkthrough.md','laser_pll.md','overlay_versions.md'):
         shutil.copy2(ROOT/'docs'/name,OUT/'docs'/name)
     for name in freeze['files']:
         target=OUT/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/name,target)
-    (OUT/'README.md').write_text(f'''# R7 RF-FRA release — {datetime.now():%Y-%m-%d}
+    (OUT/'README.md').write_text(f'''# R7 RF-FRA with restored intensity servo — {datetime.now():%Y-%m-%d}
 
 Matched hardware and helpers: PLL signature 0xA7, feature GPIO 0x52463701.
 This is R7 plus phase-FRA, not the original R7 image or A8 loopback image.
 
 - Normal dual PLL/acquisition/tracking/IIR/IQ-DMA behavior restored from R7.
+- Intensity ADC224/1 data/valid reconnected to iq_split_0 and fast PI; actual
+  generated HWH/RTL connectivity checked. LO and 32-bit command path preserved.
 - Closed optical loop: error-output injection on DAC229/1, raw phase at ADC224/3;
   measures Phi/D and full return ratio L=(D-U)/U, including the discriminator.
 - RF chain: phase-modulated DAC229/2 carrier → amplifiers → ADC224/3;
@@ -138,7 +152,8 @@ No failing timing endpoints, routing errors or bitstream DRC errors. Existing
 clock/external-I/O constraint limitations remain. Hardware has not been programmed.
 See docs/laser_pll_rf_fra_R7.md and verification.json for boundaries and evidence.
 ''')
-    manifest=dict(date=datetime.now().isoformat(timespec='seconds'),fpga_version='0xA7',feature_version='0x52463701',
+    manifest=dict(date=datetime.now().isoformat(timespec='seconds'),release_revision='R7-FRA-intensity-repair',
+                  fpga_version='0xA7',feature_version='0x52463701',
                   vivado='2024.1',part='xczu49dr-ffvf1760-2-e',programmed_hardware=False,
                   full_board_synthesis_route_bitstream_complete=True,setup_slack_ns=setup_ns,
                   hold_slack_ns=hold_ns,pulse_width_slack_ns=pulse_ns,
@@ -151,6 +166,7 @@ See docs/laser_pll_rf_fra_R7.md and verification.json for boundaries and evidenc
                   phase_codes_per_turn=262144,phase_observer_range_turns=[-2,2],
                   rf_pm_phase_grid_codes_per_turn=65536,feedback_winding_bits=24,
                   rf_converter_parameters_unchanged=True,old_adc225_0_2_paths_preserved=True,
+                  intensity_servo_restored=intensity_servo,
                   closed_fra=dict(dac='229/1',adc='224/3',response_units='rad/DAC-code',return_ratio='(D-U)/U'),
                   rf_fra=dict(dac='229/2',adc='224/3',response_units='rad/rad',default_carrier_hz=800.01e6),
                   limitations=['No optical-loop or physical converter bench validation of this release.',

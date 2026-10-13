@@ -2,6 +2,13 @@
 
 This diagnostic build supports two physical fixtures with **the same DAC229/1 and ADC224/3**. Run `python_scripts/laser_pll_loopback.ipynb` cell by cell. The usual laser PLLs remain available when diagnostic mode is off. Firmware/helper signature is `0xA8`; keep the matching bit, HWH and all three helpers together. The prior A7 archive is preserved.
 
+**Known intensity-servo regression (identified October 13):** the archived A8
+bitstream disconnects ADC224/1 from `iq_split_0` through two orphan scalar nets,
+leaving the intensity fast PI with zero input. Its mixer LO and RFDC parameters
+are intact. This does not affect the loopback receiver on ADC224/3, but A8 should
+not be used to operate the intensity feedback loop. The R7 RF-FRA repair removes
+the orphan nets and verifies the generated and implemented signal connections.
+
 The notebook now contains the complete startup and measurement sequence, including the user's custom `LMK_245_76_ExtRef10.txt` clock initialization and `/home/xilinx/Bitfiles/FreqLocksBranch/overlays/TransportPhaseLockFF.bit` path. It imports `laser_pll_R8` and refreshes/binds both sweep helpers to it before touching hardware. The Python ZIP includes `laser_pll_R8.py` as an exact generated copy of `laser_pll.py`. Run the notebook in order rather than substituting cells from earlier versions. Default startup initializes hardware; `initialize_hardware=False` refreshes helpers and reuses an existing `ol`, while muting the measured output. Voltage prompts use signed **mV**, converted to volts internally. The voltage model is created and passed to setup automatically. Both fixture modes save CSV/JSON/PNG under `loopback_data/`.
 
 ## Connections and converter settings

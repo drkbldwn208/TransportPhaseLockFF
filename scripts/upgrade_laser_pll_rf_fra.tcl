@@ -3,6 +3,7 @@
 set root [file normalize [file join [file dirname [info script]] ..]]
 if {[current_project -quiet] eq ""} {open_project $root/TransportPhaseLockFF.xpr}
 open_bd_design [get_files design_1.bd]
+source $root/scripts/repair_intensity_servo.tcl
 # Remove A8 diagnostic mean registers before refreshing the restored R7 interface.
 foreach name {pll_loopback_i pll_loopback_q} {
     if {[llength [get_bd_cells -quiet $name]]} {delete_bd_objs [get_bd_cells $name]}
