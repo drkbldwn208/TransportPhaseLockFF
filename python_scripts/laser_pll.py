@@ -1,22 +1,48 @@
-"""PYNQ controls for ADC 224/3 -> DAC 229/1. Frequencies are in Hz.
+"""A8 PYNQ controls for two independent optical PLLs. Frequencies are in Hz.
+
+Use ol for ADC 224/3 -> DAC 229/1; channel(ol,1) for ADC 225/1 -> DAC 229/3.
 
 The FPGA supplies an error to an external analog controller. Load the rebuilt,
 matching .bit/.hwh pair before using these functions. Only one GPIO writer.
 """
 import math
 import time
+from types import SimpleNamespace
 
 ADC_SAMPLE_RATE_HZ = 1_966_080_000.0
 ERROR_SAMPLE_RATE_HZ = ADC_SAMPLE_RATE_HZ / 8
 PHASE_CODES_PER_TURN = 1 << 18
 STAGE3_PHASE_DIVISOR = 160
-FPGA_VERSION = 0xA6
+FPGA_VERSION = 0xA8
 
+
+
+def channel(ol, number=1):
+    """Return the GPIO/DMA handles for one independent loop; no hardware writes.
+
+    0: ADC 224/3 -> DAC 229/1 (800 MHz default).
+    1: ADC 225/1 -> DAC 229/3 (4.4 GHz default, odd Nyquist zone 5).
+    Pass the returned namespace to the same control, capture and FRA functions.
+    """
+    if number not in (0, 1):
+        raise ValueError("PLL channel must be 0 or 1.")
+    if number == 0:
+        return ol
+    names = ('frequency', 'control', 'status', 'acquisition', 'acquisition_status',
+             'tracking', 'monitor', 'fra', 'fra_window', 'fra_tone', 'fra_error',
+             'fra_drive', 'fra_counts', 'fra_extrema', 'fra_samples',
+             'iir', 'iir_feed', 'iir_pole')
+    handles = {'pll_'+name: getattr(ol, 'pll2_'+name) for name in names}
+    return SimpleNamespace(**handles, axi_dma_3=ol.pll2_iq_dma,
+                           ip_dict=ol.ip_dict, usp_rf_data_converter_0=ol.usp_rf_data_converter_0,
+                           adc_tile=1, adc_block=1, dac_block=3,
+                           rf_band_base_hz=2*ADC_SAMPLE_RATE_HZ,
+                           reference_default_hz=4.4e9)
 
 def _check_version(overlay):
     actual = overlay.pll_acquisition_status.read(0x08) >> 24
     if actual != FPGA_VERSION:
-        raise ValueError(f"Helper requires A6 loop-analyzer firmware; FPGA reports 0x{actual:02x}. "
+        raise ValueError(f"Helper requires A8 dual-PLL firmware; FPGA reports 0x{actual:02x}. "
                          "Load the matching .bit/.hwh/helper package; reload laser_pll after replacing it.")
 
 
@@ -32,9 +58,11 @@ def set_reference_frequency(overlay, frequency_hz, *, restart_phase=False):
     words on one RF clock edge. Updates are atomic and phase-continuous, but
     software timed; deterministic ramps need a hardware trajectory source here.
     """
-    frequency_hz = float(frequency_hz)
+    band_base_hz = getattr(overlay, "rf_band_base_hz", 0.0)
+    frequency_hz = float(frequency_hz) - band_base_hz
     if not math.isfinite(frequency_hz) or not 0 < frequency_hz < ADC_SAMPLE_RATE_HZ / 2:
-        raise ValueError("Reference must be finite and between 0 and 983.04 MHz.")
+        raise ValueError(f"Reference must be in the selected odd Nyquist band: "
+                         f"{band_base_hz/1e9:g} < RF/GHz < {(band_base_hz+ADC_SAMPLE_RATE_HZ/2)/1e9:g}.")
     if restart_phase and overlay.pll_control.read(0x00) & 1:
         raise ValueError("Disable the error output before restarting reference phase.")
     word = round(frequency_hz / ADC_SAMPLE_RATE_HZ * (1 << 48))
@@ -46,10 +74,10 @@ def set_reference_frequency(overlay, frequency_hz, *, restart_phase=False):
     while ((overlay.pll_status.read(0x00) >> 22) & 1) != toggle:
         if time.monotonic() > deadline:
             raise TimeoutError("PLL frequency commit was not acknowledged; check RF clock/reset.")
-    return word * ADC_SAMPLE_RATE_HZ / (1 << 48)
+    return band_base_hz + word * ADC_SAMPLE_RATE_HZ / (1 << 48)
 
 
-def configure(overlay, *, reference_frequency_hz=800e6, phase_offset_rad=0.0,
+def configure(overlay, *, reference_frequency_hz=None, phase_offset_rad=0.0,
               phase_gain_shift=0, capture_gain_shift=6, minimum_amplitude=64,
               invert=True):
     """Configure while muted; then call enable() to drive the analog controller.
@@ -71,21 +99,29 @@ def configure(overlay, *, reference_frequency_hz=800e6, phase_offset_rad=0.0,
     # Refuse an old overlay before touching outputs or the RFDC.
     _check_version(overlay)
     p = overlay.ip_dict['usp_rf_data_converter_0']['parameters']
-    expected = {'ADC_Data_Type03': 0, 'ADC_Decimation_Mode03': 1,
-                'ADC_Data_Width03': 8, 'ADC_Mixer_Type03': 1, 'ADC_Nyquist03': 0,
-                'DAC_Data_Width11': 14, 'DAC_Interpolation_Mode11': 4}
+    adc_tile = getattr(overlay, 'adc_tile', 0)
+    adc_block = getattr(overlay, 'adc_block', 3)
+    dac_block = getattr(overlay, 'dac_block', 1)
+    adc_suffix, dac_suffix = f'{adc_tile}{adc_block}', f'1{dac_block}'
+    expected = {'ADC_Data_Type'+adc_suffix: 0, 'ADC_Decimation_Mode'+adc_suffix: 1,
+                'ADC_Data_Width'+adc_suffix: 8, 'ADC_Mixer_Type'+adc_suffix: 1,
+                'ADC_Nyquist'+adc_suffix: 0,
+                'DAC_Data_Width'+dac_suffix: 14, 'DAC_Interpolation_Mode'+dac_suffix: 4}
     for name, value in expected.items():
         if int(p[name]) != value:
             raise ValueError(f"Incompatible RFDC configuration: {name} must equal {value}.")
-    if not math.isclose(float(p['ADC0_Sampling_Rate']) * 1e9, ADC_SAMPLE_RATE_HZ):
-        raise ValueError("ADC tile 224 must run at 1.96608 GS/s.")
+    if not math.isclose(float(p[f'ADC{adc_tile}_Sampling_Rate']) * 1e9, ADC_SAMPLE_RATE_HZ):
+        raise ValueError("Selected ADC tile must run at 1.96608 GS/s.")
+    if reference_frequency_hz is None:
+        reference_frequency_hz = getattr(overlay, 'reference_default_hz', 800e6)
     overlay.pll_control.write(0x00, 0)
     overlay.pll_tracking.write(0x00, 14 << 4)
     overlay.pll_monitor.write(0x00, 0)
     overlay.pll_fra.write(0x00, 0)
+    overlay.pll_iir.write(0, overlay.pll_iir.read(0) & ~1)
     configure_acquisition(overlay)
     import xrfdc
-    dac = overlay.usp_rf_data_converter_0.dac_tiles[1].blocks[1]
+    dac = overlay.usp_rf_data_converter_0.dac_tiles[1].blocks[dac_block]
     settings = dict(dac.MixerSettings)
     settings.update(Freq=0.0, PhaseOffset=0.0, EventSource=xrfdc.EVNT_SRC_IMMEDIATE,
                     MixerType=xrfdc.MIXER_TYPE_FINE, MixerMode=xrfdc.MIXER_MODE_C2R,
@@ -184,7 +220,7 @@ def acquisition_status(overlay):
     return dict(stage=a&7, dc_test=(a&7)==5, transitioning=bool(a&8),
                 pending=bool(a&16), near_ready=bool(a&32), fine_ready=bool(a&64),
                 output_valid=bool(a&128), remembered_turns=_signed(a>>8,24),
-                fft_frequency_hz=(f&1023)*ADC_SAMPLE_RATE_HZ/1024,
+                fft_frequency_hz=getattr(overlay, 'rf_band_base_hz', 0.0)+(f&1023)*ADC_SAMPLE_RATE_HZ/1024,
                 fft_valid=bool(f&(1<<10)), fft_weak=bool(f&(1<<11)),
                 fft_overflow_seen=bool(f&(1<<12)), fft_protocol_fault=bool(f&(1<<13)),
                 fft_frame=(f>>16)&255)
@@ -196,7 +232,7 @@ def select_stage(overlay, stage, *, wait=True, timeout_s=5.0):
     Stage 2 waits for FFT detuning <80 MHz and valid fine phase. Stage 3 is
     manual: only valid fine data and five clocks of wrap/scaler preparation
     are required, with no frequency, dwell or FFT gate. This requires the
-    A6 loop-analyzer FPGA bitstream; updating this helper alone is insufficient.
+    A8 dual-PLL FPGA bitstream; updating this helper alone is insufficient.
     Stage 4 follows a settled stage 3 and saves its current phase/DAC operating
     point. Set its target with set_tracking_gain(); no optical-lock detector is
     implied. Stage-4 gain ramps are separate from the mode handoff's offset ramp.
@@ -351,3 +387,82 @@ def set_dc_output(overlay, code, *, enabled=True):
     overlay.pll_acquisition.write(0x08,code & 0xffff)
     value=overlay.pll_acquisition.read(0x00)
     overlay.pll_acquisition.write(0x00,(value & ~4) | (int(bool(enabled))<<2))
+
+
+IIR_SAMPLE_RATE_HZ = ERROR_SAMPLE_RATE_HZ / 2
+
+
+def set_iir_coefficients(ol, *, b0, b1, a1):
+    """Set H(z)=(b0+b1/z)/(1+a1/z), evaluated at 122.88 MS/s.
+
+    Call in bypass. Coefficients commit atomically; filter state starts at the
+    current input (appropriate for unity DC gain). Wait for settling before
+    selecting it. A register write does not change the selected output path.
+    """
+    _check_version(ol)
+    if ol.pll_iir.read(0) & 1:
+        raise ValueError("Select IIR bypass before changing coefficients.")
+    if ol.pll_fra.read(0) & 1:
+        raise ValueError("Stop the FRA before changing the compensator.")
+    if not all(math.isfinite(v) for v in (b0,b1,a1)) or not abs(a1)<1:
+        raise ValueError("Coefficients must be finite, with abs(a1)<1 for stability.")
+    b0_word, b1_word = round(b0*2**27), round(b1*2**27)
+    pole_word = round(-a1*2**31)
+    if not all(-2**31<=v<2**31 for v in (b0_word,b1_word,pole_word)):
+        raise ValueError("b0,b1 must fit Q5.27; the rounded pole must fit Q1.31.")
+    if abs(pole_word)==2**31:
+        raise ValueError("Rounded pole lies on the unit circle.")
+    ol.pll_iir_feed.write(0,b0_word & 0xffffffff)
+    ol.pll_iir_feed.write(8,b1_word & 0xffffffff)
+    ol.pll_iir_pole.write(0,pole_word & 0xffffffff)
+    commit = (ol.pll_iir.read(0) ^ 2) & 2
+    ol.pll_iir.write(0,commit)
+    deadline=time.monotonic()+0.1
+    while ol.pll_iir.read(8) & 2 != commit:
+        if time.monotonic()>deadline:
+            raise TimeoutError("IIR coefficient commit was not acknowledged.")
+    actual = dict(b0=b0_word/2**27, b1=b1_word/2**27, a1=-pole_word/2**31)
+    actual['dc_gain']=(actual['b0']+actual['b1'])/(1+actual['a1'])
+    actual['sample_rate_hz']=IIR_SAMPLE_RATE_HZ
+    return actual
+
+
+def configure_lead_lag(ol, *, zero_hz, pole_hz, dc_gain=1.0):
+    """Bilinear transform of dc_gain*(1+s/(2*pi*zero))/(1+s/(2*pi*pole)).
+
+    zero<pole gives phase lead; zero>pole gives lag. No corner prewarping.
+    Returned quantized coefficients, not ideal ones, define the actual filter.
+    Does not engage it or adjust the analog controller. Unity DC gain is the
+    least disruptive starting point; the high-frequency gain is pole/zero.
+    """
+    if not all(math.isfinite(v) and v>0 for v in (zero_hz,pole_hz,dc_gain)):
+        raise ValueError("Corners and DC gain must be positive and finite.")
+    if max(zero_hz,pole_hz)>10e6:
+        raise ValueError("Use corners <=10 MHz for this laser-loop compensator.")
+    k=IIR_SAMPLE_RATE_HZ/math.pi
+    denominator=1+k/pole_hz
+    pole=(k/pole_hz-1)/denominator
+    # Match the small coefficient sum to the pole; avoid catastrophic
+    # cancellation of b0+b1 at low corner frequencies with unity DC gain.
+    b0=round(dc_gain*(1+k/zero_hz)/denominator*2**27)/2**27
+    coefficient_sum=round(dc_gain*(1-pole)*2**27)/2**27
+    pole=1-coefficient_sum/dc_gain
+    result=set_iir_coefficients(ol,b0=b0,b1=coefficient_sum-b0,a1=-pole)
+    result['pole_hz_actual']=k*(1+result['a1'])/(1-result['a1'])
+    result['zero_hz_actual']=k*(result['b0']+result['b1'])/(result['b0']-result['b1'])
+    result['settle_time_s']=10/(2*math.pi*result['pole_hz_actual'])
+    return result
+
+
+def enable_iir(ol, enabled=True):
+    """Select warmed IIR or zero-added-clock bypass. Switching is immediate.
+
+    A unity-DC filter preserves a steady lock point. Time-varying signals can
+    still step at selection; coefficient writes and gain changes are not slewed.
+    """
+    _check_version(ol)
+    if ol.pll_fra.read(0) & 1:
+        raise ValueError("Stop the FRA before changing the compensator.")
+    if enabled and ol.pll_control.read(0) & 1 and not ol.pll_iir.read(8) & 8:
+        raise ValueError("Wait for valid data to warm the filter before selecting it.")
+    ol.pll_iir.write(0,(ol.pll_iir.read(0) & ~1) | int(bool(enabled)))

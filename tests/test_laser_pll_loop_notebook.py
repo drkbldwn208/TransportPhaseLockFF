@@ -30,6 +30,7 @@ def run():
         frequency_hz = ol.pll_fra_tone.read(0x10) * 8*fra.FS_HZ / 2**32
         loop = (20000/(1j*frequency_hz)) / (1+1j*frequency_hz/200000)
         injection = ol.pll_fra_tone.read(0x18)
+        if injection & (1<<19): injection-=1<<20
         drive = injection/(1+loop)
         n = ol.pll_fra_window.read(8)
         for ip, phasor in ((ol.pll_fra_error, -loop*drive), (ol.pll_fra_drive, drive)):

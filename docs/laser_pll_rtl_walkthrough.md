@@ -1,27 +1,31 @@
 # Laser PLL RTL walkthrough
 This is a source-line guide to every synthesizable handwritten PLL module. Adjacent lines forming one statement or pipeline operation are grouped. Blank lines and closing braces have no independent hardware behavior. Line numbers refer to this revision; pipeline timing and GPIO units are in [laser_pll.md](laser_pll.md).
-`wire`/continuous assignments describe combinational hardware; `reg` values assigned on a rising edge describe stored state. Nonblocking assignments read the previous register values on that edge. A `for (genvar ...)` creates parallel hardware, whereas the FFT state machine deliberately reuses a serial datapath. All clocks here are 245.76 MHz.
+`wire`/continuous assignments describe combinational hardware; `reg` values assigned on a rising edge describe stored state. Nonblocking assignments read the previous register values on that edge. A `for (genvar ...)` creates parallel hardware, whereas the FFT state machine deliberately reuses a serial datapath. All clocks here are 245.76 MHz. The A7 IIR advances its recurrence on alternate edges; its effective update rate is 122.88 MS/s.
 
 ## laser_pll.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll.sv).
 
 | Source lines | What the hardware does |
 |---|---|
-| 1–13 | Declares the real-ADC top, RF clock/reset, eight ADC words and seven packed DAC pairs. |
-| 14–28 | Receives existing DDS/acquisition/tracking/monitor controls and exports independent I/Q capture. |
-| 29–42 | Adds analyzer control/window/status and six AXIS streams for the tone, reference and two probe/reference pairs. |
-| 43–47 | Exposes the original diagnostic words and closes the port list. |
-| 48–60 | Decodes enable/clear/amplitude threshold and runs the coherent DDS/mixer even while muted. |
-| 61–68 | Always accepts ADC words; runs matched I/Q FIRs with detector-only reset. |
-| 69–80 | Computes the max-norm amplitude gate and runs atan2 on valid strong vectors. |
-| 82–98 | Runs wrapped phase/frequency detection, slip memory and /160 stage-3 scaling. |
-| 99–103 | Runs tracking about a saved phase and pre-injection DAC error; stimulus does not alter the saved bias. |
-| 104–109 | Captures I/Q before the amplitude gate; monitor backpressure never stalls feedback. |
-| 110–115 | Runs the parallel sparse FFT estimator on real ADC data. |
-| 116–127 | Selects acquisition/tracking/DC candidates through the existing continuous handoff. |
-| 128–140 | Adds the optional tone to the selected error, exporting simultaneous probes and analyzer status. |
-| 141–144 | Registers the resulting command in the existing DAC output block, with mute/stall behavior preserved. |
-| 145–148 | Packs live phase, validity, saturation, stall, DDS acknowledgment and frequency diagnostics. |
+| 1–13 | Declares the raw eight-sample ADC input, seven packed DAC pairs, clock and reset; both PLL instances use this same source. |
+| 14–28 | DDS/acquisition/tracking/monitor controls and independent I/Q capture interface. |
+| 29–32 | A7: IIR coefficients/selection/status and six FRA diagnostic words. |
+| 33 | Four read-only words for signed loopback mean sums. |
+| 34–47 | FRA control/window/status and six AXIS streams for tone/reference and simultaneous E/U probes. |
+| 48–52 | Original phase, frequency, acquisition and FFT diagnostics. |
+| 53–65 | Decodes enable/clear/amplitude and runs the phase-continuous fabric DDS/mixer, even while muted. |
+| 66–73 | Accepts ADC words continuously; identical I/Q FIRs share detector reset. |
+| 74–85 | Computes max-norm amplitude gating and atan2 on valid vectors. |
+| 87–103 | Runs wrapped phase/frequency error, unwrapped memory and stage-3 scaling. |
+| 104–108 | Tracking uses the phase origin and pre-compensator DAC operating point. |
+| 109–114 | I/Q monitor taps the FIR before amplitude gating and CORDIC; backpressure cannot stall the loop. |
+| 115–120 | Parallel FFT acquisition estimator on the same ADC stream. |
+| 121–132 | Selects legacy, coarse, frequency, unwrapped, tracking or DC through the existing handoff. |
+| 133–139 | Runs the selectable lead–lag compensator. Bypass is direct; the filter warms in the background. |
+| 140–148 | Tests all eight raw ADC lanes for codes within 16 counts of either rail; used only by diagnostic measurements. |
+| 149–168 | Connects unchanged FRA injection plus selectable post-FIR I/Q, raw clipping and DC means. |
+| 169–172 | Existing DAC register and packing, with the same valid/saturation behavior. |
+| 173–176 | Packs the original PLL diagnostics. |
 
 ## laser_pll_mixer.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_mixer.sv).
@@ -253,17 +257,18 @@ This is a source-line guide to every synthesizable handwritten PLL module. Adjac
 
 | Source lines | What the hardware does |
 |---|---|
-| 1–6 | Declares the Verilog module-reference boundary and associates stream/FIFO resets with the RF clock. |
-| 7–18 | Exposes the existing ADC/DAC stream and DDS/acquisition controls without extra logic. |
-| 19–23 | Adds tracking/monitor controls, status and active-low monitor FIFO reset. |
-| 24–27 | Explicit AXIS metadata identifies I/Q TDATA, TVALID, TREADY and TLAST for block-design wiring. |
-| 28–29 | Adds analyzer arm, settling/integration counts and status. |
-| 30–35 | Explicit AXIS metadata identifies the incoming HLS tone and sine/cosine reference. |
-| 36–47 | Explicit AXIS metadata identifies each outgoing error/command probe and its matching reference. |
-| 48–52 | Exposes existing diagnostics and closes the port list. |
-| 53–64 | Directly wires existing detector, GPIO and I/Q monitor ports. |
-| 65–72 | Directly wires analyzer controls and all six streams; no added registers or crossings. |
-| 73–76 | Passes existing status words and closes the wrapper. |
+| 1–5 | Verilog module-reference shell with Vivado clock/interface metadata. |
+| 6–20 | Original ADC/DAC and scalar DDS/acquisition controls. |
+| 21–27 | Tracking and I/Q capture interfaces, including FIFO reset. |
+| 28–31 | IIR and FRA diagnostic ports. |
+| 32 | Four new read-only mean-sum words; no external ADC tap is added. |
+| 33–52 | FRA controls and explicit AXIS interface metadata. |
+| 53–57 | Original diagnostic outputs and end of port declaration. |
+| 58–69 | Connects the original datapath and monitor. |
+| 70–73 | Connects IIR and FRA diagnostics. |
+| 74–75 | Connects the sign-extended I/Q mean sums from the SV core. |
+| 76–83 | Connects stimulus, references and selected probe streams. |
+| 84–87 | Connects original diagnostics and closes the shell. This module has no arithmetic or registers. |
 
 ## laser_pll_tracking.sv
 [Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_tracking.sv).
@@ -314,36 +319,61 @@ This is a source-line guide to every synthesizable handwritten PLL module. Adjac
 | 61–68 | Otherwise accumulates the current window and closes the clocked logic/module. |
 
 ## laser_pll_fra.sv
-[Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_fra.sv).
+[Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_fra.sv). A8 adds selectable post-FIR I/Q observations without changing the injection/feedback timing.
 
 | Source lines | What the hardware does |
 |---|---|
-| 1–5 | States the injection/measurement convention: simultaneous E and U, with L=-E/U. |
-| 6–26 | Declares the RF clock, selected error/validity, GPIO window controls, DAC command and HLS streams. The ramp interval parameter is shortened only for simulation. |
-| 27–36 | Stores acquisition state, remaining clocks, 0..4096 envelope, ramp divider, sticky faults and saved monitor baseline. |
-| 37–41 | Accepts tone/reference together by transaction number so independent HLS output slices cannot misalign samples. |
-| 43–46 | Allocates signed stimulus multiplier registers and matching sine/cosine delay registers. |
-| 47–59 | Resets stimulus to zero; captures lane 0, multiplies by envelope/4096 and delays the demodulation reference by the same amount. These registers are outside feedback. |
-| 60–63 | Combinationally adds stimulus to the current error in 22-bit arithmetic, clips to signed 16 bits and propagates saturation. |
-| 65–71 | Allocates a single common probe record with four independent pending/ready bits. A new record fits only if every old destination is empty or accepting. |
-| 72–79 | Captures E and U minus the same DC baseline and packs the aligned reference with the measurement-window bit; otherwise retains blocked data and clears only accepted channels. |
-| 81–85 | Places each signed probe in lane 0, zeros other lanes, duplicates the reference and presents independent AXIS valid bits. |
-| 87–95 | Clears state on reset and latches clipping, invalid phase/target or DAC stall, lost probe record, missing generator pair and operator abort during a run. |
-| 97–103 | In IDLE, keeps the envelope zero. Arm saves the detector baseline and clears faults before ramping. |
-| 104–109 | Raises the envelope by one every 64 clocks; starts settling after the 4096th step. |
-| 111–115 | Counts settling clocks, then starts a nonzero measurement interval; zero requested length aborts with a fault. |
-| 116–119 | Supplies exactly the requested number of measurement clocks, then begins ramp down. |
-| 120–124 | Lowers the envelope at the same rate; once zero, starts a 16-clock drain. |
-| 125–130 | Drains the stimulus/probe pipeline, asserts DONE, and waits for arm to clear before IDLE. |
-| 132–135 | Clearing arm during ramp-up/settle/measurement redirects to ramp-down without resetting the PLL. |
-| 138–139 | Packs envelope, reserved bits, faults, done/measuring/busy into the read-only status word. |
+| 1–9 | Defines simultaneous error/drive analysis and existing validity inputs. |
+| 10–13 | Receives signed post-FIR I/Q, valid/raw-ADC rail flags, and exports mean sums for loopback. |
+| 14–31 | Window controls, diagnostics, DAC command and existing AXIS tone/probe/reference interfaces. |
+| 33–42 | Defines run states, counters, ramp envelope, faults, saved error baseline and latched observation mode. |
+| 43–46 | Converts eight-fractional-bit FIR values into two-fractional-bit 20-bit lock-in probes. Arithmetic right shift preserves sign. |
+| 47 | Selects raw-ADC rail status in loopback, internal error saturation otherwise. |
+| 48–51 | Allocates signed 52-bit DC sums and sign-extends them to GPIO words. Width covers every legal 32-bit integration window. |
+| 52–57 | Clears sums on reset/arm, accumulates the exact measurement window only in I/Q mode, then holds results. |
+| 58–64 | Stores extrema, detects busy/paired transactions, and joins tone/reference AXIS handshakes. |
+| 66–82 | Three stimulus registers align lane-zero sine/cosine with the envelope-scaled injection. No feedback register is introduced. |
+| 83–86 | Adds the stimulus to the signed error/DC command, saturates at DAC limits and propagates upstream saturation. |
+| 88–98 | Clears diagnostics on arm and counts measured clocks, DAC clips and selected receive/internal clips separately. |
+| 99–107 | Records error/drive extrema; counts outside-window clipping independently; packs extrema. |
+| 109–117 | Four independent pending flags protect observation streams without stalling feedback. |
+| 118–124 | Selects I/Q or baseline-subtracted E/U, pairing observations with the same-edge reference and measurement flag. |
+| 125–129 | Packs only lane zero into each eight-lane HLS interface; unused lanes are zero. |
+| 131–139 | Resets the FSM and latches faults. I/Q mode tests FIR validity instead of CORDIC phase validity. |
+| 141–147 | Arm saves baseline and observation mode, clears faults and starts the ramp. Mode remains latched during abort/cleanup. |
+| 148–153 | Ramps envelope to unity in 4096 steps before settling. |
+| 154–159 | Waits the settling interval and rejects a zero-length measurement. |
+| 160–163 | Generates exactly the requested measurement-clock count. |
+| 164–168 | Ramps the stimulus down without resetting the optical PLL. |
+| 169–175 | Drains the pipeline, asserts DONE, then returns to IDLE after arm clears. |
+| 176–183 | Handles manual abort via ramp-down and packs envelope/faults/done/measuring/busy status. |
 
-The generated `pll_fra_tone` and two `pll_fra_*` demodulators reuse the original
-transport HLS sources unchanged. The tone is eight lanes of signed 20-bit data;
-the reference is eight signed 16-bit sines, eight cosines and a window flag.
-The adapter uses lane 0 only. Each demodulator computes 72-bit sine/cosine sums
-and latches them when the window closes. Python converts them to peak phasors
-and forms E/U ratios; it does not stream individual probes through DMA.
+## laser_pll_iir.sv
+[Open source](../TransportPhaseLockFF.srcs/sources_1/new/laser_pll_iir.sv). All registers use the 245.76 MHz clock; the recurrence advances on alternate edges (122.88 MS/s).
+
+| Source lines | What the hardware does |
+|---|---|
+| 1–5 | States the first-order difference equation, two-step recurrence and direct bypass. |
+| 6–14 | Signed DAC-code input/output, matched validity/saturation, coefficient words and control/status. |
+| 15–18 | Q5.27 feed coefficients, Q1.31 pole, and signed 40-bit state with 24 fractional DAC-code bits. |
+| 19–20 | Previous raw sample and previous 17-bit pair sum. |
+| 21–23 | Add adjacent input codes before decimation; keeping the sum retains the half-code fractional bit. |
+| 24 | Commit acknowledgment, alternating arithmetic phase and present/previous input saturation flags. |
+| 25–26 | Full 49-bit feed and 72-bit recursive products map into DSPs. |
+| 27 | A toggle of control bit 1 requests an atomic coefficient commit. |
+| 28–29 | Sign-extend feed products before alignment; negative codes remain signed. |
+| 30–31 | Align products to 55 fractional bits, including division by two for input pairs; add half a state LSB. |
+| 32–33 | Round to 24 fractional bits and detect overflow using explicitly sized signed limits. |
+| 34–38 | Round to a 16-bit DAC command and clamp both rails, including overflow from rounding. |
+| 39–43 | Global reset initializes unity gain, zero state/history and cleared flags. |
+| 44–48 | On invalid input or commit, seed state/history from the present input and restart the alternating schedule. |
+| 49 | Latch all three coefficient words on one edge and acknowledge commit. |
+| 50–51 | Capture every raw input sample and its saturation flag; alternate arithmetic phase without gating the clock. |
+| 52–54 | First arithmetic edge: multiply current/previous pair sums and recursive state; combine saturation of both samples in the pair. |
+| 55–58 | Second edge: sum, round, saturate state and align its validity/saturation. |
+| 59–61 | Hold recursive output between update edges. |
+| 62–64 | Select the warmed filter or direct input combinationally, including matching flags. |
+| 65–66 | Status bits: selected, commit acknowledgment, saturation, valid; no sticky state in these readbacks. |
 
 ## Generated data and vendor IP
 `laser_pll_fir_coeffs.vh` is a constant Q1.17 tap lookup: entries 0…31 give the 32 Kaiser-window FIR coefficients, and the default case gives zero. `scripts/generate_laser_pll_tables.py` generates it together with the midpoint quarter-wave sine table and periodic Hann ROM. The FIR coefficients sum to 131072 (unity DC gain). `.mem` rows are hexadecimal ROM contents, not sequential instructions.

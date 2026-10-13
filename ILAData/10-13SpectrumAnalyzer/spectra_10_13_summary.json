@@ -1,0 +1,680 @@
+{
+  "traces": [
+    {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0W.csv",
+        "sha256": "2fa2da1b4d80d1e9159c1e698b8f12a869ffe216b0572fd5158a5c4b7dacb60d",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 01:33:35",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 1016146.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799997459.635002,
+        "carrier_display_power_dbm": -30.5844593048096,
+        "display_spacing_hz": 2540.3650000095367
+      },
+      "bands": [
+        {
+          "low_hz": 10000,
+          "high_hz": 30000,
+          "display_points": 16,
+          "median_native_dbc": -34.03864860534665,
+          "median_density_proxy_db": -38.80986115254328
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "display_points": 24,
+          "median_native_dbc": -35.09601783752435,
+          "median_density_proxy_db": -39.867230384720976
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 100000,
+          "display_points": 32,
+          "median_native_dbc": -40.691591262817354,
+          "median_density_proxy_db": -45.46280381001398
+        },
+        {
+          "low_hz": 100000,
+          "high_hz": 200000,
+          "display_points": 78,
+          "median_native_dbc": -46.25696754455565,
+          "median_density_proxy_db": -51.028180091752276
+        },
+        {
+          "low_hz": 200000,
+          "high_hz": 300000,
+          "display_points": 80,
+          "median_native_dbc": -47.100889205932596,
+          "median_density_proxy_db": -51.87210175312922
+        },
+        {
+          "low_hz": 300000,
+          "high_hz": 400000,
+          "display_points": 78,
+          "median_native_dbc": -45.483373641967745,
+          "median_density_proxy_db": -50.25458618916437
+        },
+        {
+          "low_hz": 400000,
+          "high_hz": 500000,
+          "display_points": 78,
+          "median_native_dbc": -52.605699539184556,
+          "median_density_proxy_db": -57.37691208638118
+        }
+      ],
+      "strongest_displayed_features": [
+        {
+          "offset_hz": -5080.7300000190735,
+          "native_dbc": -22.7648868560791
+        },
+        {
+          "offset_hz": 48266.93499994278,
+          "native_dbc": -23.940324783325202
+        },
+        {
+          "offset_hz": -48266.93500006199,
+          "native_dbc": -24.612165451049805
+        },
+        {
+          "offset_hz": -99074.2350000143,
+          "native_dbc": -28.886945724487305
+        },
+        {
+          "offset_hz": 10161.460000038147,
+          "native_dbc": -29.160463333129904
+        },
+        {
+          "offset_hz": 25403.649999976158,
+          "native_dbc": -31.2899227142334
+        },
+        {
+          "offset_hz": 101614.60000002384,
+          "native_dbc": -31.3190822601318
+        },
+        {
+          "offset_hz": -25403.649999976158,
+          "native_dbc": -32.2777652740478
+        },
+        {
+          "offset_hz": -88912.77499997616,
+          "native_dbc": -36.5220546722412
+        },
+        {
+          "offset_hz": 88912.77499997616,
+          "native_dbc": -38.1927242279052
+        },
+        {
+          "offset_hz": -381054.75000202656,
+          "native_dbc": -38.5006237030029
+        },
+        {
+          "offset_hz": 335328.18000102043,
+          "native_dbc": -41.4114208221435
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0WNS.csv",
+        "sha256": "c10cc239f5b22abcc1db59944c92d417bc5117f889ccd4b90f93e4d89c2995da",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 01:37:03",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 1016146.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799997459.635002,
+        "carrier_display_power_dbm": -29.4451026916504,
+        "display_spacing_hz": 2540.3650000095367
+      },
+      "bands": [
+        {
+          "low_hz": 10000,
+          "high_hz": 30000,
+          "display_points": 16,
+          "median_native_dbc": -34.17693519592285,
+          "median_density_proxy_db": -38.94814774311948
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "display_points": 24,
+          "median_native_dbc": -35.212898254394496,
+          "median_density_proxy_db": -39.98411080159112
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 100000,
+          "display_points": 32,
+          "median_native_dbc": -41.14743804931639,
+          "median_density_proxy_db": -45.91865059651302
+        },
+        {
+          "low_hz": 100000,
+          "high_hz": 200000,
+          "display_points": 78,
+          "median_native_dbc": -46.3845520019531,
+          "median_density_proxy_db": -51.15576454914972
+        },
+        {
+          "low_hz": 200000,
+          "high_hz": 300000,
+          "display_points": 80,
+          "median_native_dbc": -47.1844444274902,
+          "median_density_proxy_db": -51.955656974686825
+        },
+        {
+          "low_hz": 300000,
+          "high_hz": 400000,
+          "display_points": 78,
+          "median_native_dbc": -48.08390045166014,
+          "median_density_proxy_db": -52.85511299885677
+        },
+        {
+          "low_hz": 400000,
+          "high_hz": 500000,
+          "display_points": 78,
+          "median_native_dbc": -53.605857849121044,
+          "median_density_proxy_db": -58.37707039631767
+        }
+      ],
+      "strongest_displayed_features": [
+        {
+          "offset_hz": -5080.7300000190735,
+          "native_dbc": -23.767189025878896
+        },
+        {
+          "offset_hz": 50807.299999952316,
+          "native_dbc": -25.2055549621582
+        },
+        {
+          "offset_hz": 251496.13500094414,
+          "native_dbc": -25.541137695312496
+        },
+        {
+          "offset_hz": -48266.93500006199,
+          "native_dbc": -26.3592224121094
+        },
+        {
+          "offset_hz": 101614.60000002384,
+          "native_dbc": -28.823314666748
+        },
+        {
+          "offset_hz": -99074.2350000143,
+          "native_dbc": -31.453956604003896
+        },
+        {
+          "offset_hz": -17782.555000066757,
+          "native_dbc": -33.643642425537095
+        },
+        {
+          "offset_hz": -381054.75000202656,
+          "native_dbc": -35.29545211791989
+        },
+        {
+          "offset_hz": 88912.77499997616,
+          "native_dbc": -38.23021316528319
+        },
+        {
+          "offset_hz": 315005.26000094414,
+          "native_dbc": -43.11082839965819
+        },
+        {
+          "offset_hz": 327707.0850009918,
+          "native_dbc": -43.4626197814941
+        },
+        {
+          "offset_hz": -276899.7850010395,
+          "native_dbc": -43.550464630126896
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0WNS2.csv",
+        "sha256": "af2a92f442ba8a2134974f5de4c6d8d8b790aea47b194ab5a7bed47e36190632",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 01:40:32",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 1016146.0,
+        "rbw_hz": 10.0,
+        "vbw_hz": 10.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799997459.635002,
+        "carrier_display_power_dbm": -32.4062271118164,
+        "display_spacing_hz": 2540.3650000095367
+      },
+      "bands": [
+        {
+          "low_hz": 10000,
+          "high_hz": 30000,
+          "display_points": 16,
+          "median_native_dbc": -28.0583019256592,
+          "median_density_proxy_db": -38.0583019256592
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "display_points": 24,
+          "median_native_dbc": -28.4204254150391,
+          "median_density_proxy_db": -38.420425415039105
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 100000,
+          "display_points": 32,
+          "median_native_dbc": -35.0189208984375,
+          "median_density_proxy_db": -45.0189208984375
+        },
+        {
+          "low_hz": 100000,
+          "high_hz": 200000,
+          "display_points": 78,
+          "median_native_dbc": -38.850967407226555,
+          "median_density_proxy_db": -48.850967407226555
+        },
+        {
+          "low_hz": 200000,
+          "high_hz": 300000,
+          "display_points": 80,
+          "median_native_dbc": -41.085323333740256,
+          "median_density_proxy_db": -51.085323333740256
+        },
+        {
+          "low_hz": 300000,
+          "high_hz": 400000,
+          "display_points": 78,
+          "median_native_dbc": -39.74991607666015,
+          "median_density_proxy_db": -49.74991607666015
+        },
+        {
+          "low_hz": 400000,
+          "high_hz": 500000,
+          "display_points": 78,
+          "median_native_dbc": -45.334041595459,
+          "median_density_proxy_db": -55.334041595459
+        }
+      ],
+      "strongest_displayed_features": [
+        {
+          "offset_hz": 48266.93499994278,
+          "native_dbc": -20.7619819641113
+        },
+        {
+          "offset_hz": -48266.93500006199,
+          "native_dbc": -21.32421875
+        },
+        {
+          "offset_hz": -99074.2350000143,
+          "native_dbc": -24.418319702148402
+        },
+        {
+          "offset_hz": -25403.649999976158,
+          "native_dbc": -25.425224304199197
+        },
+        {
+          "offset_hz": 22863.28499996662,
+          "native_dbc": -26.317169189453104
+        },
+        {
+          "offset_hz": 101614.60000002384,
+          "native_dbc": -27.3945350646973
+        },
+        {
+          "offset_hz": -86372.40999996662,
+          "native_dbc": -30.206531524658203
+        },
+        {
+          "offset_hz": 332787.8150010109,
+          "native_dbc": -33.6646957397461
+        },
+        {
+          "offset_hz": 302303.43500101566,
+          "native_dbc": -34.0932846069336
+        },
+        {
+          "offset_hz": 373433.65500092506,
+          "native_dbc": -34.7432632446289
+        },
+        {
+          "offset_hz": -348030.0050010681,
+          "native_dbc": -36.6102066040039
+        },
+        {
+          "offset_hz": -248955.7700010538,
+          "native_dbc": -36.626296997070305
+        }
+      ]
+    }
+  ],
+  "baselines": [
+    {
+      "metadata": {
+        "file": "File_0BEST.csv",
+        "sha256": "db62df7cfb8b6bdca27091623957244c2a72031fbaa436e434aa4f9922fef8f6",
+        "analyzer_timestamp": "Monday, 12 October 2026 10:02:58",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 143468.0,
+        "rbw_hz": 10.0,
+        "vbw_hz": 10.0,
+        "attenuation_db": 0.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799998206.649992,
+        "carrier_display_power_dbm": -28.1803550720215,
+        "display_spacing_hz": 358.66999995708466
+      },
+      "bands": [
+        {
+          "low_hz": 10000,
+          "high_hz": 30000,
+          "display_points": 112,
+          "median_native_dbc": -35.73567962646485,
+          "median_density_proxy_db": -45.73567962646485
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "display_points": 168,
+          "median_native_dbc": -30.80838966369625,
+          "median_density_proxy_db": -40.808389663696246
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 100000,
+          "display_points": 66,
+          "median_native_dbc": -35.0946750640869,
+          "median_density_proxy_db": -45.0946750640869
+        }
+      ],
+      "strongest_displayed_features": [
+        {
+          "offset_hz": 46985.76999402046,
+          "native_dbc": -14.378932952880803
+        },
+        {
+          "offset_hz": -46985.769994974136,
+          "native_dbc": -15.086887359619098
+        },
+        {
+          "offset_hz": -49137.78999400139,
+          "native_dbc": -15.485580444335902
+        },
+        {
+          "offset_hz": 48779.119994044304,
+          "native_dbc": -16.831962585449205
+        },
+        {
+          "offset_hz": 50931.13999402523,
+          "native_dbc": -17.260097503662102
+        },
+        {
+          "offset_hz": -50931.13999402523,
+          "native_dbc": -17.897026062011705
+        },
+        {
+          "offset_hz": 53083.15999305248,
+          "native_dbc": -18.3436508178711
+        },
+        {
+          "offset_hz": -53083.15999400616,
+          "native_dbc": -19.703475952148402
+        },
+        {
+          "offset_hz": -45192.419994950294,
+          "native_dbc": -21.532604217529304
+        },
+        {
+          "offset_hz": 44833.749994039536,
+          "native_dbc": -24.4727325439453
+        },
+        {
+          "offset_hz": -4304.039999961853,
+          "native_dbc": -28.955898284912102
+        },
+        {
+          "offset_hz": 63843.25999200344,
+          "native_dbc": -30.5906600952148
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "file": "File_0_ADF4108_Loop.csv",
+        "sha256": "1b02f51e2a1c79483b23ce1f7c4ba29c5ccf91dfb24860e85b12e975c82b7f16",
+        "analyzer_timestamp": "Tuesday, 13 October 2026 06:30:23",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 1000000000.0,
+        "span_hz": 181522.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 20.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 999997730.97499,
+        "carrier_display_power_dbm": -25.9451198577881,
+        "display_spacing_hz": 453.8049999475479
+      },
+      "bands": [
+        {
+          "low_hz": 10000,
+          "high_hz": 30000,
+          "display_points": 88,
+          "median_native_dbc": -38.5865383148193,
+          "median_density_proxy_db": -43.357750862015926
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "display_points": 132,
+          "median_native_dbc": -41.6004886627197,
+          "median_density_proxy_db": -46.371701209916324
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 100000,
+          "display_points": 136,
+          "median_native_dbc": -45.085348129272454,
+          "median_density_proxy_db": -49.85656067646908
+        }
+      ],
+      "strongest_displayed_features": [
+        {
+          "offset_hz": -4991.8550000190735,
+          "native_dbc": -19.713518142700202
+        },
+        {
+          "offset_hz": 4991.8550000190735,
+          "native_dbc": -20.6137142181396
+        },
+        {
+          "offset_hz": 46741.91498994827,
+          "native_dbc": -22.9729480743408
+        },
+        {
+          "offset_hz": -47195.71999502182,
+          "native_dbc": -23.2268123626709
+        },
+        {
+          "offset_hz": -49010.93999505043,
+          "native_dbc": -23.5073566436767
+        },
+        {
+          "offset_hz": 49010.93999004364,
+          "native_dbc": -23.5609073638916
+        },
+        {
+          "offset_hz": 50826.15998995304,
+          "native_dbc": -24.176839828491197
+        },
+        {
+          "offset_hz": -53095.184993982315,
+          "native_dbc": -24.431573867797802
+        },
+        {
+          "offset_hz": -51279.964993953705,
+          "native_dbc": -24.7016277313232
+        },
+        {
+          "offset_hz": 53095.18499004841,
+          "native_dbc": -24.759969711303697
+        },
+        {
+          "offset_hz": -7260.879999041557,
+          "native_dbc": -27.063230514526403
+        },
+        {
+          "offset_hz": 6807.075000047684,
+          "native_dbc": -27.9966335296631
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "file": "File_01_ADF4108_Loop.csv",
+        "sha256": "9059267d384b944917f12a97ae329bb670ec6af05007245bd99fda2118b3c3f8",
+        "analyzer_timestamp": "Tuesday, 13 October 2026 06:31:12",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 1000000000.0,
+        "span_hz": 1123048.0,
+        "rbw_hz": 30.0,
+        "vbw_hz": 30.0,
+        "attenuation_db": 20.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 999997192.380001,
+        "carrier_display_power_dbm": -25.3514289855957,
+        "display_spacing_hz": 2807.6200000047684
+      },
+      "bands": [
+        {
+          "low_hz": 10000,
+          "high_hz": 30000,
+          "display_points": 14,
+          "median_native_dbc": -29.04590225219725,
+          "median_density_proxy_db": -43.81711479939388
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "display_points": 22,
+          "median_native_dbc": -32.290399551391594,
+          "median_density_proxy_db": -47.06161209858822
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 100000,
+          "display_points": 28,
+          "median_native_dbc": -35.34541511535645,
+          "median_density_proxy_db": -50.11662766255308
+        },
+        {
+          "low_hz": 100000,
+          "high_hz": 200000,
+          "display_points": 72,
+          "median_native_dbc": -39.494937896728494,
+          "median_density_proxy_db": -54.26615044392512
+        },
+        {
+          "low_hz": 200000,
+          "high_hz": 300000,
+          "display_points": 70,
+          "median_native_dbc": -37.79809188842775,
+          "median_density_proxy_db": -52.569304435624375
+        },
+        {
+          "low_hz": 300000,
+          "high_hz": 400000,
+          "display_points": 72,
+          "median_native_dbc": -33.484712600708,
+          "median_density_proxy_db": -48.25592514790463
+        },
+        {
+          "low_hz": 400000,
+          "high_hz": 500000,
+          "display_points": 72,
+          "median_native_dbc": -43.458545684814446,
+          "median_density_proxy_db": -58.22975823201107
+        }
+      ],
+      "strongest_displayed_features": [
+        {
+          "offset_hz": -5615.239999890327,
+          "native_dbc": -19.859397888183597
+        },
+        {
+          "offset_hz": 5615.239999055862,
+          "native_dbc": -20.102054595947298
+        },
+        {
+          "offset_hz": 50537.15999901295,
+          "native_dbc": -24.248638153076204
+        },
+        {
+          "offset_hz": -47729.53999996185,
+          "native_dbc": -24.873435974121097
+        },
+        {
+          "offset_hz": -101074.31999993324,
+          "native_dbc": -26.1617736816406
+        },
+        {
+          "offset_hz": 249878.17999899387,
+          "native_dbc": -26.489521026611303
+        },
+        {
+          "offset_hz": 25268.57999908924,
+          "native_dbc": -27.7050704956055
+        },
+        {
+          "offset_hz": -28076.199999928474,
+          "native_dbc": -28.6011009216309
+        },
+        {
+          "offset_hz": 101074.31999909878,
+          "native_dbc": -29.1338806152344
+        },
+        {
+          "offset_hz": -328491.5400009155,
+          "native_dbc": -29.638572692871097
+        },
+        {
+          "offset_hz": -249878.17999994755,
+          "native_dbc": -30.1949768066406
+        },
+        {
+          "offset_hz": 350952.4999990463,
+          "native_dbc": -31.088424682617198
+        }
+      ]
+    }
+  ],
+  "rbw_10_vs_3_hz_noise_change_db": 5.228787452803376,
+  "offset_convention": "Subtract displayed carrier peak frequency, not nominal center. Peak display coordinate can differ from the true carrier by a bucket.",
+  "limitations": [
+    "AM and PM cannot be separated from RF power alone.",
+    "Sparse positive-peak display buckets are not uniformly sampled PSD values.",
+    "Native line powers and broadband RBW-normalized levels are distinct metrics.",
+    "All input records flag an incomplete sweep; repeat in single-sweep mode.",
+    "No independently measured open-loop gain or free-running baseline here; a spectral shoulder does not establish loop crossover.",
+    "No integrated 1\u201310 kHz phase noise or linewidth inferred."
+  ]
+}

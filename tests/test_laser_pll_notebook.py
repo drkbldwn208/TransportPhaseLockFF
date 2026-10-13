@@ -31,7 +31,7 @@ class GPIO:
 def run():
     ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
                        pll_acquisition=GPIO(),pll_acquisition_status=GPIO(),
-                       pll_tracking=GPIO(),pll_monitor=GPIO(),pll_fra=GPIO())
+                       pll_tracking=GPIO(),pll_monitor=GPIO(),pll_fra=GPIO(),pll_iir=GPIO())
     hwh=ROOT/'TransportPhaseLockFF.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh'
     rfdc=next(m for m in ET.parse(hwh).iter('MODULE') if m.get('INSTANCE')=='usp_rf_data_converter_0')
     parameters={p.get('NAME'):p.get('VALUE') for p in rfdc.iter('PARAMETER')}
@@ -43,7 +43,7 @@ def run():
         if address==8: return 0
         return ((ol.pll_frequency.read(8)>>16)&1)<<22 | (ol.pll_control.read(0)&1)<<18 | 1<<19
     def read_acquisition(address):
-        if address==8: return 0xA6010000 | 1024 | 417
+        if address==8: return 0xA8010000 | 1024 | 417
         config=ol.pll_acquisition.read(0)
         return (5 if config&4 else 4 if config&8 else config&3) | 0xe0
     ol.pll_status.read=read_status

@@ -56,7 +56,7 @@ module laser_pll_timing_top (
         .frequency_high(high_reg), .control(control_reg), .phase_offset(offset_reg),
         .acquisition_control(acquisition_reg), .test_dc(dc_reg),
         .tracking_control(tracking_reg), .monitor_control(monitor_reg),
-        .fra_control(32'd0), .fra_settle_clocks(32'd0), .fra_measure_clocks(32'd0),
+        .iir_control(32'b0),.iir_b0(32'b0),.iir_b1(32'b0),.iir_pole(32'b0),.fra_control(32'd0), .fra_settle_clocks(32'd0), .fra_measure_clocks(32'd0),
         .s_fra_tone_tdata(160'd0), .s_fra_tone_tvalid(1'b1), .s_fra_ref_tdata(272'd0), .s_fra_ref_tvalid(1'b1),
         .m_fra_error_tready(1'b1), .m_fra_drive_tready(1'b1), .m_fra_error_ref_tready(1'b1), .m_fra_drive_ref_tready(1'b1),
         .tracking_status(tracking_status_out), .monitor_status(monitor_status_out),

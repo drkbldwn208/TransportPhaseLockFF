@@ -28,10 +28,22 @@ def run():
     print(next(x for x in result.stdout.splitlines() if x.startswith('PASS:')))
     for line in (WORK/'fra_sums.txt').read_text().splitlines():
         word,ei,eq,ui,uq=map(int,line.split())
+        injection=2*complex(ui-ei,uq-eq)/(16384*32768)
+        assert abs(abs(injection)-1024)<0.1, injection
+        assert abs(injection.imag)<0.1, injection
         loop=-complex(ei,eq)/complex(ui,uq)
         expected=0.5*cmath.exp(-2j*cmath.pi*(8*word/2**32)*4)
         assert abs(loop-expected)<0.002,(loop,expected)
         print(f'{word*1966080000/2**32:g} Hz: measured L={loop:.6g}; expected {expected:.6g}')
 
+    for line in (WORK/'loopback_sums.txt').read_text().splitlines():
+        word,ii,iq,qi,qq,mi,mq=map(int,line.split())
+        h_i=2*complex(ii,iq)/(16384*32768*1024)
+        h_q=2*complex(qi,qq)/(16384*32768*1024)
+        delay=cmath.exp(-2j*cmath.pi*(8*word/2**32)*4)
+        assert abs(h_i-2*delay)<0.005,(h_i,2*delay)
+        assert abs(h_q-delay)<0.005,(h_q,delay)
+        assert abs(mi/16384-8000)<3 and abs(mq/16384+4000)<3
+        print(f'Loopback {word*1966080000/2**32:g} Hz: I={h_i}, Q={h_q}; 4-clock delay recovered')
 
 if __name__=='__main__': run()

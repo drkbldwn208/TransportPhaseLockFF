@@ -1,0 +1,209 @@
+{
+  "operating_point": "User confirmed FPGA 8x (/20), ADF N=80 and Icp=2.5 mA; analog filters unchanged and gains believed unchanged.",
+  "traces": [
+    {
+      "file": "File_0BEST.csv",
+      "sha256": "db62df7cfb8b6bdca27091623957244c2a72031fbaa436e434aa4f9922fef8f6",
+      "analyzer_timestamp": "Monday, 12 October 2026 10:02:58",
+      "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+      "center_frequency_hz": 800000000.0,
+      "span_hz": 143468.0,
+      "rbw_hz": 10.0,
+      "vbw_hz": 10.0,
+      "attenuation_db": 0.0,
+      "detector": "Positive",
+      "averaging": "1 / 1",
+      "incomplete_sweep_warning": true,
+      "carrier_display_frequency_hz": 799998206.649992,
+      "carrier_display_power_dbm": -28.1803550720215,
+      "display_spacing_hz": 358.66999995708466
+    },
+    {
+      "file": "File_0_ADF4108_Loop.csv",
+      "sha256": "1b02f51e2a1c79483b23ce1f7c4ba29c5ccf91dfb24860e85b12e975c82b7f16",
+      "analyzer_timestamp": "Tuesday, 13 October 2026 06:30:23",
+      "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+      "center_frequency_hz": 1000000000.0,
+      "span_hz": 181522.0,
+      "rbw_hz": 3.0,
+      "vbw_hz": 3.0,
+      "attenuation_db": 20.0,
+      "detector": "Positive",
+      "averaging": "1 / 1",
+      "incomplete_sweep_warning": true,
+      "carrier_display_frequency_hz": 999997730.97499,
+      "carrier_display_power_dbm": -25.9451198577881,
+      "display_spacing_hz": 453.8049999475479
+    },
+    {
+      "file": "File_01_ADF4108_Loop.csv",
+      "sha256": "9059267d384b944917f12a97ae329bb670ec6af05007245bd99fda2118b3c3f8",
+      "analyzer_timestamp": "Tuesday, 13 October 2026 06:31:12",
+      "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+      "center_frequency_hz": 1000000000.0,
+      "span_hz": 1123048.0,
+      "rbw_hz": 30.0,
+      "vbw_hz": 30.0,
+      "attenuation_db": 20.0,
+      "detector": "Positive",
+      "averaging": "1 / 1",
+      "incomplete_sweep_warning": true,
+      "carrier_display_frequency_hz": 999997192.380001,
+      "carrier_display_power_dbm": -25.3514289855957,
+      "display_spacing_hz": 2807.6200000047684
+    },
+    {
+      "file": "File_04xW.csv",
+      "sha256": "74c748a45ba21b6c1f5679e967cc160418aad4bacc0660d85245e59e59268319",
+      "analyzer_timestamp": "Monday, 12 October 2026 02:29:43",
+      "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+      "center_frequency_hz": 800000000.0,
+      "span_hz": 1244614.0,
+      "rbw_hz": 30.0,
+      "vbw_hz": 30.0,
+      "attenuation_db": 10.0,
+      "detector": "Positive",
+      "averaging": "1 / 1",
+      "incomplete_sweep_warning": true,
+      "carrier_display_frequency_hz": 799996888.464993,
+      "carrier_display_power_dbm": -17.6118602752686,
+      "display_spacing_hz": 3111.5349999666214
+    }
+  ],
+  "native_line_comparison": {
+    "FPGA8x": {
+      "around_5khz": [
+        {
+          "offset_hz": -4662.710000038147,
+          "level_dbc": -31.258857727050803
+        },
+        {
+          "offset_hz": 5380.049998998642,
+          "level_dbc": -31.881580352783203
+        }
+      ],
+      "family_45_54khz": [
+        {
+          "offset_hz": -46985.769994974136,
+          "level_dbc": -15.086887359619098
+        },
+        {
+          "offset_hz": 46985.76999402046,
+          "level_dbc": -14.378932952880803
+        }
+      ],
+      "median_broadband_proxies": [
+        {
+          "low_hz": 1000,
+          "high_hz": 10000,
+          "points": 50,
+          "median_broadband_proxy_db": -43.43454742431635
+        },
+        {
+          "low_hz": 10000,
+          "high_hz": 20000,
+          "points": 56,
+          "median_broadband_proxy_db": -45.6998424530029
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "points": 168,
+          "median_broadband_proxy_db": -40.808389663696246
+        },
+        {
+          "low_hz": 40000,
+          "high_hz": 60000,
+          "points": 112,
+          "median_broadband_proxy_db": -39.26241493225095
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 70000,
+          "points": 56,
+          "median_broadband_proxy_db": -44.66455459594725
+        }
+      ]
+    },
+    "ADF4108": {
+      "around_5khz": [
+        {
+          "offset_hz": -4991.8550000190735,
+          "level_dbc": -19.713518142700202
+        },
+        {
+          "offset_hz": 4991.8550000190735,
+          "level_dbc": -20.6137142181396
+        }
+      ],
+      "family_45_54khz": [
+        {
+          "offset_hz": -47195.71999502182,
+          "level_dbc": -23.2268123626709
+        },
+        {
+          "offset_hz": 46741.91498994827,
+          "level_dbc": -22.9729480743408
+        }
+      ],
+      "median_broadband_proxies": [
+        {
+          "low_hz": 1000,
+          "high_hz": 10000,
+          "points": 40,
+          "median_broadband_proxy_db": -44.85723206318782
+        },
+        {
+          "low_hz": 10000,
+          "high_hz": 20000,
+          "points": 44,
+          "median_broadband_proxy_db": -43.77576538838313
+        },
+        {
+          "low_hz": 30000,
+          "high_hz": 60000,
+          "points": 132,
+          "median_broadband_proxy_db": -46.371701209916324
+        },
+        {
+          "low_hz": 40000,
+          "high_hz": 60000,
+          "points": 88,
+          "median_broadband_proxy_db": -47.24237915791437
+        },
+        {
+          "low_hz": 60000,
+          "high_hz": 70000,
+          "points": 44,
+          "median_broadband_proxy_db": -49.67817398823668
+        }
+      ]
+    }
+  },
+  "ideal_detector_comparison": {
+    "assumed_span_vpp": 2.0,
+    "adf_slope_v_per_rad": 0.0019894367886486917,
+    "fpga_8x_slope_v_per_rad": 0.015915494309189534,
+    "fpga_vs_adf_gain_db": 18.06179973983887,
+    "fpga_8x_centered_headroom_turns": 10,
+    "fpga_8x_voltage_per_beat_cycle_v": 0.1,
+    "fpga_stage4_fabric_delay_ns": 105.54,
+    "fabric_delay_lag_deg": {
+      "50000": 1.89972,
+      "350000": 13.29804,
+      "1000000": 37.9944
+    },
+    "caveat": "Equal full-current/voltage output spans and a linear ADF output amplifier are assumed; the complete detector transfer functions are unmeasured."
+  },
+  "limitations": [
+    "Positive-peak detector / unequal RBWs and bucket widths bias random-noise levels.",
+    "The displayed point spacing is much wider than the RBW: do not integrate plotted lines as a PSD.",
+    "Broadband normalization uses nominal RBW, not calibrated ENBW or detector corrections.",
+    "Carrier normalization removes a scalar level difference but not AM, carrier depletion, or receiver changes.",
+    "All files carry the analyzer's incomplete-sweep warning.",
+    "Last night's FPGA RF spectrum ends near +/-72 kHz; older 4x wide spectrum is context only.",
+    "RF sidebands contain both AM and PM, including large-modulation effects; no RMS phase is inferred.",
+    "Spectral bumps are not a measurement of unity-gain crossover or phase margin.",
+    "Unchanged analog controller settings do not imply matched discriminator slope or total loop gain."
+  ]
+}

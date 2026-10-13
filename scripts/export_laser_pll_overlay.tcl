@@ -7,7 +7,8 @@ if {[get_property NEEDS_REFRESH $run]} {
     error "Implementation is stale; run check_full_project_timing.tcl first"
 }
 if {![string match {*route_design Complete*} [get_property STATUS $run]] &&
-    ![string match {*write_bitstream Complete*} [get_property STATUS $run]]} {
+    ![string match {*write_bitstream Complete*} [get_property STATUS $run]] &&
+    ![string match {*phys_opt_design*Complete*} [get_property STATUS $run]]} {
     error "Complete routed implementation before exporting the overlay"
 }
 if {![string match {*write_bitstream Complete*} [get_property STATUS $run]]} {
@@ -26,4 +27,6 @@ file copy -force $root/python_scripts/laser_pll.py $out/laser_pll.py
 file copy -force $root/python_scripts/laser_pll_bringup.ipynb $out/laser_pll_bringup.ipynb
 file copy -force $root/python_scripts/laser_pll_loop_sweep.py $out/laser_pll_loop_sweep.py
 file copy -force $root/python_scripts/laser_pll_loop_sweep.ipynb $out/laser_pll_loop_sweep.ipynb
+file copy -force $root/python_scripts/laser_pll_loopback.py $out/laser_pll_loopback.py
+file copy -force $root/python_scripts/laser_pll_loopback.ipynb $out/laser_pll_loopback.ipynb
 puts "LASER_PLL_OVERLAY $out"

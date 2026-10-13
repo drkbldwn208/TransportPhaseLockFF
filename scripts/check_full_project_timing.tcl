@@ -15,17 +15,31 @@ generate_target all $fft_xci
 generate_target all [get_files design_1.bd]
 create_ip_run [get_files design_1.bd]
 create_ip_run $fft_xci
-reset_run [get_runs design_1_laser_pll_0_0_synth_1]
+reset_run [get_runs design_1_laser_pll_*_0_synth_1]
 reset_run synth_1
 foreach run [get_runs] {file mkdir [get_property DIRECTORY $run]}
+# A module-reference regeneration after an RTL edit can delete its generated
+# DCP at implementation launch. Require the inputs to stay fixed during synth.
+set pll_source_stamps [dict create]
+foreach source [glob $root/TransportPhaseLockFF.srcs/sources_1/new/laser_pll*] {
+    dict set pll_source_stamps $source [file mtime $source]
+}
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
 puts "FULL_PROJECT_SYNTH_STATUS [get_property STATUS [get_runs synth_1]]"
 if {[get_property PROGRESS [get_runs synth_1]] ne "100%"} {
     error "Full project synthesis did not complete; inspect .runs/*/runme.log"
 }
-if {![file exists $root/TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_laser_pll_0_0/design_1_laser_pll_0_0.dcp]} {
-    error "PLL checkpoint missing: revalidate BD and rebuild without editing RTL during the run"
+dict for {source stamp} $pll_source_stamps {
+    if {[file mtime $source] != $stamp} {
+        error "RTL changed during synthesis: $source. Rerun this script with sources fixed."
+    }
+}
+foreach index {0 1} {
+    set pll_name design_1_laser_pll_${index}_0
+    if {![file exists $root/TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/$pll_name/$pll_name.dcp]} {
+        error "PLL checkpoint missing: revalidate BD and rebuild without editing RTL during the run"
+    }
 }
 launch_runs impl_1 -to_step route_design -jobs 4
 wait_on_run impl_1
@@ -33,21 +47,9 @@ puts "FULL_PROJECT_IMPL_STATUS [get_property STATUS [get_runs impl_1]]"
 if {![string match {*route_design Complete*} [get_property STATUS [get_runs impl_1]]]} {
     error "Full project routing did not complete; inspect impl_1/runme.log"
 }
-open_run impl_1
-report_timing_summary -delay_type min_max -max_paths 20 -report_unconstrained -file $out/timing_summary.rpt
-report_utilization -hierarchical -file $out/utilization.rpt
-report_clock_interaction -file $out/clock_interaction.rpt
-report_drc -file $out/drc.rpt
-set pll_registers [get_cells -hierarchical -filter {NAME =~ *laser_pll_0* && IS_SEQUENTIAL}]
-# Check both sides of the PLL boundary without collecting every internal pin.
-report_timing -from $pll_registers -delay_type max -max_paths 20 -file $out/pll_setup_paths.rpt
-report_timing -to $pll_registers -delay_type max -max_paths 20 -append -file $out/pll_setup_paths.rpt
-report_timing -to $pll_registers -delay_type min -max_paths 20 -file $out/pll_hold_paths.rpt
-set setup_slack [get_property SLACK [get_timing_paths -max_paths 1]]
-set hold_slack [get_property SLACK [get_timing_paths -delay_type min -max_paths 1]]
-puts "FULL_PROJECT_WNS $setup_slack"
-puts "FULL_PROJECT_WHS $hold_slack"
-puts "FULL_PROJECT_REPORTS $out"
-if {$setup_slack < 0 || $hold_slack < 0} {
-    error "Full project timing failed; inspect $out/timing_summary.rpt"
+if {[get_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED [get_runs impl_1]]} {
+    launch_runs impl_1 -to_step {phys_opt_design (Post-Route)} -jobs 4
+    wait_on_run impl_1
+    if {[get_property PROGRESS [get_runs impl_1]] ne "100%"} {error "Post-route optimization failed"}
 }
+source $root/scripts/report_laser_pll_timing.tcl

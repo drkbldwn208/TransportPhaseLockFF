@@ -12,7 +12,7 @@ module laser_pll_tb;
         .s_axis_tvalid(valid), .s_axis_tready(adc_ready), .m_axis_tdata(dac_data),
         .m_axis_tvalid(dac_valid), .m_axis_tready(ready), .frequency_low(low_word),
         .frequency_high(high_word), .control(control), .phase_offset(offset),
-        .tracking_control(32'd0), .monitor_control(32'd0), .fra_control(32'd0), .fra_settle_clocks(32'd0), .fra_measure_clocks(32'd0),
+        .tracking_control(32'd0), .monitor_control(32'd0), .iir_control(32'b0),.iir_b0(32'b0),.iir_b1(32'b0),.iir_pole(32'b0),.fra_control(32'd0), .fra_settle_clocks(32'd0), .fra_measure_clocks(32'd0),
         .s_fra_tone_tdata(160'd0), .s_fra_tone_tvalid(1'b1), .s_fra_ref_tdata(272'd0), .s_fra_ref_tvalid(1'b1),
         .m_fra_error_tready(1'b1), .m_fra_drive_tready(1'b1), .m_fra_error_ref_tready(1'b1), .m_fra_drive_ref_tready(1'b1), .m_monitor_tready(1'b1),
         .acquisition_control(32'h00200040), .test_dc(32'b0),

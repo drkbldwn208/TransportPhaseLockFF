@@ -26,8 +26,8 @@ class Controls(unittest.TestCase):
     def setUp(self):
         self.ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
                                 pll_acquisition=GPIO(),pll_acquisition_status=GPIO(),
-                                pll_tracking=GPIO(),pll_monitor=GPIO(),pll_fra=GPIO())
-        self.ol.pll_acquisition_status.values[8]=0xA6000000
+                                pll_tracking=GPIO(),pll_monitor=GPIO(),pll_fra=GPIO(),pll_iir=GPIO())
+        self.ol.pll_acquisition_status.values[8]=0xA8000000
 
     def test_frequency_units_and_commit_order(self):
         self.ol.pll_status.values[0]=1<<22
@@ -54,7 +54,7 @@ class Controls(unittest.TestCase):
 
     def test_old_stage3_mapping_is_rejected_before_writes(self):
         self.ol.pll_acquisition_status.values[8]=0xA3000000
-        with self.assertRaisesRegex(ValueError,'A6 loop-analyzer'):
+        with self.assertRaisesRegex(ValueError,'A8 dual-PLL'):
             pll.configure(self.ol)
         self.assertEqual(self.ol.pll_control.writes,[])
         self.assertEqual(self.ol.pll_acquisition.writes,[])
@@ -121,7 +121,7 @@ class Controls(unittest.TestCase):
 
     def test_acquisition_status_units(self):
         self.ol.pll_acquisition_status.values[0]=3|128|(0xffffff<<8)
-        self.ol.pll_acquisition_status.values[8]=0xA6010000|1024|417
+        self.ol.pll_acquisition_status.values[8]=0xA8010000|1024|417
         state=pll.acquisition_status(self.ol)
         self.assertEqual(state['remembered_turns'],-1)
         self.assertEqual(state['fft_frequency_hz'],800640000)
@@ -212,6 +212,58 @@ class Controls(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError,'lost/invalid'): pll.capture_iq(self.ol,16)
             self.assertEqual(released,[True])
             self.assertEqual(self.ol.pll_monitor.values[0],0)
+
+    def test_4g4_reference_alias_and_reported_rf(self):
+        self.ol.rf_band_base_hz=2*pll.ADC_SAMPLE_RATE_HZ
+        self.ol.pll_status.values[0]=1<<22
+        actual=pll.set_reference_frequency(self.ol,4.4e9)
+        self.assertAlmostEqual(actual,4.4e9,places=4)
+        word=self.ol.pll_frequency.read(0) | ((self.ol.pll_frequency.read(8)&65535)<<32)
+        self.assertAlmostEqual(word*pll.ADC_SAMPLE_RATE_HZ/2**48,467840000,places=5)
+        self.ol.pll_acquisition_status.values[8]=0xA8000000|244|1024
+        self.assertAlmostEqual(pll.acquisition_status(self.ol)['fft_frequency_hz'],
+                               2*pll.ADC_SAMPLE_RATE_HZ+244*pll.ADC_SAMPLE_RATE_HZ/1024)
+        with self.assertRaises(ValueError): pll.set_reference_frequency(self.ol,3.8e9)
+
+    def test_independent_channel_handles(self):
+        names=('frequency','control','status','acquisition','acquisition_status','tracking','monitor',
+               'fra','fra_window','fra_tone','fra_error','fra_drive','fra_counts','fra_extrema',
+               'fra_samples','iir','iir_feed','iir_pole')
+        for name in names: setattr(self.ol,'pll2_'+name,GPIO())
+        self.ol.pll2_iq_dma=object(); self.ol.ip_dict={}; self.ol.usp_rf_data_converter_0=object()
+        second=pll.channel(self.ol,1)
+        pll.enable(second)
+        self.assertEqual(second.pll_control.read(0),1)
+        self.assertEqual(self.ol.pll_control.read(0),0)
+        self.assertIs(second.axi_dma_3,self.ol.pll2_iq_dma)
+        self.assertEqual((second.adc_tile,second.adc_block,second.dac_block),(1,1,3))
+
+    def test_lead_lag_coefficients_match_analog_response(self):
+        self.ol.pll_iir_feed=GPIO(); self.ol.pll_iir_pole=GPIO()
+        write=self.ol.pll_iir.write
+        def ack(address,value):
+            write(address,value)
+            self.ol.pll_iir.values[8]=value & 3
+        self.ol.pll_iir.write=ack
+        result=pll.configure_lead_lag(self.ol,zero_hz=20000,pole_hz=100000)
+        f=np.geomspace(10,1e6,1000)
+        z=np.exp(2j*np.pi*f/pll.IIR_SAMPLE_RATE_HZ)
+        measured=(result['b0']+result['b1']/z)/(1+result['a1']/z)
+        analog=(1+1j*f/20000)/(1+1j*f/100000)
+        self.assertLess(np.max(np.abs(measured/analog-1)),0.001)
+        self.assertAlmostEqual(result['dc_gain'],1,places=6)
+        self.assertEqual(self.ol.pll_iir.read(0) & 1,0)
+        result=pll.configure_lead_lag(self.ol,zero_hz=1400,pole_hz=24)
+        self.assertAlmostEqual(result['dc_gain'],1,places=5)
+
+    def test_iir_invalid_coefficients_do_not_write(self):
+        self.ol.pll_iir_feed=GPIO(); self.ol.pll_iir_pole=GPIO()
+        for b0,b1,a1 in ((1,0,-1),(1,0,1),(16,0,0),(1,0,float('nan'))):
+            with self.assertRaises(ValueError): pll.set_iir_coefficients(self.ol,b0=b0,b1=b1,a1=a1)
+        self.assertEqual(self.ol.pll_iir_feed.writes,[])
+        self.ol.pll_iir.values[0]=1
+        with self.assertRaisesRegex(ValueError,'bypass'): pll.set_iir_coefficients(self.ol,b0=1,b1=0,a1=0)
+
 
 
 if __name__=='__main__': unittest.main()

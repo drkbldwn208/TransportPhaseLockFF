@@ -1,0 +1,240 @@
+{
+  "iq": [
+    {
+      "file": "laser_iq_20261011_184622.npz",
+      "sha256": "5dba03ac0636d57f6856e79513efa214971952f0251b6c56f088f92b6c5919ff",
+      "gain": 1,
+      "samples": 1000000,
+      "sample_rate_hz": 1920000.0,
+      "decimation_log2": 7,
+      "duration_s": 0.5208333333333334,
+      "bin_spacing_hz": 7.32421875,
+      "welch_segments": 6,
+      "mean_amplitude_adc_counts": 6622.7719352165,
+      "fractional_amplitude_rms": 0.038550373782017,
+      "minimum_amplitude_relative_to_mean": 0.41967526199123995,
+      "coherent_power_fraction": 0.028899943904119384,
+      "coherent_carrier_adc_counts_squared": 1269467.3594660987,
+      "phase_only_coherent_power_fraction": 0.029020814484802402,
+      "apparent_phase_rms_rad": 3.8118324901470966,
+      "apparent_net_turns": 0.20648908274504216,
+      "phase_steps_over_pi_over_2": 30331,
+      "phase_steps_over_0p9pi": 73,
+      "bands": {
+        "20-100 Hz": {
+          "apparent_phase_rms_rad": 1.1560135485222491,
+          "envelope_power_fraction": 0.03096737417094382,
+          "phase_only_envelope_power": 0.030782877730814975
+        },
+        "100-1000 Hz": {
+          "apparent_phase_rms_rad": 1.7797090142721692,
+          "envelope_power_fraction": 0.27311861628746437,
+          "phase_only_envelope_power": 0.2740696486858207
+        },
+        "1000-10000 Hz": {
+          "apparent_phase_rms_rad": 0.38686812894372474,
+          "envelope_power_fraction": 0.09018098605712617,
+          "phase_only_envelope_power": 0.08982018976020016
+        },
+        "10000-100000 Hz": {
+          "apparent_phase_rms_rad": 0.43672845454540055,
+          "envelope_power_fraction": 0.11935727884761932,
+          "phase_only_envelope_power": 0.11535968883323014
+        },
+        "100000-200000 Hz": {
+          "apparent_phase_rms_rad": 0.43173350074467987,
+          "envelope_power_fraction": 0.11714904406859808,
+          "phase_only_envelope_power": 0.11470504612734078
+        },
+        "200000-900000 Hz": {
+          "apparent_phase_rms_rad": 0.6736586456729153,
+          "envelope_power_fraction": 0.3177422962473733,
+          "phase_only_envelope_power": 0.3249436892903898
+        }
+      },
+      "interpolation_unwrap_diagnostic": {
+        "2": {
+          "net_turns": 0.20648908274503155,
+          "detrended_rms_rad": 2.443132324648568,
+          "min_difference_turns": -2.00000000000002,
+          "max_difference_turns": 8.764195122255024e-15
+        },
+        "4": {
+          "net_turns": 0.20648908274502703,
+          "detrended_rms_rad": 2.4431323246485595,
+          "min_difference_turns": -2.0000000000000044,
+          "max_difference_turns": 1.618548937900323e-14
+        },
+        "8": {
+          "net_turns": 0.2064890827450184,
+          "detrended_rms_rad": 2.4431323246485643,
+          "min_difference_turns": -2.000000000000017,
+          "max_difference_turns": 1.2722218725854067e-14
+        }
+      },
+      "subrecord_coherent_fraction": [
+        0.0031341025960429326,
+        0.03464556393173165,
+        0.04686609704762752,
+        0.07724791063913244,
+        0.10259447797244793,
+        0.024937689583877147,
+        0.001517031384401556,
+        0.014039575831889112
+      ],
+      "envelope_power_370_480_Hz": 0.05867174513793131,
+      "envelope_power_165000_185000_Hz": 0.040210468330878726,
+      "envelope_power_330000_370000_Hz": 0.08655554087886373
+    },
+    {
+      "file": "laser_iq_20261011_184941.npz",
+      "sha256": "cd273d286541bd69d1b911dd1c1166685474f98d954a9b933bff100060bb96b4",
+      "gain": 4,
+      "samples": 1000000,
+      "sample_rate_hz": 1920000.0,
+      "decimation_log2": 7,
+      "duration_s": 0.5208333333333334,
+      "bin_spacing_hz": 7.32421875,
+      "welch_segments": 6,
+      "mean_amplitude_adc_counts": 6305.8998777929055,
+      "fractional_amplitude_rms": 0.046226360116222526,
+      "minimum_amplitude_relative_to_mean": 0.023910958190016523,
+      "coherent_power_fraction": 0.09192361859122526,
+      "coherent_carrier_adc_counts_squared": 3663095.974191155,
+      "phase_only_coherent_power_fraction": 0.09191352709873946,
+      "apparent_phase_rms_rad": 14.777273560775889,
+      "apparent_net_turns": -9.723976155881378,
+      "phase_steps_over_pi_over_2": 50724,
+      "phase_steps_over_0p9pi": 583,
+      "bands": {
+        "20-100 Hz": {
+          "apparent_phase_rms_rad": 4.192858090226533,
+          "envelope_power_fraction": 0.01788988301606737,
+          "phase_only_envelope_power": 0.01793916480107181
+        },
+        "100-1000 Hz": {
+          "apparent_phase_rms_rad": 2.4276690603936877,
+          "envelope_power_fraction": 0.2191918330980196,
+          "phase_only_envelope_power": 0.21896174524819348
+        },
+        "1000-10000 Hz": {
+          "apparent_phase_rms_rad": 0.6211505267205709,
+          "envelope_power_fraction": 0.046350624775047845,
+          "phase_only_envelope_power": 0.04514915183649286
+        },
+        "10000-100000 Hz": {
+          "apparent_phase_rms_rad": 0.4968795634690396,
+          "envelope_power_fraction": 0.13329691696716278,
+          "phase_only_envelope_power": 0.12684290202861084
+        },
+        "100000-200000 Hz": {
+          "apparent_phase_rms_rad": 0.41466820318914854,
+          "envelope_power_fraction": 0.1073442114560965,
+          "phase_only_envelope_power": 0.10374793212713279
+        },
+        "200000-900000 Hz": {
+          "apparent_phase_rms_rad": 0.7518749220389136,
+          "envelope_power_fraction": 0.3626906091478168,
+          "phase_only_envelope_power": 0.37157846068290973
+        }
+      },
+      "interpolation_unwrap_diagnostic": {
+        "2": {
+          "net_turns": 12.276023844118601,
+          "detrended_rms_rad": 10.641192104100933,
+          "min_difference_turns": -2.8271597168564595e-15,
+          "max_difference_turns": 22.999999999999986
+        },
+        "4": {
+          "net_turns": 11.27602384411861,
+          "detrended_rms_rad": 9.51036583713319,
+          "min_difference_turns": -1.2015428796639952e-15,
+          "max_difference_turns": 21.999999999999996
+        },
+        "8": {
+          "net_turns": 12.276023844118608,
+          "detrended_rms_rad": 8.69524915124477,
+          "min_difference_turns": -7.156248033292913e-16,
+          "max_difference_turns": 22.99999999999999
+        }
+      },
+      "subrecord_coherent_fraction": [
+        0.11937516931236813,
+        0.02569971170322105,
+        0.1597962623651947,
+        0.13659954744254388,
+        0.18631317822159693,
+        0.06833532793099031,
+        0.06494812257498139,
+        0.04059205189249855
+      ],
+      "envelope_power_370_480_Hz": 0.07599849335613551,
+      "envelope_power_165000_185000_Hz": 0.03146722740776654,
+      "envelope_power_330000_370000_Hz": 0.10945465570805203
+    }
+  ],
+  "analyzer": [
+    {
+      "file": "File_01x.csv",
+      "sha256": "3d426a0315c4644ff17434e71da23c1f2c5a45bad33c99a367220c7d17a881f5",
+      "rbw_hz": 1.0,
+      "point_spacing_hz": 76.95500004291534,
+      "detector": "Positive",
+      "averages": 1,
+      "incomplete_sweep_warning": true,
+      "peak_frequency_hz": 799998076.125008,
+      "peak_dbm": -22.4698276519775
+    },
+    {
+      "file": "File_01xW.csv",
+      "sha256": "0e511767fa6da7c35d536feb3da7c5d0784c5b9c547109d22d9edd50f0683c6d",
+      "rbw_hz": 30.0,
+      "point_spacing_hz": 3111.5349999666214,
+      "detector": "Positive",
+      "averages": 1,
+      "incomplete_sweep_warning": true,
+      "peak_frequency_hz": 799996888.464993,
+      "peak_dbm": -25.1741065979004
+    },
+    {
+      "file": "File_04x.csv",
+      "sha256": "ee92ed2305631539c99015f0457c02564dbe1a3dd7877a0bd710bc235550bddf",
+      "rbw_hz": 1.0,
+      "point_spacing_hz": 69.13499999046326,
+      "detector": "Positive",
+      "averages": 1,
+      "incomplete_sweep_warning": true,
+      "peak_frequency_hz": 799998064.219998,
+      "peak_dbm": -17.7585411071777
+    },
+    {
+      "file": "File_04xW.csv",
+      "sha256": "74c748a45ba21b6c1f5679e967cc160418aad4bacc0660d85245e59e59268319",
+      "rbw_hz": 30.0,
+      "point_spacing_hz": 3111.5349999666214,
+      "detector": "Positive",
+      "averages": 1,
+      "incomplete_sweep_warning": true,
+      "peak_frequency_hz": 799996888.464993,
+      "peak_dbm": -17.6118602752686
+    }
+  ],
+  "iq_coherent_carrier_change_db": 4.602267586793925,
+  "analyzer_narrow_carrier_change_db": 4.711286544799801,
+  "nominal_phase_quantization_rad": {
+    "command_16bit_1x": 0.015339807878856412,
+    "command_16bit_4x": 0.003834951969714103,
+    "physical_14bit_1x": 0.06135923151542565,
+    "physical_14bit_4x": 0.015339807878856412,
+    "cordic_18bit_both": 2.3968449810713143e-05
+  },
+  "analog_change": "User: only FALC gain reduced, roughly 4x, optimized by beat spectrum.",
+  "interpretation_limits": [
+    "D7 averages rotating vectors before phase extraction; near-pi steps make unwrapping ambiguous.",
+    "Interpolation checks sensitivity; they do not restore missing high-frequency information.",
+    "Analyzer is positive-peak, one average, point spacing much wider than RBW, and flags incomplete sweeps.",
+    "RF traces and I/Q records are not simultaneous; carrier peak comparison is approximate.",
+    "In-loop noise is not an independent detector-noise-floor measurement.",
+    "Both detector and analog gain changed: no isolated measurement of quantization improvement."
+  ]
+}

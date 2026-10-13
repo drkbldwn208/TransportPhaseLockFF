@@ -18,7 +18,7 @@ module laser_pll_stages_tb;
         .s_axis_tvalid(adc_valid),.s_axis_tready(),.m_axis_tdata(dac_data),
         .m_axis_tvalid(),.m_axis_tready(1'b1),.frequency_low(FCW[31:0]),
         .frequency_high({15'b0,1'b1,FCW[47:32]}),.control(control),.phase_offset(32'b0),
-        .tracking_control(tracking_control), .monitor_control(monitor_control), .fra_control(32'd0), .fra_settle_clocks(32'd0), .fra_measure_clocks(32'd0),
+        .tracking_control(tracking_control), .monitor_control(monitor_control), .iir_control(32'b0),.iir_b0(32'b0),.iir_b1(32'b0),.iir_pole(32'b0),.fra_control(32'd0), .fra_settle_clocks(32'd0), .fra_measure_clocks(32'd0),
         .s_fra_tone_tdata(160'd0), .s_fra_tone_tvalid(1'b1), .s_fra_ref_tdata(272'd0), .s_fra_ref_tvalid(1'b1),
         .m_fra_error_tready(1'b1), .m_fra_drive_tready(1'b1), .m_fra_error_ref_tready(1'b1), .m_fra_drive_ref_tready(1'b1), .m_monitor_tready(1'b1),
         .tracking_status(tracking_status), .monitor_status(monitor_status),

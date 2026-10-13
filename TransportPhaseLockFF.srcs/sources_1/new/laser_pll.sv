@@ -26,6 +26,11 @@ module laser_pll (
     output wire m_monitor_tvalid,
     input wire m_monitor_tready,
     output wire m_monitor_tlast,
+    input wire [31:0] iir_control, iir_b0, iir_b1, iir_pole,
+    output wire [31:0] iir_status,
+    output wire [31:0] fra_clip_samples, fra_saturated_samples, fra_outside_clip_samples,
+    output wire [31:0] fra_measured_samples, fra_error_extrema, fra_drive_extrema,
+    output wire [31:0] loopback_i_low, loopback_i_high, loopback_q_low, loopback_q_high,
     input wire [31:0] fra_control, fra_settle_clocks, fra_measure_clocks,
     output wire [31:0] fra_status,
     input wire [159:0] s_fra_tone_tdata,
@@ -125,12 +130,35 @@ module laser_pll (
         .target_valid(target_valid), .turns(turns), .unwrap_arm(unwrap_arm), .tracking_arm(tracking_arm),
         .dac_target(output_target), .output_valid(output_valid),
         .output_saturated(output_saturated), .acquisition_status(acquisition_status));
+    wire signed [15:0] compensated_target;
+    wire compensated_valid, compensated_saturated;
+    laser_pll_iir compensator (.clk(clk), .rst_n(rst_n),
+        .input_code(output_target), .input_valid(output_valid), .input_saturated(output_saturated),
+        .control(iir_control), .b0_word(iir_b0), .b1_word(iir_b1), .pole_word(iir_pole),
+        .output_code(compensated_target), .output_valid(compensated_valid),
+        .output_saturated(compensated_saturated), .status(iir_status));
+    // Raw ADC rail detector is used only by diagnostic loopback measurements.
+    reg adc_at_rail;
+    integer rail_lane;
+    always @* begin
+        adc_at_rail=0;
+        for (rail_lane=0;rail_lane<8;rail_lane=rail_lane+1)
+            if ($signed(s_axis_tdata[16*rail_lane+:16])>=32752 ||
+                $signed(s_axis_tdata[16*rail_lane+:16])<=-32752) adc_at_rail=1;
+    end
     wire signed [15:0] driven_target;
     wire driven_saturated;
     laser_pll_fra loop_measurement (.clk(clk), .rst_n(rst_n),
-        .error_code(output_target), .error_valid(output_valid), .error_saturated(output_saturated),
+        .error_code(compensated_target), .error_valid(compensated_valid), .error_saturated(compensated_saturated),
         .dac_ready(m_axis_tready), .phase_valid(error_valid),
+        .loopback_i(filtered_i), .loopback_q(filtered_q),
+        .loopback_valid(filtered_valid && filtered_q_valid), .loopback_clipped(adc_at_rail),
+        .loopback_sum_i({loopback_i_high,loopback_i_low}),
+        .loopback_sum_q({loopback_q_high,loopback_q_low}),
         .control(fra_control), .settle_clocks(fra_settle_clocks), .measure_clocks(fra_measure_clocks),
+        .clip_samples(fra_clip_samples), .saturated_samples(fra_saturated_samples),
+        .outside_clip_samples(fra_outside_clip_samples), .measured_samples(fra_measured_samples),
+        .error_extrema(fra_error_extrema), .drive_extrema(fra_drive_extrema),
         .status(fra_status), .drive_code(driven_target), .drive_saturated(driven_saturated),
         .s_tone_tdata(s_fra_tone_tdata), .s_tone_tvalid(s_fra_tone_tvalid), .s_tone_tready(s_fra_tone_tready),
         .s_ref_tdata(s_fra_ref_tdata), .s_ref_tvalid(s_fra_ref_tvalid), .s_ref_tready(s_fra_ref_tready),
@@ -139,7 +167,7 @@ module laser_pll (
         .m_error_ref_tdata(m_fra_error_ref_tdata), .m_error_ref_tvalid(m_fra_error_ref_tvalid), .m_error_ref_tready(m_fra_error_ref_tready),
         .m_drive_ref_tdata(m_fra_drive_ref_tdata), .m_drive_ref_tvalid(m_fra_drive_ref_tvalid), .m_drive_ref_tready(m_fra_drive_ref_tready));
     laser_pll_dac dac_output (.clk(clk), .rst_n(rst_n), .enable(enable), .clear(clear),
-        .dac_target(driven_target), .target_valid(output_valid), .target_saturated(driven_saturated),
+        .dac_target(driven_target), .target_valid(compensated_valid), .target_saturated(driven_saturated),
         .m_axis_tdata(m_axis_tdata), .m_axis_tvalid(m_axis_tvalid), .m_axis_tready(m_axis_tready),
         .saturated(saturated), .stalled(stalled));
     assign phase_status = {9'b0, frequency_ack, stalled, saturated, error_valid,

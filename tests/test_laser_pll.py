@@ -38,6 +38,9 @@ def run():
     hq[15:17] += (131072-hq.sum())//2
     h = hq / 131072
     scenarios = [
+        ('rf4g4_phase', 4.4e9, 18000, .7, False),
+        ('rf4g4_plus100', 4.5e9, 18000, .1, True),
+        ('rf4g4_minus100', 4.3e9, 18000, .1, True),
         ('phase', 800e6, 20000, .7, False),
         ('amplitude_low', 800e6, 2000, .7, False),
         ('quadrant_2', 800e6, 18000, 2.6, False),
@@ -59,7 +62,9 @@ def run():
         for local in range(650):
             reset = local >= 3
             valid = local >= 5
-            word = round(800e6/FS*TURN)
+            reference_rf = 4.4e9 if name.startswith('rf4g4') else 800e6
+            reference_alias = reference_rf % FS
+            word = round(reference_alias/FS*TURN)
             high=(word>>32) | (1<<16)
             maxgain = name.endswith('maxgain')
             ctrl=(64<<16) | ((15 if maxgain else 6)<<8) | ((15 if maxgain else 0)<<4)
@@ -75,7 +80,7 @@ def run():
             history=np.concatenate((history[8:],iq))
             filtered=np.dot(h,history[::-1])
             if 80 < local < 625:
-                expected[cycle+15]=(name, offset*2*np.pi/PHASE-np.angle(filtered), fin-800e6, capture, amplitude)
+                expected[cycle+15]=(name, offset*2*np.pi/PHASE-np.angle(filtered), fin-reference_rf, capture, amplitude)
             vectors.append(f'{int(reset):x} {int(valid):x} 1 {packed:032x} {word&0xffffffff:08x} {high:08x} {ctrl:08x} {offset:x}\n')
             if not reset: acc=fcw=ack=0
             else:
@@ -100,7 +105,7 @@ def run():
             if high & (1<<17): acc=0
         nco_expected.append((acc,fcw));cycle+=1
     (WORK/'stimulus.txt').write_text(''.join(vectors))
-    sources=[str(SRC/f'laser_pll{x}.sv') for x in ('_mixer','_fir','_cordic','_unwrap','_phase_scale','_tracking','_monitor','_fra','_error','_fft','_handoff','_acquisition','')]
+    sources=[str(SRC/f'laser_pll{x}.sv') for x in ('_mixer','_fir','_cordic','_unwrap','_phase_scale','_tracking','_monitor','_fra','_iir','_error','_fft','_handoff','_acquisition','')]
     sources.append(str(SRC/'laser_pll_dac.v'))
     fft_wrapper = ROOT/'TransportPhaseLockFF.srcs/sources_1/ip/laser_pll_fft_core/sim/laser_pll_fft_core.vhd'
     if not fft_wrapper.exists():

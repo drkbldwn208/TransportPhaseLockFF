@@ -1,4 +1,9 @@
-# Laser phase-error output: ADC 224/3 → DAC 229/1
+# Laser phase-error outputs: ADC 224/3 → DAC 229/1 and ADC 225/1 → DAC 229/3
+
+Current diagnostic release: [A8 loopback guide](laser_pll_loopback_A8.md), using the same DAC229/1 and ADC224/3 for direct RF and D2S/mixer fixtures. Normal dual-PLL APIs are retained; use the matching A8 helpers.
+
+**Current revision: A7 (`0xA7`, October 12, 2026).** See [the A7 guide](laser_pll_A7.md) for the independent 4.4 GHz PLL, selectable lead–lag filters, updated FRA averaging/clipping diagnostics, pipeline timing and current Jupyter examples. Historical A4–A6 descriptions below explain the inherited detector stages; deploy the matching A7 package with the current helpers.
+
 
 The FPGA measures a real RF beat, compares it with a phase-continuous fabric DDS,
 and sends one error sample per 245.76 MHz clock to the external analog controllers.
@@ -537,10 +542,13 @@ exceed π/2. Thus its large apparent low-frequency phase PSD and apparent turn
 count cannot reliably quantify optical slips, linewidth or detuning. Normalizing
 amplitude after averaging does not undo cancellation. For this measured state,
 the earlier generic D=12 suggestion is unsuitable for trustworthy phase noise.
-Try D=7 with about one million samples (1.92 MS/s, 0.52 s), compare D=6, then
-unwrap the adequately sampled phase before further offline filtering/decimation.
-Those records retain the 175 kHz feature while improving low-frequency coverage;
-still check nonvanishing vectors and sampling convergence.
+The initial D=7 suggestion (1.92 MS/s, 0.52 s) retained the 175 kHz feature,
+but the October 11 records below demonstrate ambiguous phase unwrapping even
+at that rate. Start with D=4 and one million samples (15.36 MS/s, 65.1 ms),
+compare D=5, then unwrap adequately sampled phase before further offline
+filtering/decimation. Separate DMA records have gaps and must not be concatenated
+as a uniformly sampled stream. Nonvanishing vectors alone do not prove adequate
+sampling of phase excursions.
 
 ### Comparison with the previous analog lock
 
@@ -596,6 +604,57 @@ one unity-gain-frequency number is insufficient to optimize both actuator paths.
 Reproduce using `python3 ILAData/compare_laser_lock_psds.py`; CSV data, hashes,
 band integrals and qualifications are saved in `ILAData/laser_lock_psd_comparison.*`.
 
+### Phase gain comparison, October 11, 2026
+
+`laser_iq_20261011_184622.npz` is 1x (/160); `184941` is 4x (/40).
+The user reduced FALC gain by approximately four, optimizing the beat spectrum;
+other analog settings stayed fixed. These compare two tuned operating points,
+not an isolated digital-gain change. Both are 1 million samples at 1.92 MS/s.
+
+The finite-record coherent carrier fraction `abs(mean(z))^2/mean(abs(z)^2)`
+increases from **2.89% to 9.19%**. Absolute carrier power in ADC-count squared
+increases **4.60 dB**, agreeing with the narrow RF traces' **4.71 dB** peak increase
+(-22.47 to -17.76 dBm). Direct full-envelope and amplitude-normalized spectra
+are close: most recorded sideband power is phase related. The 4x case has less
+1–10 kHz envelope sideband power (9.02% to 4.64% of total recorded power), but
+more 200–900 kHz sideband power (31.77% to 36.27%). These are complex-envelope
+power fractions, not phase variances. Both show hundreds-of-Hz motion, narrow
+lines near 175 kHz, and a broad feature around 350 kHz. PSD alone does not
+locate the unity-gain crossing or identify which actuator creates a feature.
+
+Naive unwrap gives misleading low-frequency differences: 3.03%/5.07% of adjacent
+phase steps exceed pi/2. The 4x record's minimum vector magnitude is 2.39% of
+its mean. Bandlimited interpolation changes its apparent net turn count from
+-9.72 to about +12.28; interpolation itself does not undo aliasing or averaging.
+Do not report these as physical phase slips or use the naive RMS to rank locks.
+The monitor is separate from feedback: this does not establish that the full-rate
+CORDIC or unwrap accumulator miscounted.
+
+`File_01x.csv`/`File_04x.csv` use 1 Hz RBW; their `W` counterparts use 30 Hz.
+All four use positive-peak detection, one average, sparse display points relative
+to RBW, and carry an incomplete-sweep warning. Consequently RF peak/feature
+agreement is useful, but a precise phase variance cannot be recovered from these
+exports. Use a completed single sweep, RMS/power averaging and known noise
+bandwidth for a calibrated noise comparison. See
+[Keysight noise measurement guidance](https://helpfiles.keysight.com/csg/89600B/Webhelp/Subsystems/powerspectrum/content/ps_noisemeasurements.htm).
+
+Nominal phase steps per 16-bit command code are 0.01534 rad (/160) and
+0.003835 rad (/40); the CORDIC phase word itself has 23.97 urad spacing.
+The physical converter is 14-bit with a 16-bit DSP path, so full-span /160 and
+/40 mappings correspond nominally to 0.06136 and 0.01534 rad per physical DAC
+step before accounting for RFDC scaling. See
+[AMD RF-DAC features](https://docs.amd.com/r/en-US/pg269-rf-data-converter/RF-DAC-Features).
+These steps are far below the observed large phase modulation. A white,
+uncorrelated quantization estimate is not a bound on nonlinear limit cycles or
+analog noise; measured loop response is needed. Current evidence favors loop
+shaping/disturbance suppression over a simple phase-word resolution limit.
+
+Reproduce with `python3 ILAData/compare_phase_gain.py`. Saved outputs include
+[RF/IQ comparison](../ILAData/phase_gain_rf_comparison.png),
+[phase/AM and unwrap diagnostics](../ILAData/phase_gain_iq_comparison.png),
+`phase_gain_comparison.json` with source hashes and qualifications, and the two
+`phase_gain_*x_spectra.npz` files with spectra in physical units.
+
 ## Combined-loop transfer measurement — A6
 
 Use `laser_pll_loop_sweep.ipynb` after loading A6 and acquiring lock with the
@@ -629,6 +688,10 @@ The ratio requires a stationary, approximately linear locked operating point.
 import laser_pll_loop_sweep as fra
 import numpy as np
 
+# Bind the helper already used by this notebook. This is also needed after
+# reloading fra if you imported laser_pll_R6 as laser_pll instead of laser_pll.
+fra.laser_pll = laser_pll
+
 point = fra.measure_point(ol, 1000, amplitude_codes=32)
 print(point["frequency_hz"], -point["error"] / point["drive"])
 # Check another amplitude and the scope before the full sweep.
@@ -637,6 +700,15 @@ rows = fra.sweep(ol, np.geomspace(20, 1e6, 61), amplitude_codes=32,
 # Optional cleanup after interruption; keeps the feedback enabled:
 fra.stop(ol)
 ```
+
+An import alias is local to its importing module: `import laser_pll_R6 as
+laser_pll` in Jupyter does not change `import laser_pll` inside the sweep helper.
+Bind `fra.laser_pll = laser_pll` after reloads, or keep both helpers under their
+original filenames. The October 11 software update removes calls to private
+control-helper functions and reports a mismatched helper/HWH before stimulus
+injection. It changes no RTL or bitstream. Fourteen analyzer host tests and all
+seven notebook code cells pass with register/DMA mocks; physical loop validation
+still requires the bench sweep.
 
 The original DDS advances eight 32-bit phase steps per fabric clock, giving
 0.457764 Hz frequency resolution. Software reports actual frequencies and rounds
@@ -659,9 +731,26 @@ The injection product/reference have their own aligned pipeline. Feedback sees
 only a combinational signed addition and saturation before the existing DAC
 register: **A6 adds zero feedback clocks**, including when measuring. Stage-4
 anchoring still uses the original selected error, before injection. The demod
-probes never stall feedback. Clipping, invalid phase/target, DAC stalls, dropped
-probe samples, generator gaps or abort invalidate the point. These are data
-quality checks, not an optical lock detector.
+probes never stall feedback. By default clipping, invalid phase/target, DAC
+stalls, dropped probe samples, generator gaps or abort reject the point. These
+are data quality checks, not an optical lock detector.
+
+For exploratory sweeps with upstream laser phase slips, pass
+`allow_clipping=True` to `fra.measure_point()` or `fra.sweep()`. This overrides
+only the clipping rejection in Python; hardware saturation stays active and
+all other fault checks remain. The completed phasors are retained, and all
+repeats, including clipped repeats, contribute to the complex mean. Point
+results preserve `status` and add `clipped`. Sweep CSVs add `allow_clipping`,
+`clipped`, `clipped_repeats` and `repeat_consistent`. A point with any clipped
+repeat has `reliable=False`, even if its repeats agree. Console output reports
+`clipped=N/repeats`. No firmware rebuild or lock reset is required.
+
+The hardware clipping flag covers the entire run, including ramps and settling,
+and does not count clipped samples or distinguish which interval clipped.
+Uncorrelated transient contributions may average down; clipping changes the
+effective response and can bias the estimated gain/phase even with many repeats.
+Keep these measurements as exploratory results and compare uncontaminated
+points or different injection amplitudes when available.
 
 The demodulators return signed 72-bit sums. `I=sum(x*sin)` and `Q=sum(x*cos)`;
 `2*(I+jQ)/(N*32768)` gives peak phasors in signed 16-bit DAC codes, with positive
@@ -673,8 +762,9 @@ error/controller headroom. The physical DAC resolves groups of four codes.
 The CSV is saved in the notebook's current directory and checkpointed after each
 frequency; the notebook also saves timestamped settings and a Bode plot. CSVs
 contain actual/requested frequencies, E/U/D phasors, L/S, measurement duration,
-FPGA stage/gain words, repeat standard errors and a repeatability flag. `reliable`
-requires both E and U to exceed five estimated standard errors; deterministic
+FPGA stage/gain words, repeat standard errors and clipping/repeatability flags.
+`repeat_consistent` requires both E and U to exceed five estimated standard
+errors; `reliable` additionally requires no clipping in any repeat. Deterministic
 distortion can still pass. When |L| is large, U is small and the ratio is poorly
 conditioned. Near the upper end E may instead be small. Increase integration or
 adjust stimulus after checking linearity rather than trusting a noisy ratio.

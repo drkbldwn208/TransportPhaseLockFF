@@ -1,0 +1,183 @@
+{
+  "latest_file": "laser_phase_psd_20261012_020456.csv",
+  "latest_sha256": "b91cfe9af4de1f096590b43a550659fd22ee4fdd4cfcc3a1ed981c1698e5e316",
+  "baseline_table": "laser_lock_psd_comparison.csv",
+  "baseline_table_sha256": "df9f89e6661c51986520565fa572efafc6ce1315ca93a143ebe9cc74da4e7f9c",
+  "operating_point": "User confirmed 8x phase gain and substantially changed analog loop filters.",
+  "latest_bin_spacing_hz": 7.32421875,
+  "latest_nyquist_hz": 960000.0,
+  "latest_total_recorded_rms_rad": 1.3822190093016462,
+  "fraction_variance_40_60_khz": 0.5970168237312425,
+  "comparison": [
+    {
+      "low_hz": 234.375,
+      "high_hz": 1000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 1.9752655860504529,
+        "FPGA, Oct 9": 1.7558425619367326,
+        "FPGA 8\u00d7, retuned filters": 0.10730362034543735
+      },
+      "latest_vs_analog_db": -25.3002224467998,
+      "latest_vs_oct9_fpga_db": -24.277423944037793
+    },
+    {
+      "low_hz": 1000,
+      "high_hz": 10000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 0.6458233979235786,
+        "FPGA, Oct 9": 0.17598799882224697,
+        "FPGA 8\u00d7, retuned filters": 0.054472626805006245
+      },
+      "latest_vs_analog_db": -21.478709134955956,
+      "latest_vs_oct9_fpga_db": -10.186094687539253
+    },
+    {
+      "low_hz": 10000,
+      "high_hz": 100000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 2.3241106344713955,
+        "FPGA, Oct 9": 0.7187295446373289,
+        "FPGA 8\u00d7, retuned filters": 1.3066011838855769
+      },
+      "latest_vs_analog_db": -5.002275010794433,
+      "latest_vs_oct9_fpga_db": 5.191550994005654
+    },
+    {
+      "low_hz": 100000,
+      "high_hz": 200000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 0.24870812929571817,
+        "FPGA, Oct 9": 0.4630577449534024,
+        "FPGA 8\u00d7, retuned filters": 0.296062528066932
+      },
+      "latest_vs_analog_db": 1.5138692470800776,
+      "latest_vs_oct9_fpga_db": -3.8850341844696548
+    },
+    {
+      "low_hz": 170000,
+      "high_hz": 180000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 0.05439222596887082,
+        "FPGA, Oct 9": 0.3213013957762944,
+        "FPGA 8\u00d7, retuned filters": 0.09337721673710184
+      },
+      "latest_vs_analog_db": 4.694081850055213,
+      "latest_vs_oct9_fpga_db": -10.733433745380417
+    },
+    {
+      "low_hz": 200000,
+      "high_hz": 400000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 0.060409767763109794,
+        "FPGA, Oct 9": 0.21945145387275575,
+        "FPGA 8\u00d7, retuned filters": 0.28811838801245976
+      },
+      "latest_vs_analog_db": 13.569276202759319,
+      "latest_vs_oct9_fpga_db": 2.3646502776254246
+    },
+    {
+      "low_hz": 40000,
+      "high_hz": 60000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 0.4423103170908549,
+        "FPGA, Oct 9": 0.30832735506924613,
+        "FPGA 8\u00d7, retuned filters": 1.0679972789613525
+      },
+      "latest_vs_analog_db": 7.656861531897004,
+      "latest_vs_oct9_fpga_db": 10.791161775660566
+    },
+    {
+      "low_hz": 234.375,
+      "high_hz": 200000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 3.1276361635557297,
+        "FPGA, Oct 9": 1.9608542810555605,
+        "FPGA 8\u00d7, retuned filters": 1.3451174700623174
+      },
+      "latest_vs_analog_db": -7.329120256272599,
+      "latest_vs_oct9_fpga_db": -3.2737021492574514
+    },
+    {
+      "low_hz": 234.375,
+      "high_hz": 400000,
+      "rms_phase_rad": {
+        "Analog detector, Oct 5": 3.128219511419043,
+        "FPGA, Oct 9": 1.973096158868286,
+        "FPGA 8\u00d7, retuned filters": 1.3756282978253058
+      },
+      "latest_vs_analog_db": -7.135922388978867,
+      "latest_vs_oct9_fpga_db": -3.132943001453292
+    }
+  ],
+  "rf_traces": [
+    {
+      "file": "File_01x.csv",
+      "sha256": "3d426a0315c4644ff17434e71da23c1f2c5a45bad33c99a367220c7d17a881f5",
+      "rbw_hz": 1.0,
+      "vbw_hz": 1.0,
+      "internal_attenuation_db": 10.0,
+      "point_spacing_hz": 76.95500004291534,
+      "peak_dbm": -22.4698276519775,
+      "peak_frequency_hz": 799998076.125008,
+      "detector": "Positive",
+      "incomplete_sweep_warning": true
+    },
+    {
+      "file": "File_04x.csv",
+      "sha256": "ee92ed2305631539c99015f0457c02564dbe1a3dd7877a0bd710bc235550bddf",
+      "rbw_hz": 1.0,
+      "vbw_hz": 1.0,
+      "internal_attenuation_db": 10.0,
+      "point_spacing_hz": 69.13499999046326,
+      "peak_dbm": -17.7585411071777,
+      "peak_frequency_hz": 799998064.219998,
+      "detector": "Positive",
+      "incomplete_sweep_warning": true
+    },
+    {
+      "file": "File_01xW.csv",
+      "sha256": "0e511767fa6da7c35d536feb3da7c5d0784c5b9c547109d22d9edd50f0683c6d",
+      "rbw_hz": 30.0,
+      "vbw_hz": 30.0,
+      "internal_attenuation_db": 10.0,
+      "point_spacing_hz": 3111.5349999666214,
+      "peak_dbm": -25.1741065979004,
+      "peak_frequency_hz": 799996888.464993,
+      "detector": "Positive",
+      "incomplete_sweep_warning": true
+    },
+    {
+      "file": "File_04xW.csv",
+      "sha256": "74c748a45ba21b6c1f5679e967cc160418aad4bacc0660d85245e59e59268319",
+      "rbw_hz": 30.0,
+      "vbw_hz": 30.0,
+      "internal_attenuation_db": 10.0,
+      "point_spacing_hz": 3111.5349999666214,
+      "peak_dbm": -17.6118602752686,
+      "peak_frequency_hz": 799996888.464993,
+      "detector": "Positive",
+      "incomplete_sweep_warning": true
+    },
+    {
+      "file": "File_0BEST.csv",
+      "sha256": "db62df7cfb8b6bdca27091623957244c2a72031fbaa436e434aa4f9922fef8f6",
+      "rbw_hz": 10.0,
+      "vbw_hz": 10.0,
+      "internal_attenuation_db": 0.0,
+      "point_spacing_hz": 358.66999995708466,
+      "peak_dbm": -28.1803550720215,
+      "peak_frequency_hz": 799998206.649992,
+      "detector": "Positive",
+      "incomplete_sweep_warning": true
+    }
+  ],
+  "limitations": [
+    "Latest raw I/Q absent: cannot verify unwrapping, transient phase slips, or amplitude dropouts.",
+    "Latest saved PSD uses finer Welch bins; broad-band integrals are compared, not narrow peak heights.",
+    "Old analog and FPGA receiver filters, record durations and operating points differ.",
+    "Do not attribute all improvements specifically to FPGA: analog filters/gains changed too.",
+    "RF carrier level changed; RF attenuation/connection history awaits user confirmation.",
+    "RBW-normalized RF curves are positive-peak broadband proxies, not calibrated phase PSD.",
+    "There is no matched RF-analyzer trace of the confirmed analog baseline; use its I/Q phase PSD."
+  ]
+}

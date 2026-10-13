@@ -14,4 +14,4 @@ if {$pll_source_dir ni $pll_include_dirs} {
     set_property include_dirs $pll_include_dirs [get_filesets sources_1]
 }
 update_compile_order -fileset sources_1
-update_module_reference [get_ips design_1_laser_pll_0_0]
+foreach pll_ref [get_ips -quiet design_1_laser_pll_*_0] {update_module_reference $pll_ref}
