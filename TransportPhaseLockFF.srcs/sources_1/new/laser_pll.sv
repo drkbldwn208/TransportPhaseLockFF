@@ -2,7 +2,7 @@
 // ADC 224/3 -> coherent internal quadrature mixer -> FIR -> atan2 -> error.
 // All ports, including GPIO controls, use the 245.76 MHz RF fabric clock.
 module laser_pll (
-    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n" *)
+    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_rf_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n" *)
     input wire clk,
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *) input wire rst_n,
     input wire [127:0] s_axis_tdata,
@@ -11,6 +11,11 @@ module laser_pll (
     output wire [223:0] m_axis_tdata,
     output wire m_axis_tvalid,
     input wire m_axis_tready,
+    input wire [31:0] rf_source_control,
+    output wire [31:0] rf_source_status,
+    output wire [223:0] m_rf_axis_tdata,
+    output wire m_rf_axis_tvalid,
+    input wire m_rf_axis_tready,
     input wire [31:0] frequency_low,
     input wire [31:0] frequency_high,
     input wire [31:0] control,
@@ -30,7 +35,6 @@ module laser_pll (
     output wire [31:0] iir_status,
     output wire [31:0] fra_clip_samples, fra_saturated_samples, fra_outside_clip_samples,
     output wire [31:0] fra_measured_samples, fra_error_extrema, fra_drive_extrema,
-    output wire [31:0] loopback_i_low, loopback_i_high, loopback_q_low, loopback_q_high,
     input wire [31:0] fra_control, fra_settle_clocks, fra_measure_clocks,
     output wire [31:0] fra_status,
     input wire [159:0] s_fra_tone_tdata,
@@ -137,24 +141,30 @@ module laser_pll (
         .control(iir_control), .b0_word(iir_b0), .b1_word(iir_b1), .pole_word(iir_pole),
         .output_code(compensated_target), .output_valid(compensated_valid),
         .output_saturated(compensated_saturated), .status(iir_status));
-    // Raw ADC rail detector is used only by diagnostic loopback measurements.
-    reg adc_at_rail;
-    integer rail_lane;
-    always @* begin
-        adc_at_rail=0;
-        for (rail_lane=0;rail_lane<8;rail_lane=rail_lane+1)
-            if ($signed(s_axis_tdata[16*rail_lane+:16])>=32752 ||
-                $signed(s_axis_tdata[16*rail_lane+:16])<=-32752) adc_at_rail=1;
-    end
     wire signed [15:0] driven_target;
     wire driven_saturated;
+    wire signed [19:0] rf_phase_command;
+    wire signed [17:0] rf_applied_phase;
+    assign rf_source_status=32'h52463701; // RF7 feature layout revision 1, separate from A7 PLL ABI.
+    laser_pll_rf_pm rf_stimulus (.clk(clk), .rst_n(rst_n), .phase_command(rf_phase_command),
+        .amplitude(rf_source_control[15:0]), .m_axis_tdata(m_rf_axis_tdata),
+        .m_axis_tvalid(m_rf_axis_tvalid), .m_axis_tready(m_rf_axis_tready), .applied_phase(rf_applied_phase));
+    // Register each lane's diagnostic near the ADC, avoiding a long path from
+    // the converter through eight comparisons into the FRA counter enables.
+    reg [7:0] adc_lane_clipped;
+    wire raw_adc_clipped=|adc_lane_clipped;
+    always @(posedge clk) begin
+        if (!rst_n) adc_lane_clipped<=0;
+        else for (integer lane=0;lane<8;lane=lane+1)
+            adc_lane_clipped[lane]<=s_axis_tvalid &&
+                ($signed(s_axis_tdata[16*lane+:16])>=32752 ||
+                 $signed(s_axis_tdata[16*lane+:16])<=-32752);
+    end
     laser_pll_fra loop_measurement (.clk(clk), .rst_n(rst_n),
         .error_code(compensated_target), .error_valid(compensated_valid), .error_saturated(compensated_saturated),
         .dac_ready(m_axis_tready), .phase_valid(error_valid),
-        .loopback_i(filtered_i), .loopback_q(filtered_q),
-        .loopback_valid(filtered_valid && filtered_q_valid), .loopback_clipped(adc_at_rail),
-        .loopback_sum_i({loopback_i_high,loopback_i_low}),
-        .loopback_sum_q({loopback_q_high,loopback_q_low}),
+        .measured_phase(measured_phase), .measured_phase_valid(phase_valid), .raw_adc_clipped(raw_adc_clipped),
+        .rf_applied_phase(rf_applied_phase), .rf_ready(m_rf_axis_tready), .rf_phase_command(rf_phase_command),
         .control(fra_control), .settle_clocks(fra_settle_clocks), .measure_clocks(fra_measure_clocks),
         .clip_samples(fra_clip_samples), .saturated_samples(fra_saturated_samples),
         .outside_clip_samples(fra_outside_clip_samples), .measured_samples(fra_measured_samples),

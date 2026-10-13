@@ -1,8 +1,8 @@
 # Laser phase-error outputs: ADC 224/3 → DAC 229/1 and ADC 225/1 → DAC 229/3
 
-Current diagnostic release: [A8 loopback guide](laser_pll_loopback_A8.md), using the same DAC229/1 and ADC224/3 for direct RF and D2S/mixer fixtures. Normal dual-PLL APIs are retained; use the matching A8 helpers.
+Current source revision: [R7 RF-FRA guide](laser_pll_rf_fra_R7.md), restoring the normal A7 dual PLL and adding closed-loop raw-phase measurement and DAC229/2 RF phase modulation. PLL signature is `0xA7`, with separate feature ID `0x52463701`. Use the matching R7 RF-FRA bit/HWH/helpers. The archived [A8 loopback package](laser_pll_loopback_A8.md) remains available separately for direct RF and D2S/mixer fixtures on DAC229/1 → ADC224/3.
 
-**Current revision: A7 (`0xA7`, October 12, 2026).** See [the A7 guide](laser_pll_A7.md) for the independent 4.4 GHz PLL, selectable lead–lag filters, updated FRA averaging/clipping diagnostics, pipeline timing and current Jupyter examples. Historical A4–A6 descriptions below explain the inherited detector stages; deploy the matching A7 package with the current helpers.
+**Base revision: A7 (`0xA7`, October 12, 2026).** See [the A7 guide](laser_pll_A7.md) for the independent 4.4 GHz PLL, selectable lead–lag filters, updated FRA averaging/clipping diagnostics, pipeline timing and Jupyter examples. Historical A4–A6 descriptions below explain the inherited detector stages.
 
 
 The FPGA measures a real RF beat, compares it with a phase-continuous fabric DDS,

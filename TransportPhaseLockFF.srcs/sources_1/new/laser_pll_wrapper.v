@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 // Vivado 2024.1 block-design module references require a Verilog top file.
 module laser_pll_wrapper (
-    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n:monitor_fifo_rst_n" *)
+    (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_rf_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n:monitor_fifo_rst_n" *)
     input wire clk,
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *) input wire rst_n,
     input wire [127:0] s_axis_tdata,
@@ -10,6 +10,11 @@ module laser_pll_wrapper (
     output wire [223:0] m_axis_tdata,
     output wire m_axis_tvalid,
     input wire m_axis_tready,
+    input wire [31:0] rf_source_control,
+    output wire [31:0] rf_source_status,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_rf_axis TDATA" *) output wire [223:0] m_rf_axis_tdata,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_rf_axis TVALID" *) output wire m_rf_axis_tvalid,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_rf_axis TREADY" *) input wire m_rf_axis_tready,
     input wire [31:0] frequency_low,
     input wire [31:0] frequency_high,
     input wire [31:0] control,
@@ -29,7 +34,6 @@ module laser_pll_wrapper (
     output wire [31:0] iir_status,
     output wire [31:0] fra_clip_samples, fra_saturated_samples, fra_outside_clip_samples,
     output wire [31:0] fra_measured_samples, fra_error_extrema, fra_drive_extrema,
-    output wire [31:0] loopback_i_low, loopback_i_high, loopback_q_low, loopback_q_high,
     input wire [31:0] fra_control, fra_settle_clocks, fra_measure_clocks,
     output wire [31:0] fra_status,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_fra_tone TDATA" *) input wire [159:0] s_fra_tone_tdata,
@@ -59,6 +63,8 @@ module laser_pll_wrapper (
         .clk(clk), .rst_n(rst_n), .s_axis_tdata(s_axis_tdata),
         .s_axis_tvalid(s_axis_tvalid), .s_axis_tready(s_axis_tready),
         .m_axis_tdata(m_axis_tdata), .m_axis_tvalid(m_axis_tvalid),
+        .rf_source_control(rf_source_control), .rf_source_status(rf_source_status),
+        .m_rf_axis_tdata(m_rf_axis_tdata), .m_rf_axis_tvalid(m_rf_axis_tvalid), .m_rf_axis_tready(m_rf_axis_tready),
         .m_axis_tready(m_axis_tready), .frequency_low(frequency_low),
         .frequency_high(frequency_high), .control(control), .phase_offset(phase_offset),
         .acquisition_control(acquisition_control), .test_dc(test_dc),
@@ -71,8 +77,6 @@ module laser_pll_wrapper (
         .fra_clip_samples(fra_clip_samples), .fra_saturated_samples(fra_saturated_samples),
         .fra_outside_clip_samples(fra_outside_clip_samples), .fra_measured_samples(fra_measured_samples),
         .fra_error_extrema(fra_error_extrema), .fra_drive_extrema(fra_drive_extrema),
-        .loopback_i_low(loopback_i_low), .loopback_i_high(loopback_i_high),
-        .loopback_q_low(loopback_q_low), .loopback_q_high(loopback_q_high),
         .fra_control(fra_control), .fra_settle_clocks(fra_settle_clocks),
         .fra_measure_clocks(fra_measure_clocks), .fra_status(fra_status),
         .s_fra_tone_tdata(s_fra_tone_tdata), .s_fra_tone_tvalid(s_fra_tone_tvalid), .s_fra_tone_tready(s_fra_tone_tready),

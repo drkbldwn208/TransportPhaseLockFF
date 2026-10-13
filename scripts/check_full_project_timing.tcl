@@ -44,8 +44,15 @@ foreach index {0 1} {
 launch_runs impl_1 -to_step route_design -jobs 4
 wait_on_run impl_1
 puts "FULL_PROJECT_IMPL_STATUS [get_property STATUS [get_runs impl_1]]"
-if {![string match {*route_design Complete*} [get_property STATUS [get_runs impl_1]]]} {
+set route_status [get_property STATUS [get_runs impl_1]]
+# With the next step enabled, Vivado may report that pending step instead of
+# "route_design Complete" after successfully writing the routed checkpoint.
+if {![string match {*route_design Complete*} $route_status] &&
+    ![string match {Not started phys_opt_design (Post-Route)} $route_status]} {
     error "Full project routing did not complete; inspect impl_1/runme.log"
+}
+if {![file exists $root/TransportPhaseLockFF.runs/impl_1/design_1_wrapper_routed.dcp]} {
+    error "Routing returned without its checkpoint"
 }
 if {[get_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED [get_runs impl_1]]} {
     launch_runs impl_1 -to_step {phys_opt_design (Post-Route)} -jobs 4

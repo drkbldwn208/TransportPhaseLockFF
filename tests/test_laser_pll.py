@@ -105,7 +105,7 @@ def run():
             if high & (1<<17): acc=0
         nco_expected.append((acc,fcw));cycle+=1
     (WORK/'stimulus.txt').write_text(''.join(vectors))
-    sources=[str(SRC/f'laser_pll{x}.sv') for x in ('_mixer','_fir','_cordic','_unwrap','_phase_scale','_tracking','_monitor','_fra','_iir','_error','_fft','_handoff','_acquisition','')]
+    sources=[str(SRC/f'laser_pll{x}.sv') for x in ('_mixer','_fir','_cordic','_unwrap','_phase_scale','_tracking','_monitor','_phase_probe','_rf_pm','_fra','_iir','_error','_fft','_handoff','_acquisition','')]
     sources.append(str(SRC/'laser_pll_dac.v'))
     fft_wrapper = ROOT/'TransportPhaseLockFF.srcs/sources_1/ip/laser_pll_fft_core/sim/laser_pll_fft_core.vhd'
     if not fft_wrapper.exists():

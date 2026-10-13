@@ -2,6 +2,8 @@
 
 This diagnostic build supports two physical fixtures with **the same DAC229/1 and ADC224/3**. Run `python_scripts/laser_pll_loopback.ipynb` cell by cell. The usual laser PLLs remain available when diagnostic mode is off. Firmware/helper signature is `0xA8`; keep the matching bit, HWH and all three helpers together. The prior A7 archive is preserved.
 
+The notebook now contains the complete startup and measurement sequence, including the user's custom `LMK_245_76_ExtRef10.txt` clock initialization and `/home/xilinx/Bitfiles/FreqLocksBranch/overlays/TransportPhaseLockFF.bit` path. It imports `laser_pll_R8` and refreshes/binds both sweep helpers to it before touching hardware. The Python ZIP includes `laser_pll_R8.py` as an exact generated copy of `laser_pll.py`. Run the notebook in order rather than substituting cells from earlier versions. Default startup initializes hardware; `initialize_hardware=False` refreshes helpers and reuses an existing `ol`, while muting the measured output. Voltage prompts use signed **mV**, converted to volts internally. The voltage model is created and passed to setup automatically. Both fixture modes save CSV/JSON/PNG under `loopback_data/`.
+
 ## Connections and converter settings
 
 | Mode | Physical signal path | Measured DAC mixer | Receive reference |
@@ -19,7 +21,46 @@ For the D2S/BLP test, the mixer IF provides a nominal 50 Ω load. This differs f
 
 ## Measurement and averaging
 
-The signed DAC command is `bias + amplitude*sin(2π f t)`. Suggested starting values are bias 2048 and amplitude 256 codes: nominal +62.5 mV bias and 7.81 mV peak for a calibrated 2 Vpp full-scale span. Actual connector voltage depends on termination and D2S gain. Laser controllers must be disconnected from the driven test output.
+The signed DAC command is `bias + amplitude*sin(2π f t)`. Python revision 2 starts at **zero bias, 32-code peak probe and 32-code calibration step**. The older 2048/256/512-code defaults did not establish a voltage limit at the D2S output. Laser controllers must be disconnected from the driven test output.
+
+For mixer mode, first disconnect the mixer IF and measure signed D2S voltages at codes 0 and +100, with the measured DAC mixer at 0 MHz and phase zero. The notebook provides these steps and mutes the DAC afterward. Use a high-impedance meter/scope so the initially measured unloaded voltage is conservative for a passive load. `voltage_limits(V0, V100)` calculates `offset_V=V0` and `volts_per_code=(V100-V0)/100`. Mixer `setup()` requires this measured model; it is retained on `ol` for subsequent calibration and sweep calls. Direct RF mode does not apply a D2S voltage model.
+
+Before output writes, setup checks both zero code and the requested bias; calibration checks both bias endpoints; every probe checks its bias plus both sine peaks:
+
+```
+predicted_peak_V = abs(offset_V + volts_per_code*bias_codes)
+                   + abs(volts_per_code)*amplitude_codes
+predicted_peak_V + 0.020 V < 0.100 V
+```
+
+Calibration uses `step_codes` in place of amplitude. Requests outside the bound raise an exception before changing the bias or arming a probe; they are not silently clipped. Both positive and negative measured gains are supported. The notebook additionally limits initial probe/calibration excursions to at most 5 mV. It records the voltage model in the measurement JSON. Rerun setup after reloading the overlay or changing converter/LO settings; remeasure voltage after changing external gain, loading or wiring. The bound assumes a linear, stable voltage response. It is **not a hardware voltage clamp**; verify actual peaks and settling with a scope, including possible AC peaking and offset drift. The 20 mV margin is headroom, not a measured uncertainty.
+
+The ZAD-1+ absolute maximum IF current is 40 mA and RF power is 50 mW ([manufacturer datasheet](https://www.minicircuits.com/WebStore/dashboardPdf?model=ZAD-1%2B)). For scale, 100 mV across 50 Ω corresponds to 2 mA and 0.2 mW; a diode mixer's DC IF impedance need not equal 50 Ω. A small IF waveform should be well below damaging levels with the intended source impedance. The +7 dBm LO is a separate port and is not subject to this 100 mV D2S limit. Compression and measurement bias can occur well before damage; retain the half-amplitude check.
+
+## Updating cached Python helpers
+
+An `AttributeError` for `fra.diagnostics` means the running sweep module is missing the A8 API. Replace **all three** Python files together from the current A8 Python archive. Reload them in dependency order and explicitly bind the modules:
+
+```python
+import importlib
+import laser_pll
+import laser_pll_loop_sweep as fra
+import laser_pll_loopback as lb
+importlib.invalidate_caches()
+laser_pll = importlib.reload(laser_pll)
+fra = importlib.reload(fra)
+lb = importlib.reload(lb)
+fra.laser_pll = laser_pll
+lb.laser_pll, lb.fra = laser_pll, fra
+for helper in (laser_pll, fra, lb):
+    print(helper.__name__, helper.__file__)
+assert lb.HELPER_REVISION >= 2
+lb.check_helpers(ol)
+```
+
+No FPGA reload is needed for this Python-only update. Then rerun voltage check/setup and calibration in the updated notebook. `check_helpers()` now verifies the dependency version, functions and binding before any setup, calibration or probe writes. It does not mute an already-running output. `lb.stop(ol, mute=True)` stops the probe and disables the measured DAC command; an analog output offset can remain.
+
+## Coherent integration
 
 The two existing HLS lock-ins observe post-mixer/FIR I and Q instead of scaled error and drive. Their references remain synchronized with the digital DAC command. They multiply at 245.76 MHz and accumulate into signed 72-bit results. Thus **demodulation precedes averaging/decimation**; a MHz response is not discarded by a slow pre-demodulator low-pass.
 

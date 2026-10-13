@@ -41,6 +41,8 @@ def main():
                  'laser_pll_bringup.ipynb', 'laser_pll_loop_sweep.ipynb', 'laser_pll_loopback.ipynb'):
         assert sha256(OUT / name) == sha256(ROOT / 'python_scripts' / name)
     assert 'FPGA_VERSION = 0xA8' in (OUT / 'laser_pll.py').read_text()
+    # User's versioned import name; generate an exact copy, not a second implementation.
+    shutil.copy2(OUT / 'laser_pll.py', OUT / 'laser_pll_R8.py')
 
     report_names = ('timing_summary.rpt', 'utilization.rpt', 'drc.rpt',
                     'clock_interaction.rpt', 'pll_setup_paths.rpt', 'pll_hold_paths.rpt')
@@ -98,7 +100,8 @@ def main():
         shutil.copy2(ROOT / name, target)
     (OUT / 'README.md').write_text(f'''# Laser PLL A8 with loopback analyzer — {datetime.now():%Y-%m-%d}
 
-Keep laser_pll.bit, laser_pll.hwh, all three Python helpers and all three notebooks together.
+Keep laser_pll.bit, laser_pll.hwh, the Python helpers and notebooks together.
+laser_pll_R8.py is an identical copy of laser_pll.py for the user's versioned import.
 Firmware signature: 0xA8. Hardware has not been programmed. Reloading the bitstream
 interrupts existing locks; reloading Python alone does not.
 
@@ -112,12 +115,18 @@ No failing timing endpoints. Existing external-I/O/clock constraint limitations 
 - RFDC parameter dictionary is unchanged. The intensity ADC/PI path is untouched.
 - Default >=1 s coherent blocks, >=8 complex repeats, adaptive extension to 24.
 - DC calibration subtracts fixed mixer leakage; per-block data and uncertainty saved.
+- Python revision 2 checks cached helper compatibility before applying stimulus.
+- Mixer sweeps require measured D2S volts/code and offset: 100 mV absolute limit,
+  20 mV headroom, including bias, sine peaks and both calibration levels. See notebook.
 - No feedback clocks added. Existing A7 dual PLL/IIR/monitor functionality remains.
 
 Run [laser_pll_loopback.ipynb](laser_pll_loopback.ipynb) cell by cell with laser
 controllers disconnected from the driven output. See [A8 guide](docs/laser_pll_loopback_A8.md)
 for wiring, pipeline and calibration. The A7 guide documents the retained normal
 PLL APIs; use the A8 helpers with this firmware. The prior A7 archive is preserved.
+The loopback notebook includes the user's custom LMK clock setup, FreqLocksBranch
+bitstream path, module refresh, mV meter prompts, bounded setup, calibration,
+10 Hz–1 MHz sweep, saved data and plots. No earlier notebook cells are needed.
 
 Hardware has not been programmed or bench-tested. Verification and file hashes
 are in verification.json.
@@ -143,6 +152,7 @@ are in verification.json.
         register_addresses={k:v for k,v in addresses.items() if k.startswith('pll')},
         loopback=dict(adc='224/3', dac='229/1', external_lo_dac='228/1',
                       modes=['direct RF', 'near-DC D2S plus external mixer'],
+                      helper_revision=2, d2s_maximum_abs_V=0.100, d2s_default_margin_V=0.020,
                       default_integration_s=1.0, default_repeats=8, max_repeats=24,
                       added_feedback_clocks=0, rf_converter_parameters_unchanged=True),
         tests_passed=list(test_results))

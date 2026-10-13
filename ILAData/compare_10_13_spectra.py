@@ -27,7 +27,23 @@ BANDS_KHZ = [(10, 30), (30, 60), (60, 100), (100, 200),
 
 def label(trace):
     meta = trace['metadata']
-    return f"{Path(meta['file']).stem.removeprefix('File_')} · RBW {meta['rbw_hz']:g} Hz"
+    name = Path(meta['file']).stem.removeprefix('File_0')
+    setup = '1 MΩ scope connected' if name == 'W' else 'scope disconnected'
+    return f"{name}: {setup} · RBW {meta['rbw_hz']:g} Hz"
+
+
+def coarse_peak_envelope(trace, centers_hz, spacing_hz):
+    """Approximate wider positive-peak display buckets; no PSD interpolation.
+
+    This cannot recreate an analyzer acquisition, but exposes how a cluster
+    of resolved lines can appear as a broad hump on a coarser display grid.
+    """
+    result = np.full(len(centers_hz), np.nan)
+    for k, center in enumerate(centers_hz):
+        selected = abs(trace['offset_hz']-center) < spacing_hz/2
+        if selected.any():
+            result[k] = np.max(trace['relative_dbc'][selected])
+    return result
 
 
 def draw(ax, trace, field, name, color, **kwargs):
@@ -81,7 +97,7 @@ def main():
         ax.grid(alpha=.22)
         ax.legend(fontsize=9)
     fig.suptitle('13 October 2026 beat spectra · 800 MHz carrier\n'
-                 'W / WNS / WNS2 filenames retained; acquisition settings not yet identified', fontsize=13)
+                 'W: 1 MΩ scope connected. NS: scope disconnected.', fontsize=13)
     fig.supxlabel('Positive-peak detector, one sweep; all files flag an incomplete sweep. '
                   'Nominal RBW correction omits ENBW and detector bias.', fontsize=9)
     for extension in ['png', 'pdf']:
@@ -90,6 +106,28 @@ def main():
 
     old = [load_trace(name) for name in ['File_0BEST.csv', 'File_0_ADF4108_Loop.csv',
                                          'File_01_ADF4108_Loop.csv']]
+    coarse = coarse_peak_envelope(old[1], traces[0]['offset_hz'],
+                                   traces[0]['metadata']['display_spacing_hz'])
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4.5), layout='constrained')
+    for ax in axes:
+        draw(ax, old[1], 'relative_dbc', 'ADF4108: original 454 Hz spacing', '#aaaaaa', lw=.8)
+        ax.plot(traces[0]['offset_hz']/1e3, coarse, '.--', color='#c85a26',
+                label='ADF4108: max within each 2.54 kHz bucket', lw=1, ms=3)
+        draw(ax, traces[0], 'relative_dbc', 'FPGA W: native 2.54 kHz spacing', COLORS[0],
+             lw=1, marker='.', ms=3)
+        draw(ax, traces[1], 'relative_dbc', 'FPGA WNS: native 2.54 kHz spacing', COLORS[2],
+             lw=1, marker='.', ms=3)
+        ax.set(ylabel='Carrier-relative level (dBc)', xlabel='Carrier offset (kHz)', ylim=(-53,-18))
+        ax.grid(alpha=.2)
+    axes[0].set(xlim=(-65,65), title='All three source traces use 3 Hz RBW')
+    axes[1].set(xlim=(40,60), title='Resolved line cluster can resemble a broad hump')
+    axes[0].legend(fontsize=8, loc='lower center')
+    fig.suptitle('50 kHz feature: account for analyzer display spacing', fontsize=13)
+    fig.supxlabel('Coarsening takes displayed maxima, not a new measurement or a noise-power integral.', fontsize=9)
+    for extension in ['png','pdf']:
+        fig.savefig(OUT/f'spectra_50khz_display_check.{extension}', dpi=180)
+    plt.close(fig)
+
     fig, axes = plt.subplots(1, 2, figsize=(13, 4.8), layout='constrained')
     # W and WNS show nearly identical low-offset backgrounds. Use W as the
     # representative 3 Hz scan and show WNS2 to expose run-to-run variation.
@@ -114,6 +152,8 @@ def main():
     plt.close(fig)
 
     summary = dict(traces=[describe(t) for t in traces], baselines=[describe(t) for t in old],
+        setup='W: 1 Mohm scope connected; NS files: scope disconnected (user confirmed).',
+        adf_coarse_envelope_dbc=[float(x) if np.isfinite(x) else None for x in coarse],
         rbw_10_vs_3_hz_noise_change_db=float(10*np.log10(10/3)),
         offset_convention='Subtract displayed carrier peak frequency, not nominal center. '
                           'Peak display coordinate can differ from the true carrier by a bucket.',

@@ -1,0 +1,308 @@
+{
+  "traces": [
+    {
+      "label": "ADF4108: File_0PLL",
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0PLL.csv",
+        "sha256": "029535214eae2c75a3bff75311e82529400004bf72ee243d37b4e319c8c4ce0e",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 03:59:13",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 1000000000.0,
+        "span_hz": 814027.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 5.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 999997964.93001,
+        "carrier_display_power_dbm": -29.2804222106934,
+        "display_spacing_hz": 2035.070000052452
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "points": 8,
+          "median_display_dbc": -30.153490066528306
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "points": 20,
+          "median_display_dbc": -34.03903388977045
+        },
+        {
+          "low_khz": 30,
+          "high_khz": 60,
+          "points": 30,
+          "median_display_dbc": -36.53189468383785
+        },
+        {
+          "low_khz": 60,
+          "high_khz": 100,
+          "points": 40,
+          "median_display_dbc": -43.43450546264645
+        },
+        {
+          "low_khz": 100,
+          "high_khz": 200,
+          "points": 98,
+          "median_display_dbc": -47.3649635314941
+        },
+        {
+          "low_khz": 200,
+          "high_khz": 300,
+          "points": 98,
+          "median_display_dbc": -45.65579605102535
+        },
+        {
+          "low_khz": 300,
+          "high_khz": 400,
+          "points": 98,
+          "median_display_dbc": -42.8864364624023
+        }
+      ],
+      "close_features": [
+        {
+          "offset_hz": -6105.209999918938,
+          "level_dbc": -27.9030075073242
+        },
+        {
+          "offset_hz": 4070.139999985695,
+          "level_dbc": -27.3057136535644
+        }
+      ],
+      "features_50khz": [
+        {
+          "offset_hz": -48841.68000102043,
+          "level_dbc": -24.764301300048803
+        },
+        {
+          "offset_hz": 46806.610000014305,
+          "level_dbc": -24.0571403503418
+        }
+      ]
+    },
+    {
+      "label": "FPGA /160: W",
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0W.csv",
+        "sha256": "2fa2da1b4d80d1e9159c1e698b8f12a869ffe216b0572fd5158a5c4b7dacb60d",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 01:33:35",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 1016146.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799997459.635002,
+        "carrier_display_power_dbm": -30.5844593048096,
+        "display_spacing_hz": 2540.3650000095367
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "points": 6,
+          "median_display_dbc": -27.2987785339355
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "points": 16,
+          "median_display_dbc": -34.03864860534665
+        },
+        {
+          "low_khz": 30,
+          "high_khz": 60,
+          "points": 24,
+          "median_display_dbc": -35.09601783752435
+        },
+        {
+          "low_khz": 60,
+          "high_khz": 100,
+          "points": 32,
+          "median_display_dbc": -40.691591262817354
+        },
+        {
+          "low_khz": 100,
+          "high_khz": 200,
+          "points": 78,
+          "median_display_dbc": -46.25696754455565
+        },
+        {
+          "low_khz": 200,
+          "high_khz": 300,
+          "points": 80,
+          "median_display_dbc": -47.100889205932596
+        },
+        {
+          "low_khz": 300,
+          "high_khz": 400,
+          "points": 78,
+          "median_display_dbc": -45.483373641967745
+        }
+      ],
+      "close_features": [
+        {
+          "offset_hz": -5080.7300000190735,
+          "level_dbc": -22.7648868560791
+        },
+        {
+          "offset_hz": 5080.7300000190735,
+          "level_dbc": -28.609601974487305
+        }
+      ],
+      "features_50khz": [
+        {
+          "offset_hz": -48266.93500006199,
+          "level_dbc": -24.612165451049805
+        },
+        {
+          "offset_hz": 48266.93499994278,
+          "level_dbc": -23.940324783325202
+        }
+      ]
+    },
+    {
+      "label": "FPGA /160: WNS",
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0WNS.csv",
+        "sha256": "c10cc239f5b22abcc1db59944c92d417bc5117f889ccd4b90f93e4d89c2995da",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 01:37:03",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 1016146.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799997459.635002,
+        "carrier_display_power_dbm": -29.4451026916504,
+        "display_spacing_hz": 2540.3650000095367
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "points": 6,
+          "median_display_dbc": -25.7734031677246
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "points": 16,
+          "median_display_dbc": -34.17693519592285
+        },
+        {
+          "low_khz": 30,
+          "high_khz": 60,
+          "points": 24,
+          "median_display_dbc": -35.212898254394496
+        },
+        {
+          "low_khz": 60,
+          "high_khz": 100,
+          "points": 32,
+          "median_display_dbc": -41.14743804931639
+        },
+        {
+          "low_khz": 100,
+          "high_khz": 200,
+          "points": 78,
+          "median_display_dbc": -46.3845520019531
+        },
+        {
+          "low_khz": 200,
+          "high_khz": 300,
+          "points": 80,
+          "median_display_dbc": -47.1844444274902
+        },
+        {
+          "low_khz": 300,
+          "high_khz": 400,
+          "points": 78,
+          "median_display_dbc": -48.08390045166014
+        }
+      ],
+      "close_features": [
+        {
+          "offset_hz": -5080.7300000190735,
+          "level_dbc": -23.767189025878896
+        },
+        {
+          "offset_hz": 5080.7300000190735,
+          "level_dbc": -22.6812210083008
+        }
+      ],
+      "features_50khz": [
+        {
+          "offset_hz": -48266.93500006199,
+          "level_dbc": -26.3592224121094
+        },
+        {
+          "offset_hz": 50807.299999952316,
+          "level_dbc": -25.2055549621582
+        }
+      ]
+    }
+  ],
+  "median_differences": [
+    {
+      "low_khz": 1,
+      "high_khz": 10,
+      "fpga_W_minus_adf_db": 2.8547115325928054,
+      "fpga_WNS_minus_adf_db": 4.380086898803707
+    },
+    {
+      "low_khz": 10,
+      "high_khz": 30,
+      "fpga_W_minus_adf_db": 0.0003852844237997033,
+      "fpga_WNS_minus_adf_db": -0.1379013061524006
+    },
+    {
+      "low_khz": 30,
+      "high_khz": 60,
+      "fpga_W_minus_adf_db": 1.4358768463134979,
+      "fpga_WNS_minus_adf_db": 1.3189964294433523
+    },
+    {
+      "low_khz": 60,
+      "high_khz": 100,
+      "fpga_W_minus_adf_db": 2.7429141998290945,
+      "fpga_WNS_minus_adf_db": 2.287067413330057
+    },
+    {
+      "low_khz": 100,
+      "high_khz": 200,
+      "fpga_W_minus_adf_db": 1.1079959869384481,
+      "fpga_WNS_minus_adf_db": 0.9804115295410014
+    },
+    {
+      "low_khz": 200,
+      "high_khz": 300,
+      "fpga_W_minus_adf_db": -1.4450931549072479,
+      "fpga_WNS_minus_adf_db": -1.5286483764648509
+    },
+    {
+      "low_khz": 300,
+      "high_khz": 400,
+      "fpga_W_minus_adf_db": -2.596937179565444,
+      "fpga_WNS_minus_adf_db": -5.197463989257841
+    }
+  ],
+  "user_conditions": "Identical analog filters/gains; FPGA divide by 160; detector voltage slopes approximate.",
+  "limitations": [
+    "Display buckets are wider than the 3 Hz RBW and have unequal spacing.",
+    "Positive detector, one average, incomplete-sweep flags.",
+    "No reliable integrated 1\u201310 kHz RMS phase noise from these files.",
+    "RF power spectra combine AM and PM; carrier frequencies differ.",
+    "50 kHz peak levels do not establish loop crossover or stability margin."
+  ]
+}

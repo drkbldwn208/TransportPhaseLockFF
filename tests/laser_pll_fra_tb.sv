@@ -7,17 +7,30 @@ module laser_pll_fra_tb;
     wire signed [15:0] driven;
     wire saturated;
     reg signed [15:0] feedback[0:3];
-    reg clamp_test=0, internal_saturation=0, loop_test=0, rx_valid=1;
-    reg signed [15:0] delayed_drive[0:3];
-    wire signed [15:0] rx_i=2000+($signed(delayed_drive[3])-8192)/2;
-    wire signed [15:0] rx_q=-1000+($signed(delayed_drive[3])-8192)/4;
-    wire signed [23:0] rx_filtered_i=$signed(rx_i)*256;
-    wire signed [23:0] rx_filtered_q=$signed(rx_q)*256;
-    wire signed [63:0] sum_i,sum_q;
+    reg clamp_test=0, internal_saturation=0, loop_test=0, rx_valid=1, phase_overflow=0;
+    // The top-level lane comparators register an ADC rail event for one clock.
+    reg adc_rail=0, adc_rail_d=0;
+    always @(posedge clk) adc_rail_d<=rst_n && adc_rail;
+    wire signed [19:0] rf_command;
+    wire signed [17:0] rf_applied;
+    wire [223:0] rf_data;
+    reg rf_ready=1;
+    reg signed [17:0] physical_phase[0:6];
+    reg signed [17:0] ramp_phase=0;
+    real angle;
+    integer phase_integer;
+    laser_pll_rf_pm rf_source(.clk(clk),.rst_n(rst_n),.phase_command(rf_command),
+        .amplitude(16'd20000),.m_axis_tdata(rf_data),.m_axis_tready(rf_ready),.applied_phase(rf_applied));
+    // A modeled RF chain: atan2 of the actual quantized transmit I/Q, 7 clocks delayed.
     always @(posedge clk) begin
-        delayed_drive[0]<=driven;
-        for(integer j=1;j<4;j=j+1) delayed_drive[j]<=delayed_drive[j-1];
+        angle=$atan2($itor($signed(rf_data[31:16])),$itor($signed(rf_data[15:0])));
+        phase_integer=$rtoi(angle*262144.0/6.283185307179586);
+        physical_phase[0]<=phase_integer;
+        for(integer j=1;j<7;j=j+1) physical_phase[j]<=physical_phase[j-1];
+        ramp_phase<=ramp_phase+18'd1000;
     end
+    wire signed [17:0] raw_phase=phase_overflow ? ramp_phase :
+        loop_test ? physical_phase[6]+18'd131000 : $signed(feedback[3])*4+18'd125700;
     wire [31:0] clip_samples,saturated_samples,outside_clip_samples,measured_samples,error_extrema,drive_extrema;
     wire signed [15:0] error_code=loop_test ? 16'sd8192 : clamp_test ? 16'sd32760 : feedback[3];
     wire [159:0] tone, error_probe, drive_probe;
@@ -32,10 +45,12 @@ module laser_pll_fra_tb;
             for(integer j=1;j<4;j=j+1) feedback[j]<=feedback[j-1];
         end
         if (error_ref_valid && error_ref_ready && error_ref[256]) measured<=measured+1;
+        if (rst_n && dut.rf_mode && driven!==error_code) $fatal(1,"RF test injected error DAC");
     end
     laser_pll_fra #(.RAMP_INTERVAL_LOG2(0)) dut(
         .clk(clk),.rst_n(rst_n),.error_code(error_code),.error_valid(1'b1),.error_saturated(internal_saturation),
-        .loopback_i(rx_filtered_i), .loopback_q(rx_filtered_q), .loopback_valid(rx_valid), .loopback_clipped(1'b0), .loopback_sum_i(sum_i), .loopback_sum_q(sum_q),
+        .measured_phase(raw_phase), .measured_phase_valid(rx_valid), .raw_adc_clipped(adc_rail_d),
+        .rf_applied_phase(rf_applied), .rf_ready(rf_ready), .rf_phase_command(rf_command),
         .dac_ready(1'b1),.phase_valid(!loop_test),.control(control),.settle_clocks(settle),.measure_clocks(measure),
         .clip_samples(clip_samples),.saturated_samples(saturated_samples),.outside_clip_samples(outside_clip_samples),
         .measured_samples(measured_samples),.error_extrema(error_extrema),.drive_extrema(drive_extrema),
@@ -197,24 +212,63 @@ module laser_pll_fra_tb;
         if(!status[3] || clip_samples==0 || saturated_samples!=0) $fatal(1,"DAC clipping not recorded");
         control=0; clamp_test=0; repeat(32) @(negedge clk);
         $fclose(f);
-        f=$fopen("loopback_sums.txt","w");
-        loop_test=1;
+        f=$fopen("closed_phase_sums.txt","w");
         for(integer k=0;k<2;k=k+1) begin
             word=k==0 ? 2097152 : 131072;
             write_reg(0,'h18,1024); write_reg(0,'h10,word);
             write_reg(0,'h40,0); write_reg(0,'h40,1);
-            repeat(128) @(negedge clk); control=3; wait_done();
-            if(status[7:3]!=0) $fatal(1,"loopback must not require phase-detector validity: %h",status);
-            if(measured_samples!=measure) $fatal(1,"loopback window count");
+            repeat(128) @(negedge clk); control=5; wait_done();
+            if(status[7:3]!=0) $fatal(1,"closed phase faults %h",status);
             read_sum(1,'h20,ei); read_sum(1,'h40,eq);
             read_sum(2,'h20,ui); read_sum(2,'h40,uq);
-            $fdisplay(f,"%d %d %d %d %d %d %d",word,ei,eq,ui,uq,sum_i,sum_q);
+            $fdisplay(f,"%d %d %d %d %d",word,ei,eq,ui,uq);
+            control=0; repeat(32) @(negedge clk);
+        end
+        $fclose(f);
+        f=$fopen("rf_phase_sums.txt","w");
+        loop_test=1;
+        for(integer k=0;k<2;k=k+1) begin
+            word=k==0 ? 2097152 : 131072;
+            write_reg(0,'h18,k==0 ? 1024 : 20'hffc00); write_reg(0,'h10,word);
+            write_reg(0,'h40,0); write_reg(0,'h40,1);
+            repeat(128) @(negedge clk); control=3; wait_done();
+            if(status[7:3]!=0) $fatal(1,"RF phase faults %h",status);
+            if(measured_samples!=measure) $fatal(1,"RF phase window count");
+            read_sum(1,'h20,ei); read_sum(1,'h40,eq);
+            read_sum(2,'h20,ui); read_sum(2,'h40,uq);
+            $fdisplay(f,"%d %d %d %d %d",word,ei,eq,ui,uq);
             control=0; repeat(32) @(negedge clk);
         end
         control=3; wait(status[1]); @(negedge clk); rx_valid=0;
         repeat(7) @(negedge clk); rx_valid=1; wait_done();
-        if(!status[4]) $fatal(1,"missing IQ samples not flagged");
+        if(!status[4]) $fatal(1,"missing received phase samples not flagged");
         control=0; repeat(32) @(negedge clk);
+        control=3; wait(status[1]); @(negedge clk); rf_ready=0;
+        repeat(7) @(negedge clk); rf_ready=1; wait_done();
+        if(!status[4]) $fatal(1,"RF source stall not flagged");
+        control=0; repeat(32) @(negedge clk);
+        // Exercise both integration boundaries: adjacent settling/ramp-down
+        // rail events stay outside; first/last measured events count exactly.
+        for(integer boundary_clips=0;boundary_clips<2;boundary_clips=boundary_clips+1) begin
+            control=3;
+            wait(dut.state==2 && dut.remaining==0);
+            @(negedge clk); adc_rail=1;
+            @(negedge clk); adc_rail=boundary_clips;
+            @(negedge clk); adc_rail=0;
+            wait(dut.state==3 && dut.remaining==1);
+            @(negedge clk); adc_rail=boundary_clips;
+            @(negedge clk); adc_rail=1;
+            @(negedge clk); adc_rail=0;
+            wait_done();
+            if(clip_samples!=0 || saturated_samples!=2*boundary_clips ||
+               outside_clip_samples!=2 || status[3]!=boundary_clips)
+                $fatal(1,"ADC rail/window alignment: mode=%d inside=%d outside=%d status=%h",
+                       boundary_clips,saturated_samples,outside_clip_samples,status);
+            control=0; repeat(32) @(negedge clk);
+        end
+        phase_overflow=1; control=3; wait_done();
+        if(!status[3]) $fatal(1,"phase monitor excursion overflow not flagged");
+        control=0; phase_overflow=0; repeat(32) @(negedge clk);
         $fclose(f);
         loop_test=0;
         // Backpressure cannot alter feedback or silently yield a shorter window.

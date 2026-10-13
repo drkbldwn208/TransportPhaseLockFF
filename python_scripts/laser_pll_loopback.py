@@ -14,14 +14,75 @@ import laser_pll
 import laser_pll_loop_sweep as fra
 
 FS_HZ = 245_760_000.0
+HELPER_REVISION = 2  # Python-only voltage bounds and dependency preflight; same A8 FPGA.
 
 
-def _check(ol):
+def check_helpers(ol):
+    """Reject stale/cached dependencies before changing any output registers."""
+    required = ('diagnostics', '_configuration', '_read72', 'stop')
+    if (getattr(fra, 'FPGA_VERSION', None) != 0xA8
+            or any(not callable(getattr(fra, name, None)) for name in required)
+            or getattr(fra, 'laser_pll', None) is not laser_pll):
+        raise RuntimeError(
+            f"Stale or mismatched sweep helper: {getattr(fra, '__file__', '<unknown>')}. "
+            "Copy all three current A8 .py files together, reload laser_pll, "
+            "laser_pll_loop_sweep and laser_pll_loopback, and rebind fra.laser_pll, "
+            "lb.laser_pll and lb.fra. No stimulus has been applied by this call.")
     if getattr(laser_pll, 'FPGA_VERSION', None) != 0xA8 or ol.pll_acquisition_status.read(8) >> 24 != 0xA8:
         raise ValueError('Use the matching A8 bit/HWH and laser_pll.py helper.')
     for name in ('pll_loopback_i', 'pll_loopback_q'):
         if not hasattr(ol, name):
             raise ValueError(f'Missing {name}; load the A8 HWH.')
+
+
+def voltage_limits(voltage_at_zero_V, voltage_at_test_V, *, test_codes=100,
+                   maximum_abs_V=0.100, margin_V=0.020):
+    """D2S voltage model from two meter readings, with the mixer IF disconnected.
+
+    Measure at the D2S output, preferably high impedance to bound the unloaded
+    voltage. V(code) = offset_V + volts_per_code*code. Margin allows offset drift
+    and modest AC peaking; it is not a hardware clamp or a measurement of either.
+    Recheck after changing gain, RFDC settings, cabling or termination.
+    """
+    if not isinstance(test_codes, int) or not 0 < abs(test_codes) <= 32767:
+        raise ValueError('Use a nonzero integer calibration code within the DAC range.')
+    limits = dict(volts_per_code=(voltage_at_test_V-voltage_at_zero_V)/test_codes,
+                  offset_V=voltage_at_zero_V, maximum_abs_V=maximum_abs_V, margin_V=margin_V)
+    check_output(0, 0, limits)
+    check_output(test_codes, 0, limits)
+    return limits
+
+
+def check_output(bias_codes, amplitude_codes, output_limits):
+    """Check the entire bias +/- peak-amplitude interval before writing hardware.
+
+    Returns predicted maximum absolute D2S voltage, or None for direct RF mode.
+    The fixed 100 mV ceiling applies to the D2S waveform including calibration.
+    """
+    if abs(bias_codes)+amplitude_codes > 32760:
+        raise ValueError('DC bias plus probe would clip the DAC.')
+    if output_limits is None:
+        return None
+    slope, offset, maximum, margin = (output_limits[k] for k in
+                                    ('volts_per_code', 'offset_V', 'maximum_abs_V', 'margin_V'))
+    if (not all(math.isfinite(v) for v in (slope, offset, maximum, margin))
+            or slope == 0 or not 0 <= margin < maximum <= .100):
+        raise ValueError('Use finite measured volts/code and offset; 0 <= margin < limit <= 0.100 V.')
+    peak_V = abs(offset+slope*bias_codes)+abs(slope)*amplitude_codes
+    if peak_V+margin >= maximum:
+        raise ValueError(f'D2S output could reach {1e3*peak_V:.2f} mV, plus '
+                         f'{1e3*margin:g} mV margin; limit is {1e3*maximum:g} mV. '
+                         'Reduce bias, amplitude or calibration step.')
+    return peak_V
+
+
+def _output_limits(ol):
+    setup_info = getattr(ol, '_laser_pll_loopback_setup', None)
+    if setup_info is None:
+        raise ValueError('Call the current setup() first; mixer mode requires measured output_limits.')
+    if receiver_settings(ol) != setup_info['receiver_settings']:
+        raise ValueError('Converter/LO settings changed; recheck D2S voltage and rerun setup().')
+    return setup_info['output_limits']
 
 
 def receiver_settings(ol):
@@ -33,7 +94,7 @@ def receiver_settings(ol):
                 tp_lo_amplitude_codes=ol.axi_gpio_12.read(0) & 65535)
 
 
-def setup(ol, *, mode, carrier_hz=90e6, bias_codes=2048):
+def setup(ol, *, mode, carrier_hz=90e6, bias_codes=0, output_limits=None):
     """Select DAC229/1 DC-test mode and its NCO; preserve RFDC ADC/TP-LO settings.
 
     mode='rf': DAC229/1 RF directly into ADC224/3.
@@ -42,12 +103,18 @@ def setup(ol, *, mode, carrier_hz=90e6, bias_codes=2048):
     Keeps both converter rates and all decimation/interpolation factors intact.
     Returns the prior DAC mixer settings for documentation; does not restore a
     previous live feedback state automatically.
+    Mixer mode requires output_limits from measured D2S volts/code and offset.
     """
-    _check(ol)
+    check_helpers(ol)
     if mode not in ('rf', 'mixer'):
         raise ValueError("mode must be 'rf' or 'mixer'.")
     if not isinstance(bias_codes, int) or not -30000 <= bias_codes <= 30000:
         raise ValueError('Use an integer DC bias within +/-30000 DAC codes.')
+    if mode == 'mixer' and output_limits is None:
+        raise ValueError('Mixer mode requires output_limits from voltage_limits(); '
+                         'measure the D2S output with mixer IF disconnected first.')
+    check_output(0, 0, output_limits)  # Muting/startup also passes through zero code.
+    check_output(bias_codes, 0, output_limits)
     if not math.isfinite(carrier_hz) or not 1e6 <= carrier_hz < laser_pll.ADC_SAMPLE_RATE_HZ/2 or (mode == 'mixer' and carrier_hz > 450e6):
         raise ValueError('Use a zone-1 carrier; keep the ZAD-1+ test below 450 MHz. Use 90 MHz for a matched comparison.')
     params = ol.ip_dict['usp_rf_data_converter_0']['parameters']
@@ -75,7 +142,11 @@ def setup(ol, *, mode, carrier_hz=90e6, bias_codes=2048):
     laser_pll.set_dc_output(ol, bias_codes)
     laser_pll.enable(ol)
     _wait_dc(ol)
-    return dict(mode=mode, carrier_hz=carrier_hz, bias_codes=bias_codes, previous_settings=settings)
+    setup_info = dict(mode=mode, carrier_hz=carrier_hz, bias_codes=bias_codes,
+                      output_limits=dict(output_limits) if output_limits is not None else None,
+                      receiver_settings=receiver_settings(ol), previous_settings=settings)
+    ol._laser_pll_loopback_setup = setup_info
+    return setup_info
 
 
 def _wait_dc(ol):
@@ -118,7 +189,7 @@ def _signed64_gpio(ip):
     return value-(1 << 64) if value & (1 << 63) else value
 
 
-def measure_point(ol, frequency_hz, *, amplitude_codes=256, polarity=1, **window):
+def measure_point(ol, frequency_hz, *, amplitude_codes=32, polarity=1, **window):
     """Return I/Q response and DC means, in post-mixer ADC counts (not calibrated volts).
 
     Every fabric beat is synchronously demodulated BEFORE the long boxcar
@@ -127,7 +198,7 @@ def measure_point(ol, frequency_hz, *, amplitude_codes=256, polarity=1, **window
     driven-response interpretation. Receiver rail counts monitor the raw ADC lanes within 16 codes of either
     rail; clipping in an external analog stage still requires a linearity check.
     """
-    _check(ol)
+    check_helpers(ol)
     if not isinstance(amplitude_codes, int) or not 0 <= amplitude_codes <= 16000 or polarity not in (-1, 1):
         raise ValueError('Use 0..16000 integer amplitude codes and polarity +/-1.')
     state = laser_pll.acquisition_status(ol)
@@ -137,8 +208,7 @@ def measure_point(ol, frequency_hz, *, amplitude_codes=256, polarity=1, **window
         raise ValueError('Select IIR bypass and stop the previous FRA run.')
     bias = ol.pll_acquisition.read(8) & 65535
     bias = bias-65536 if bias & 32768 else bias
-    if abs(bias)+amplitude_codes > 32760:
-        raise ValueError('DC bias plus probe would clip the DAC.')
+    peak_V = check_output(bias, amplitude_codes, _output_limits(ol))
     plan = frequency_plan(frequency_hz, **window)
     configuration = fra._configuration(ol)
     settings = receiver_settings(ol)
@@ -178,12 +248,13 @@ def measure_point(ol, frequency_hz, *, amplitude_codes=256, polarity=1, **window
             phasors.append(polarity*2*complex(fra._read72(ip, 0x20), fra._read72(ip, 0x40))/(n*32768*4))
         means = [_signed64_gpio(ip)/(n*4) for ip in (ol.pll_loopback_i, ol.pll_loopback_q)]
         return dict(**plan, amplitude_codes=amplitude_codes, bias_codes=bias, polarity=polarity,
-                    i=phasors[0], q=phasors[1], mean_i=means[0], mean_q=means[1], diagnostics=diag)
+                    i=phasors[0], q=phasors[1], mean_i=means[0], mean_q=means[1], diagnostics=diag,
+                    predicted_peak_V=peak_V)
     finally:
         stop(ol)
 
 
-def calibrate(ol, *, step_codes=512, integration_s=1.0):
+def calibrate(ol, *, step_codes=32, integration_s=1.0):
     """Measure the real DC response vector using two bias levels around the operating point.
 
     Subtracting the means removes fixed mixer LO leakage/receiver offsets.
@@ -191,14 +262,18 @@ def calibrate(ol, *, step_codes=512, integration_s=1.0):
     Both levels must remain in the mixer/converter linear range. Inspect the
     returned slope magnitude; repeat calibration to check drift or frequency mismatch.
     """
-    _check(ol)
+    check_helpers(ol)
     bias = ol.pll_acquisition.read(8) & 65535
     bias = bias-65536 if bias & 32768 else bias
     if not isinstance(step_codes, int) or not 1 <= step_codes or abs(bias)+step_codes > 30000:
         raise ValueError('Calibration step exceeds the DAC bias range.')
+    check_output(bias, step_codes, _output_limits(ol))
+    frequency_plan(1000, minimum_measure_s=integration_s)
     state = laser_pll.acquisition_status(ol)
     if state['stage'] != 5 or state['transitioning'] or not ol.pll_control.read(0) & 1:
         raise ValueError('Call setup() before calibration.')
+    if ol.pll_fra.read(0) & 1 or ol.pll_fra.read(8) & 1:
+        raise ValueError('Stop the previous FRA run before changing the calibration bias.')
     points = []
     try:
         for code in (bias-step_codes, bias+step_codes, bias-step_codes):
@@ -233,7 +308,7 @@ def project(point, calibration):
             (-gq*point['i']+gi*point['q'])/norm)
 
 
-def sweep(ol, frequencies_hz, calibration, *, amplitude_codes=256, repeats=8,
+def sweep(ol, frequencies_hz, calibration, *, amplitude_codes=32, repeats=8,
           max_repeats=24, target_snr=30.0, csv_path='loopback.csv', **window):
     """Complex averaging with alternating probe sign, uncertainty, and incremental CSVs.
 

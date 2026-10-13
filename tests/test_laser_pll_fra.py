@@ -16,8 +16,9 @@ def run():
     WORK.mkdir(exist_ok=True)
     generator=HLS/'Perturbation_gen/perturbation_gen/perturbation_gen/hls/impl/ip/hdl/verilog'
     demod=HLS/'Demod_Err/demod_error/demod_error/hls/impl/ip/hdl/verilog'
-    sources=[*generator.glob('*.v'),*demod.glob('*.v'),SRC/'laser_pll_fra.sv',ROOT/'tests/laser_pll_fra_tb.sv']
+    sources=[*generator.glob('*.v'),*demod.glob('*.v'),SRC/'laser_pll_phase_probe.sv',SRC/'laser_pll_rf_pm.sv',SRC/'laser_pll_fra.sv',ROOT/'tests/laser_pll_fra_tb.sv']
     for p in generator.glob('*.dat'): shutil.copy2(p,WORK/p.name)
+    shutil.copy2(SRC/'laser_pll_sine.mem',WORK/'laser_pll_sine.mem')
     commands=[['xvlog','--sv',*map(str,sources)],['xelab','laser_pll_fra_tb','-s','fra'],['xsim','fra','-runall']]
     for command in commands:
         result=subprocess.run([str(BIN/command[0]),*command[1:]],cwd=WORK,text=True,
@@ -36,14 +37,19 @@ def run():
         assert abs(loop-expected)<0.002,(loop,expected)
         print(f'{word*1966080000/2**32:g} Hz: measured L={loop:.6g}; expected {expected:.6g}')
 
-    for line in (WORK/'loopback_sums.txt').read_text().splitlines():
-        word,ii,iq,qi,qq,mi,mq=map(int,line.split())
-        h_i=2*complex(ii,iq)/(16384*32768*1024)
-        h_q=2*complex(qi,qq)/(16384*32768*1024)
-        delay=cmath.exp(-2j*cmath.pi*(8*word/2**32)*4)
-        assert abs(h_i-2*delay)<0.005,(h_i,2*delay)
-        assert abs(h_q-delay)<0.005,(h_q,delay)
-        assert abs(mi/16384-8000)<3 and abs(mq/16384+4000)<3
-        print(f'Loopback {word*1966080000/2**32:g} Hz: I={h_i}, Q={h_q}; 4-clock delay recovered')
+    for line in (WORK/'closed_phase_sums.txt').read_text().splitlines():
+        word,pi,pq,ui,uq=map(int,line.split())
+        phase=2*complex(pi,pq)/(16384*32768)
+        drive=2*complex(ui,uq)/(16384*32768)
+        loop=0.5*cmath.exp(-2j*cmath.pi*(8*word/2**32)*4)
+        assert abs(phase-4*(drive-1024))<0.8,(phase,4*(drive-1024))
+        assert abs((1024-drive)/drive-loop)<0.002
+        print(f'Closed phase {word*1966080000/2**32:g} Hz: raw phase agrees with E, U and known loop')
+    for line in (WORK/'rf_phase_sums.txt').read_text().splitlines():
+        word,pi,pq,di,dq=map(int,line.split())
+        response=complex(pi,pq)/complex(di,dq)
+        expected=cmath.exp(-2j*cmath.pi*(8*word/2**32)*7)
+        assert abs(response-expected)<0.003,(response,expected)
+        print(f'RF PM {word*1966080000/2**32:g} Hz: actual DAC I/Q gives {response}; 7-clock RF delay recovered')
 
 if __name__=='__main__': run()

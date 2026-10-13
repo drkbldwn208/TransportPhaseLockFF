@@ -134,6 +134,6 @@ module laser_pll_fft (
         end
     end
     // Bits 31:24 identify this register layout; sticky faults clear on reset.
-    assign fft_status = {8'hA8,frame_number,2'b0,protocol_fault,overflow_seen,
+    assign fft_status = {8'hA7,frame_number,2'b0,protocol_fault,overflow_seen,
                          weak_signal,estimate_valid,peak_bin};
 endmodule

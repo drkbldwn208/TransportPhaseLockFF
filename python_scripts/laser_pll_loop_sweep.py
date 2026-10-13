@@ -1,4 +1,4 @@
-"""A8 closed-loop analyzer: DAC-code phasors at the digital injection point.
+"""A7 closed-loop analyzer: DAC-code phasors at the digital injection point.
 
 e = original discriminator output, d = injected sine, u = e+d = DAC command.
 The negative-feedback convention is e = -L*u, so L=-E/U, S=U/(U-E).
@@ -53,20 +53,20 @@ def _configuration(ol):
 
 def _ready(ol):
     # Jupyter can retain an older control helper after files are replaced.
-    if getattr(laser_pll, 'FPGA_VERSION', None) != 0xA8:
+    if getattr(laser_pll, 'FPGA_VERSION', None) != 0xA7:
         path = getattr(laser_pll, '__file__', '<unknown path>')
         raise RuntimeError(
-            f"The sweep requires the A8 laser_pll.py; loaded {path}. "
-            "Copy both A8 Python helpers to the notebook directory, then run "
+            f"The sweep requires the A7 laser_pll.py; loaded {path}. "
+            "Copy both A7 Python helpers to the notebook directory, then run "
             "importlib.reload(laser_pll) and importlib.reload(fra). "
             "Reloading Python does not reset the FPGA or the lock.")
-    if ol.pll_acquisition_status.read(8) >> 24 != 0xA8:
-        raise ValueError("The loop analyzer requires the matching A8 bitstream/HWH.")
+    if ol.pll_acquisition_status.read(8) >> 24 != 0xA7:
+        raise ValueError("The loop analyzer requires the matching A7 bitstream/HWH.")
     for name in ('pll_fra', 'pll_fra_window', 'pll_fra_tone',
                  'pll_fra_error', 'pll_fra_drive', 'pll_fra_counts', 'pll_fra_extrema',
                  'pll_fra_samples', 'pll_iir', 'pll_iir_feed', 'pll_iir_pole'):
         if not hasattr(ol, name):
-            raise ValueError(f"Overlay is missing {name}; use the matching A8 HWH.")
+            raise ValueError(f"Overlay is missing {name}; use the matching A7 HWH.")
     state = laser_pll.acquisition_status(ol)
     if not ol.pll_control.read(0) & 1 or state['stage'] not in (0, 2, 3, 4):
         raise ValueError("Enable and lock a fine detector stage before measuring.")
@@ -166,7 +166,7 @@ def measure_point(ol, frequency_hz, *, amplitude_codes=32, settle_cycles=5,
             time.sleep(0.002)
         diag=diagnostics(ol)
         if diag["measured_samples"] != plan["measure_clocks"]:
-            raise RuntimeError("FRA window count mismatch; use the matching A8 bit/HWH/helper.")
+            raise RuntimeError("FRA window count mismatch; use the matching A7 bit/HWH/helper.")
         rejected_faults = status & FAULT_MASK
         if allow_clipping:
             rejected_faults &= ~CLIPPING_FLAG

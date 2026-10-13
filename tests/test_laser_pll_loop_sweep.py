@@ -1,4 +1,4 @@
-"""Host protocol and physical units of the A8 frequency response measurement."""
+"""Host protocol and physical units of the A7 frequency response measurement."""
 import math
 import csv
 from pathlib import Path
@@ -25,7 +25,7 @@ class Analyzer(unittest.TestCase):
             'pll_tracking','pll_fra','pll_fra_window','pll_fra_tone','pll_fra_error','pll_fra_drive','pll_fra_counts','pll_fra_extrema','pll_fra_samples',
             'pll_iir','pll_iir_feed','pll_iir_pole')})
         self.ol.pll_control.values[0]=1
-        self.ol.pll_acquisition_status.values={0:3|128|64,8:0xA8000000}
+        self.ol.pll_acquisition_status.values={0:3|128|64,8:0xA7000000}
         self.ol.pll_tracking.values[8]=104858
         self.faults=0; self.fresh=True; self.change_config=False
         original_write=self.ol.pll_fra.write
@@ -143,14 +143,14 @@ class Analyzer(unittest.TestCase):
 
     def test_old_python_helper_explained_before_writes(self):
         with patch.object(fra, 'laser_pll', SimpleNamespace(__file__='/notebook/laser_pll.py')):
-            with self.assertRaisesRegex(RuntimeError, 'Copy both A8 Python helpers'):
+            with self.assertRaisesRegex(RuntimeError, 'Copy both A7 Python helpers'):
                 fra.measure_point(self.ol, 1000)
         self.assertEqual(self.ol.pll_fra_tone.writes, [])
 
     @patch.object(fra.time, 'sleep')
     def test_no_dependency_on_private_control_helpers(self, sleep):
         public_helper = SimpleNamespace(
-            FPGA_VERSION=0xA8,
+            FPGA_VERSION=0xA7,
             acquisition_status=fra.laser_pll.acquisition_status,
             tracking_status=fra.laser_pll.tracking_status)
         with patch.object(fra, 'laser_pll', public_helper):
@@ -159,7 +159,7 @@ class Analyzer(unittest.TestCase):
 
     def test_missing_analyzer_hwh_explained_before_writes(self):
         del self.ol.pll_fra_error
-        with self.assertRaisesRegex(ValueError, 'matching A8 HWH'):
+        with self.assertRaisesRegex(ValueError, 'matching A7 HWH'):
             fra.measure_point(self.ol, 1000)
         self.assertEqual(self.ol.pll_fra_tone.writes, [])
 

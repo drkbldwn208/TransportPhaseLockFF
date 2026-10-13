@@ -1,4 +1,4 @@
-"""A8 PYNQ controls for two independent optical PLLs. Frequencies are in Hz.
+"""A7 PYNQ controls for two independent optical PLLs. Frequencies are in Hz.
 
 Use ol for ADC 224/3 -> DAC 229/1; channel(ol,1) for ADC 225/1 -> DAC 229/3.
 
@@ -13,7 +13,7 @@ ADC_SAMPLE_RATE_HZ = 1_966_080_000.0
 ERROR_SAMPLE_RATE_HZ = ADC_SAMPLE_RATE_HZ / 8
 PHASE_CODES_PER_TURN = 1 << 18
 STAGE3_PHASE_DIVISOR = 160
-FPGA_VERSION = 0xA8
+FPGA_VERSION = 0xA7
 
 
 
@@ -42,7 +42,7 @@ def channel(ol, number=1):
 def _check_version(overlay):
     actual = overlay.pll_acquisition_status.read(0x08) >> 24
     if actual != FPGA_VERSION:
-        raise ValueError(f"Helper requires A8 dual-PLL firmware; FPGA reports 0x{actual:02x}. "
+        raise ValueError(f"Helper requires A7 dual-PLL firmware; FPGA reports 0x{actual:02x}. "
                          "Load the matching .bit/.hwh/helper package; reload laser_pll after replacing it.")
 
 
@@ -232,7 +232,7 @@ def select_stage(overlay, stage, *, wait=True, timeout_s=5.0):
     Stage 2 waits for FFT detuning <80 MHz and valid fine phase. Stage 3 is
     manual: only valid fine data and five clocks of wrap/scaler preparation
     are required, with no frequency, dwell or FFT gate. This requires the
-    A8 dual-PLL FPGA bitstream; updating this helper alone is insufficient.
+    A7 dual-PLL FPGA bitstream; updating this helper alone is insufficient.
     Stage 4 follows a settled stage 3 and saves its current phase/DAC operating
     point. Set its target with set_tracking_gain(); no optical-lock detector is
     implied. Stage-4 gain ramps are separate from the mode handoff's offset ramp.

@@ -1,0 +1,230 @@
+{
+  "conditions": {
+    "dac_code": 100,
+    "blp_present": false,
+    "scope_coupling": "DC",
+    "scope_bandwidth_limit": "believed off",
+    "controllers_connected": true,
+    "scope_loading_changed_between_records": false
+  },
+  "mean_shift_TEK7_minus_TEK6_V": 0.00206,
+  "scope": [
+    {
+      "file": "TEK0005.CSV",
+      "sha256": "ae8f9a446907fa6ca196a64d5ceb852d3bb302cc345becb9a9c44e56eb3739f5",
+      "metadata": {
+        "Record Length": "2.500000e+03",
+        "Sample Interval": "1.000000e-07",
+        "Trigger Point": "-1.002500000000e+05",
+        "Source": "CH2",
+        "Vertical Units": "V",
+        "Vertical Scale": "2.000000e-03",
+        "Vertical Offset": "3.440000e-03",
+        "Horizontal Units": "s",
+        "Horizontal Scale": "2.500000e-05",
+        "Pt Fmt": "Y",
+        "Yzero": "0.000000e+00",
+        "Probe Atten": "1.000000e+00",
+        "Model Number": "TDS2004C",
+        "Serial Number": "C040472",
+        "Firmware Version": "FV:v24.26"
+      },
+      "sample_rate_hz": 10000000.000059389,
+      "duration_s": 0.0002499999999985153,
+      "mean_V": -0.0038722879999999998,
+      "fluctuation_rms_V": 0.0003568027537113468,
+      "peak_to_peak_V": 0.00312,
+      "percentiles_1_99_V": [
+        -0.0048,
+        -0.00304
+      ]
+    },
+    {
+      "file": "TEK0006.CSV",
+      "sha256": "71a247083c893551be5ec6a7d4fd4bf3f3a78b2d26909313e7b85cb9b6249db2",
+      "metadata": {
+        "Record Length": "2.500000e+03",
+        "Sample Interval": "4.000000e-04",
+        "Trigger Point": "1.225000000000e+03",
+        "Source": "CH2",
+        "Vertical Units": "V",
+        "Vertical Scale": "2.000000e-03",
+        "Vertical Offset": "3.440000e-03",
+        "Horizontal Units": "s",
+        "Horizontal Scale": "1.000000e-01",
+        "Pt Fmt": "Y",
+        "Yzero": "0.000000e+00",
+        "Probe Atten": "1.000000e+00",
+        "Model Number": "TDS2004C",
+        "Serial Number": "C040472",
+        "Firmware Version": "FV:v24.26"
+      },
+      "sample_rate_hz": 2499.9999999999286,
+      "duration_s": 1.0000000000000286,
+      "mean_V": -0.00400192,
+      "fluctuation_rms_V": 0.0003214549324555465,
+      "peak_to_peak_V": 0.00232,
+      "percentiles_1_99_V": [
+        -0.0048,
+        -0.00328
+      ]
+    },
+    {
+      "file": "TEK0007.CSV",
+      "sha256": "c3b954a12bef0fa8443333345a4416d08625549135e06f1285da46a1cdb2dff6",
+      "metadata": {
+        "Record Length": "2.500000e+03",
+        "Sample Interval": "4.000000e-03",
+        "Trigger Point": "1.247000000000e+03",
+        "Source": "CH2",
+        "Vertical Units": "V",
+        "Vertical Scale": "2.000000e-03",
+        "Vertical Offset": "3.440000e-03",
+        "Horizontal Units": "s",
+        "Horizontal Scale": "1.000000e+00",
+        "Pt Fmt": "Y",
+        "Yzero": "0.000000e+00",
+        "Probe Atten": "1.000000e+00",
+        "Model Number": "TDS2004C",
+        "Serial Number": "C040472",
+        "Firmware Version": "FV:v24.26"
+      },
+      "sample_rate_hz": 249.99999999999977,
+      "duration_s": 10.000000000000009,
+      "mean_V": -0.00194192,
+      "fluctuation_rms_V": 0.0003468618076410258,
+      "peak_to_peak_V": 0.00272,
+      "percentiles_1_99_V": [
+        -0.00272,
+        -0.00112
+      ]
+    }
+  ],
+  "analyzer": {
+    "file": "10-13SpectrumAnalyzer/File_0DC.csv",
+    "sha256": "35924f5beacd764b85feee68fa2a35919abf80bd0f6d340f8b8ea34486c1cfd6",
+    "rbw_hz": 1,
+    "display_spacing_hz": 500,
+    "detector": "Positive peak",
+    "bands": [
+      {
+        "low_hz": 5000,
+        "high_hz": 10000,
+        "median_display_dbm": -103.673156738281,
+        "voltage_asd_proxy_V_per_sqrtHz": 1.4649647177431261e-06
+      },
+      {
+        "low_hz": 10000,
+        "high_hz": 30000,
+        "median_display_dbm": -111.768379211426,
+        "voltage_asd_proxy_V_per_sqrtHz": 5.768541768586973e-07
+      },
+      {
+        "low_hz": 45000,
+        "high_hz": 55000,
+        "median_display_dbm": -118.109924316406,
+        "voltage_asd_proxy_V_per_sqrtHz": 2.779641495409113e-07
+      },
+      {
+        "low_hz": 60000,
+        "high_hz": 100000,
+        "median_display_dbm": -118.75065612793,
+        "voltage_asd_proxy_V_per_sqrtHz": 2.581975968366802e-07
+      },
+      {
+        "low_hz": 100000,
+        "high_hz": 200000,
+        "median_display_dbm": -118.050888061523,
+        "voltage_asd_proxy_V_per_sqrtHz": 2.7985985133372474e-07
+      }
+    ],
+    "zero_frequency_display_dbm": -3.41251683235168,
+    "spurs": [
+      {
+        "frequency_hz": 8000.0,
+        "power_dbm": -94.7064971923828
+      },
+      {
+        "frequency_hz": 24000.0,
+        "power_dbm": -105.962936401367
+      },
+      {
+        "frequency_hz": 35000.0,
+        "power_dbm": -98.232551574707
+      },
+      {
+        "frequency_hz": 63500.0,
+        "power_dbm": -114.741554260254
+      },
+      {
+        "frequency_hz": 69500.0,
+        "power_dbm": -111.581176757812
+      },
+      {
+        "frequency_hz": 90500.0,
+        "power_dbm": -113.731834411621
+      },
+      {
+        "frequency_hz": 107000.0,
+        "power_dbm": -114.472640991211
+      }
+    ],
+    "caveat": "No terminated-input baseline. Positive-peak buckets are not a calibrated noise PSD. DC bin and sub-5-kHz data excluded from physical interpretation."
+  },
+  "fra": {
+    "file": "10-13FRA/FRADAta.csv",
+    "sha256": "66db9c791c7c02f53b7ba0ae18e80b8bc49577c97b71cae45200e6c02791b740",
+    "frequency_column": "log10(frequency_Hz)",
+    "low_frequency_gain_db": 13.94330995465035,
+    "low_frequency_gain_V_per_V": 4.979267950942769,
+    "gain_excursion_100Hz_1MHz_db": [
+      -0.10337681412794986,
+      0.07973916464035113
+    ],
+    "delay_fit_10kHz_1MHz_s": 1.0439465554279136e-08,
+    "phase_fit_residual_rms_deg": 0.1278552033904635,
+    "fitted_intercept_deg": -180.00842468838522,
+    "points": [
+      {
+        "frequency_hz": 1000.0,
+        "gain_db": 13.92575286026624,
+        "phase_deg": -180.28466910971235
+      },
+      {
+        "frequency_hz": 10000.0,
+        "gain_db": 13.923219633292423,
+        "phase_deg": -179.99278580409435
+      },
+      {
+        "frequency_hz": 50000.0,
+        "gain_db": 13.925123295856066,
+        "phase_deg": -180.32469782710356
+      },
+      {
+        "frequency_hz": 100000.0,
+        "gain_db": 13.943438999013846,
+        "phase_deg": -180.44091786428964
+      },
+      {
+        "frequency_hz": 350000.0,
+        "gain_db": 13.927327037190986,
+        "phase_deg": -181.3089527615009
+      },
+      {
+        "frequency_hz": 1000000.0,
+        "gain_db": 13.9352681571195,
+        "phase_deg": -183.72935055156626
+      },
+      {
+        "frequency_hz": 10000000.0,
+        "gain_db": 15.28908163949091,
+        "phase_deg": -218.99383481418337
+      }
+    ],
+    "caveat": "One input grounded, static inversion removed only for display. Includes fixture/cable/reference delay; does not measure converter delay or additive output noise."
+  },
+  "source_references": [
+    "https://www.keysight.com/content/dam/keysight/en/doc/ungate/data-sheets/5990-9783.pdf",
+    "https://download.tek.com/manual/077044401web.pdf"
+  ]
+}

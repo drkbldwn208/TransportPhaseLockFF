@@ -27,7 +27,7 @@ class Controls(unittest.TestCase):
         self.ol=SimpleNamespace(pll_frequency=GPIO(),pll_control=GPIO(),pll_status=GPIO(),
                                 pll_acquisition=GPIO(),pll_acquisition_status=GPIO(),
                                 pll_tracking=GPIO(),pll_monitor=GPIO(),pll_fra=GPIO(),pll_iir=GPIO())
-        self.ol.pll_acquisition_status.values[8]=0xA8000000
+        self.ol.pll_acquisition_status.values[8]=0xA7000000
 
     def test_frequency_units_and_commit_order(self):
         self.ol.pll_status.values[0]=1<<22
@@ -54,7 +54,7 @@ class Controls(unittest.TestCase):
 
     def test_old_stage3_mapping_is_rejected_before_writes(self):
         self.ol.pll_acquisition_status.values[8]=0xA3000000
-        with self.assertRaisesRegex(ValueError,'A8 dual-PLL'):
+        with self.assertRaisesRegex(ValueError,'A7 dual-PLL'):
             pll.configure(self.ol)
         self.assertEqual(self.ol.pll_control.writes,[])
         self.assertEqual(self.ol.pll_acquisition.writes,[])
@@ -121,7 +121,7 @@ class Controls(unittest.TestCase):
 
     def test_acquisition_status_units(self):
         self.ol.pll_acquisition_status.values[0]=3|128|(0xffffff<<8)
-        self.ol.pll_acquisition_status.values[8]=0xA8010000|1024|417
+        self.ol.pll_acquisition_status.values[8]=0xA7010000|1024|417
         state=pll.acquisition_status(self.ol)
         self.assertEqual(state['remembered_turns'],-1)
         self.assertEqual(state['fft_frequency_hz'],800640000)
@@ -220,7 +220,7 @@ class Controls(unittest.TestCase):
         self.assertAlmostEqual(actual,4.4e9,places=4)
         word=self.ol.pll_frequency.read(0) | ((self.ol.pll_frequency.read(8)&65535)<<32)
         self.assertAlmostEqual(word*pll.ADC_SAMPLE_RATE_HZ/2**48,467840000,places=5)
-        self.ol.pll_acquisition_status.values[8]=0xA8000000|244|1024
+        self.ol.pll_acquisition_status.values[8]=0xA7000000|244|1024
         self.assertAlmostEqual(pll.acquisition_status(self.ol)['fft_frequency_hz'],
                                2*pll.ADC_SAMPLE_RATE_HZ+244*pll.ADC_SAMPLE_RATE_HZ/1024)
         with self.assertRaises(ValueError): pll.set_reference_frequency(self.ol,3.8e9)
