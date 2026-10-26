@@ -1,0 +1,647 @@
+{
+  "conditions": "User confirms 8x gain, FRA off; reference laser reportedly more stable than earlier batch.",
+  "records": [
+    {
+      "source": "laser_iq_FPGA_shortest_0.npz",
+      "sha256": "f4cfb8b5755aa1b31c71f216e3bfce1f978360ea6eeb53bdf611f27d82668232",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1151.4930054008673,
+      "minimum_magnitude_relative_to_median": 0.8817222380106451,
+      "max_adjacent_phase_step_rad": 0.4900483715165239,
+      "phase_min_relative_to_start_rad": -7.289641006174874,
+      "phase_max_relative_to_start_rad": 5.819365313511042,
+      "phase_peak_to_peak_rad": 13.109006319685918,
+      "phase_net_turns": -0.07434221510104688,
+      "phase_standard_deviation_rad": 1.3165173272614112,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.06411222159706062,
+        "10000_100000_hz": 1.1443950259373408,
+        "100000_1e+06_hz": 0.6551282265529746,
+        "1e+06_7.68e+06_hz": 0.06897901686335718
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": -0.07434221510104688,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": -0.07941160528473881,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": -0.07234977855266189,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": -0.048135394514324394,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -8.963033923820085,
+          "final_integer_winding_error": -9,
+          "maximum_absolute_integer_winding_error": 9
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_1.npz",
+      "sha256": "d290666428be44256dc7023d73d622860f84734e6b4683058088f00b2365b7bf",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1175.9142007960563,
+      "minimum_magnitude_relative_to_median": 0.8882995492592224,
+      "max_adjacent_phase_step_rad": 0.5143714886095935,
+      "phase_min_relative_to_start_rad": -3.574846002972858,
+      "phase_max_relative_to_start_rad": 6.368760637682977,
+      "phase_peak_to_peak_rad": 9.943606640655835,
+      "phase_net_turns": 0.3193566535107419,
+      "phase_standard_deviation_rad": 1.2604054826248023,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.06182323039872368,
+        "10000_100000_hz": 1.015017593453214,
+        "100000_1e+06_hz": 0.7185625682567011,
+        "1e+06_7.68e+06_hz": 0.06894346702443911
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": 0.3193566535107419,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": 0.3294739275961613,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": 0.3674939686929582,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": 0.4039845215213339,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -18.56364110406152,
+          "final_integer_winding_error": -19,
+          "maximum_absolute_integer_winding_error": 19
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_2.npz",
+      "sha256": "817b3eb45343a02cfcd3b61dac4261fa67fab58f616ce7cc631a4bad5a96c83b",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1165.2738139467479,
+      "minimum_magnitude_relative_to_median": 0.8874221504904943,
+      "max_adjacent_phase_step_rad": 0.506418337836831,
+      "phase_min_relative_to_start_rad": -4.902757032454612,
+      "phase_max_relative_to_start_rad": 5.637176710711047,
+      "phase_peak_to_peak_rad": 10.539933743165658,
+      "phase_net_turns": -0.049916898041993014,
+      "phase_standard_deviation_rad": 1.2520649568892301,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.072106830237101,
+        "10000_100000_hz": 1.0173725476039897,
+        "100000_1e+06_hz": 0.7260333532172605,
+        "1e+06_7.68e+06_hz": 0.0687423942353816
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": -0.049916898041993014,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": -0.03908698399836221,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": -0.020097431813358557,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": 0.04065766553809901,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -11.825451836892753,
+          "final_integer_winding_error": -12,
+          "maximum_absolute_integer_winding_error": 12
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_3.npz",
+      "sha256": "797794a1340e3a03a31a0f28f501e0faea469ace84c09c5657fc9796a1311da7",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1108.362045351767,
+      "minimum_magnitude_relative_to_median": 0.8912472125811066,
+      "max_adjacent_phase_step_rad": 0.5916597818791465,
+      "phase_min_relative_to_start_rad": -3.9756574208060855,
+      "phase_max_relative_to_start_rad": 15.051933779046824,
+      "phase_peak_to_peak_rad": 19.02759119985291,
+      "phase_net_turns": 0.8018466129533905,
+      "phase_standard_deviation_rad": 1.565723435681446,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.10686814445481942,
+        "10000_100000_hz": 1.4269239795248763,
+        "100000_1e+06_hz": 0.688688873390501,
+        "1e+06_7.68e+06_hz": 0.06935704883347635
+      },
+      "first_two_turn_excursion_s": 0.0025002604166666667,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": 0.8018466129533905,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": 0.7808797804988864,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": 0.7464981835146896,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": 0.6732479188544613,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -19.37501597912188,
+          "final_integer_winding_error": -20,
+          "maximum_absolute_integer_winding_error": 20
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_4.npz",
+      "sha256": "6441f2820c290be5ad9927720877682b0644238568f44770a141ed38cb183f7f",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1124.7840710676437,
+      "minimum_magnitude_relative_to_median": 0.890690760339295,
+      "max_adjacent_phase_step_rad": 0.5793866999550215,
+      "phase_min_relative_to_start_rad": -4.9357416514580885,
+      "phase_max_relative_to_start_rad": 5.627843545966018,
+      "phase_peak_to_peak_rad": 10.563585197424107,
+      "phase_net_turns": 0.025967350949027145,
+      "phase_standard_deviation_rad": 1.3201476799058545,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.07622402165817933,
+        "10000_100000_hz": 1.1206961786174054,
+        "100000_1e+06_hz": 0.6860119401297742,
+        "1e+06_7.68e+06_hz": 0.06908633118568838
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": 0.025967350949027145,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": 0.02190215655516844,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": 0.0004755517278644433,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": -0.04945758072246172,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -13.143228572853731,
+          "final_integer_winding_error": -13,
+          "maximum_absolute_integer_winding_error": 13
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_5.npz",
+      "sha256": "f56907393c18af317523a16420518fcc3a98678d3a6e7d5e96f3542e87808ee7",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1194.9534258013948,
+      "minimum_magnitude_relative_to_median": 0.8941398974586384,
+      "max_adjacent_phase_step_rad": 0.5836370676361189,
+      "phase_min_relative_to_start_rad": -8.701048211970093,
+      "phase_max_relative_to_start_rad": 2.695776308685518,
+      "phase_peak_to_peak_rad": 11.396824520655612,
+      "phase_net_turns": -0.10949537020463657,
+      "phase_standard_deviation_rad": 1.322401811441615,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.07208353426902102,
+        "10000_100000_hz": 1.1416556466782013,
+        "100000_1e+06_hz": 0.6737367822601091,
+        "1e+06_7.68e+06_hz": 0.06903438936217586
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": -0.10949537020463657,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": -0.11934770319138265,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": -0.12878343653114935,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": -1.108709383702318,
+          "final_integer_winding_error": -1,
+          "maximum_absolute_integer_winding_error": 1
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -5.040160857483188,
+          "final_integer_winding_error": -5,
+          "maximum_absolute_integer_winding_error": 5
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_6.npz",
+      "sha256": "f951a43e7c46b6024c076cc38c1cd969e8cca42df3bc501b9f3f19c7581920d7",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1172.482227042703,
+      "minimum_magnitude_relative_to_median": 0.8819503320072453,
+      "max_adjacent_phase_step_rad": 0.5140014600393602,
+      "phase_min_relative_to_start_rad": -3.6073349765649194,
+      "phase_max_relative_to_start_rad": 6.382556620564825,
+      "phase_peak_to_peak_rad": 9.989891597129745,
+      "phase_net_turns": 0.06556686092425514,
+      "phase_standard_deviation_rad": 1.3192601371123132,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.07441267343879486,
+        "10000_100000_hz": 1.122800921219729,
+        "100000_1e+06_hz": 0.7076476110767199,
+        "1e+06_7.68e+06_hz": 0.06914623328935704
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": 0.06556686092425514,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": 0.07290322084605146,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": 0.08232318729411361,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": 0.10656009962787984,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -15.861447329645658,
+          "final_integer_winding_error": -16,
+          "maximum_absolute_integer_winding_error": 17
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_7.npz",
+      "sha256": "cf590e6696ac31f189d3b2a5c80762b3f7c8f31e562c69d30620a5c7cc85a5c8",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1184.3612914986,
+      "minimum_magnitude_relative_to_median": 0.8958952958831201,
+      "max_adjacent_phase_step_rad": 0.5417061327350432,
+      "phase_min_relative_to_start_rad": -4.746691517862922,
+      "phase_max_relative_to_start_rad": 7.437511447146878,
+      "phase_peak_to_peak_rad": 12.1842029650098,
+      "phase_net_turns": 0.2569741624591705,
+      "phase_standard_deviation_rad": 1.3011661157381347,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.08302447757851822,
+        "10000_100000_hz": 1.0774942918915216,
+        "100000_1e+06_hz": 0.7292370557998122,
+        "1e+06_7.68e+06_hz": 0.06908904200422769
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": 0.2569741624591705,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": 0.27375552402364095,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": 0.3048138744505847,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": 0.35486890230222695,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -14.59378998172946,
+          "final_integer_winding_error": -15,
+          "maximum_absolute_integer_winding_error": 15
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_8.npz",
+      "sha256": "bbacbb6192d3d47ecbb1743c6d61437c53b625f4a05cd6dd426f79651492a8e1",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1134.9381168081607,
+      "minimum_magnitude_relative_to_median": 0.8886720511360694,
+      "max_adjacent_phase_step_rad": 0.5850984839353616,
+      "phase_min_relative_to_start_rad": -8.54460988104989,
+      "phase_max_relative_to_start_rad": 5.742197066234396,
+      "phase_peak_to_peak_rad": 14.286806947284287,
+      "phase_net_turns": -0.20690202610544972,
+      "phase_standard_deviation_rad": 1.356849305033958,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.0734349574566207,
+        "10000_100000_hz": 1.0850843047546268,
+        "100000_1e+06_hz": 0.7902901113716301,
+        "1e+06_7.68e+06_hz": 0.06932646643440346
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": -0.20690202610544972,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": -0.21160987310579774,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": -0.21726946350567494,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": -0.24147688665703412,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 1
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -8.303759469362227,
+          "final_integer_winding_error": -8,
+          "maximum_absolute_integer_winding_error": 9
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_9.npz",
+      "sha256": "f90f5c10d9c006de60313ae1d890333632684bf83cfd3f45695679c3ddce166e",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "median_magnitude_adc_counts": 1114.4105442405416,
+      "minimum_magnitude_relative_to_median": 0.8754446297811139,
+      "max_adjacent_phase_step_rad": 0.48273333256624384,
+      "phase_min_relative_to_start_rad": -8.459421547813388,
+      "phase_max_relative_to_start_rad": 5.745155198127774,
+      "phase_peak_to_peak_rad": 14.204576745941162,
+      "phase_net_turns": -0.13516566491275372,
+      "phase_standard_deviation_rad": 1.339158723656878,
+      "band_rms_rad": {
+        "1000_10000_hz": 0.07438543640521524,
+        "10000_100000_hz": 1.2122041390253684,
+        "100000_1e+06_hz": 0.601981540346166,
+        "1e+06_7.68e+06_hz": 0.06894126217550557
+      },
+      "first_two_turn_excursion_s": null,
+      "iq_averaging_checks": [
+        {
+          "extra_iq_average": 1,
+          "sample_rate_hz": 15360000.0,
+          "apparent_net_turns": -0.13516566491275372,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 2,
+          "sample_rate_hz": 7680000.0,
+          "apparent_net_turns": -0.12770954977194557,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 4,
+          "sample_rate_hz": 3840000.0,
+          "apparent_net_turns": -0.10744318693541742,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 8,
+          "sample_rate_hz": 1920000.0,
+          "apparent_net_turns": -0.0727588079329409,
+          "final_integer_winding_error": 0,
+          "maximum_absolute_integer_winding_error": 0
+        },
+        {
+          "extra_iq_average": 16,
+          "sample_rate_hz": 960000.0,
+          "apparent_net_turns": -9.973055991993496,
+          "final_integer_winding_error": -10,
+          "maximum_absolute_integer_winding_error": 10
+        }
+      ]
+    }
+  ],
+  "capture_3_excursions": [
+    {
+      "name": "First range-crossing event",
+      "peak_time_s": 0.002501171875,
+      "peak_phase_relative_to_capture_start_rad": 14.35812891635178,
+      "local_mean_phase_rad": 5.2437067860849504,
+      "peak_above_local_mean_rad": 9.114422130266828,
+      "pre_event_mean_rad": 5.174523356232851,
+      "post_event_mean_rad": 5.31289021593705,
+      "pre_to_post_mean_change_rad": 0.13836685970419893,
+      "mean_windows_us": [
+        [
+          -300,
+          -100
+        ],
+        [
+          100,
+          300
+        ]
+      ],
+      "contiguous_duration_above_two_turn_range_s": 2.1484375e-06,
+      "minimum_magnitude_relative_to_median_in_60us": 0.9199271615699417
+    },
+    {
+      "name": "Largest excursion",
+      "peak_time_s": 0.010742447916666667,
+      "peak_phase_relative_to_capture_start_rad": 15.051933779046824,
+      "local_mean_phase_rad": 5.154202556509004,
+      "peak_above_local_mean_rad": 9.89773122253782,
+      "pre_event_mean_rad": 5.181669460582657,
+      "post_event_mean_rad": 5.12673565243535,
+      "pre_to_post_mean_change_rad": -0.05493380814730653,
+      "mean_windows_us": [
+        [
+          -300,
+          -100
+        ],
+        [
+          100,
+          300
+        ]
+      ],
+      "contiguous_duration_above_two_turn_range_s": 4.6875e-06,
+      "minimum_magnitude_relative_to_median_in_60us": 0.9287164490526243
+    }
+  ],
+  "limitations": [
+    "Phase unwrapping is supported by strong magnitude and small adjacent steps; unresolved motion is not strictly excluded.",
+    "The 17 ms records do not characterize rare events over a seconds-long FRA acquisition.",
+    "Measured beat phase includes both lasers, electronics and feedback response.",
+    "Earlier slow records cannot be compared using their naive unwrapped phase PSDs."
+  ]
+}

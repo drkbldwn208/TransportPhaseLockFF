@@ -1,0 +1,283 @@
+{
+  "records": {
+    "FPGA": [
+      {
+        "record": 0,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.3156220459071395,
+        "residual_std_rad": 1.3156102858824592,
+        "slow_100us_rms_rad": 0.0825511567353573,
+        "coherent_fraction": 0.18601031426494513,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 1,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.256488516835978,
+        "residual_std_rad": 1.2564797328001391,
+        "slow_100us_rms_rad": 0.0823414166436363,
+        "coherent_fraction": 0.2054345622223484,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 2,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.2516360791915693,
+        "residual_std_rad": 1.2516316721335274,
+        "slow_100us_rms_rad": 0.09032336296859282,
+        "coherent_fraction": 0.2071332268267765,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 3,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.5630493703832569,
+        "residual_std_rad": 1.5629929521624244,
+        "slow_100us_rms_rad": 0.10788956035109701,
+        "coherent_fraction": 0.13205700744918494,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 4,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.3192189532146616,
+        "residual_std_rad": 1.3192189226571192,
+        "slow_100us_rms_rad": 0.09043852672225794,
+        "coherent_fraction": 0.18128217850683917,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 5,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.319806434802379,
+        "residual_std_rad": 1.319791295816832,
+        "slow_100us_rms_rad": 0.08973682732732798,
+        "coherent_fraction": 0.1756391729676127,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 6,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.3217997336551766,
+        "residual_std_rad": 1.3217914702192113,
+        "slow_100us_rms_rad": 0.09573281096874516,
+        "coherent_fraction": 0.17551430446009927,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 7,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.305464487554338,
+        "residual_std_rad": 1.3053988459429033,
+        "slow_100us_rms_rad": 0.09865555515316264,
+        "coherent_fraction": 0.1825380799419651,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 8,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.357174279683337,
+        "residual_std_rad": 1.357110432816439,
+        "slow_100us_rms_rad": 0.08819899057713972,
+        "coherent_fraction": 0.1744905106224334,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 9,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.3471401548871316,
+        "residual_std_rad": 1.3471382879896094,
+        "slow_100us_rms_rad": 0.09293514872522694,
+        "coherent_fraction": 0.1903431580700606,
+        "image_rejection_winding_disagreement": false
+      }
+    ],
+    "PLL": [
+      {
+        "record": 0,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.1468611164881826,
+        "residual_std_rad": 1.1468461061763209,
+        "slow_100us_rms_rad": 0.5256322325166178,
+        "coherent_fraction": 0.2681278588566266,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 2,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 1,
+        "first_to_last_integer_turn_change": 1,
+        "retained_fraction": 0.9637096774193549,
+        "residual_rms_rad": 1.1697221840997227,
+        "residual_std_rad": 1.1690862554825476,
+        "slow_100us_rms_rad": 0.5835357459075703,
+        "coherent_fraction": 0.2609807495784253,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 3,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.0725529282739152,
+        "residual_std_rad": 1.0725110812381933,
+        "slow_100us_rms_rad": 0.31917679421146183,
+        "coherent_fraction": 0.31675780978210183,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 4,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 7,
+        "first_to_last_integer_turn_change": 7,
+        "retained_fraction": 0.8351499495967742,
+        "residual_rms_rad": 1.0992271061973975,
+        "residual_std_rad": 1.0992164734322858,
+        "slow_100us_rms_rad": 0.3411412957965841,
+        "coherent_fraction": 0.2889551487559593,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 5,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 45,
+        "first_to_last_integer_turn_change": 45,
+        "retained_fraction": 0.42339891003024194,
+        "residual_rms_rad": 1.1461072228055649,
+        "residual_std_rad": 1.1381794262804956,
+        "slow_100us_rms_rad": 0.5316280492243238,
+        "coherent_fraction": 0.2104658607110887,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 6,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 5,
+        "first_to_last_integer_turn_change": 5,
+        "retained_fraction": 0.8677466607862904,
+        "residual_rms_rad": 1.0842561851775276,
+        "residual_std_rad": 1.0842533974264772,
+        "slow_100us_rms_rad": 0.37813871758279627,
+        "coherent_fraction": 0.2940492243134722,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 7,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 1,
+        "first_to_last_integer_turn_change": 1,
+        "retained_fraction": 0.9637096774193549,
+        "residual_rms_rad": 1.1497699982129999,
+        "residual_std_rad": 1.1491000237061781,
+        "slow_100us_rms_rad": 0.5111777783377204,
+        "coherent_fraction": 0.2620873879331361,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 8,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.0889808816455069,
+        "residual_std_rad": 1.0889219802268344,
+        "slow_100us_rms_rad": 0.40770039675517455,
+        "coherent_fraction": 0.30952850031468293,
+        "image_rejection_winding_disagreement": false
+      },
+      {
+        "record": 9,
+        "samples": 253952,
+        "duration_s": 0.016533333333333334,
+        "state_changes": 0,
+        "first_to_last_integer_turn_change": 0,
+        "retained_fraction": 0.9879032258064516,
+        "residual_rms_rad": 1.1512300646862748,
+        "residual_std_rad": 1.1512054818837778,
+        "slow_100us_rms_rad": 0.510603878572379,
+        "coherent_fraction": 0.27012931408986757,
+        "image_rejection_winding_disagreement": false
+      }
+    ]
+  },
+  "method": "100 us scalar phase mean identifies turns; exclude +/-200 us around changes; no linear drift removal",
+  "limitations": [
+    "PLL record 1 omitted because unwrapping is ambiguous.",
+    "Persistent input-beat winding is not necessarily a cycle slip at the divided PFD.",
+    "Counts describe these short records, not a stationary long-term slip rate.",
+    "Phase is measured relative to the electronic reference; the laser responsible is unidentified.",
+    "Only fluctuations are calibrated; an absolute optical phase setpoint is not recorded."
+  ],
+  "FPGA": {
+    "total_resolved_duration_s": 0.16533333333333333,
+    "captures_with_state_changes": 0,
+    "conditional_phase_rms_rad": 1.3382701269913104,
+    "conditional_slow_100us_rms_rad": 0.09216224186963201,
+    "conditional_central_95_percent_rad": [
+      -2.6098604414586624,
+      2.63189139879285
+    ]
+  },
+  "PLL": {
+    "total_resolved_duration_s": 0.14880000000000002,
+    "captures_with_state_changes": 5,
+    "conditional_phase_rms_rad": 1.1229395206221795,
+    "conditional_slow_100us_rms_rad": 0.4630239582820788,
+    "conditional_central_95_percent_rad": [
+      -2.170002427707444,
+      2.255350515345646
+    ]
+  }
+}

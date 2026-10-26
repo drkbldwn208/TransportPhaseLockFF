@@ -1,0 +1,489 @@
+{
+  "intensity_fwhm_hz": 400000.0,
+  "field_corner_hz": 200000.0,
+  "field_lifetime_s": 7.957747154594768e-07,
+  "energy_lifetime_s": 3.978873577297384e-07,
+  "equation": "da/dt = pi * FWHM_Hz * (exp(i*phi(t)) - a)",
+  "assumptions": [
+    "All measured beat phase is pump noise; reference assumed quiet.",
+    "Constant optical input amplitude; RF beat AM is intentionally excluded.",
+    "Fixed cavity resonance at mean pump frequency; no servo, motion or atomic backaction.",
+    "PLL record 1 excluded because its unwrapped phase is ambiguous.",
+    "Same 2 MHz offline image rejection; finite capture bandwidth and duration.",
+    "Results predict the simple cavity model, not a measured cavity transmission."
+  ],
+  "records": {
+    "PLL": [
+      {
+        "record": 0,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9513066487641411,
+        "maximum_phase_range_within_lifetime_rad": 3.7169264290553654,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 6.770833333333333e-06,
+          "center_index": 253079,
+          "center_in_original_capture_s": 0.0167431640625
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7369263183837427,
+        "power_std_relative_to_mean": 0.25327243864581983,
+        "power_percentiles_1_5_50_95_99": [
+          0.20427349614458426,
+          0.3662565404086907,
+          0.7810066970047167,
+          0.9597599288905116,
+          0.9793448066517997
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5691511043500495
+      },
+      {
+        "record": 2,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9341806366620794,
+        "maximum_phase_range_within_lifetime_rad": 4.561327357465217,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.3671875e-06,
+          "center_index": 178771,
+          "center_in_original_capture_s": 0.011905403645833333
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7451216036719237,
+        "power_std_relative_to_mean": 0.24816478475118886,
+        "power_percentiles_1_5_50_95_99": [
+          0.2022453961442229,
+          0.3738908872048227,
+          0.7908733981375229,
+          0.9602038473415211,
+          0.9798869455368437
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5595205197792396
+      },
+      {
+        "record": 3,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9729697695228113,
+        "maximum_phase_range_within_lifetime_rad": 4.49266522617042,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.4322916666666667e-06,
+          "center_index": 121102,
+          "center_in_original_capture_s": 0.008150911458333333
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7317478078063586,
+        "power_std_relative_to_mean": 0.2623292701559426,
+        "power_percentiles_1_5_50_95_99": [
+          0.17678093943332254,
+          0.3485177476767919,
+          0.7779564264746546,
+          0.9588479073900104,
+          0.9788848624252524
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5774317625993801
+      },
+      {
+        "record": 4,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.988501841116458,
+        "maximum_phase_range_within_lifetime_rad": 4.170119274947229,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 4.1015625e-06,
+          "center_index": 157803,
+          "center_in_original_capture_s": 0.010540299479166666
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7245531529318231,
+        "power_std_relative_to_mean": 0.27075788894094294,
+        "power_percentiles_1_5_50_95_99": [
+          0.1730301563391384,
+          0.33750928922813817,
+          0.770723928363019,
+          0.9586158842431902,
+          0.9793474782878783
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5869627659592256
+      },
+      {
+        "record": 5,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9802221631767252,
+        "maximum_phase_range_within_lifetime_rad": 4.127384640398212,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 3.515625e-06,
+          "center_index": 117032,
+          "center_in_original_capture_s": 0.0078859375
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7231817191583907,
+        "power_std_relative_to_mean": 0.2681263132503877,
+        "power_percentiles_1_5_50_95_99": [
+          0.16761354237997325,
+          0.33756301264557215,
+          0.7680724719910932,
+          0.9559973372510949,
+          0.9786098597375548
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5884036796026862
+      },
+      {
+        "record": 6,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9610256161629032,
+        "maximum_phase_range_within_lifetime_rad": 4.294428397530508,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 3.841145833333333e-06,
+          "center_index": 194278,
+          "center_in_original_capture_s": 0.012914973958333333
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7346588953274664,
+        "power_std_relative_to_mean": 0.25829645939279516,
+        "power_percentiles_1_5_50_95_99": [
+          0.19126657289908208,
+          0.35810584027620435,
+          0.779977200193076,
+          0.9597967331625715,
+          0.9805985913264279
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5730862695487087
+      },
+      {
+        "record": 7,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9737885048572921,
+        "maximum_phase_range_within_lifetime_rad": 3.935846363672403,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 6.119791666666667e-06,
+          "center_index": 26524,
+          "center_in_original_capture_s": 0.0019934895833333332
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7303774612383238,
+        "power_std_relative_to_mean": 0.2610406934835663,
+        "power_percentiles_1_5_50_95_99": [
+          0.1812207034375012,
+          0.3501769169795581,
+          0.7752761357133167,
+          0.9570935802438146,
+          0.9790225736500381
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5785846893349255
+      },
+      {
+        "record": 8,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.953709258973344,
+        "maximum_phase_range_within_lifetime_rad": 4.006158578625097,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 7.2265625e-06,
+          "center_index": 83514,
+          "center_in_original_capture_s": 0.0057037760416666665
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7380565003085273,
+        "power_std_relative_to_mean": 0.2529745252940202,
+        "power_percentiles_1_5_50_95_99": [
+          0.1977896562588574,
+          0.36625203880214335,
+          0.7825477128240161,
+          0.9578173963143124,
+          0.978477495872713
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5680055608818143
+      },
+      {
+        "record": 9,
+        "kind": "PLL",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9453063843662393,
+        "maximum_phase_range_within_lifetime_rad": 4.048039499647061,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 6.770833333333333e-06,
+          "center_index": 32354,
+          "center_in_original_capture_s": 0.002373046875
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7397816075353547,
+        "power_std_relative_to_mean": 0.24945332663692485,
+        "power_percentiles_1_5_50_95_99": [
+          0.20950773575140066,
+          0.375122971205455,
+          0.7832399703719672,
+          0.9590065054141806,
+          0.9797047429806153
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5649612370616707
+      }
+    ],
+    "FPGA": [
+      {
+        "record": 0,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.8563882539585385,
+        "maximum_phase_range_within_lifetime_rad": 3.685155869062045,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 2.0182291666666667e-06,
+          "center_index": 20886,
+          "center_in_original_capture_s": 0.0016264322916666667
+        },
+        "mean_cavity_power_relative_to_ideal": 0.739977423444822,
+        "power_std_relative_to_mean": 0.24647307768940266,
+        "power_percentiles_1_5_50_95_99": [
+          0.18568298271287245,
+          0.3675942941617901,
+          0.7868463773174721,
+          0.9506469105513583,
+          0.9742552781755762
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5664607642305602
+      },
+      {
+        "record": 1,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9512932158787996,
+        "maximum_phase_range_within_lifetime_rad": 3.8991204513196247,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 2.473958333333333e-06,
+          "center_index": 193471,
+          "center_in_original_capture_s": 0.012862434895833334
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7085050950659285,
+        "power_std_relative_to_mean": 0.2706508801822464,
+        "power_percentiles_1_5_50_95_99": [
+          0.16249343766790575,
+          0.32561873044014716,
+          0.7515189086482699,
+          0.9423308720892262,
+          0.9715472013948204
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.6065458359106892
+      },
+      {
+        "record": 2,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9375029992358421,
+        "maximum_phase_range_within_lifetime_rad": 4.155472254919127,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.6276041666666668e-06,
+          "center_index": 42297,
+          "center_in_original_capture_s": 0.0030203776041666667
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7138564281222561,
+        "power_std_relative_to_mean": 0.26610407354394094,
+        "power_percentiles_1_5_50_95_99": [
+          0.16508064110469567,
+          0.3340055868300073,
+          0.7583722523934124,
+          0.9436152263405618,
+          0.970937935630827
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5997504202909231
+      },
+      {
+        "record": 3,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.8959443758213093,
+        "maximum_phase_range_within_lifetime_rad": 4.416202882724836,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.3020833333333333e-06,
+          "center_index": 143765,
+          "center_in_original_capture_s": 0.0096263671875
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7238784860735381,
+        "power_std_relative_to_mean": 0.2730391437855837,
+        "power_percentiles_1_5_50_95_99": [
+          0.14047219490874685,
+          0.31733119603056,
+          0.7758572288720669,
+          0.9521000370573813,
+          0.9747205487000511
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5910559138964259
+      },
+      {
+        "record": 4,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.8861529903665722,
+        "maximum_phase_range_within_lifetime_rad": 4.030966654384206,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.4973958333333334e-06,
+          "center_index": 121763,
+          "center_in_original_capture_s": 0.0081939453125
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7279912840851286,
+        "power_std_relative_to_mean": 0.2556997815385387,
+        "power_percentiles_1_5_50_95_99": [
+          0.17359054425323853,
+          0.3493897519865888,
+          0.7737137949814817,
+          0.9474521186750822,
+          0.9719004027405548
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5818724564063432
+      },
+      {
+        "record": 5,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.8586422373534766,
+        "maximum_phase_range_within_lifetime_rad": 4.704042690813745,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.3020833333333333e-06,
+          "center_index": 192225,
+          "center_in_original_capture_s": 0.012781315104166666
+        },
+        "mean_cavity_power_relative_to_ideal": 0.736069926118008,
+        "power_std_relative_to_mean": 0.25247181174048444,
+        "power_percentiles_1_5_50_95_99": [
+          0.18576101742773513,
+          0.3561218597406284,
+          0.7834309454015629,
+          0.9531795692129449,
+          0.97564870346708
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5713601620410842
+      },
+      {
+        "record": 6,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9278228058666073,
+        "maximum_phase_range_within_lifetime_rad": 4.313421214408507,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 2.213541666666667e-06,
+          "center_index": 119711,
+          "center_in_original_capture_s": 0.0080603515625
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7151648301332298,
+        "power_std_relative_to_mean": 0.26811756844047785,
+        "power_percentiles_1_5_50_95_99": [
+          0.15935656241439472,
+          0.3296429402019636,
+          0.7595334422951099,
+          0.9470465916927938,
+          0.9739577725308518
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5988054856248182
+      },
+      {
+        "record": 7,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.9281130431871054,
+        "maximum_phase_range_within_lifetime_rad": 4.2821409795897605,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.8880208333333333e-06,
+          "center_index": 172291,
+          "center_in_original_capture_s": 0.011483528645833333
+        },
+        "mean_cavity_power_relative_to_ideal": 0.713561605545807,
+        "power_std_relative_to_mean": 0.26983497930407374,
+        "power_percentiles_1_5_50_95_99": [
+          0.15986207019143453,
+          0.3241332840027491,
+          0.759277510727552,
+          0.9451510223912638,
+          0.9723825326933402
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.6006434241304307
+      },
+      {
+        "record": 8,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 1.0454556906160422,
+        "maximum_phase_range_within_lifetime_rad": 4.888888368364323,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.2369791666666666e-06,
+          "center_index": 222167,
+          "center_in_original_capture_s": 0.0147306640625
+        },
+        "mean_cavity_power_relative_to_ideal": 0.67439192814399,
+        "power_std_relative_to_mean": 0.30503544184390885,
+        "power_percentiles_1_5_50_95_99": [
+          0.11563314898253066,
+          0.26964797221774767,
+          0.7165219410164225,
+          0.934720718030713,
+          0.9657142822372168
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.6515822191221402
+      },
+      {
+        "record": 9,
+        "kind": "FPGA",
+        "phase_increment_interval_s": 7.8125e-07,
+        "phase_increment_rms_rad": 0.7671646380001131,
+        "maximum_phase_range_within_lifetime_rad": 3.693771771273007,
+        "fastest_two_pi_excursion": {
+          "minimum_interval_s": 1.953125e-06,
+          "center_index": 107511,
+          "center_in_original_capture_s": 0.0072660807291666666
+        },
+        "mean_cavity_power_relative_to_ideal": 0.7689850267077737,
+        "power_std_relative_to_mean": 0.22692879958162848,
+        "power_percentiles_1_5_50_95_99": [
+          0.21695883423712656,
+          0.40755542985419924,
+          0.8178924742078651,
+          0.9609056338360834,
+          0.9795409708871564
+        ],
+        "cavity_minus_pump_phase_rms_rad": 0.5284777811103032
+      }
+    ]
+  },
+  "checks": {
+    "PLL": {
+      "tone_relative_error": 0.00013943112100171315,
+      "spectral_mean_power": 0.7372695291749417,
+      "time_mean_power": 0.7369263183837427,
+      "timestep_halving_field_relative_rms_error": 0.0006694400649264344
+    },
+    "FPGA": {
+      "tone_relative_error": 0.00013943112100171315,
+      "spectral_mean_power": 0.7404759786802396,
+      "time_mean_power": 0.739977423444822,
+      "timestep_halving_field_relative_rms_error": 0.0005377679201023734
+    }
+  },
+  "PLL": {
+    "mean_cavity_power_relative_to_ideal": {
+      "mean": 0.7338227851513235,
+      "minimum": 0.7231817191583907,
+      "maximum": 0.7451216036719237
+    },
+    "power_std_relative_to_mean": {
+      "mean": 0.25826841117239874,
+      "minimum": 0.24816478475118886,
+      "maximum": 0.27075788894094294
+    },
+    "cavity_minus_pump_phase_rms_rad": {
+      "mean": 0.5740119543464112,
+      "minimum": 0.5595205197792396,
+      "maximum": 0.5884036796026862
+    },
+    "phase_increment_rms_rad": 0.9624805424564021
+  },
+  "FPGA": {
+    "mean_cavity_power_relative_to_ideal": {
+      "mean": 0.7222382033440482,
+      "minimum": 0.67439192814399,
+      "maximum": 0.7689850267077737
+    },
+    "power_std_relative_to_mean": {
+      "mean": 0.2634355557650286,
+      "minimum": 0.22692879958162848,
+      "maximum": 0.30503544184390885
+    },
+    "cavity_minus_pump_phase_rms_rad": {
+      "mean": 0.5896554462763718,
+      "minimum": 0.5284777811103032,
+      "maximum": 0.6515822191221402
+    },
+    "phase_increment_rms_rad": 0.908090832417096
+  }
+}

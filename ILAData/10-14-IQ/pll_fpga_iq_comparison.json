@@ -1,0 +1,554 @@
+{
+  "image_model": {
+    "beat_hz": 1000000000.0,
+    "reference_hz": 966080000.0,
+    "adc_fs_hz": 1966080000.0,
+    "image_before_monitor_hz": 33920000.0,
+    "image_after_monitor_hz": 3200000.0,
+    "fir_relative_gain": 0.964094913842833,
+    "monitor_relative_gain": 0.09055820786688594,
+    "predicted_image_amplitude_ratio": 0.08730670761118677,
+    "predicted_spurious_am_rms_fraction": 0.06173516499494132
+  },
+  "image_fits": [
+    {
+      "record": 0,
+      "measured_image_amplitude_ratio": 0.08723369125627949,
+      "image_power_explained_by_conjugated_carrier": 0.8127204068634184
+    },
+    {
+      "record": 3,
+      "measured_image_amplitude_ratio": 0.08730323579005932,
+      "image_power_explained_by_conjugated_carrier": 0.8069980804628942
+    },
+    {
+      "record": 8,
+      "measured_image_amplitude_ratio": 0.08713197421080988,
+      "image_power_explained_by_conjugated_carrier": 0.8099110018688412
+    },
+    {
+      "record": 9,
+      "measured_image_amplitude_ratio": 0.08728490017796396,
+      "image_power_explained_by_conjugated_carrier": 0.8104450072529771
+    }
+  ],
+  "records": {
+    "FPGA": [
+      {
+        "source": "laser_iq_FPGA_shortest_0.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1151.4793449773156,
+        "minimum_magnitude_relative_to_median": 0.8817222380106451,
+        "raw_amplitude_rms_fraction": 0.02398713008777217,
+        "maximum_raw_phase_step_rad": 0.4900483715165239,
+        "filtered_phase_std_rad": 1.3163110625432108,
+        "lowpass_5khz_span_turns": 0.06175012878973287,
+        "endpoint_change_turns": -0.006039433532018444
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_1.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1175.9023197764532,
+        "minimum_magnitude_relative_to_median": 0.8882995492592224,
+        "raw_amplitude_rms_fraction": 0.02352529049876675,
+        "maximum_raw_phase_step_rad": 0.5143714886095935,
+        "filtered_phase_std_rad": 1.2581285301219316,
+        "lowpass_5khz_span_turns": 0.058393086741203734,
+        "endpoint_change_turns": -0.00750056787209842
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_2.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1165.2763582973562,
+        "minimum_magnitude_relative_to_median": 0.8874221504904943,
+        "raw_amplitude_rms_fraction": 0.023808415264451318,
+        "maximum_raw_phase_step_rad": 0.506418337836831,
+        "filtered_phase_std_rad": 1.2529262232155378,
+        "lowpass_5khz_span_turns": 0.07522553887442736,
+        "endpoint_change_turns": -0.003575639857780448
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_3.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1108.3328564639312,
+        "minimum_magnitude_relative_to_median": 0.8912472125811066,
+        "raw_amplitude_rms_fraction": 0.02509011499296548,
+        "maximum_raw_phase_step_rad": 0.5916597818791465,
+        "filtered_phase_std_rad": 1.5642808655204903,
+        "lowpass_5khz_span_turns": 0.07952473530177091,
+        "endpoint_change_turns": 0.004405849483206139
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_4.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1124.8075389614717,
+        "minimum_magnitude_relative_to_median": 0.890690760339295,
+        "raw_amplitude_rms_fraction": 0.024666552067132225,
+        "maximum_raw_phase_step_rad": 0.5793866999550215,
+        "filtered_phase_std_rad": 1.3172357909490526,
+        "lowpass_5khz_span_turns": 0.11297148730810316,
+        "endpoint_change_turns": -0.0013241257084751275
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_5.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1194.8675224695962,
+        "minimum_magnitude_relative_to_median": 0.8941398974586384,
+        "raw_amplitude_rms_fraction": 0.02319553332601058,
+        "maximum_raw_phase_step_rad": 0.5836370676361189,
+        "filtered_phase_std_rad": 1.3190837468477299,
+        "lowpass_5khz_span_turns": 0.07434710645575397,
+        "endpoint_change_turns": 0.004547068134795902
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_6.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1172.4931132891534,
+        "minimum_magnitude_relative_to_median": 0.8819503320072453,
+        "raw_amplitude_rms_fraction": 0.024415512941975994,
+        "maximum_raw_phase_step_rad": 0.5140014600393602,
+        "filtered_phase_std_rad": 1.3215091270208164,
+        "lowpass_5khz_span_turns": 0.09070050710430275,
+        "endpoint_change_turns": -0.00316969593649016
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_7.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1184.3576620970234,
+        "minimum_magnitude_relative_to_median": 0.8958952958831201,
+        "raw_amplitude_rms_fraction": 0.02347613315732651,
+        "maximum_raw_phase_step_rad": 0.5417061327350432,
+        "filtered_phase_std_rad": 1.303801148020618,
+        "lowpass_5khz_span_turns": 0.11567624874904776,
+        "endpoint_change_turns": 0.0003879715070653298
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_8.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1134.9400750320028,
+        "minimum_magnitude_relative_to_median": 0.8886720511360694,
+        "raw_amplitude_rms_fraction": 0.024313532911098768,
+        "maximum_raw_phase_step_rad": 0.5850984839353616,
+        "filtered_phase_std_rad": 1.357381511413429,
+        "lowpass_5khz_span_turns": 0.06213373090413019,
+        "endpoint_change_turns": 0.0028897621617892354
+      },
+      {
+        "source": "laser_iq_FPGA_shortest_9.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 1114.427730641443,
+        "minimum_magnitude_relative_to_median": 0.8754446297811139,
+        "raw_amplitude_rms_fraction": 0.024795216576569704,
+        "maximum_raw_phase_step_rad": 0.48273333256624384,
+        "filtered_phase_std_rad": 1.3423759538542717,
+        "lowpass_5khz_span_turns": 0.0714494822776984,
+        "endpoint_change_turns": 0.0004935926582417988
+      }
+    ],
+    "PLL": [
+      {
+        "source": "laser_iq_PLL_shortest_0.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 12129.954513560333,
+        "minimum_magnitude_relative_to_median": 0.8259342093646075,
+        "raw_amplitude_rms_fraction": 0.06518620901348583,
+        "maximum_raw_phase_step_rad": 0.6467652382506056,
+        "filtered_phase_std_rad": 1.149401639260993,
+        "lowpass_5khz_span_turns": 0.6118136362977606,
+        "endpoint_change_turns": 0.05520645000722373
+      },
+      {
+        "source": "laser_iq_PLL_shortest_1.npz",
+        "reliable_unwrap": false,
+        "quiet_subset": false,
+        "mean_iq_magnitude_adc_counts": 10643.29034298201,
+        "minimum_magnitude_relative_to_median": 0.0025719872319413836,
+        "raw_amplitude_rms_fraction": 0.1350081331097259,
+        "maximum_raw_phase_step_rad": 3.1415530281441466,
+        "filtered_phase_std_rad": null,
+        "lowpass_5khz_span_turns": null,
+        "endpoint_change_turns": null
+      },
+      {
+        "source": "laser_iq_PLL_shortest_2.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": false,
+        "mean_iq_magnitude_adc_counts": 11262.504777806065,
+        "minimum_magnitude_relative_to_median": 0.8273042801151331,
+        "raw_amplitude_rms_fraction": 0.06591476775272069,
+        "maximum_raw_phase_step_rad": 0.6856320775624284,
+        "filtered_phase_std_rad": 3.3608467206409585,
+        "lowpass_5khz_span_turns": 1.6752471067395718,
+        "endpoint_change_turns": 1.0121063086318705
+      },
+      {
+        "source": "laser_iq_PLL_shortest_3.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 11181.18472476605,
+        "minimum_magnitude_relative_to_median": 0.812677177716431,
+        "raw_amplitude_rms_fraction": 0.06591556967429367,
+        "maximum_raw_phase_step_rad": 0.7441208766301692,
+        "filtered_phase_std_rad": 1.0716005017966648,
+        "lowpass_5khz_span_turns": 0.24097968834101838,
+        "endpoint_change_turns": -0.010406087590484597
+      },
+      {
+        "source": "laser_iq_PLL_shortest_4.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": false,
+        "mean_iq_magnitude_adc_counts": 11212.322774509408,
+        "minimum_magnitude_relative_to_median": 0.8118787747955315,
+        "raw_amplitude_rms_fraction": 0.06584049925023061,
+        "maximum_raw_phase_step_rad": 0.6723454917392564,
+        "filtered_phase_std_rad": 11.139879669200171,
+        "lowpass_5khz_span_turns": 6.121302431805599,
+        "endpoint_change_turns": 6.656038107179536
+      },
+      {
+        "source": "laser_iq_PLL_shortest_5.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": false,
+        "mean_iq_magnitude_adc_counts": 10502.52919302068,
+        "minimum_magnitude_relative_to_median": 0.8114950677667376,
+        "raw_amplitude_rms_fraction": 0.06651977132287218,
+        "maximum_raw_phase_step_rad": 0.670030926347576,
+        "filtered_phase_std_rad": 79.44590112995421,
+        "lowpass_5khz_span_turns": 38.08083165163848,
+        "endpoint_change_turns": 41.529018294461906
+      },
+      {
+        "source": "laser_iq_PLL_shortest_6.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": false,
+        "mean_iq_magnitude_adc_counts": 11412.788423030637,
+        "minimum_magnitude_relative_to_median": 0.8059551685181942,
+        "raw_amplitude_rms_fraction": 0.06567898813744971,
+        "maximum_raw_phase_step_rad": 0.7026996167315541,
+        "filtered_phase_std_rad": 9.810586652125899,
+        "lowpass_5khz_span_turns": 4.321707862856855,
+        "endpoint_change_turns": 4.281557542640634
+      },
+      {
+        "source": "laser_iq_PLL_shortest_7.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": false,
+        "mean_iq_magnitude_adc_counts": 10796.128338114333,
+        "minimum_magnitude_relative_to_median": 0.8076126236711805,
+        "raw_amplitude_rms_fraction": 0.06623051970770276,
+        "maximum_raw_phase_step_rad": 0.6832579312427522,
+        "filtered_phase_std_rad": 2.239836419594566,
+        "lowpass_5khz_span_turns": 1.6782355175311612,
+        "endpoint_change_turns": 1.033013390707001
+      },
+      {
+        "source": "laser_iq_PLL_shortest_8.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 11556.401990016191,
+        "minimum_magnitude_relative_to_median": 0.8233642574607983,
+        "raw_amplitude_rms_fraction": 0.0654732298789883,
+        "maximum_raw_phase_step_rad": 0.6949401681189525,
+        "filtered_phase_std_rad": 1.088467476038133,
+        "lowpass_5khz_span_turns": 0.5383689067932598,
+        "endpoint_change_turns": -0.000533541548808974
+      },
+      {
+        "source": "laser_iq_PLL_shortest_9.npz",
+        "reliable_unwrap": true,
+        "quiet_subset": true,
+        "mean_iq_magnitude_adc_counts": 11427.89331392974,
+        "minimum_magnitude_relative_to_median": 0.8118456614228964,
+        "raw_amplitude_rms_fraction": 0.06571511763424326,
+        "maximum_raw_phase_step_rad": 0.6228509580692835,
+        "filtered_phase_std_rad": 1.1495511969068561,
+        "lowpass_5khz_span_turns": 0.6926062628622259,
+        "endpoint_change_turns": 0.03747819495165304
+      }
+    ]
+  },
+  "groups": {
+    "FPGA": {
+      "count": 10,
+      "record_numbers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "bands": [
+        {
+          "band_hz": [
+            1000,
+            10000
+          ],
+          "phase_rms_rad": 0.0766513227111013,
+          "amplitude_rms_fraction": 0.0012578475629725248,
+          "phase_weighted_coherence": 0.16018583053069832,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.06829481526400058,
+              0.08716611658376869
+            ],
+            "amplitude_rms_fraction": [
+              0.0012338200994752918,
+              0.0012810989169447513
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.02067960164504398,
+            0.045268744950696466
+          ]
+        },
+        {
+          "band_hz": [
+            10000,
+            100000
+          ],
+          "phase_rms_rad": 1.1473223606640048,
+          "amplitude_rms_fraction": 0.002757919136392603,
+          "phase_weighted_coherence": 0.19140320341758874,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              1.0730696933231605,
+              1.2354082804801612
+            ],
+            "amplitude_rms_fraction": [
+              0.00269670007660115,
+              0.0028224387284532535
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.01756625488334739,
+            0.020986491841148838
+          ]
+        },
+        {
+          "band_hz": [
+            100000,
+            1000000
+          ],
+          "phase_rms_rad": 0.6983618087848564,
+          "amplitude_rms_fraction": 0.008309189034150587,
+          "phase_weighted_coherence": 0.12493118132555942,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.6688869845847477,
+              0.7241961309767033
+            ],
+            "amplitude_rms_fraction": [
+              0.00818408550868123,
+              0.00845625260221363
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.0181027494361942,
+            0.021310315173259996
+          ]
+        }
+      ]
+    },
+    "PLL": {
+      "count": 9,
+      "record_numbers": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "bands": [
+        {
+          "band_hz": [
+            1000,
+            10000
+          ],
+          "phase_rms_rad": 0.9662297291433689,
+          "amplitude_rms_fraction": 0.0010535319641612772,
+          "phase_weighted_coherence": 0.09324081359929468,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.5047906113781763,
+              1.4479566880019812
+            ],
+            "amplitude_rms_fraction": [
+              0.0010046678096412398,
+              0.001102794235187221
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.02517499631906428,
+            0.03720653851241872
+          ]
+        },
+        {
+          "band_hz": [
+            10000,
+            100000
+          ],
+          "phase_rms_rad": 0.8804221502367141,
+          "amplitude_rms_fraction": 0.0026067230250636023,
+          "phase_weighted_coherence": 0.025270279406368383,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.746328177254474,
+              1.0713442680116156
+            ],
+            "amplitude_rms_fraction": [
+              0.0025271006220190175,
+              0.002679947475148589
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.019221890390125534,
+            0.02251942351191847
+          ]
+        },
+        {
+          "band_hz": [
+            100000,
+            1000000
+          ],
+          "phase_rms_rad": 0.7085559401701138,
+          "amplitude_rms_fraction": 0.008129625727999643,
+          "phase_weighted_coherence": 0.05938028697668641,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.702968967157519,
+              0.7154098167985006
+            ],
+            "amplitude_rms_fraction": [
+              0.007931416185536737,
+              0.00832726502634515
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.019248862841638764,
+            0.020724372134624334
+          ]
+        }
+      ]
+    },
+    "PLL_quiet": {
+      "count": 4,
+      "record_numbers": [
+        0,
+        3,
+        8,
+        9
+      ],
+      "bands": [
+        {
+          "band_hz": [
+            1000,
+            10000
+          ],
+          "phase_rms_rad": 0.34516509547773716,
+          "amplitude_rms_fraction": 0.0010175459668161644,
+          "phase_weighted_coherence": 0.16832079156512078,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.2579899354080951,
+              0.4353069398237491
+            ],
+            "amplitude_rms_fraction": [
+              0.0009527355679740206,
+              0.0010784686025494233
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.09582819289558467,
+            0.15802556433650078
+          ]
+        },
+        {
+          "band_hz": [
+            10000,
+            100000
+          ],
+          "phase_rms_rad": 0.7235933350254219,
+          "amplitude_rms_fraction": 0.00252033264879512,
+          "phase_weighted_coherence": 0.05087547825230719,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.7159718523900006,
+              0.7354427962535651
+            ],
+            "amplitude_rms_fraction": [
+              0.002453763422219736,
+              0.0025941076397097717
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.04286422259043834,
+            0.05187652246271418
+          ]
+        },
+        {
+          "band_hz": [
+            100000,
+            1000000
+          ],
+          "phase_rms_rad": 0.7048424657646446,
+          "amplitude_rms_fraction": 0.007932689072926602,
+          "phase_weighted_coherence": 0.0803414507045144,
+          "bootstrap_95_percent": {
+            "phase_rms_rad": [
+              0.6984796084666042,
+              0.7116198922384562
+            ],
+            "amplitude_rms_fraction": [
+              0.007750738095706634,
+              0.00812022767061498
+            ]
+          },
+          "mismatched_record_coherence_median_95th": [
+            0.042820415792802484,
+            0.04386815479954993
+          ]
+        }
+      ]
+    }
+  },
+  "method": {
+    "sample_rate_hz": 15360000.0,
+    "original_samples": 262144,
+    "complex_lowpass_hz": 2000000.0,
+    "trimmed_samples_each_end": 4096,
+    "fft_length": 65536,
+    "fft_bin_hz": 234.375,
+    "quiet_rule": "5 kHz filtered phase spans <1 turn, omitting 1 ms at both edges",
+    "cross_convention": "conj(FFT fractional amplitude) * FFT physical beat phase; PLL phase sign reversed",
+    "coherent_fraction_metric": "integral(|S_a_phi|^2/S_aa) / integral(S_phi_phi), positive finite-sample bias",
+    "null_control": "mismatch whole AM/phase records; 300 derangements; not a causal test"
+  },
+  "limitations": [
+    "Different carrier frequencies and ~10x measured I/Q magnitude; not a controlled detector swap.",
+    "Analog settings reportedly unchanged; reference-laser conditions not independently measured.",
+    "Capture 1 has deep signal minima and phase steps near pi; its total phase winding is not trustworthy.",
+    "Quiet-record selection is explicitly conditional, not representative of all PLL acquisition time.",
+    "Beat AM is not calibrated optical intensity noise; correlation cannot determine coupling direction.",
+    "Only the <1 MHz comparison is interpreted after image rejection; do not infer absolute linewidth."
+  ]
+}

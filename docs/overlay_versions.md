@@ -68,5 +68,45 @@ git push origin r7-intensity-restored
 
 Tagging is optional. This example does not automatically commit or push changes.
 
+## Missing `pll_iir` in PYNQ
+
+The repaired R7 HWH exposes `pll_iir`, `pll_iir_feed`, and `pll_iir_pole` at
+0xA02D0000, 0xA02E0000, and 0xA02F0000. If `configure()` cannot find `pll_iir`,
+inspect `ol.bitfile_name` and the keys in `ol.ip_dict`. The FPGA's A7 version
+register does not establish that PYNQ loaded the matching metadata.
+
+Copy both hardware files from `build/laser_pll_R7_FRA.zip`, using the same basename
+(for example, `TransportPhaseLockFF.bit` and `TransportPhaseLockFF.hwh`). Re-run
+the notebook's overlay-loading/setup cell and rebind `rfdc` and any `ol2` channel
+handles. Replacing files or reloading Python helpers alone does not refresh an
+existing Overlay object's metadata. Programming the overlay interrupts feedback.
+
+The updated helper resolves the controls needed by `configure()` before any
+register writes, so a missing control leaves an operating loop unchanged. Older
+helpers mute the output before the missing-IIR error; rerun configuration and
+the normal acquisition sequence after correcting the file/object mismatch.
+Do not bypass the missing control with a dummy GPIO or an unchecked MMIO address.
+
 References: [Git log](https://git-scm.com/docs/git-log),
 [GitHub commit-pinned links](https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files).
+
+## Intensity calibration and FRA extension
+
+The intensity measurement release is `build/intensity_calibration_R7.zip`, with
+`intensity_calibration.py` and `intensity_calibration.ipynb`. It retains the A7
+laser-PLL ABI and all original register addresses. Its separate intensity
+signature is `0x494E5401`, read from `intensity_limits` offset 8; the helper's
+`intensity.check(ol)` verifies the required IPs and this signature. The A7 version
+alone does not distinguish this image from the earlier R7 image.
+
+It adds sample-resolved intensity calibration and swept-sine FRA on ADC224/1 →
+fast PI → DAC228/3. A PI-output boundary register adds one clock (4.069 ns) for
+routed timing closure; the PI arithmetic and gains are unchanged. Tables are
+measured/exported, not applied to live feedback. The original intensity LO and
+32-bit setpoint streamer remain, as do both laser PLLs and their measurements.
+
+Copy the new bit/HWH pair together and use the notebook's save/restore workflow
+for the intensity settings. Reprogramming interrupts all loops. Earlier R7/A8
+release archives remain separate rollback choices. The new package's
+`verification.json` contains its actual build and test results; source changes
+or an A7 version read alone are not proof of a matching bitstream.

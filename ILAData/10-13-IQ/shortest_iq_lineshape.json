@@ -1,0 +1,157 @@
+{
+  "method": "Unit phasor, no unwrapping or detrending; independent finite records.",
+  "bandwidth_definition": "Smallest symmetric interval about zero containing the stated total phase-only power; full width, not FWHM.",
+  "limitations": "Measured beat only. 17 ms records do not establish long-term carrier linewidth. No receiver response correction.",
+  "records": [
+    {
+      "source": "laser_iq_FPGA_shortest_0.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.18533455365935855,
+      "iq_coherent_fraction": 0.18523247271785948,
+      "phase_only_power_within_plus_minus_1khz": 0.1937783286990835,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 171679.6875,
+        "90": 695273.4375,
+        "95": 897187.5,
+        "99": 1536093.75
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_1.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.204477039463892,
+      "iq_coherent_fraction": 0.20439500305886335,
+      "phase_only_power_within_plus_minus_1khz": 0.20888969773850635,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 175312.5,
+        "90": 762890.625,
+        "95": 961171.875,
+        "99": 1615078.125
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_2.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.2073882318765607,
+      "iq_coherent_fraction": 0.2072205001062793,
+      "phase_only_power_within_plus_minus_1khz": 0.2106859634625474,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 175781.25,
+        "90": 754101.5625,
+        "95": 949453.125,
+        "99": 1603242.1875
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_3.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.13021144899726209,
+      "iq_coherent_fraction": 0.1300331830953422,
+      "phase_only_power_within_plus_minus_1khz": 0.1381923230584658,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 177304.6875,
+        "90": 705585.9375,
+        "95": 919335.9375,
+        "99": 1582617.1875
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_4.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.17944176308958412,
+      "iq_coherent_fraction": 0.1792435980449861,
+      "phase_only_power_within_plus_minus_1khz": 0.18375807412871076,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 173906.25,
+        "90": 716250.0,
+        "95": 917695.3125,
+        "99": 1554492.1875
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_5.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.17375661380363508,
+      "iq_coherent_fraction": 0.17356431735448982,
+      "phase_only_power_within_plus_minus_1khz": 0.17823411019185478,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 173320.3125,
+        "90": 689414.0625,
+        "95": 897304.6875,
+        "99": 1521679.6875
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_6.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.1766730391535272,
+      "iq_coherent_fraction": 0.17647491326178683,
+      "phase_only_power_within_plus_minus_1khz": 0.1824637663898203,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 175429.6875,
+        "90": 751992.1875,
+        "95": 948632.8125,
+        "99": 1592109.375
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_7.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.1837903671398998,
+      "iq_coherent_fraction": 0.183731220000149,
+      "phase_only_power_within_plus_minus_1khz": 0.1879924666893608,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 175781.25,
+        "90": 745546.875,
+        "95": 946054.6875,
+        "99": 1586367.1875
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_8.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.1739411208635772,
+      "iq_coherent_fraction": 0.1738605885970367,
+      "phase_only_power_within_plus_minus_1khz": 0.17889547129910505,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 194648.4375,
+        "90": 818085.9375,
+        "95": 1033945.3125,
+        "99": 1702265.625
+      }
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_9.npz",
+      "samples": 262144,
+      "duration_s": 0.017066666666666667,
+      "fft_bin_hz": 58.59375,
+      "phase_only_coherent_fraction": 0.19224167407779075,
+      "iq_coherent_fraction": 0.1920981752753104,
+      "phase_only_power_within_plus_minus_1khz": 0.19922515073635502,
+      "symmetric_full_occupied_bandwidth_hz": {
+        "50": 151757.8125,
+        "90": 590625.0,
+        "95": 812343.75,
+        "99": 1429335.9375
+      }
+    }
+  ]
+}

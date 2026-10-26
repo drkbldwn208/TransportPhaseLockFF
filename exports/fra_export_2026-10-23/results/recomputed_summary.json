@@ -1,0 +1,64 @@
+{
+  "assumptions": [
+    "Loop margins are local estimates in the reliable 4\u2013100 kHz band.",
+    "Interface delays include fixtures and receiver stages; no de-embedding.",
+    "Loopback calibration/settings JSON and closed-loop blocks are absent."
+  ],
+  "closed_loop": [
+    {
+      "file": "data/closed_loop/laser_loop_20261014_053953.csv",
+      "points": 61,
+      "reliable_points": 28,
+      "tracking_gain_relative_to_stage3": 4.0,
+      "iir_enabled": false,
+      "rejected_clipped_blocks": 38,
+      "measured_response": {
+        "crossover_hz": 44732.93618235151,
+        "phase_at_crossover_deg": -157.52934186556948,
+        "local_phase_margin_deg": 22.470658134430522,
+        "peak_sensitivity_db": 8.749394333693811,
+        "peak_sensitivity_frequency_hz": 46625.518798828125
+      }
+    }
+  ],
+  "loopback": [
+    {
+      "file": "data/loopback/loopback_mixer_20261013_192701_849567.csv",
+      "points": 61,
+      "blocks": 488,
+      "reliable_points": 61,
+      "frequency_range_hz": [
+        10.07080078125,
+        999999.8474121094
+      ],
+      "delay_fit_band_hz": [
+        10000,
+        1000000.0
+      ],
+      "delay_s": 1.9428281572445075e-07,
+      "phase_intercept_deg": 0.004310873061909587,
+      "phase_residual_rms_deg": 0.054659159310320025,
+      "median_low_frequency_magnitude_db": -0.2046271273405424,
+      "block_averages_and_uncertainties_verified": true
+    },
+    {
+      "file": "data/loopback/loopback_rf_20261013_194213_316127.csv",
+      "points": 61,
+      "blocks": 488,
+      "reliable_points": 61,
+      "frequency_range_hz": [
+        10.07080078125,
+        999999.8474121094
+      ],
+      "delay_fit_band_hz": [
+        10000,
+        1000000.0
+      ],
+      "delay_s": 1.8901869066894384e-07,
+      "phase_intercept_deg": -1.5481265172929824e-05,
+      "phase_residual_rms_deg": 0.01335974593753112,
+      "median_low_frequency_magnitude_db": 3.2515671383547486,
+      "block_averages_and_uncertainties_verified": true
+    }
+  ]
+}

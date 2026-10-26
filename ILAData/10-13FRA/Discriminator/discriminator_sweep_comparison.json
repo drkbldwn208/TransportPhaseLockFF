@@ -1,0 +1,85 @@
+{
+  "conditions": "User confirms analog settings unchanged throughout; all saved sweeps have IIR bypassed.",
+  "measured": [
+    {
+      "source": "laser_loop_20261014_050122.csv",
+      "sha256": "1f982bf7b99a5208da77c3a3762a3e1fc2f1fd5e5d59fcb914a7e73b30d14a51",
+      "gain_relative_to_stage3": 2.0,
+      "points": 61,
+      "reliable_points": 30,
+      "probe_amplitude_codes": 32,
+      "median_integration_s": 0.2000850789388021,
+      "iir_enabled": false,
+      "rejected_clipped_blocks": 44,
+      "dac_clip_samples_all_attempts": 5805922,
+      "detector_saturated_samples_all_attempts": 11618331,
+      "accepted_clipped_points": 0,
+      "measured_response": {
+        "crossover_hz": 32191.28958277233,
+        "phase_at_crossover_deg": -151.65241129032876,
+        "local_phase_margin_deg": 28.347588709671243,
+        "peak_sensitivity_db": 6.6677387213266694,
+        "peak_sensitivity_frequency_hz": 38932.34252929688
+      }
+    },
+    {
+      "source": "laser_loop_20261014_053034.csv",
+      "sha256": "cb9f6720c4b7027a1c6091c1bcd90cf86b0379a361415a6666d5fc8883921ac3",
+      "gain_relative_to_stage3": 4.0,
+      "points": 61,
+      "reliable_points": 30,
+      "probe_amplitude_codes": 32,
+      "median_integration_s": 0.2000850789388021,
+      "iir_enabled": false,
+      "rejected_clipped_blocks": 36,
+      "dac_clip_samples_all_attempts": 3663057,
+      "detector_saturated_samples_all_attempts": 7393442,
+      "accepted_clipped_points": 0,
+      "measured_response": {
+        "crossover_hz": 44917.67248833767,
+        "phase_at_crossover_deg": -156.41990596911677,
+        "local_phase_margin_deg": 23.58009403088323,
+        "peak_sensitivity_db": 8.26494303545598,
+        "peak_sensitivity_frequency_hz": 46625.518798828125
+      }
+    },
+    {
+      "source": "laser_loop_20261014_053953.csv",
+      "sha256": "aec6000fe2483b8c6e286b0c815142b093179e595e7a5ded86fdb978baea4dd6",
+      "gain_relative_to_stage3": 4.0,
+      "points": 61,
+      "reliable_points": 28,
+      "probe_amplitude_codes": 32,
+      "median_integration_s": 0.2000850789388021,
+      "iir_enabled": false,
+      "rejected_clipped_blocks": 38,
+      "dac_clip_samples_all_attempts": 3420204,
+      "detector_saturated_samples_all_attempts": 6904609,
+      "accepted_clipped_points": 0,
+      "measured_response": {
+        "crossover_hz": 44732.93618235151,
+        "phase_at_crossover_deg": -157.52934186556945,
+        "local_phase_margin_deg": 22.47065813443055,
+        "peak_sensitivity_db": 8.749394333693811,
+        "peak_sensitivity_frequency_hz": 46625.518798828125
+      }
+    }
+  ],
+  "conditional_8x_prediction": {
+    "crossover_hz": 62897.467374591084,
+    "phase_at_crossover_deg": -165.7244524057104,
+    "local_phase_margin_deg": 14.275547594289606,
+    "peak_sensitivity_db": 11.991800700445868,
+    "peak_sensitivity_frequency_hz": 66874.23706054688
+  },
+  "median_measured_2x_to_4x_gain_increase_db": 4.495501203233717,
+  "ideal_2x_to_4x_gain_increase_db": 6.020599913279624,
+  "limitations": [
+    "Only aggregate CSVs supplied, so individual repeats cannot be re-examined.",
+    "No saved 8x FRA exists in this comparison; that curve is a conditional prediction.",
+    "Measured 2x -> 4x increase differs from ideal scaling, limiting extrapolation accuracy.",
+    "Phase margins are local unity-gain estimates, not proof of global closed-loop stability.",
+    "Clipped attempts were discarded; retained responses may describe only quieter intervals.",
+    "Low-frequency ratios with residual drive below noise are excluded."
+  ]
+}

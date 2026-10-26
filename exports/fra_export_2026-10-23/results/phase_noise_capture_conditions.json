@@ -1,0 +1,103 @@
+{
+  "conditions": "User confirms 8x gain, FRA off; reference laser reportedly more stable than earlier batch.",
+  "beat_hz": 800000000.0,
+  "reference_hz": 800000000.0,
+  "conditions_origin": "User conversation for this capture batch; not an embedded tracking-register snapshot.",
+  "source_summary_project_relative_path": "ILAData/10-13-IQ/shortest_iq_summary.json",
+  "source_summary_sha256": "bad059ecc5dcd437081db794e062cc300192eeeb24c332801c2652b5d9eb8baf",
+  "source_analysis_project_relative_path": "ILAData/analyze_shortest_iq.py",
+  "source_analysis_sha256": "f332d207f9761ccf291c8a4c37d22b806d9841474a99831e10c498c663042db2",
+  "raw_iq_included": false,
+  "raw_records": [
+    {
+      "source": "laser_iq_FPGA_shortest_0.npz",
+      "sha256": "f4cfb8b5755aa1b31c71f216e3bfce1f978360ea6eeb53bdf611f27d82668232",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8817222380106451,
+      "max_adjacent_phase_step_rad": 0.4900483715165239
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_1.npz",
+      "sha256": "d290666428be44256dc7023d73d622860f84734e6b4683058088f00b2365b7bf",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8882995492592224,
+      "max_adjacent_phase_step_rad": 0.5143714886095935
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_2.npz",
+      "sha256": "817b3eb45343a02cfcd3b61dac4261fa67fab58f616ce7cc631a4bad5a96c83b",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8874221504904943,
+      "max_adjacent_phase_step_rad": 0.506418337836831
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_3.npz",
+      "sha256": "797794a1340e3a03a31a0f28f501e0faea469ace84c09c5657fc9796a1311da7",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8912472125811066,
+      "max_adjacent_phase_step_rad": 0.5916597818791465
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_4.npz",
+      "sha256": "6441f2820c290be5ad9927720877682b0644238568f44770a141ed38cb183f7f",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.890690760339295,
+      "max_adjacent_phase_step_rad": 0.5793866999550215
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_5.npz",
+      "sha256": "f56907393c18af317523a16420518fcc3a98678d3a6e7d5e96f3542e87808ee7",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8941398974586384,
+      "max_adjacent_phase_step_rad": 0.5836370676361189
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_6.npz",
+      "sha256": "f951a43e7c46b6024c076cc38c1cd969e8cca42df3bc501b9f3f19c7581920d7",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8819503320072453,
+      "max_adjacent_phase_step_rad": 0.5140014600393602
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_7.npz",
+      "sha256": "cf590e6696ac31f189d3b2a5c80762b3f7c8f31e562c69d30620a5c7cc85a5c8",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8958952958831201,
+      "max_adjacent_phase_step_rad": 0.5417061327350432
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_8.npz",
+      "sha256": "bbacbb6192d3d47ecbb1743c6d61437c53b625f4a05cd6dd426f79651492a8e1",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8886720511360694,
+      "max_adjacent_phase_step_rad": 0.5850984839353616
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_9.npz",
+      "sha256": "f90f5c10d9c006de60313ae1d890333632684bf83cfd3f45695679c3ddce166e",
+      "samples": 262144,
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "minimum_magnitude_relative_to_median": 0.8754446297811139,
+      "max_adjacent_phase_step_rad": 0.48273333256624384
+    }
+  ]
+}

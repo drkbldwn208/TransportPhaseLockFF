@@ -1,0 +1,467 @@
+{
+  "sign": "f_beat - f_reference; opposite to PLL frequency status",
+  "source_sample_rate_hz": 15360000.0,
+  "records": [
+    {
+      "source": "laser_iq_FPGA_shortest_0.npz",
+      "mean_frequency_from_endpoints_hz": -4.356005782920315,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.5705882352941176,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 259372.5034336861,
+          "percentiles_1_5_50_95_99_hz": [
+            -590389.5621199603,
+            -420887.8799316054,
+            -3582.4017345990774,
+            433830.50038271444,
+            622246.7835847241
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 189078.77080008385,
+          "percentiles_1_5_50_95_99_hz": [
+            -417439.7073299052,
+            -301164.2348170404,
+            -5283.602699232025,
+            319912.30178579927,
+            464510.0141256202
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 161139.5212266096,
+          "percentiles_1_5_50_95_99_hz": [
+            -361700.77632435114,
+            -257927.226071476,
+            -3793.473542729209,
+            270407.5709279199,
+            392769.5554526016
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_1.npz",
+      "mean_frequency_from_endpoints_hz": 18.712375298691917,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.5176470588235295,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 276303.33708730526,
+          "percentiles_1_5_50_95_99_hz": [
+            -623683.8100013948,
+            -447496.2678961074,
+            -3947.808209838776,
+            461043.64864446863,
+            654970.6263360133
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 209662.2526305118,
+          "percentiles_1_5_50_95_99_hz": [
+            -455851.68990737817,
+            -334043.3227565254,
+            -5520.310792983646,
+            355935.7267868683,
+            504655.600497771
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 178127.65584389452,
+          "percentiles_1_5_50_95_99_hz": [
+            -388340.9542031899,
+            -285144.22186040407,
+            -4170.616803401605,
+            300898.31182939577,
+            425541.8755175018
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_2.npz",
+      "mean_frequency_from_endpoints_hz": -2.9248294019867505,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.5117647058823529,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 273340.23246307764,
+          "percentiles_1_5_50_95_99_hz": [
+            -617977.2428561968,
+            -442239.82638292195,
+            -3959.8943149986712,
+            456314.906255733,
+            650697.2449961689
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 206275.9262065947,
+          "percentiles_1_5_50_95_99_hz": [
+            -447931.0433259357,
+            -326923.2070498142,
+            -7027.319627613169,
+            350437.95739623695,
+            498918.72443284595
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 175140.54471949715,
+          "percentiles_1_5_50_95_99_hz": [
+            -382833.3374168107,
+            -279310.5169575844,
+            -5460.910412642341,
+            297183.76280563493,
+            420609.23658307415
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_3.npz",
+      "mean_frequency_from_endpoints_hz": 46.98337920510591,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.7470588235294118,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 266643.75976741314,
+          "percentiles_1_5_50_95_99_hz": [
+            -611562.9861971425,
+            -431446.0607164431,
+            -3487.577748155956,
+            444162.2276906787,
+            641481.3063931973
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 196792.0321357033,
+          "percentiles_1_5_50_95_99_hz": [
+            -443843.770148105,
+            -313088.6311729443,
+            -6104.746933094796,
+            331562.7596472544,
+            491469.2715687962
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 169943.3645333826,
+          "percentiles_1_5_50_95_99_hz": [
+            -385939.3295549333,
+            -270263.91693873954,
+            -4093.847187798646,
+            285567.47941477,
+            421845.32746520697
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_4.npz",
+      "mean_frequency_from_endpoints_hz": 1.5215302738469345,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.6647058823529411,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 264889.30354039755,
+          "percentiles_1_5_50_95_99_hz": [
+            -599225.7014204725,
+            -429290.7890541934,
+            -4208.922606029187,
+            441979.902454179,
+            632365.7387068804
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 195259.98860787763,
+          "percentiles_1_5_50_95_99_hz": [
+            -426810.55103570933,
+            -310575.9936385475,
+            -4967.091600637288,
+            330312.6755184329,
+            475167.96598808566
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 166785.75398774515,
+          "percentiles_1_5_50_95_99_hz": [
+            -369668.1118972563,
+            -267113.9172807959,
+            -2992.263412443102,
+            280451.5800174976,
+            403586.84635516716
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_5.npz",
+      "mean_frequency_from_endpoints_hz": -6.415768822143707,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.6470588235294118,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 258745.0655026421,
+          "percentiles_1_5_50_95_99_hz": [
+            -586807.7035824845,
+            -420303.7652018899,
+            -3538.5624176947795,
+            431895.4750400018,
+            616552.5635162105
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 189315.4440597847,
+          "percentiles_1_5_50_95_99_hz": [
+            -419772.04242319986,
+            -302505.41924530454,
+            -5830.83554210639,
+            322271.5070871057,
+            463307.61834355426
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 162096.43979558986,
+          "percentiles_1_5_50_95_99_hz": [
+            -363526.22024790506,
+            -260380.97851862613,
+            -3903.9222140573165,
+            274741.64643700677,
+            392668.7466315168
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_6.npz",
+      "mean_frequency_from_endpoints_hz": 3.841822912671934,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.6411764705882353,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 272030.36615252355,
+          "percentiles_1_5_50_95_99_hz": [
+            -615758.2838078091,
+            -440213.30225785915,
+            -3856.5753983221343,
+            454661.917577458,
+            645377.5472607256
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 204643.52673742527,
+          "percentiles_1_5_50_95_99_hz": [
+            -448074.4494493941,
+            -326384.76402917365,
+            -6047.875005177655,
+            346377.9703479272,
+            492912.8053895884
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 174219.37740059991,
+          "percentiles_1_5_50_95_99_hz": [
+            -385403.9473193535,
+            -280143.26558927936,
+            -4103.522389886098,
+            293245.60716365103,
+            417287.9412955781
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_7.npz",
+      "mean_frequency_from_endpoints_hz": 15.057137270012392,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.611764705882353,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 271441.78877486615,
+          "percentiles_1_5_50_95_99_hz": [
+            -616240.9353071423,
+            -439667.9091362212,
+            -3871.64003401706,
+            452700.4857004781,
+            646838.879029454
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 204093.36576045214,
+          "percentiles_1_5_50_95_99_hz": [
+            -448255.30497141206,
+            -326170.1091159154,
+            -5126.1201508945005,
+            345701.2242394171,
+            495989.31396979076
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 174045.41779693487,
+          "percentiles_1_5_50_95_99_hz": [
+            -387700.3738952994,
+            -280277.2931328088,
+            -3899.223796957474,
+            292833.2558925402,
+            419050.6911810372
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_8.npz",
+      "mean_frequency_from_endpoints_hz": -12.123211838499246,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.7352941176470589,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 293974.51376513205,
+          "percentiles_1_5_50_95_99_hz": [
+            -669736.4277733631,
+            -478227.27593335975,
+            -3209.024721515966,
+            488625.3244758971,
+            694133.895517895
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 229635.5886631395,
+          "percentiles_1_5_50_95_99_hz": [
+            -513639.964688706,
+            -369069.7585022251,
+            -5636.931690529284,
+            383900.0783125672,
+            542468.1834584362
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 195668.98036520238,
+          "percentiles_1_5_50_95_99_hz": [
+            -440878.3822295711,
+            -316088.566916549,
+            -3969.608069943274,
+            325577.7659206319,
+            458188.0031156416
+          ]
+        }
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_9.npz",
+      "mean_frequency_from_endpoints_hz": -7.919893390477325,
+      "fraction_100us_windows_phase_span_over_two_pi": 0.5235294117647059,
+      "frequency_statistics": [
+        {
+          "interval_samples": 1,
+          "averaging_interval_s": 6.510416666666667e-08,
+          "standard_deviation_hz": 243959.57676695805,
+          "percentiles_1_5_50_95_99_hz": [
+            -558435.0392391814,
+            -395981.1077413032,
+            -1996.6207482098796,
+            403990.34747811814,
+            584412.5227309843
+          ]
+        },
+        {
+          "interval_samples": 8,
+          "averaging_interval_s": 5.208333333333334e-07,
+          "standard_deviation_hz": 168977.44046281857,
+          "percentiles_1_5_50_95_99_hz": [
+            -376300.09985822457,
+            -267520.2544168877,
+            -4728.377313352892,
+            285159.1619805898,
+            422090.9176194259
+          ]
+        },
+        {
+          "interval_samples": 16,
+          "averaging_interval_s": 1.0416666666666667e-06,
+          "standard_deviation_hz": 145501.639476999,
+          "percentiles_1_5_50_95_99_hz": [
+            -325669.7408042809,
+            -232676.5864313588,
+            -3783.9188454147907,
+            243723.01946955014,
+            360966.75736908003
+          ]
+        }
+      ]
+    }
+  ],
+  "plotted_capture_3_windows": [
+    {
+      "name": "Ordinary interval",
+      "center_s": 0.00105,
+      "phase_peak_to_peak_turns": 1.493469924682913,
+      "zoom_min_frequency_hz": -498409.38497131766,
+      "zoom_max_frequency_hz": 572594.3654208172
+    },
+    {
+      "name": "First range-crossing event",
+      "center_s": 0.002501171875,
+      "phase_peak_to_peak_turns": 2.8616425844336097,
+      "zoom_min_frequency_hz": -747008.9525277893,
+      "zoom_max_frequency_hz": 1065683.6848120983
+    },
+    {
+      "name": "Largest phase excursion",
+      "center_s": 0.010742447916666667,
+      "phase_peak_to_peak_turns": 3.013683390901139,
+      "zoom_min_frequency_hz": -612391.2124621443,
+      "zoom_max_frequency_hz": 805624.2554469706
+    }
+  ],
+  "median_100us_phase_span_rad": 6.6010566836521845,
+  "fraction_100us_phase_span_over_two_pi": 0.6170588235294118,
+  "limitations": [
+    "Derived from recorded beat phase, not a measurement of either optical laser frequency separately.",
+    "Differentiation magnifies fast measurement noise; statistics depend on averaging interval.",
+    "N-sample frequency averaging is applied after full-rate phase unwrapping.",
+    "Phase spans are peak-to-peak, not RMS or persistent cycle-slip counts."
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "records": [
+    {
+      "source": "laser_iq_FPGA_shortest_0.npz",
+      "fitted_tone_hz": 1043.5196719133305,
+      "phase_modulation_peak_rad": 0.08463887801450497,
+      "frequency_modulation_peak_hz": 88.32233421680863,
+      "beat_amplitude_modulation_peak_fraction": 0.0004821307125402683,
+      "small_signal_phase_sideband_dbc": -27.469201960132963,
+      "phase_rms_500_2000hz_rad": 0.06577520282004647,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.002400302592518344
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_1.npz",
+      "fitted_tone_hz": 1042.399949491493,
+      "phase_modulation_peak_rad": 0.08702337937960217,
+      "frequency_modulation_peak_hz": 90.71316626987634,
+      "beat_amplitude_modulation_peak_fraction": 0.0007434941550144861,
+      "small_signal_phase_sideband_dbc": -27.227881028373066,
+      "phase_rms_500_2000hz_rad": 0.06523090499613263,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0015333820075823052
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_2.npz",
+      "fitted_tone_hz": 1042.9693423482663,
+      "phase_modulation_peak_rad": 0.08846445672007448,
+      "frequency_modulation_peak_hz": 92.26571624653275,
+      "beat_amplitude_modulation_peak_fraction": 0.0006830113707616307,
+      "small_signal_phase_sideband_dbc": -27.085223618174226,
+      "phase_rms_500_2000hz_rad": 0.07467968997241711,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0018718820652166373
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_3.npz",
+      "fitted_tone_hz": 1045.540368623746,
+      "phase_modulation_peak_rad": 0.08812590649200953,
+      "frequency_modulation_peak_hz": 92.13919275895742,
+      "beat_amplitude_modulation_peak_fraction": 0.00027680933003436197,
+      "small_signal_phase_sideband_dbc": -27.118527966918244,
+      "phase_rms_500_2000hz_rad": 0.06975392324850442,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0013021443547280845
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_4.npz",
+      "fitted_tone_hz": 1040.5919406185283,
+      "phase_modulation_peak_rad": 0.08920044147528232,
+      "frequency_modulation_peak_hz": 92.82126049879348,
+      "beat_amplitude_modulation_peak_fraction": 0.0005443620441088936,
+      "small_signal_phase_sideband_dbc": -27.01325983701175,
+      "phase_rms_500_2000hz_rad": 0.06918709367037648,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0017376825837310587
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_5.npz",
+      "fitted_tone_hz": 1044.0309963996015,
+      "phase_modulation_peak_rad": 0.08924791694602059,
+      "frequency_modulation_peak_hz": 93.17759165574276,
+      "beat_amplitude_modulation_peak_fraction": 0.0007643093429327542,
+      "small_signal_phase_sideband_dbc": -27.008638144632787,
+      "phase_rms_500_2000hz_rad": 0.07054173311857256,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.00208208784541335
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_6.npz",
+      "fitted_tone_hz": 1042.7513431344998,
+      "phase_modulation_peak_rad": 0.09207868607245406,
+      "frequency_modulation_peak_hz": 96.01517357611144,
+      "beat_amplitude_modulation_peak_fraction": 0.00040339958851544355,
+      "small_signal_phase_sideband_dbc": -26.737417644275446,
+      "phase_rms_500_2000hz_rad": 0.07487588152994883,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0017059809474569536
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_7.npz",
+      "fitted_tone_hz": 1040.7839271180117,
+      "phase_modulation_peak_rad": 0.09280053807093555,
+      "frequency_modulation_peak_hz": 96.58530845213285,
+      "beat_amplitude_modulation_peak_fraction": 0.00046307283743625394,
+      "small_signal_phase_sideband_dbc": -26.669590026712573,
+      "phase_rms_500_2000hz_rad": 0.08329875436831063,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0013955044453478535
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_8.npz",
+      "fitted_tone_hz": 1044.2075587508732,
+      "phase_modulation_peak_rad": 0.08364514243219558,
+      "frequency_modulation_peak_hz": 87.34288998049202,
+      "beat_amplitude_modulation_peak_fraction": 0.00023540806594355944,
+      "small_signal_phase_sideband_dbc": -27.571785412845877,
+      "phase_rms_500_2000hz_rad": 0.06359984352153746,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0015583610766096642
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_9.npz",
+      "fitted_tone_hz": 1044.69244136263,
+      "phase_modulation_peak_rad": 0.08956607977638391,
+      "frequency_modulation_peak_hz": 93.56900654487059,
+      "beat_amplitude_modulation_peak_fraction": 0.0008989310816980732,
+      "small_signal_phase_sideband_dbc": -26.97772859394356,
+      "phase_rms_500_2000hz_rad": 0.07249862050178586,
+      "beat_amplitude_rms_500_2000hz_fraction": 0.0015564049610435646
+    }
+  ],
+  "psd_bin_hz": 117.1875,
+  "phase_rms_500_2000hz_rad": 0.071156991506329,
+  "beat_amplitude_rms_500_2000hz_fraction": 0.001742858432552753,
+  "amplitude_removal_change_700_1400hz_db": -0.0038341957342684346,
+  "limitations": [
+    "Finite-record fitted tone frequency is not a linewidth measurement.",
+    "RF magnitude includes both lasers and detection electronics; not calibrated lattice intensity noise.",
+    "The normalized phasor spectrum is not a phase PSD for the large fast phase fluctuations.",
+    "Historical analyzer records may describe different operating conditions."
+  ]
+}

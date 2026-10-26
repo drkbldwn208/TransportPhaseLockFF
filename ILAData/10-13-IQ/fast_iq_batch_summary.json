@@ -1,0 +1,387 @@
+{
+  "records": [
+    {
+      "source": "laser_iq_FPGA_shorter_1.npz",
+      "sha256": "c0cf80cf2e3aa01e5debf030c3aeb3672bd3b40a1e8df0e6105c092a239f0bbd",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1162.0194905132157,
+      "magnitude_fractional_std": 0.13455094788953967,
+      "below_20_percent_median_fraction": 0.00080108642578125,
+      "step_over_pi_half_fraction": 0.19665220890887797,
+      "strong_magnitude_step_over_pi_half_fraction": 0.18692571768183489,
+      "circular_resultant": 0.5085178618409933,
+      "circular_spread_rad": 1.1629745806160032,
+      "absolute_circular_deviation_95_percentile_rad": 2.280677268990092,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": 58.53230703982765,
+          "apparent_span_turns": 72.92739098903813
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": 7.6992543744308035,
+          "apparent_span_turns": 60.65755050949488
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": -23.94985787103183,
+          "apparent_span_turns": 51.82307511150968
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": 22.1800506283887,
+          "apparent_span_turns": 26.449772340936885
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.7422583133563304,
+      "phase_only_time_domain_fluctuation_power": 0.7414095841886644
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_2.npz",
+      "sha256": "9afa0a9cf667e22e50de6c38f49021bfcf1a5e1104f6124315078390fe128cf8",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1161.1915312502333,
+      "magnitude_fractional_std": 0.18863726581608561,
+      "below_20_percent_median_fraction": 0.006439208984375,
+      "step_over_pi_half_fraction": 0.23561186070198326,
+      "strong_magnitude_step_over_pi_half_fraction": 0.2153376384905816,
+      "circular_resultant": 0.3634671595150973,
+      "circular_spread_rad": 1.4227201631402253,
+      "absolute_circular_deviation_95_percentile_rad": 2.7026925591976556,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -663.216448269058,
+          "apparent_span_turns": 682.2095893337882
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": -90.09108845844621,
+          "apparent_span_turns": 126.05380527479605
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": 26.830382414885552,
+          "apparent_span_turns": 83.0180883618035
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": -11.04184043999482,
+          "apparent_span_turns": 58.42098746670813
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.8643725229009548,
+      "phase_only_time_domain_fluctuation_power": 0.8678916239540269
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_3.npz",
+      "sha256": "a8922957641beb725661b30368e1e1e434f4a262da8ef3c80675acd066546ce8",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1052.6414959100184,
+      "magnitude_fractional_std": 0.18781345048845122,
+      "below_20_percent_median_fraction": 0.006183624267578125,
+      "step_over_pi_half_fraction": 0.23478406823756498,
+      "strong_magnitude_step_over_pi_half_fraction": 0.2151575022376578,
+      "circular_resultant": 0.3605985827551767,
+      "circular_spread_rad": 1.4282786131994123,
+      "absolute_circular_deviation_95_percentile_rad": 2.708326823334775,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -773.0407622676697,
+          "apparent_span_turns": 773.6126891212467
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": -160.10978310812453,
+          "apparent_span_turns": 174.53573333081752
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": 27.94620943576272,
+          "apparent_span_turns": 45.14109589087461
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": 61.99445911992802,
+          "apparent_span_turns": 84.89000802455837
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.8665327623680191,
+      "phase_only_time_domain_fluctuation_power": 0.869968662114958
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_4.npz",
+      "sha256": "b79a4f5d2f93b4e5ead4c7726548a31a215611c5fc525c833ace2bcb16bdb5ab",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1100.7694867947848,
+      "magnitude_fractional_std": 0.18370419464158413,
+      "below_20_percent_median_fraction": 0.00566864013671875,
+      "step_over_pi_half_fraction": 0.23085491506544137,
+      "strong_magnitude_step_over_pi_half_fraction": 0.21266812700882348,
+      "circular_resultant": 0.37197789650326496,
+      "circular_spread_rad": 1.4063575964002084,
+      "absolute_circular_deviation_95_percentile_rad": 2.682188563328565,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -635.8165817035647,
+          "apparent_span_turns": 645.9933548945197
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": 20.282323299017474,
+          "apparent_span_turns": 84.75182354407781
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": 155.12824271481492,
+          "apparent_span_turns": 177.54988534222954
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": 36.017575159855056,
+          "apparent_span_turns": 46.26779503865028
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.8611032978810178,
+      "phase_only_time_domain_fluctuation_power": 0.8616324445130064
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_5.npz",
+      "sha256": "a589bd7d07a0cf223e731af55f21cca7a847d0a5c073db94c4aa18d234cfc828",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1097.8759663356323,
+      "magnitude_fractional_std": 0.14114759281889486,
+      "below_20_percent_median_fraction": 0.000823974609375,
+      "step_over_pi_half_fraction": 0.20233612951709562,
+      "strong_magnitude_step_over_pi_half_fraction": 0.1924753823755029,
+      "circular_resultant": 0.5024206233424099,
+      "circular_spread_rad": 1.1733009972075754,
+      "absolute_circular_deviation_95_percentile_rad": 2.29110993405801,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -42.957350727146725,
+          "apparent_span_turns": 79.96457263984568
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": 58.00843771208732,
+          "apparent_span_turns": 58.830426226321904
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": -7.988436089604322,
+          "apparent_span_turns": 58.942898326168596
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": 33.9763281318889,
+          "apparent_span_turns": 51.124566140117174
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.7480846860614876,
+      "phase_only_time_domain_fluctuation_power": 0.7475735172402243
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_6.npz",
+      "sha256": "a9e9f9d607606306d8373729a3134bd4954e3f17268a1ff77f8b8e0e7a8d67d5",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1093.9971945933898,
+      "magnitude_fractional_std": 0.14605207582379812,
+      "below_20_percent_median_fraction": 0.001834869384765625,
+      "step_over_pi_half_fraction": 0.1977813636068863,
+      "strong_magnitude_step_over_pi_half_fraction": 0.1867140395361034,
+      "circular_resultant": 0.47970477858051086,
+      "circular_spread_rad": 1.2120927430866582,
+      "absolute_circular_deviation_95_percentile_rad": 2.388985228485284,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -235.05608963634504,
+          "apparent_span_turns": 271.9776725900225
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": 12.91943824178927,
+          "apparent_span_turns": 43.75637498446942
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": 50.05020146267162,
+          "apparent_span_turns": 63.63667343146189
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": 32.12803548170262,
+          "apparent_span_turns": 53.49776277947218
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.7635816839415437,
+      "phase_only_time_domain_fluctuation_power": 0.7698833254070231
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_7.npz",
+      "sha256": "26d6eb55b531655bfa94cf6dedcd1b32f45f43e8b3c51cf7246f16e5c8c2cf13",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1091.3435759283914,
+      "magnitude_fractional_std": 0.19006899112192427,
+      "below_20_percent_median_fraction": 0.0099639892578125,
+      "step_over_pi_half_fraction": 0.22566690699351116,
+      "strong_magnitude_step_over_pi_half_fraction": 0.20627299650004488,
+      "circular_resultant": 0.3812765180572276,
+      "circular_spread_rad": 1.388690316751327,
+      "absolute_circular_deviation_95_percentile_rad": 2.6609189902360515,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -523.771126798263,
+          "apparent_span_turns": 530.6765855220474
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": -94.80688022574309,
+          "apparent_span_turns": 120.55702939800385
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": -2.9003861068917427,
+          "apparent_span_turns": 67.96611085598133
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": 19.948996104704236,
+          "apparent_span_turns": 55.55553473214414
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [
+        {
+          "start_s": 0.019,
+          "end_s": 0.02
+        }
+      ],
+      "phase_only_psd_integral": 0.8513436213072316,
+      "phase_only_time_domain_fluctuation_power": 0.8546282167781566
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_8.npz",
+      "sha256": "1a4829351e41f93f438b49150cb76c21c8194aa6d5e483d4b780e3a920722e1e",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1057.4608539884089,
+      "magnitude_fractional_std": 0.16615098571532014,
+      "below_20_percent_median_fraction": 0.003326416015625,
+      "step_over_pi_half_fraction": 0.21567999145504552,
+      "strong_magnitude_step_over_pi_half_fraction": 0.20137119135772788,
+      "circular_resultant": 0.43313925660366165,
+      "circular_spread_rad": 1.2935965320765426,
+      "absolute_circular_deviation_95_percentile_rad": 2.5390283045262723,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -375.7192861189808,
+          "apparent_span_turns": 390.193005190879
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": -105.68428061168265,
+          "apparent_span_turns": 147.91075363805393
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": -10.841002251953853,
+          "apparent_span_turns": 49.65796261868816
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": -1.813263193771364,
+          "apparent_span_turns": 32.89696154335793
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.8065298063155637,
+      "phase_only_time_domain_fluctuation_power": 0.8123903843888274
+    },
+    {
+      "source": "laser_iq_FPGA_shorter_9.npz",
+      "sha256": "0e71a27c53331746a0d0879eec6eff884bc72971fc4a59307e77314dba8ff48d",
+      "samples": 262144,
+      "sample_rate_hz": 960000.0,
+      "decimation_log2": 8,
+      "duration_s": 0.2730666666666667,
+      "median_magnitude_adc_counts": 1058.6150707463862,
+      "magnitude_fractional_std": 0.15884605470943147,
+      "below_20_percent_median_fraction": 0.00235748291015625,
+      "step_over_pi_half_fraction": 0.21699988174393364,
+      "strong_magnitude_step_over_pi_half_fraction": 0.20397116217698538,
+      "circular_resultant": 0.46708647770844014,
+      "circular_spread_rad": 1.2338888615677963,
+      "absolute_circular_deviation_95_percentile_rad": 2.4296991415304565,
+      "unwrap_checks": [
+        {
+          "extra_average": 1,
+          "apparent_net_turns": -217.9508291850774,
+          "apparent_span_turns": 234.24492148180482
+        },
+        {
+          "extra_average": 2,
+          "apparent_net_turns": 27.07552107000241,
+          "apparent_span_turns": 62.81268171996003
+        },
+        {
+          "extra_average": 4,
+          "apparent_net_turns": 21.00950884529054,
+          "apparent_span_turns": 65.58002392302234
+        },
+        {
+          "extra_average": 8,
+          "apparent_net_turns": -7.952755428566173,
+          "apparent_span_turns": 27.563299285143103
+        }
+      ],
+      "low_magnitude_intervals_1ms_mean_below_half_median": [],
+      "phase_only_psd_integral": 0.7766835252338999,
+      "phase_only_time_domain_fluctuation_power": 0.7818302223419229
+    }
+  ],
+  "conditions": "Loop settings and FRA state not stored; awaiting user confirmation.",
+  "limitations": [
+    "A physical cycle-slip count cannot be established from these records.",
+    "Extra averaging disagreement is a warning, not proof every original unwrap step is wrong.",
+    "Normalization removes recorded amplitude noise, not PM-to-AM conversion before capture.",
+    "Monitor boxcar aliasing and complex averaging can distort spectra and magnitude.",
+    "Circular spread is not the RMS of unwrapped phase.",
+    "Passive I/Q spectra do not independently measure loop gain or unity-gain frequency."
+  ]
+}

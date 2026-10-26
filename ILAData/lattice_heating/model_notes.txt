@@ -1,0 +1,197 @@
+LATTICE HEATING FROM THE FAST I/Q CAPTURES — 14 OCTOBER 2026
+
+Purpose and scope
+-----------------
+Estimate initial single-particle motional excitation of a 741 nm optical
+lattice from the measured laser frequency noise. The reference laser is
+assumed noiseless. The numerical tables are conditional predictions, not
+measurements of atomic heating and not predictions of trap lifetime.
+
+Inputs: laser_iq_FPGA_shortest_0.npz through _9.npz, 8x tracking gain,
+FRA off, 15.36 MS/s, 17.07 ms each. Records are analyzed independently.
+The source hashes and numerical outputs are in heating_summary.json.
+
+Assumed isotope: 162Dy. Er/h = 2242.98 Hz; Er/kB = 107.65 nK.
+Assumed initial state: lowest Bloch band, q=0; one lattice axis.
+Mean depth is calibrated independently. The isolated 741 nm optical line
+dominates the dispersive potential. Fixed optical intensity is assumed.
+Detuning Delta = laser frequency minus atomic resonance, in Hz.
+The main figures use negative (red) detuning. Blue results are also saved.
+
+There was no supplied scan range or atom-to-mirror distance when this
+calculation was made. The map covers |Delta|=2--50 MHz and depth=1--150 Er;
+the deeper extension locates the main servo-noise resonances. Geometric
+shaking is quoted per square metre of atom-to-retro-mirror distance.
+
+From I/Q to a fluctuating potential
+----------------------------------
+Unwrap phase at the original sampling rate FIRST. Adjacent phase differences
+give frequency in Hz: delta_nu = fs*diff(phi)/(2*pi). Equivalently,
+S_nu(f) = f^2 S_phi(f), for phi in radians and one-sided PSDs per Hz.
+
+Filter the derived frequency at 1 MHz offline, trim edge transients, and
+remove its small record mean. This limits high-frequency detector noise in
+the nonlinear conversion; it does not modify the FPGA or experimental loop.
+At the principal motional transition frequencies, this filter is flat.
+
+For weak fluctuations, epsilon = delta_depth/mean_depth = -delta_nu/Delta,
+and S_epsilon = S_nu/Delta^2.
+
+For the nonlinear calculation, form
+    depth(t) = Delta / [Delta + delta_nu(t)]
+    epsilon(t) = depth(t)/mean(depth) - 1.
+This keeps the mean calibrated depth fixed. The quadratic and higher terms
+can mix noise at high frequencies down to a small band gap. It is a
+quasistatic dispersive model, not a calculation of photon scattering.
+
+Welch PSDs use 32768 samples, 50% overlap, and a Hann window. PSD bin spacing
+is 468.75 Hz. A Gaussian of sigma=one bin gives 1.10 kHz FWHM spectral
+smoothing. Figures show mean PSDs; capture-to-capture spread is recorded,
+not interpreted as a formal confidence interval. Narrow danger-zone
+boundaries are consequently approximate at the ~kHz gap-frequency scale.
+
+Replacement for the harmonic Gehm/Savard approximation
+----------------------------------------------------
+Use H/Er = (p/hbar/k)^2 + s*sin(k*x)^2, in plane waves
+exp[i*(2*n+q)*k*x], with q in [-1,1]. Diagonalize this Hamiltonian and
+evaluate the actual band gaps and matrix elements.
+
+For noise PSD S_epsilon in 1/Hz, the transition rate from band 0 is
+
+ R(n<-0) = 2*pi^2*(s*Er/h)^2 * |<n|sin(k*x)^2|0>|^2 * S_epsilon(f_n0).
+
+ Initial ground-band depletion = sum_n R(n<-0).
+ Initial energy deposition    = sum_n h*f_n0*R(n<-0).
+
+These are distinct observables. In the harmonic limit, Gehm/Savard give
+Gamma_E = pi^2*f_trap^2*S_epsilon(2*f_trap). For the harmonic ground state,
+R(0->2)=Gamma_E/4, and each excitation adds 2*h*f_trap. The code checks this
+factor and checks convergence against a larger plane-wave basis.
+
+At q=0, depth noise excites even bands. Higher bands can matter strongly:
+at 10 Er, the 0->2, 0->4 and 0->6 gaps are approximately 17.4, 41.2 and
+85.8 kHz. Their matrix elements differ greatly; overlap alone is insufficient.
+A uniform quasimomentum average (appropriate to a localized Wannier state)
+is also evaluated. It changes the predicted 5 and 10 Er rates by about
+8% and 15%, respectively, for this spectrum. Other initial populations,
+including excited bands, need separate weighting.
+
+Representative results: -10 MHz detuning, q=0, nonlinear depth noise
+------------------------------------------------------------------
+Depth/Er    Initial depletion /s     Energy deposition Er/s
+  5             0.000732                    0.00829
+ 10             0.00534                     0.107
+ 20             0.0564                      1.23
+ 30             0.358                       9.72
+ 50             1.08                       28.4
+ 65             7.84                      227
+108            27.3                      1045
+
+At 5 and 10 Er these correspond to energy/kB rates of approximately
+0.9 and 11.5 nK/s. They are not thermodynamic temperature-growth predictions.
+Individual records give depletion ranges 0.00029--0.0034 /s at 5 Er and
+0.0027--0.0186 /s at 10 Er. At +10 MHz the corresponding mean rates are
+0.000619 and 0.00521 /s. No detector noise floor was subtracted.
+
+Changing the analysis low-pass from 0.5 to 2 MHz changes the 5 Er result by
+about 6%, and the 10 Er result by about 1%. An independent weak-excitation
+optical susceptibility calculation at +/-10 MHz checks the quasistatic
+conversion to within 0.4% in the tested records/depths; its rate ratios
+are saved in heating_summary.json.
+
+Depth danger zones
+------------------
+At -10 MHz and q=0, the main 0->2 transition crosses 65 kHz near 65.4 Er
+and 86 kHz near 108.1 Er. The measured broad peaks produce maxima near
+65.5 Er (~8 /s) and 109.5 Er (~31 /s). Rates exceed 5 /s around 62.5--71.5 Er,
+and exceed 10 /s around 105.5--121.5 Er. These are conditional on the measured
+noise and the assumed isotope/depth calibration, not universal boundaries.
+
+Earlier weaker crossings occur at 30.6 Er (0->4, 65 kHz) and 45 Er
+(0->4, 86 kHz). Near 10.3 Er the 0->6 gap reaches 86 kHz, but its small
+matrix element keeps the total rate small. Further features occur near
+125 Er (0->4, 175 kHz) and 143 Er (0->2, 100 kHz).
+
+Detuning scans
+--------------
+At fixed calibrated depth, linear noise heating scales as Delta^-2.
+Nonlinear down-conversion can break this scaling at small detuning:
+at 5 Er the red-detuned rates at 10, 5 and 2 MHz are approximately
+0.00073, 0.0055 and 0.17 /s; at 10 Er they are 0.0053, 0.0266 and 0.44 /s.
+Treat the 2--5 MHz region as provisional, not a safe operating prediction.
+
+At fixed optical power, depth also changes with detuning. This moves the
+band gaps across noise peaks, so increasing detuning need not give a
+monotonic improvement. Use measured depth and the map together.
+
+Close to resonance, optical spectral tails can cause direct scattering;
+an instantaneous inverse-detuning model does not capture this. At the
+deepest/shallowest-detuning combinations, weak optical excitation also
+becomes a poorer approximation. Zeeman or hyperfine components require
+their own detunings and dipole matrix elements.
+
+Separate geometric shaking term
+-------------------------------
+For atom-to-mirror optical distance L, tau=2*L/c. The incident and returning
+fields sample the same laser phase at different times. At f*tau << 1,
+    delta_x = L*delta_nu/nu_optical,
+    S_x = (L/nu_optical)^2*S_nu.
+The full-band perturbation uses sin(2*k*x) and excites odd bands at q=0.
+At 5 and 10 Er, the additional depletion rates are respectively
+8.4e-5 and 8.4e-4 /s * (L/1 metre)^2. This term does not fall with detuning
+when the lattice depth is held fixed. Mechanical mirror motion is excluded.
+
+Photon recoil and other omitted contributions
+---------------------------------------------
+For an isolated optical line with Gamma/(2*pi)=2 kHz, the antinode
+scattering scale is
+    Gamma_max = 2*pi*(2000 Hz)*(s*Er/h)/|Delta|.
+At |Delta|=10 MHz this gives 14--28 /s at 5--10 Er. The simple standing-wave
+model gives total mechanical recoil heating of order Er*Gamma_max, or
+14--28 Er/s (1.5--3.0 microkelvin/s in energy/kB). This is a separate
+single-line scale, not a full multilevel Dy or thermalization calculation.
+Blue-node suppression of local scattering cannot simply be applied to
+total recoil heating; momentum diffusion of a standing wave matters.
+
+Unmeasured resonant optical tails can add scattering. The I/Q Nyquist limit
+is 7.68 MHz, so these records do not bound optical power at an atomic
+resonance 10 MHz away. Measurement noise also must not be mistaken for
+optical spectral power. Many-body heating through fluctuating tunneling
+and interactions, classical intensity noise, other lattice axes, envelope
+forces, rare long-term drift/slips, and subsequent collisions are excluded.
+
+Experimental consistency checks
+------------------------------
+1. Prepare the ground band, vary hold time, then band-map. At short times
+   excited fraction should grow as R_out*t. Measure total number separately:
+   high-band atoms can escape before thermalizing, leaving little change in
+   the temperature of the retained cloud.
+2. Calibrate gaps with a weak optical-frequency modulation scan. At fixed
+   pulse duration and weak excitation, response scales as modulation
+   amplitude squared; a coherent pulse initially gives probability ~t^2,
+   not a stochastic constant rate. Use the actual modulation measured in I/Q,
+   not the commanded DAC amplitude, because the feedback loop filters it.
+3. Scan lattice depth at fixed detuning through predicted noise resonances.
+   Band gaps and heating peaks should track the map; the primary allowed
+   depth-noise transition at 5/10 Er is 11.7/17.4 kHz, respectively.
+4. At fixed depth, double detuning and remeasure RF noise. Technical depth
+   heating should fall roughly fourfold (with nonlinear corrections), while
+   the isolated-line recoil scale falls about twofold. Geometric shaking
+   does not change at fixed depth.
+5. Compare loop settings at identical depth/detuning. Changes should follow
+   the weighted PSD at band gaps, not total phase RMS or carrier linewidth.
+6. Compare fluorescence/recoil, band populations, cloud energy and atom loss
+   as different observables. Density dependence can identify collisional or
+   many-body contributions that this single-particle model omits.
+
+Primary references
+------------------
+Savard et al.: https://jet.physics.ncsu.edu/publications/pdf/LaserNoise.pdf
+Gehm et al.: https://doi.org/10.1103/PhysRevA.58.3914
+Grimm et al.: https://arxiv.org/abs/physics/9902072
+Kao et al., Dy polarizability: https://doi.org/10.1364/OE.25.003411
+Gerbier and Castin, recoil heating: https://arxiv.org/abs/1002.5018
+Pichler et al., many-body noise heating: https://arxiv.org/abs/1301.2803
+
+Reproduce from the project directory:
+    python ILAData/analyze_lattice_heating.py

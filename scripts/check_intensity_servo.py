@@ -23,7 +23,9 @@ def check_connections(hwh):
         a, b = (ports[module][pin.lower()] for module, pin in (source, sink))
         assert a['DIR'] == 'O' and b['DIR'] == 'I', (source, sink)
         assert a.get('SIGNAME') and a['SIGNAME'] == b.get('SIGNAME'), (source, sink, a, b)
-        assert (a.get('LEFT'), a.get('RIGHT')) == (b.get('LEFT'), b.get('RIGHT')), (source, sink)
+        # Vivado represents a scalar and a [0:0] vector differently in HWH.
+        width = lambda p: abs(int(p.get('LEFT', 0)) - int(p.get('RIGHT', 0))) + 1
+        assert width(a) == width(b), (source, sink)
         connections.append({'source': '/'.join(source), 'sink': '/'.join(sink), 'net': a['SIGNAME']})
 
     def stream(source, source_bus, sink, sink_bus):
@@ -36,7 +38,21 @@ def check_connections(hwh):
     linked(('dwell_fcw_streamer_32_0', 's_axis_cmd_tready'), ('axi_dma_6', 'm_axis_mm2s_tready'))
     linked(('dwell_fcw_streamer_32_0', 'fcw_out'), ('setpoint_switch_0', 'serial_setpoint'))
     linked(('setpoint_switch_0', 'setpoint_out'), ('fast_servo_controller_0', 'set_point'))
-    linked(('fast_servo_controller_0', 'dac_out'), ('sync_axis_power_mod_0', 'sync_in'))
+    if 'intensity_probe_0' in modules:
+        linked(('fast_servo_controller_0', 'dac_out'), ('intensity_probe_0', 'controller_command'))
+        linked(('intensity_probe_0', 'command_out'), ('sync_axis_power_mod_0', 'sync_in'))
+        linked(('iq_split_0', 'adc_bus'), ('intensity_probe_0', 'adc_bus'))
+        linked(('iq_split_0', 'm_axis_i_tvalid'), ('intensity_probe_0', 'adc_valid'))
+        linked(('pll_fra_one', 'dout'), ('intensity_probe_0', 'dac_ready'))
+        ready = {p.get('NAME'): p.get('VALUE') for p in modules['pll_fra_one'].findall('./PARAMETERS/PARAMETER')}
+        assert int(ready['CONST_VAL'], 0) == 1 and int(ready['CONST_WIDTH']) == 1
+        stream('intensity_probe_0', 'm_axis', 'intensity_fifo', 's_axis')
+        stream('intensity_fifo', 'm_axis', 'intensity_dma', 's_axis_s2mm')
+        params={p.get('NAME'):p.get('VALUE') for p in modules['xlconstant_2'].findall('./PARAMETERS/PARAMETER')}
+        assert int(params['CONST_VAL'], 0) == 0
+        assert ports['sync_axis_power_mod_0']['open_loop_toggle']['SIGNAME'] == ports['xlconstant_2']['dout']['SIGNAME']
+    else:
+        linked(('fast_servo_controller_0', 'dac_out'), ('sync_axis_power_mod_0', 'sync_in'))
     stream('sync_axis_power_mod_0', 'm_axis', 'usp_rf_data_converter_0', 's03_axis')
     linked(('axi_gpio_12', 'gpio_io_o'), ('axis_power_mod_0', 'async_in'))
     stream('axis_power_mod_0', 'm_axis', 'cordic_1', 's_axis_cartesian')

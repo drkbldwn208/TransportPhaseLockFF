@@ -1,0 +1,134 @@
+ADF4108 versus FPGA short I/Q captures, 2026-10-14
+================================================
+
+Run: python ILAData/compare_pll_fpga_iq.py
+Outputs: pll_fpga_iq_comparison.json, pll_fpga_iq_spectra.npz, and three PNG/PDF pairs.
+
+Conditions
+----------
+PLL: laser_iq_PLL_shortest_0...9.npz, physical beat 1000 MHz, FPGA reference
+966.08 MHz. User confirms FRA off; analog settings believed unchanged.
+FPGA: previous laser_iq_FPGA_shortest_0...9.npz, beat/reference 800 MHz,
+8x FPGA tracking gain, FRA off. The captures are not simultaneous.
+Both: 262144 samples at 15.36 MS/s, 17.0667 ms each, monitor decimation D=4.
+The measured mean I/Q magnitude is approximately 11276 ADC counts for PLL
+versus 1153 for FPGA. Normalizing fractional amplitude removes the scale,
+but these are not a controlled same-carrier, same-input-power detector swap.
+
+Mixer image: confirmed measurement artifact
+------------------------------------------
+Real ADC sample rate = 1966.08 MHz. A physical 1000 MHz tone is in the
+second Nyquist zone and folds to 966.08 MHz. The reference setting is correct.
+Its measured phase has the opposite sign to physical beat phase; the analysis
+reverses this sign for cross-spectral phase comparisons.
+
+The unwanted mixing term is at 1966.08 - 2*966.08 = +33.92 MHz. The existing
+32-tap low-latency FIR passes it with relative amplitude 0.964095. The monitor
+16-point mean at 245.76 MS/s attenuates it to 0.0905582, then decimation aliases
+it to +3.2 MHz. Total predicted image amplitude relative to the desired carrier:
+0.0873067. First-order spurious fractional AM RMS: 0.0617352 (6.17%).
+
+Directly fitting the separated image to the complex conjugate of the desired
+carrier gives amplitude ratios 0.08713...0.08730 in quiet PLL records. This
+agreement identifies the feature as a DDC image, not independent optical AM.
+Observed original broadband fractional AM is 6.58% RMS for resolved PLL
+captures, versus 2.41% for FPGA. That comparison is dominated by the image.
+
+Processing
+----------
+Both datasets receive the same eighth-order Butterworth complex low-pass,
+2 MHz cutoff, forward/backward (offline, zero phase). No new decimation.
+Trim 4096 samples at each end, then extract amplitude and unwrap phase at
+15.36 MS/s. Do not take slow boxcar-averaged I/Q and unwrap it: that earlier
+procedure produced false winding counts. The present filter preserves the
+desired complex envelope while rejecting the spectrally separated image.
+
+Varying the offline cutoff from 1.5 to 2.3 MHz changes the reported phase RMS
+by <0.04% and fractional AM RMS by <5% in the three bands. These are processing
+sensitivity checks, not an absolute optical calibration or detector-floor test.
+
+Phase = physical beat phase relative to its reference. Fractional amplitude
+a = abs(I+jQ)/mean(abs(I+jQ)) - 1. This is RF beat-voltage AM, not optical RIN.
+Welch: Hann, 65536 samples, 50% overlap, 234.375 Hz bins. Six segments remain
+per trimmed record. Only a segment mean is removed; no linear phase drift
+subtraction. Records are analyzed separately and their spectra averaged.
+Check: manual FFT normalization and CSD agree with SciPy welch/csd.
+
+Cross PSD C = mean(conj(FFT(a))*FFT(phi)). Average complex cross spectra before
+taking their magnitude. Magnitude-squared coherence = |C|^2/(S_aa*S_phi_phi).
+It is unchanged by phase-to-frequency differentiation or a phase sign reversal.
+It measures linear association, not the direction or physical source of coupling.
+
+Quality and subsets
+-------------------
+PLL record 1 has deep I/Q minima and adjacent phase steps close to pi. Its
+unwrapped excursion cannot be trusted and it is excluded from phase/CSD means.
+This does not establish an optical-intensity dropout: off-frequency motion and
+the measurement transfer function can also cause the recorded I/Q to collapse.
+The other nine PLL records have strong magnitude and resolved phase steps.
+
+PLL records 2,4,5,6,7 show persistent phase winding, roughly 1,7,43,5,1 turns
+between endpoint averages. This is relative beat/reference phase; the data
+alone cannot identify which laser/reference caused it. Records 0,3,8,9 form a
+quiet subset: the 5 kHz low-pass phase spans less than one turn, with 1 ms edge
+guards. All ten FPGA records meet that criterion. The full nine-record PLL
+results are retained alongside the conditional four-record comparison.
+
+Band results after image rejection
+----------------------------------
+Band          FPGA phase RMS   PLL quiet phase RMS   FPGA AM RMS   PLL quiet AM RMS
+1-10 kHz      0.07665 rad      0.34517 rad           0.1258%       0.1018%
+10-100 kHz    1.14732 rad      0.72359 rad           0.2758%       0.2520%
+100k-1 MHz    0.69836 rad      0.70484 rad           0.8309%       0.7933%
+
+Thus FPGA has 13.1 dB less integrated phase-noise power at 1-10 kHz than the
+quiet PLL subset, but 4.0 dB more at 10-100 kHz; 100k-1 MHz is essentially equal.
+Including all nine resolved PLL records raises its 1-10 kHz phase RMS to
+0.96623 rad (22.0 dB more integrated power than FPGA). No overall linewidth
+or causal detector advantage is inferred from these nonidentical conditions.
+
+AM-phase correlation
+--------------------
+For a band, define phase-weighted coherence
+F = integral(|C|^2/S_aa) / integral(S_phi_phi).
+This has finite-sample positive bias and is NOT a measured causal AM->PM fraction.
+
+Band          FPGA F   PLL (9) F   PLL quiet (4) F
+1-10 kHz      0.1602   0.0932      0.1683
+10-100 kHz    0.1914   0.0253      0.0509
+100k-1 MHz    0.1249   0.0594      0.0803
+
+Mismatch complete amplitude and phase records (300 random derangements) as a
+control for chance correlation. The 95th-percentile mismatched values are:
+Band          FPGA    PLL (9)    PLL quiet (4)
+1-10 kHz      0.0453   0.0372     0.1580
+10-100 kHz    0.0210   0.0225     0.0519
+100k-1 MHz    0.0213   0.0207     0.0439
+
+FPGA correlation around 65/86/175 kHz survives this control. PLL has some
+correlation, particularly outside 10-100 kHz, but no demonstrated larger
+broadband normalized correlation. Low-frequency quiet-PLL statistics are
+limited by only four independent records and common spectral lines. Do not
+interpret bootstrap-resampled coherence as an unbiased confidence interval;
+the stored bootstrap intervals apply only to RMS phase and amplitude.
+
+Absolute cross PSD can be larger for PLL at low frequency simply because its
+phase noise is much larger. That does not by itself imply stronger AM sensitivity.
+Possible shared causes include laser dynamics, actuator-induced AM, reference
+noise, photodetection/RF conversion, and imperfect I/Q filtering. Coherence
+cannot distinguish AM->PM from PM->AM or a shared disturbance inside feedback.
+
+Controlled next measurement
+--------------------------
+For causal AM->PM sensitivity, apply small known AM to the detector-only RF
+branch and observe the induced optical beat phase with an independent I/Q
+monitor. Measure several frequencies; calibrate any phase modulation generated
+by the AM modulator itself. A same-frequency, same-RF-power A/B detector swap
+would make the present passive-noise comparison much more discriminating.
+
+References for spectral conventions
+----------------------------------
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.csd.html
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.coherence.html
+Input detector context, not a measured AM-PM coefficient:
+https://www.analog.com/media/en/technical-documentation/data-sheets/ADF4108.pdf

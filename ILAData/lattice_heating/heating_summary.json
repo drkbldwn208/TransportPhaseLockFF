@@ -1,0 +1,827 @@
+{
+  "assumptions": [
+    "162Dy, 741 nm, reference laser noiseless and RF phase a faithful optical phase measurement.",
+    "Initially lowest Bloch band, q=0 unless explicitly uniform q; one noninteracting lattice axis.",
+    "Mean depth calibrated; isolated optical resonance, fixed intensity; detuning=laser minus atomic resonance.",
+    "Quasistatic nonlinear conversion U/Umean from Delta/(Delta+delta_nu); not an optical scattering model.",
+    "1 MHz offline low-pass before nonlinear conversion; 0.5 and 2 MHz sensitivity checks at -10 MHz.",
+    "Mean PSD of ten independent 17 ms captures; no receiver noise-floor subtraction or response correction.",
+    "2\u20135 MHz results provisional: optical resonant tails, response corrections, larger excursions matter.",
+    "No lifetime prediction: finite envelope, interactions, collisions, occupation and recapture are unspecified."
+  ],
+  "recoil_hz": 2242.9805406346636,
+  "recoil_uK": 0.1076460882333613,
+  "frequency_rms_hz": [
+    196925.10013153896,
+    218922.71714097276,
+    215588.77043426823,
+    203974.6101361867,
+    203181.11919541057,
+    196742.67769700597,
+    213350.30082141937,
+    212813.55214535544,
+    240138.1109315943,
+    174783.03588037207
+  ],
+  "psd_bin_hz": 468.75,
+  "psd_smoothing_fwhm_hz": 1103.8218961082575,
+  "harmonic_white_noise_normalization_ratio": 0.9924262125113691,
+  "optical_response_checks": [
+    {
+      "record": 0,
+      "detuning_hz": -10000000.0,
+      "depth_er": 5.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0019194222680883
+    },
+    {
+      "record": 0,
+      "detuning_hz": -10000000.0,
+      "depth_er": 10.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0004419255940877
+    },
+    {
+      "record": 0,
+      "detuning_hz": -10000000.0,
+      "depth_er": 65.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0001307868346538
+    },
+    {
+      "record": 0,
+      "detuning_hz": -10000000.0,
+      "depth_er": 108.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0002448962092312
+    },
+    {
+      "record": 0,
+      "detuning_hz": 10000000.0,
+      "depth_er": 5.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0018024692059597
+    },
+    {
+      "record": 0,
+      "detuning_hz": 10000000.0,
+      "depth_er": 10.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.000522003202424
+    },
+    {
+      "record": 0,
+      "detuning_hz": 10000000.0,
+      "depth_er": 65.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0001704498265505
+    },
+    {
+      "record": 0,
+      "detuning_hz": 10000000.0,
+      "depth_er": 108.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.000264720000726
+    },
+    {
+      "record": 3,
+      "detuning_hz": -10000000.0,
+      "depth_er": 5.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0005994679037293
+    },
+    {
+      "record": 3,
+      "detuning_hz": -10000000.0,
+      "depth_er": 10.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0002719035301748
+    },
+    {
+      "record": 3,
+      "detuning_hz": -10000000.0,
+      "depth_er": 65.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0001209571498566
+    },
+    {
+      "record": 3,
+      "detuning_hz": -10000000.0,
+      "depth_er": 108.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.000292129465712
+    },
+    {
+      "record": 3,
+      "detuning_hz": 10000000.0,
+      "depth_er": 5.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0001626841826567
+    },
+    {
+      "record": 3,
+      "detuning_hz": 10000000.0,
+      "depth_er": 10.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.00006936435988
+    },
+    {
+      "record": 3,
+      "detuning_hz": 10000000.0,
+      "depth_er": 65.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0001867076715605
+    },
+    {
+      "record": 3,
+      "detuning_hz": 10000000.0,
+      "depth_er": 108.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0002837814037533
+    },
+    {
+      "record": 8,
+      "detuning_hz": -10000000.0,
+      "depth_er": 5.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0034891754251614
+    },
+    {
+      "record": 8,
+      "detuning_hz": -10000000.0,
+      "depth_er": 10.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0010806844822724
+    },
+    {
+      "record": 8,
+      "detuning_hz": -10000000.0,
+      "depth_er": 65.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0001452516625908
+    },
+    {
+      "record": 8,
+      "detuning_hz": -10000000.0,
+      "depth_er": 108.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0002580000935613
+    },
+    {
+      "record": 8,
+      "detuning_hz": 10000000.0,
+      "depth_er": 5.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0032286591109834
+    },
+    {
+      "record": 8,
+      "detuning_hz": 10000000.0,
+      "depth_er": 10.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.0008313618303222
+    },
+    {
+      "record": 8,
+      "detuning_hz": 10000000.0,
+      "depth_er": 65.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.000183884146919
+    },
+    {
+      "record": 8,
+      "detuning_hz": 10000000.0,
+      "depth_er": 108.0,
+      "optical_response_to_quasistatic_rate_ratio": 1.000281575487032
+    }
+  ],
+  "sources": [
+    {
+      "source": "laser_iq_FPGA_shortest_0.npz",
+      "sha256": "f4cfb8b5755aa1b31c71f216e3bfce1f978360ea6eeb53bdf611f27d82668232",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -850073.6319225571,
+        902957.122818243
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_1.npz",
+      "sha256": "d290666428be44256dc7023d73d622860f84734e6b4683058088f00b2365b7bf",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -776729.689053144,
+        925288.2541891225
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_2.npz",
+      "sha256": "817b3eb45343a02cfcd3b61dac4261fa67fab58f616ce7cc631a4bad5a96c83b",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -859504.280107942,
+        990040.9171066973
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_3.npz",
+      "sha256": "797794a1340e3a03a31a0f28f501e0faea469ace84c09c5657fc9796a1311da7",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -898739.7102291539,
+        1108259.808439109
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_4.npz",
+      "sha256": "6441f2820c290be5ad9927720877682b0644238568f44770a141ed38cb183f7f",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -797627.6954621208,
+        961338.0273929834
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_5.npz",
+      "sha256": "f56907393c18af317523a16420518fcc3a98678d3a6e7d5e96f3542e87808ee7",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -688440.7737213613,
+        1064626.6234940616
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_6.npz",
+      "sha256": "f951a43e7c46b6024c076cc38c1cd969e8cca42df3bc501b9f3f19c7581920d7",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -846540.2039285623,
+        1042290.3084809361
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_7.npz",
+      "sha256": "cf590e6696ac31f189d3b2a5c80762b3f7c8f31e562c69d30620a5c7cc85a5c8",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -808885.3820816545,
+        1024557.6408267025
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_8.npz",
+      "sha256": "bbacbb6192d3d47ecbb1743c6d61437c53b625f4a05cd6dd426f79651492a8e1",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -1134351.0929601642,
+        1137609.6456290002
+      ]
+    },
+    {
+      "source": "laser_iq_FPGA_shortest_9.npz",
+      "sha256": "f90f5c10d9c006de60313ae1d890333632684bf83cfd3f45695679c3ddce166e",
+      "sample_rate_hz": 15360000.0,
+      "duration_s": 0.017066666666666667,
+      "filtered_frequency_min_max_hz": [
+        -718884.1536561205,
+        882523.1939093895
+      ]
+    }
+  ],
+  "table_at_10mhz": [
+    {
+      "depth_er": 5.0,
+      "gaps_hz": [
+        10209.794159384253,
+        11733.065729079632,
+        37530.50896702452,
+        37535.21281630153,
+        82325.36535533403,
+        82325.36651289566,
+        145106.54964753226,
+        145106.54964759643,
+        225843.73185999886,
+        225843.731859999,
+        324529.4287776868,
+        324529.42877768725
+      ],
+      "linear_depth_noise": {
+        "ground_band_depletion_per_s": 0.0004877544104253248,
+        "initial_energy_er_per_s": 0.007121042480283914,
+        "energy_over_kB_uK_per_s": 0.0007665523671461562
+      },
+      "nonlinear_red": {
+        "ground_band_depletion_per_s": 0.000731699278261928,
+        "initial_energy_er_per_s": 0.008286187354733385,
+        "energy_over_kB_uK_per_s": 0.0008919756551057927
+      },
+      "nonlinear_blue": {
+        "ground_band_depletion_per_s": 0.00061873815640216,
+        "initial_energy_er_per_s": 0.008085613619924492,
+        "energy_over_kB_uK_per_s": 0.0008703846771512597
+      },
+      "nonlinear_red_band_rates_per_s": [
+        1.1906007923011955e-34,
+        0.0003467725711748879,
+        5.006685989276247e-26,
+        0.00038339238746153126,
+        2.6451706498279857e-21,
+        1.5339478879445226e-06,
+        7.630248029453244e-18,
+        3.717013606138011e-10,
+        1.7930595083027367e-14,
+        1.8263540478892726e-14,
+        9.351738229357735e-19,
+        9.3517386363314e-19
+      ],
+      "nonlinear_red_record_min_max_per_s": [
+        0.0002911632224605738,
+        0.0034109692459873956
+      ],
+      "nonlinear_red_uniform_q_mean_per_s": 0.000789946304947474,
+      "nonlinear_red_q_min_max_per_s": [
+        0.0006556885743997682,
+        0.0009760008535141672
+      ],
+      "nonlinear_red_analysis_cutoff_check_per_s": {
+        "500000": 0.0006958619734242981,
+        "2000000": 0.0007362839525765061
+      },
+      "geometric_shaking_per_mirror_distance_m_squared": {
+        "ground_band_depletion_per_s": 8.373470572932068e-05,
+        "initial_energy_er_per_s": 0.0012329361219135485,
+        "energy_over_kB_uK_per_s": 0.00013272075056560415
+      },
+      "isolated_line_antinode_scattering_per_s": 14.093062377205444,
+      "isolated_line_standing_wave_recoil_er_per_s": 14.093062377205444
+    },
+    {
+      "depth_er": 10.0,
+      "gaps_hz": [
+        12662.864866922415,
+        17419.254750801458,
+        41154.01785153747,
+        41226.8672586375,
+        85777.21746731314,
+        85777.29098361176,
+        148491.38615534894,
+        148491.38617173154,
+        229198.18295319643,
+        229198.18295319768,
+        327867.5317218846,
+        327867.53172188497
+      ],
+      "linear_depth_noise": {
+        "ground_band_depletion_per_s": 0.004891153785916564,
+        "initial_energy_er_per_s": 0.10473866250160334,
+        "energy_over_kB_uK_per_s": 0.011274707305091844
+      },
+      "nonlinear_red": {
+        "ground_band_depletion_per_s": 0.0053426870536351775,
+        "initial_energy_er_per_s": 0.10699322314961197,
+        "energy_over_kB_uK_per_s": 0.011517401939534846
+      },
+      "nonlinear_blue": {
+        "ground_band_depletion_per_s": 0.005212967519922545,
+        "initial_energy_er_per_s": 0.10938514166033064,
+        "energy_over_kB_uK_per_s": 0.011774882610586677
+      },
+      "nonlinear_red_band_rates_per_s": [
+        7.589499886579145e-34,
+        0.0012709146394094854,
+        2.504071722147139e-27,
+        0.0029499688836480313,
+        8.525400473166009e-22,
+        0.001121770250976658,
+        1.3712534081698363e-18,
+        3.326619969733019e-08,
+        6.643548493316268e-14,
+        1.3332315662521931e-11,
+        1.2767880757723951e-15,
+        1.2770996822128058e-15
+      ],
+      "nonlinear_red_record_min_max_per_s": [
+        0.0026733865970780717,
+        0.018554772145699158
+      ],
+      "nonlinear_red_uniform_q_mean_per_s": 0.006143552059787891,
+      "nonlinear_red_q_min_max_per_s": [
+        0.004569597807096042,
+        0.009597103961132078
+      ],
+      "nonlinear_red_analysis_cutoff_check_per_s": {
+        "500000": 0.005278495100823528,
+        "2000000": 0.005352452987793738
+      },
+      "geometric_shaking_per_mirror_distance_m_squared": {
+        "ground_band_depletion_per_s": 0.0008437469523564482,
+        "initial_energy_er_per_s": 0.01806614648369756,
+        "energy_over_kB_uK_per_s": 0.0019447499984209377
+      },
+      "isolated_line_antinode_scattering_per_s": 28.186124754410887,
+      "isolated_line_standing_wave_recoil_er_per_s": 28.186124754410887
+    },
+    {
+      "depth_er": 20.0,
+      "gaps_hz": [
+        17718.439284614222,
+        29717.59855037154,
+        50351.023714833274,
+        51356.69038895947,
+        94561.62117921203,
+        94566.18145318258,
+        157006.14042051777,
+        157006.1445649596,
+        237590.88811455248,
+        237590.88811581186,
+        336194.73083356116,
+        336194.73083356157
+      ],
+      "linear_depth_noise": {
+        "ground_band_depletion_per_s": 0.056595413949646206,
+        "initial_energy_er_per_s": 1.237311229569057,
+        "energy_over_kB_uK_per_s": 0.13319171379031947
+      },
+      "nonlinear_red": {
+        "ground_band_depletion_per_s": 0.056392278514901084,
+        "initial_energy_er_per_s": 1.226903174072527,
+        "energy_over_kB_uK_per_s": 0.13207132733000226
+      },
+      "nonlinear_blue": {
+        "ground_band_depletion_per_s": 0.05840895605721086,
+        "initial_energy_er_per_s": 1.2722500326438964,
+        "energy_over_kB_uK_per_s": 0.13695273926888166
+      },
+      "nonlinear_red_band_rates_per_s": [
+        2.683082649295701e-35,
+        0.013029714571557521,
+        1.1184739496131125e-28,
+        0.04017629907879357,
+        5.970297524788733e-25,
+        0.0031850904333505414,
+        8.527397852528249e-22,
+        1.1727918518909785e-06,
+        3.979676040722019e-17,
+        1.6375812490945177e-09,
+        5.628857130033253e-13,
+        1.2033839661653204e-12
+      ],
+      "nonlinear_red_record_min_max_per_s": [
+        0.026154244185942456,
+        0.16521217487791431
+      ],
+      "nonlinear_red_uniform_q_mean_per_s": 0.056401325172975865,
+      "nonlinear_red_q_min_max_per_s": [
+        0.04196302922076808,
+        0.07370894658629501
+      ],
+      "nonlinear_red_analysis_cutoff_check_per_s": {
+        "500000": 0.0564969778481985,
+        "2000000": 0.05642087519741705
+      },
+      "geometric_shaking_per_mirror_distance_m_squared": {
+        "ground_band_depletion_per_s": 0.0091202740579115,
+        "initial_energy_er_per_s": 0.20018699179030286,
+        "energy_over_kB_uK_per_s": 0.021549346581430116
+      },
+      "isolated_line_antinode_scattering_per_s": 56.372249508821774,
+      "isolated_line_standing_wave_recoil_er_per_s": 56.372249508821774
+    },
+    {
+      "depth_er": 30.0,
+      "gaps_hz": [
+        22114.954098060476,
+        40171.69689322589,
+        60326.33481250055,
+        64172.56804211691,
+        104509.74383098354,
+        104558.95744074821,
+        166509.24032785493,
+        166509.3444457212,
+        246888.77261922913,
+        246888.77269115704,
+        345383.03224389366,
+        345383.03224391467
+      ],
+      "linear_depth_noise": {
+        "ground_band_depletion_per_s": 0.3626155624260682,
+        "initial_energy_er_per_s": 9.80544134710144,
+        "energy_over_kB_uK_per_s": 1.0555174044171307
+      },
+      "nonlinear_red": {
+        "ground_band_depletion_per_s": 0.358163922302337,
+        "initial_energy_er_per_s": 9.715901859515897,
+        "energy_over_kB_uK_per_s": 1.0458788288361274
+      },
+      "nonlinear_blue": {
+        "ground_band_depletion_per_s": 0.370004080030852,
+        "initial_energy_er_per_s": 9.96050969015258,
+        "energy_over_kB_uK_per_s": 1.072209904955415
+      },
+      "nonlinear_red_band_rates_per_s": [
+        9.174843907126412e-34,
+        0.05592222033870344,
+        8.303513744620761e-30,
+        0.298525161427272,
+        7.372486903412747e-27,
+        0.0037106914315933113,
+        8.676556448687876e-24,
+        5.822689409255763e-06,
+        2.2167430712850494e-19,
+        2.6361869365172208e-08,
+        9.78423927006373e-18,
+        5.348968614486473e-11
+      ],
+      "nonlinear_red_record_min_max_per_s": [
+        0.2442522484934405,
+        0.6175404280617979
+      ],
+      "nonlinear_red_uniform_q_mean_per_s": 0.1923893997796249,
+      "nonlinear_red_q_min_max_per_s": [
+        0.09139004597099758,
+        0.358163922302337
+      ],
+      "nonlinear_red_analysis_cutoff_check_per_s": {
+        "500000": 0.3590462496937318,
+        "2000000": 0.3582118991178624
+      },
+      "geometric_shaking_per_mirror_distance_m_squared": {
+        "ground_band_depletion_per_s": 0.04626837167662004,
+        "initial_energy_er_per_s": 1.1827939862730334,
+        "energy_over_kB_uK_per_s": 0.1273231458082361
+      },
+      "isolated_line_antinode_scattering_per_s": 84.55837426323265,
+      "isolated_line_standing_wave_recoil_er_per_s": 84.55837426323265
+    },
+    {
+      "depth_er": 50.0,
+      "gaps_hz": [
+        29284.24621032378,
+        55640.84588668849,
+        79752.05750104802,
+        93318.6933790598,
+        126395.31670785397,
+        127263.72608633366,
+        187165.88255882467,
+        187171.68869337367,
+        266875.0123271512,
+        266875.0238591694,
+        365015.1272540931,
+        365015.1272636022
+      ],
+      "linear_depth_noise": {
+        "ground_band_depletion_per_s": 1.0999428749201063,
+        "initial_energy_er_per_s": 28.92709837899662,
+        "energy_over_kB_uK_per_s": 3.1138889844405933
+      },
+      "nonlinear_red": {
+        "ground_band_depletion_per_s": 1.0757813496880442,
+        "initial_energy_er_per_s": 28.35426091513056,
+        "energy_over_kB_uK_per_s": 3.052225272261892
+      },
+      "nonlinear_blue": {
+        "ground_band_depletion_per_s": 1.1304904416215062,
+        "initial_energy_er_per_s": 29.665957441267707,
+        "energy_over_kB_uK_per_s": 3.193424272249845
+      },
+      "nonlinear_red_band_rates_per_s": [
+        7.637555267475148e-34,
+        0.9788173697936347,
+        1.4844751284860073e-30,
+        0.0944716131581222,
+        5.640194750050081e-29,
+        0.002448197810160039,
+        6.67247678108438e-27,
+        4.382431085230132e-05,
+        1.0371738677702232e-22,
+        3.4322449412701627e-07,
+        1.0796030308853424e-18,
+        1.3907807789753135e-09
+      ],
+      "nonlinear_red_record_min_max_per_s": [
+        0.7894004168108429,
+        1.936724401196972
+      ],
+      "nonlinear_red_uniform_q_mean_per_s": 1.082242696803272,
+      "nonlinear_red_q_min_max_per_s": [
+        1.0539383762010623,
+        1.1523518738774685
+      ],
+      "nonlinear_red_analysis_cutoff_check_per_s": {
+        "500000": 1.0800941908354078,
+        "2000000": 1.0760154350570332
+      },
+      "geometric_shaking_per_mirror_distance_m_squared": {
+        "ground_band_depletion_per_s": 0.048319395608953784,
+        "initial_energy_er_per_s": 0.913483136646873,
+        "energy_over_kB_uK_per_s": 0.09833288632717693
+      },
+      "isolated_line_antinode_scattering_per_s": 140.93062377205445,
+      "isolated_line_standing_wave_recoil_er_per_s": 140.93062377205445
+    },
+    {
+      "depth_er": 65.0,
+      "gaps_hz": [
+        33756.30500416585,
+        64786.210470092316,
+        92978.1106385034,
+        114052.31344705867,
+        143763.15348850712,
+        147008.31195750754,
+        203738.62096335925,
+        203782.62363424394,
+        282710.1307061113,
+        282710.28438019654,
+        380462.3477074541,
+        380462.3479248952
+      ],
+      "linear_depth_noise": {
+        "ground_band_depletion_per_s": 7.852675409576296,
+        "initial_energy_er_per_s": 227.33018862951582,
+        "energy_over_kB_uK_per_s": 24.47120554331953
+      },
+      "nonlinear_red": {
+        "ground_band_depletion_per_s": 7.838198911601883,
+        "initial_energy_er_per_s": 226.9249910011791,
+        "energy_over_kB_uK_per_s": 24.427587603667646
+      },
+      "nonlinear_blue": {
+        "ground_band_depletion_per_s": 7.89730190947832,
+        "initial_energy_er_per_s": 228.6095072288266,
+        "energy_over_kB_uK_per_s": 24.608919186139516
+      },
+      "nonlinear_red_band_rates_per_s": [
+        7.979316686956119e-33,
+        7.815264156633503,
+        1.1772876607252207e-29,
+        0.021510700843104948,
+        1.4462749171848674e-29,
+        0.0013497924885841168,
+        2.3640974226837975e-29,
+        7.323821272698528e-05,
+        3.0146170319005156e-25,
+        1.017793077851268e-06,
+        4.8703613724409785e-21,
+        5.630887186634434e-09
+      ],
+      "nonlinear_red_record_min_max_per_s": [
+        5.518457956499849,
+        12.311370362271202
+      ],
+      "nonlinear_red_uniform_q_mean_per_s": 7.84020021003767,
+      "nonlinear_red_q_min_max_per_s": [
+        7.838198911601883,
+        7.843720978276798
+      ],
+      "nonlinear_red_analysis_cutoff_check_per_s": {
+        "500000": 7.847720581695402,
+        "2000000": 7.839487614027477
+      },
+      "geometric_shaking_per_mirror_distance_m_squared": {
+        "ground_band_depletion_per_s": 0.18444724122790532,
+        "initial_energy_er_per_s": 5.169625846350018,
+        "energy_over_kB_uK_per_s": 0.5564899999896592
+      },
+      "isolated_line_antinode_scattering_per_s": 183.20981090367073,
+      "isolated_line_standing_wave_recoil_er_per_s": 183.20981090367073
+    },
+    {
+      "depth_er": 108.0,
+      "gaps_hz": [
+        44251.93374037118,
+        85943.66854636058,
+        124783.93883875164,
+        160068.50352824436,
+        192841.6251168615,
+        212467.29958927672,
+        255076.1281785616,
+        256839.4506329991,
+        331152.9634251615,
+        331174.1183251689,
+        427161.56946737116,
+        427161.65815129015
+      ],
+      "linear_depth_noise": {
+        "ground_band_depletion_per_s": 27.240638313119934,
+        "initial_energy_er_per_s": 1044.1149072291546,
+        "energy_over_kB_uK_per_s": 112.39488542935743
+      },
+      "nonlinear_red": {
+        "ground_band_depletion_per_s": 27.2604877982996,
+        "initial_energy_er_per_s": 1044.8824689468945,
+        "energy_over_kB_uK_per_s": 112.47751044574981
+      },
+      "nonlinear_blue": {
+        "ground_band_depletion_per_s": 27.317858612393202,
+        "initial_energy_er_per_s": 1047.069830627279,
+        "energy_over_kB_uK_per_s": 112.71297137419477
+      },
+      "nonlinear_red_band_rates_per_s": [
+        1.2831133547977008e-31,
+        27.250218673544477,
+        6.412206383870233e-30,
+        0.009910678729707752,
+        2.7219881565806635e-30,
+        0.00026114232430905857,
+        6.110762402581075e-30,
+        9.166884764407871e-05,
+        1.2920318443428373e-29,
+        5.618273495158899e-06,
+        1.3326230988150313e-26,
+        1.657996869939196e-08
+      ],
+      "nonlinear_red_record_min_max_per_s": [
+        18.197854372507674,
+        34.43997407577075
+      ],
+      "nonlinear_red_uniform_q_mean_per_s": 27.26776974365735,
+      "nonlinear_red_q_min_max_per_s": [
+        27.2604877982996,
+        27.275043055223744
+      ],
+      "nonlinear_red_analysis_cutoff_check_per_s": {
+        "500000": 27.262381336567096,
+        "2000000": 27.265679525501664
+      },
+      "geometric_shaking_per_mirror_distance_m_squared": {
+        "ground_band_depletion_per_s": 0.8291042963873149,
+        "initial_energy_er_per_s": 17.19230550111393,
+        "energy_over_kB_uK_per_s": 1.8506844349078129
+      },
+      "isolated_line_antinode_scattering_per_s": 304.4101473476376,
+      "isolated_line_standing_wave_recoil_er_per_s": 304.4101473476376
+    }
+  ],
+  "nominal_noise_peak_band_crossings": [
+    {
+      "noise_peak_hz": 65000.0,
+      "final_band": 2,
+      "depth_er": 65.37734458742912
+    },
+    {
+      "noise_peak_hz": 65000.0,
+      "final_band": 4,
+      "depth_er": 30.595160280979556
+    },
+    {
+      "noise_peak_hz": 86000.0,
+      "final_band": 2,
+      "depth_er": 108.12953226717457
+    },
+    {
+      "noise_peak_hz": 86000.0,
+      "final_band": 4,
+      "depth_er": 45.00718312285204
+    },
+    {
+      "noise_peak_hz": 86000.0,
+      "final_band": 6,
+      "depth_er": 10.282891089335488
+    },
+    {
+      "noise_peak_hz": 100000.0,
+      "final_band": 2,
+      "depth_er": 142.7775911713784
+    },
+    {
+      "noise_peak_hz": 100000.0,
+      "final_band": 4,
+      "depth_er": 54.657068382142185
+    },
+    {
+      "noise_peak_hz": 100000.0,
+      "final_band": 6,
+      "depth_er": 25.55438098771425
+    },
+    {
+      "noise_peak_hz": 175000.0,
+      "final_band": 4,
+      "depth_er": 125.31288293105237
+    },
+    {
+      "noise_peak_hz": 175000.0,
+      "final_band": 6,
+      "depth_er": 83.85988085869397
+    }
+  ],
+  "strongest_rate_maxima_at_minus_10mhz": [
+    {
+      "depth_er": 109.5,
+      "rate_per_s": 30.802382389928542
+    },
+    {
+      "depth_er": 143.5,
+      "rate_per_s": 18.551900285035025
+    },
+    {
+      "depth_er": 126.5,
+      "rate_per_s": 8.900107224062332
+    },
+    {
+      "depth_er": 65.5,
+      "rate_per_s": 7.877667861145927
+    },
+    {
+      "depth_er": 81.0,
+      "rate_per_s": 2.830220836186763
+    },
+    {
+      "depth_er": 91.0,
+      "rate_per_s": 2.309819074814094
+    }
+  ],
+  "references": [
+    "https://jet.physics.ncsu.edu/publications/pdf/LaserNoise.pdf",
+    "https://doi.org/10.1103/PhysRevA.58.3914",
+    "https://doi.org/10.1364/OE.25.003411",
+    "https://arxiv.org/abs/physics/9902072",
+    "https://arxiv.org/abs/1002.5018",
+    "https://arxiv.org/abs/1301.2803"
+  ]
+}

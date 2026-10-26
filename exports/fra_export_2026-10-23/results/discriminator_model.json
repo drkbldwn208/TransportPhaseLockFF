@@ -1,0 +1,37 @@
+{
+  "kind": "Assumed flat phase gain plus delay; not measured RF-PM",
+  "gain_codes_per_rad": 260.76045348015566,
+  "nominal_gain_v_per_rad_for_2vpp": 0.007957777510991079,
+  "sign": "Positive E for increasing beat-minus-reference phase; analog sign separate",
+  "post_iq_clocks": 15,
+  "post_iq_delay_s": 6.103515625e-08,
+  "components_clocks": {
+    "cordic": 7,
+    "phase_subtraction": 1,
+    "tracking": 6,
+    "handoff": 1
+  },
+  "input_units": "rad",
+  "output_units": "DAC codes",
+  "fixtures": [
+    {
+      "source": "data/loopback/loopback_mixer_20261013_192701_849567.csv",
+      "loopback_delay_s": 1.9428281572445075e-07,
+      "total_delay_s": 2.553179719744507e-07,
+      "phase_lag_at_crossover_deg": -4.111604116754586
+    },
+    {
+      "source": "data/loopback/loopback_rf_20261013_194213_316127.csv",
+      "loopback_delay_s": 1.8901869066894384e-07,
+      "total_delay_s": 2.5005384691894384e-07,
+      "phase_lag_at_crossover_deg": -4.0268313994955784
+    }
+  ],
+  "assumptions": [
+    "Recorded 4x tracking slope, fixed gain, no clipping, IIR bypassed.",
+    "90 MHz envelope delay is used as a proxy for phase-response delay.",
+    "DAC formatter/acceptance and receive mixer/FIR already included in loopback.",
+    "Converter reset alignment, carrier, fixtures and AM/PM differences unverified.",
+    "No frequency-to-phase integrator included; add it once if plant output is Hz."
+  ]
+}

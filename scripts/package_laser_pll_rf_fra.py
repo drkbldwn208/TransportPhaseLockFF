@@ -87,7 +87,7 @@ def main():
     resources=dict(lut=counts[0],flip_flop=counts[4],bram_36_equivalent=counts[5]+counts[6]/2,dsp=counts[8])
 
     tests={
-        'control_python':('tests/test_laser_pll_control.py','Ran 23 tests'),
+        'control_python':('tests/test_laser_pll_control.py','Ran 24 tests'),
         'legacy_fra_python':('tests/test_laser_pll_loop_sweep.py','Ran 18 tests'),
         'phase_fra_python':('tests/test_laser_pll_phase_fra.py','Ran 6 tests'),
         'pll_rtl':('tests/test_laser_pll.py','ADC word -> DAC register latency: 18 clocks'),

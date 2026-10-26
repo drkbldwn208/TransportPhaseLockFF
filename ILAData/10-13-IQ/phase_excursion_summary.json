@@ -1,0 +1,57 @@
+{
+  "source": "10-13-IQ/laser_iq_FPGA.npz",
+  "sha256": "465010f60950e2fa4143a553daed247dfd2c804daceb373744dc45876caf06ba",
+  "conditions": "User confirmed 800 MHz beat and reference; FRA test tone off.",
+  "samples": 262144,
+  "sample_rate_hz": 240000.0,
+  "decimation_log2": 10,
+  "duration_s": 1.0922666666666667,
+  "apparent_phase_min_turns": -172.25813506292369,
+  "apparent_phase_max_turns": 5.620434076511442,
+  "apparent_phase_span_turns": 177.87856913943511,
+  "apparent_net_turns": -169.67462768199124,
+  "apparent_phase_span_rad": 1117.644012079027,
+  "apparent_first_two_turn_crossing_s": 0.04894166666666667,
+  "amplitude_median_adc_counts": 1019.8512679238638,
+  "amplitude_min_adc_counts": 3.7186392118476115,
+  "amplitude_fractional_std": 0.16485698722892667,
+  "fraction_amplitude_below_20_percent_median": 0.001682281494140625,
+  "phase_step_over_pi_half_fraction": 0.0961688849215886,
+  "phase_step_over_0p9pi_count": 1290,
+  "phase_step_max_rad": 3.1411226237489194,
+  "circular_spread_rad": 0.8964550520490857,
+  "five_ms_circular_spread_percentiles_rad": [
+    0.7926529838220734,
+    0.8627675782170992,
+    1.13157974043934,
+    1.357686476276628
+  ],
+  "extra_averaging_sensitivity": [
+    {
+      "extra_iq_average": 1,
+      "sample_rate_hz": 240000.0,
+      "apparent_span_turns": 177.87856913943514,
+      "apparent_net_turns": -169.67462768199124
+    },
+    {
+      "extra_iq_average": 2,
+      "sample_rate_hz": 120000.0,
+      "apparent_span_turns": 171.7512853427879,
+      "apparent_net_turns": 116.32539197058587
+    },
+    {
+      "extra_iq_average": 4,
+      "sample_rate_hz": 60000.0,
+      "apparent_span_turns": 118.91643882351943,
+      "apparent_net_turns": 94.20149509731465
+    }
+  ],
+  "limitations": [
+    "Apparent unwrap is not a verified physical cycle-slip count.",
+    "Decimation/complex averaging precedes atan2; high-frequency phase motion can be missed.",
+    "Low averaged amplitude may reflect cancellation from phase motion, not RF amplitude loss.",
+    "This separate record does not identify which ORed FRA saturation source fired.",
+    "Circular spread is not an unwrapped RMS phase measurement.",
+    "No drift subtraction or phase-noise integration used."
+  ]
+}

@@ -69,6 +69,20 @@ class Controls(unittest.TestCase):
         pll.enable(self.ol,False)
         self.assertEqual(self.ol.pll_control.values[0],value&~1)
 
+    def test_missing_overlay_control_preserves_operating_loop(self):
+        for name in ('pll_frequency', 'pll_control', 'pll_status', 'pll_acquisition',
+                     'pll_tracking', 'pll_monitor', 'pll_fra', 'pll_iir'):
+            with self.subTest(missing=name):
+                self.setUp()
+                controls=list(vars(self.ol).values())
+                control=self.ol.pll_control
+                control.values[0]=1
+                delattr(self.ol,name)
+                with self.assertRaisesRegex(ValueError, f'Overlay metadata is missing: {name}'):
+                    pll.configure(self.ol)
+                self.assertEqual(control.values[0],1)
+                self.assertTrue(all(not gpio.writes for gpio in controls))
+
     def test_signed_status_units(self):
         self.ol.pll_status.values[0]=(1<<19)|(1<<18)|((-65536)&0x3ffff)
         self.ol.pll_status.values[8]=(-1000)&0xffffffff

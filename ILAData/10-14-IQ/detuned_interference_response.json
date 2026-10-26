@@ -1,0 +1,130 @@
+{
+  "effective_cavity_detuning_hz": -10000000.0,
+  "cavity_intensity_fwhm_hz": 400000.0,
+  "input_spectra": "pll_fpga_iq_spectra.npz",
+  "method": "S_frequency(f) = f**2 * S_phase(f); first-order cavity transfer",
+  "assumptions": [
+    "Fixed density order parameter and atomic polarizability.",
+    "All measured beat phase noise belongs to pump; reference quiet.",
+    "Constant pump power; fixed atom-shifted cavity resonance.",
+    "No nonlinear frequency mixing or self-consistent atomic motion.",
+    "RMS values cover specified bands, not the entire optical spectrum.",
+    "Low-frequency estimates can miss downconversion of stronger fast noise."
+  ],
+  "groups": {
+    "FPGA": [
+      {
+        "band_hz": [
+          1000.0,
+          10000.0
+        ],
+        "frequency_rms_hz": 326.8136226184856,
+        "interference_depth_rms_fraction": 3.2655245017801206e-05,
+        "cavity_minus_pump_phase_rms_rad": 6.538015085125696e-07
+      },
+      {
+        "band_hz": [
+          10000.0,
+          100000.0
+        ],
+        "frequency_rms_hz": 84879.6531271607,
+        "interference_depth_rms_fraction": 0.008481723886401494,
+        "cavity_minus_pump_phase_rms_rad": 0.00018286670429050952
+      },
+      {
+        "band_hz": [
+          100000.0,
+          1000000.0
+        ],
+        "frequency_rms_hz": 192047.8730405885,
+        "interference_depth_rms_fraction": 0.019221581325823092,
+        "cavity_minus_pump_phase_rms_rad": 0.0008760888840038307
+      },
+      {
+        "band_hz": [
+          1000.0,
+          1000000.0
+        ],
+        "frequency_rms_hz": 209969.15931046885,
+        "interference_depth_rms_fraction": 0.02100975714080036,
+        "cavity_minus_pump_phase_rms_rad": 0.0008949706093886896
+      }
+    ],
+    "PLL": [
+      {
+        "band_hz": [
+          1000.0,
+          10000.0
+        ],
+        "frequency_rms_hz": 3270.723289865254,
+        "interference_depth_rms_fraction": 0.0003268109088922898,
+        "cavity_minus_pump_phase_rms_rad": 6.542166215530779e-06
+      },
+      {
+        "band_hz": [
+          10000.0,
+          100000.0
+        ],
+        "frequency_rms_hz": 32271.779205243518,
+        "interference_depth_rms_fraction": 0.003224721135693547,
+        "cavity_minus_pump_phase_rms_rad": 6.755153308308334e-05
+      },
+      {
+        "band_hz": [
+          100000.0,
+          1000000.0
+        ],
+        "frequency_rms_hz": 220520.06229270666,
+        "interference_depth_rms_fraction": 0.022065712049325104,
+        "cavity_minus_pump_phase_rms_rad": 0.0009424242072797556
+      },
+      {
+        "band_hz": [
+          1000.0,
+          1000000.0
+        ],
+        "frequency_rms_hz": 222892.94120157795,
+        "interference_depth_rms_fraction": 0.022302494928076785,
+        "cavity_minus_pump_phase_rms_rad": 0.0009448647501243457
+      }
+    ],
+    "PLL_quiet": [
+      {
+        "band_hz": [
+          1000.0,
+          10000.0
+        ],
+        "frequency_rms_hz": 952.6827211818737,
+        "interference_depth_rms_fraction": 9.519212041292809e-05,
+        "cavity_minus_pump_phase_rms_rad": 1.9054161821608827e-06
+      },
+      {
+        "band_hz": [
+          10000.0,
+          100000.0
+        ],
+        "frequency_rms_hz": 30508.538850787743,
+        "interference_depth_rms_fraction": 0.0030485410988503165,
+        "cavity_minus_pump_phase_rms_rad": 6.409401127183247e-05
+      },
+      {
+        "band_hz": [
+          100000.0,
+          1000000.0
+        ],
+        "frequency_rms_hz": 219274.59941272996,
+        "interference_depth_rms_fraction": 0.02194117977552651,
+        "cavity_minus_pump_phase_rms_rad": 0.000938176580771685
+      },
+      {
+        "band_hz": [
+          1000.0,
+          1000000.0
+        ],
+        "frequency_rms_hz": 221388.86262590188,
+        "interference_depth_rms_fraction": 0.02215215642580067,
+        "cavity_minus_pump_phase_rms_rad": 0.0009403653383659944
+      }
+    ]
+  }
+}

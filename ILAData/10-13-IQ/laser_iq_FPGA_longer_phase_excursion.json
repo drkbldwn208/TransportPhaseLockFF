@@ -1,0 +1,83 @@
+{
+  "source": "10-13-IQ/laser_iq_FPGA_longer.npz",
+  "sha256": "c6bfc6a49e6118b0fb29c1299d7330449ad16edd2674cb1161d8c3b72eed753b",
+  "conditions": "Previous record: user confirmed 800 MHz beat/reference and FRA off. Other records assumed to use that setup; NPZ does not save these settings.",
+  "samples": 262144,
+  "sample_rate_hz": 60000.0,
+  "decimation_log2": 12,
+  "duration_s": 4.369066666666667,
+  "apparent_phase_min_turns": -12.649286255936005,
+  "apparent_phase_max_turns": 475.52651096584526,
+  "apparent_phase_span_turns": 488.1757972217813,
+  "apparent_net_turns": 473.9207842550836,
+  "apparent_phase_span_rad": 3067.298996424577,
+  "apparent_first_two_turn_crossing_s": 0.14401666666666665,
+  "amplitude_median_adc_counts": 804.5298806876394,
+  "amplitude_min_adc_counts": 0.06298638865858242,
+  "amplitude_fractional_std": 0.30673770386672683,
+  "fraction_amplitude_below_20_percent_median": 0.031421661376953125,
+  "phase_step_over_pi_half_fraction": 0.05184956302476129,
+  "phase_step_over_0p9pi_count": 2600,
+  "phase_step_max_rad": 3.1414599616466217,
+  "circular_spread_rad": 0.6394293744255892,
+  "five_ms_circular_spread_percentiles_rad": [
+    0.43841576130551557,
+    0.5324741122519091,
+    0.9773208977368943,
+    2.9135430582051067
+  ],
+  "extra_averaging_sensitivity": [
+    {
+      "extra_iq_average": 1,
+      "sample_rate_hz": 60000.0,
+      "apparent_span_turns": 488.17579722178124,
+      "apparent_net_turns": 473.92078425508356
+    },
+    {
+      "extra_iq_average": 2,
+      "sample_rate_hz": 30000.0,
+      "apparent_span_turns": 35.574438788968656,
+      "apparent_net_turns": -25.989098076972873
+    },
+    {
+      "extra_iq_average": 4,
+      "sample_rate_hz": 15000.0,
+      "apparent_span_turns": 14.249306560829279,
+      "apparent_net_turns": -4.0188675759909795
+    }
+  ],
+  "sustained_low_magnitude_intervals": [
+    {
+      "start_s": 0.144,
+      "end_s": 0.175,
+      "duration_s": 0.031,
+      "mean_magnitude_fraction": 0.03356712216458493
+    },
+    {
+      "start_s": 0.362,
+      "end_s": 0.429,
+      "duration_s": 0.067,
+      "mean_magnitude_fraction": 0.02695476405250503
+    },
+    {
+      "start_s": 4.19,
+      "end_s": 4.192,
+      "duration_s": 0.002,
+      "mean_magnitude_fraction": 0.08079680122741367
+    },
+    {
+      "start_s": 4.22,
+      "end_s": 4.224,
+      "duration_s": 0.004,
+      "mean_magnitude_fraction": 0.04117792597500906
+    }
+  ],
+  "limitations": [
+    "Apparent unwrap is not a verified physical cycle-slip count.",
+    "Decimation/complex averaging precedes atan2; high-frequency phase motion can be missed.",
+    "Low averaged amplitude may reflect cancellation from phase motion, not RF amplitude loss.",
+    "This separate record does not identify which ORed FRA saturation source fired.",
+    "Circular spread is not an unwrapped RMS phase measurement.",
+    "No drift subtraction or phase-noise integration used."
+  ]
+}

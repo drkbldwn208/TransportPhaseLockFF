@@ -98,6 +98,16 @@ def configure(overlay, *, reference_frequency_hz=None, phase_offset_rad=0.0,
         raise ValueError("phase_offset_rad must be finite.")
     # Refuse an old overlay before touching outputs or the RFDC.
     _check_version(overlay)
+    # A version register cannot verify the HWH loaded by this Overlay object.
+    # Resolve every control used below before muting an operating loop.
+    required = ('pll_frequency', 'pll_control', 'pll_status', 'pll_acquisition',
+                'pll_tracking', 'pll_monitor', 'pll_fra', 'pll_iir')
+    missing = [name for name in required if not hasattr(overlay, name)]
+    if missing:
+        raise ValueError(f"Overlay metadata is missing: {', '.join(missing)}. "
+                         "Copy the matching R7 .bit/.hwh pair with the same basename, "
+                         "then recreate the Overlay object before configuring. "
+                         "No output settings were changed by this call.")
     p = overlay.ip_dict['usp_rf_data_converter_0']['parameters']
     adc_tile = getattr(overlay, 'adc_tile', 0)
     adc_block = getattr(overlay, 'adc_block', 3)

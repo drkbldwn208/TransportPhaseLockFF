@@ -1,0 +1,648 @@
+{
+  "traces": {
+    "fpga_wide": {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0FPGAW.csv",
+        "sha256": "e33d079c0f9c84445344dbfa1ab5dbcf59e937900941e8eefa2eca1f93a5a856",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 12:24:06",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 1118244.0,
+        "rbw_hz": 10.0,
+        "vbw_hz": 10.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799997204.390003,
+        "carrier_display_power_dbm": -32.5466613769531,
+        "display_spacing_hz": 2795.610000014305
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "display_points": 6,
+          "median_native_dbc": -31.416803359985405,
+          "median_rbw_corrected_db": -41.41680335998541
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "display_points": 14,
+          "median_native_dbc": -35.6642723083496,
+          "median_rbw_corrected_db": -45.6642723083496
+        },
+        {
+          "low_khz": 40,
+          "high_khz": 60,
+          "display_points": 14,
+          "median_native_dbc": -25.429435729980504,
+          "median_rbw_corrected_db": -35.429435729980504
+        },
+        {
+          "low_khz": 60,
+          "high_khz": 100,
+          "display_points": 28,
+          "median_native_dbc": -36.4371566772461,
+          "median_rbw_corrected_db": -46.4371566772461
+        },
+        {
+          "low_khz": 100,
+          "high_khz": 200,
+          "display_points": 72,
+          "median_native_dbc": -39.18135452270511,
+          "median_rbw_corrected_db": -49.18135452270511
+        },
+        {
+          "low_khz": 200,
+          "high_khz": 300,
+          "display_points": 72,
+          "median_native_dbc": -38.71081161499025,
+          "median_rbw_corrected_db": -48.71081161499025
+        },
+        {
+          "low_khz": 300,
+          "high_khz": 400,
+          "display_points": 72,
+          "median_native_dbc": -35.891838073730455,
+          "median_rbw_corrected_db": -45.891838073730455
+        },
+        {
+          "low_khz": 400,
+          "high_khz": 500,
+          "display_points": 70,
+          "median_native_dbc": -42.5887832641602,
+          "median_rbw_corrected_db": -52.5887832641602
+        }
+      ],
+      "lines_5khz": [
+        {
+          "offset_hz": -5591.219999909401,
+          "level_dbc": -31.362567901611406
+        },
+        {
+          "offset_hz": 5591.22000002861,
+          "level_dbc": -31.471038818359403
+        }
+      ],
+      "lines_47khz": [
+        {
+          "offset_hz": -44729.75999999046,
+          "level_dbc": -21.378772735595703
+        },
+        {
+          "offset_hz": 47525.37000000477,
+          "level_dbc": -20.851207733154304
+        }
+      ]
+    },
+    "fpga_narrow": {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0FPGAN.csv",
+        "sha256": "520e235338366c66729089225a8b8d53eb1b60c6d643be9e0f15cdf7d42672a4",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 12:22:51",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 109245.0,
+        "rbw_hz": 1.0,
+        "vbw_hz": 1.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799998088.230003,
+        "carrier_display_power_dbm": -31.0561561584473,
+        "display_spacing_hz": 273.1100000143051
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "display_points": 66,
+          "median_native_dbc": -43.44850158691405,
+          "median_rbw_corrected_db": -43.44850158691405
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "display_points": 146,
+          "median_native_dbc": -43.64175796508785,
+          "median_rbw_corrected_db": -43.64175796508785
+        }
+      ],
+      "lines_5khz": [
+        {
+          "offset_hz": -5189.090000987053,
+          "level_dbc": -35.9701423645019
+        },
+        {
+          "offset_hz": 4915.9800000190735,
+          "level_dbc": -36.1867332458496
+        }
+      ],
+      "lines_47khz": [
+        {
+          "offset_hz": -46974.920003056526,
+          "level_dbc": -21.016975402831996
+        },
+        {
+          "offset_hz": 46974.92000198364,
+          "level_dbc": -22.243259429931598
+        }
+      ]
+    },
+    "adf_narrow": {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0PLLN.csv",
+        "sha256": "604d839cbe3247716a48c55234b13a69271d9e0d7af6c9f707a4fea69535c497",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 11:34:13",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 1000000000.0,
+        "span_hz": 109245.0,
+        "rbw_hz": 1.0,
+        "vbw_hz": 1.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 999997542.010003,
+        "carrier_display_power_dbm": -32.6503677368164,
+        "display_spacing_hz": 273.1100000143051
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "display_points": 66,
+          "median_native_dbc": -38.8412055969238,
+          "median_rbw_corrected_db": -38.8412055969238
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "display_points": 146,
+          "median_native_dbc": -40.1207504272461,
+          "median_rbw_corrected_db": -40.1207504272461
+        }
+      ],
+      "lines_5khz": [
+        {
+          "offset_hz": -4915.980000972748,
+          "level_dbc": -19.6639175415039
+        },
+        {
+          "offset_hz": 5189.089997053146,
+          "level_dbc": -19.702384948730504
+        }
+      ],
+      "lines_47khz": [
+        {
+          "offset_hz": -46974.92000293732,
+          "level_dbc": -23.503837585449197
+        },
+        {
+          "offset_hz": 46974.92000699043,
+          "level_dbc": -22.762302398681598
+        }
+      ]
+    },
+    "adf_wide_30hz": {
+      "metadata": {
+        "file": "File_01_ADF4108_Loop.csv",
+        "sha256": "9059267d384b944917f12a97ae329bb670ec6af05007245bd99fda2118b3c3f8",
+        "analyzer_timestamp": "Tuesday, 13 October 2026 06:31:12",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 1000000000.0,
+        "span_hz": 1123048.0,
+        "rbw_hz": 30.0,
+        "vbw_hz": 30.0,
+        "attenuation_db": 20.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 999997192.380001,
+        "carrier_display_power_dbm": -25.3514289855957,
+        "display_spacing_hz": 2807.6200000047684
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "display_points": 6,
+          "median_native_dbc": -28.095085144043,
+          "median_rbw_corrected_db": -42.86629769123962
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "display_points": 14,
+          "median_native_dbc": -29.04590225219725,
+          "median_rbw_corrected_db": -43.81711479939388
+        },
+        {
+          "low_khz": 40,
+          "high_khz": 60,
+          "display_points": 14,
+          "median_native_dbc": -32.019618988037095,
+          "median_rbw_corrected_db": -46.79083153523372
+        },
+        {
+          "low_khz": 60,
+          "high_khz": 100,
+          "display_points": 28,
+          "median_native_dbc": -35.34541511535645,
+          "median_rbw_corrected_db": -50.11662766255308
+        },
+        {
+          "low_khz": 100,
+          "high_khz": 200,
+          "display_points": 72,
+          "median_native_dbc": -39.494937896728494,
+          "median_rbw_corrected_db": -54.26615044392512
+        },
+        {
+          "low_khz": 200,
+          "high_khz": 300,
+          "display_points": 70,
+          "median_native_dbc": -37.79809188842775,
+          "median_rbw_corrected_db": -52.569304435624375
+        },
+        {
+          "low_khz": 300,
+          "high_khz": 400,
+          "display_points": 72,
+          "median_native_dbc": -33.484712600708,
+          "median_rbw_corrected_db": -48.25592514790463
+        },
+        {
+          "low_khz": 400,
+          "high_khz": 500,
+          "display_points": 72,
+          "median_native_dbc": -43.458545684814446,
+          "median_rbw_corrected_db": -58.22975823201107
+        }
+      ],
+      "lines_5khz": [
+        {
+          "offset_hz": -5615.239999890327,
+          "level_dbc": -19.859397888183597
+        },
+        {
+          "offset_hz": 5615.239999055862,
+          "level_dbc": -20.102054595947298
+        }
+      ],
+      "lines_47khz": [
+        {
+          "offset_hz": -47729.53999996185,
+          "level_dbc": -24.873435974121097
+        },
+        {
+          "offset_hz": 50537.15999901295,
+          "level_dbc": -24.248638153076204
+        }
+      ]
+    },
+    "adf_wide_3hz": {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0PLL.csv",
+        "sha256": "029535214eae2c75a3bff75311e82529400004bf72ee243d37b4e319c8c4ce0e",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 03:59:13",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 1000000000.0,
+        "span_hz": 814027.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 5.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 999997964.93001,
+        "carrier_display_power_dbm": -29.2804222106934,
+        "display_spacing_hz": 2035.070000052452
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "display_points": 8,
+          "median_native_dbc": -30.153490066528306,
+          "median_rbw_corrected_db": -34.92470261372493
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "display_points": 20,
+          "median_native_dbc": -34.03903388977045,
+          "median_rbw_corrected_db": -38.81024643696708
+        },
+        {
+          "low_khz": 40,
+          "high_khz": 60,
+          "display_points": 20,
+          "median_native_dbc": -35.86315155029295,
+          "median_rbw_corrected_db": -40.63436409748957
+        },
+        {
+          "low_khz": 60,
+          "high_khz": 100,
+          "display_points": 40,
+          "median_native_dbc": -43.43450546264645,
+          "median_rbw_corrected_db": -48.205718009843075
+        },
+        {
+          "low_khz": 100,
+          "high_khz": 200,
+          "display_points": 98,
+          "median_native_dbc": -47.3649635314941,
+          "median_rbw_corrected_db": -52.136176078690724
+        },
+        {
+          "low_khz": 200,
+          "high_khz": 300,
+          "display_points": 98,
+          "median_native_dbc": -45.65579605102535,
+          "median_rbw_corrected_db": -50.427008598221974
+        },
+        {
+          "low_khz": 300,
+          "high_khz": 400,
+          "display_points": 98,
+          "median_native_dbc": -42.8864364624023,
+          "median_rbw_corrected_db": -47.65764900959893
+        }
+      ],
+      "lines_5khz": [
+        {
+          "offset_hz": -6105.209999918938,
+          "level_dbc": -27.9030075073242
+        },
+        {
+          "offset_hz": 4070.139999985695,
+          "level_dbc": -27.3057136535644
+        }
+      ],
+      "lines_47khz": [
+        {
+          "offset_hz": -48841.68000102043,
+          "level_dbc": -24.764301300048803
+        },
+        {
+          "offset_hz": 46806.610000014305,
+          "level_dbc": -24.0571403503418
+        }
+      ]
+    },
+    "previous_fpga_wide": {
+      "metadata": {
+        "file": "10-13SpectrumAnalyzer/File_0W.csv",
+        "sha256": "2fa2da1b4d80d1e9159c1e698b8f12a869ffe216b0572fd5158a5c4b7dacb60d",
+        "analyzer_timestamp": "Wednesday, 14 October 2026 01:33:35",
+        "timezone": "(UTC+08:00) Kuala Lumpur, Singapore",
+        "center_frequency_hz": 800000000.0,
+        "span_hz": 1016146.0,
+        "rbw_hz": 3.0,
+        "vbw_hz": 3.0,
+        "attenuation_db": 10.0,
+        "detector": "Positive",
+        "averaging": "1 / 1",
+        "incomplete_sweep_warning": true,
+        "carrier_display_frequency_hz": 799997459.635002,
+        "carrier_display_power_dbm": -30.5844593048096,
+        "display_spacing_hz": 2540.3650000095367
+      },
+      "bands": [
+        {
+          "low_khz": 1,
+          "high_khz": 10,
+          "display_points": 6,
+          "median_native_dbc": -27.2987785339355,
+          "median_rbw_corrected_db": -32.06999108113212
+        },
+        {
+          "low_khz": 10,
+          "high_khz": 30,
+          "display_points": 16,
+          "median_native_dbc": -34.03864860534665,
+          "median_rbw_corrected_db": -38.80986115254328
+        },
+        {
+          "low_khz": 40,
+          "high_khz": 60,
+          "display_points": 16,
+          "median_native_dbc": -34.1326751708984,
+          "median_rbw_corrected_db": -38.90388771809503
+        },
+        {
+          "low_khz": 60,
+          "high_khz": 100,
+          "display_points": 32,
+          "median_native_dbc": -40.691591262817354,
+          "median_rbw_corrected_db": -45.46280381001398
+        },
+        {
+          "low_khz": 100,
+          "high_khz": 200,
+          "display_points": 78,
+          "median_native_dbc": -46.25696754455565,
+          "median_rbw_corrected_db": -51.028180091752276
+        },
+        {
+          "low_khz": 200,
+          "high_khz": 300,
+          "display_points": 80,
+          "median_native_dbc": -47.100889205932596,
+          "median_rbw_corrected_db": -51.87210175312922
+        },
+        {
+          "low_khz": 300,
+          "high_khz": 400,
+          "display_points": 78,
+          "median_native_dbc": -45.483373641967745,
+          "median_rbw_corrected_db": -50.25458618916437
+        },
+        {
+          "low_khz": 400,
+          "high_khz": 500,
+          "display_points": 78,
+          "median_native_dbc": -52.605699539184556,
+          "median_rbw_corrected_db": -57.37691208638118
+        }
+      ],
+      "lines_5khz": [
+        {
+          "offset_hz": -5080.7300000190735,
+          "level_dbc": -22.7648868560791
+        },
+        {
+          "offset_hz": 5080.7300000190735,
+          "level_dbc": -28.609601974487305
+        }
+      ],
+      "lines_47khz": [
+        {
+          "offset_hz": -48266.93500006199,
+          "level_dbc": -24.612165451049805
+        },
+        {
+          "offset_hz": 48266.93499994278,
+          "level_dbc": -23.940324783325202
+        }
+      ]
+    }
+  },
+  "wide_band_differences": [
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 1,
+      "high_khz": 10,
+      "new_fpga_minus_baseline_db": 1.4494943312542148
+    },
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 10,
+      "high_khz": 30,
+      "new_fpga_minus_baseline_db": -1.8471575089557248
+    },
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 40,
+      "high_khz": 60,
+      "new_fpga_minus_baseline_db": 11.361395805253217
+    },
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 60,
+      "high_khz": 100,
+      "new_fpga_minus_baseline_db": 3.6794709853069776
+    },
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 100,
+      "high_khz": 200,
+      "new_fpga_minus_baseline_db": 5.084795921220014
+    },
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 200,
+      "high_khz": 300,
+      "new_fpga_minus_baseline_db": 3.858492820634126
+    },
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 300,
+      "high_khz": 400,
+      "new_fpga_minus_baseline_db": 2.364087074174172
+    },
+    {
+      "baseline": "adf_wide_30hz",
+      "low_khz": 400,
+      "high_khz": 500,
+      "new_fpga_minus_baseline_db": 5.640974967850873
+    },
+    {
+      "baseline": "adf_wide_3hz",
+      "low_khz": 1,
+      "high_khz": 10,
+      "new_fpga_minus_baseline_db": -6.492100746260476
+    },
+    {
+      "baseline": "adf_wide_3hz",
+      "low_khz": 10,
+      "high_khz": 30,
+      "new_fpga_minus_baseline_db": -6.854025871382525
+    },
+    {
+      "baseline": "adf_wide_3hz",
+      "low_khz": 40,
+      "high_khz": 60,
+      "new_fpga_minus_baseline_db": 5.204928367509069
+    },
+    {
+      "baseline": "adf_wide_3hz",
+      "low_khz": 60,
+      "high_khz": 100,
+      "new_fpga_minus_baseline_db": 1.768561332596974
+    },
+    {
+      "baseline": "adf_wide_3hz",
+      "low_khz": 100,
+      "high_khz": 200,
+      "new_fpga_minus_baseline_db": 2.9548215559856175
+    },
+    {
+      "baseline": "adf_wide_3hz",
+      "low_khz": 200,
+      "high_khz": 300,
+      "new_fpga_minus_baseline_db": 1.7161969832317254
+    },
+    {
+      "baseline": "adf_wide_3hz",
+      "low_khz": 300,
+      "high_khz": 400,
+      "new_fpga_minus_baseline_db": 1.7658109358684726
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 1,
+      "high_khz": 10,
+      "new_fpga_minus_baseline_db": -9.346812278853285
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 10,
+      "high_khz": 30,
+      "new_fpga_minus_baseline_db": -6.854411155806325
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 40,
+      "high_khz": 60,
+      "new_fpga_minus_baseline_db": 3.4744519881145237
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 60,
+      "high_khz": 100,
+      "new_fpga_minus_baseline_db": -0.9743528672321204
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 100,
+      "high_khz": 200,
+      "new_fpga_minus_baseline_db": 1.8468255690471693
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 200,
+      "high_khz": 300,
+      "new_fpga_minus_baseline_db": 3.1612901381389733
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 300,
+      "high_khz": 400,
+      "new_fpga_minus_baseline_db": 4.3627481154339165
+    },
+    {
+      "baseline": "previous_fpga_wide",
+      "low_khz": 400,
+      "high_khz": 500,
+      "new_fpga_minus_baseline_db": 4.788128822220983
+    }
+  ],
+  "assumptions": [
+    "File names identify FPGA versus ADF feedback; current gains/filter settings are not supplied.",
+    "Each trace is normalized to its own displayed carrier peak.",
+    "Input attenuation is already calibrated into analyzer dBm; no extra attenuation correction."
+  ],
+  "limitations": [
+    "RF power combines amplitude and phase noise.",
+    "Sparse positive-peak display buckets cannot be integrated as a phase PSD.",
+    "Nominal RBW correction omits filter ENBW and detector/sweep bias; do not apply it to resolved line powers.",
+    "Carrier levels, measurement times and carrier frequencies differ.",
+    "A broad spectral shoulder does not by itself measure crossover or phase margin.",
+    "All traces flag an incomplete sweep."
+  ]
+}

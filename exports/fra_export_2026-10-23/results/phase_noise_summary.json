@@ -1,0 +1,77 @@
+{
+  "source": "data/phase_noise/shortest_iq_phase_psd.csv",
+  "tracking_gain_relative_to_stage3": 8,
+  "fra_tone_on": false,
+  "sample_rate_hz": 15360000.0,
+  "samples_per_capture": 262144,
+  "captures": 10,
+  "duration_per_capture_s": 0.017066666666666667,
+  "fft_length": 65536,
+  "fft_overlap_samples": 32768,
+  "fft_bin_hz": 234.375,
+  "window": "periodic Hann",
+  "detrending": "constant per segment; no linear drift removal",
+  "spectrum_units": "one-sided rad^2/Hz",
+  "bands": [
+    {
+      "band_hz": [
+        1000.0,
+        10000.0
+      ],
+      "phase_variance_rad2": 0.005891501740290687,
+      "phase_rms_rad": 0.07675611858536548,
+      "phase_rms_deg": 4.397801646747101,
+      "per_capture_rms_range_rad": [
+        0.061823230398723686,
+        0.10686814445481943
+      ]
+    },
+    {
+      "band_hz": [
+        10000.0,
+        100000.0
+      ],
+      "phase_variance_rad2": 1.303891985557665,
+      "phase_rms_rad": 1.141880898149043,
+      "phase_rms_deg": 65.42495617054797,
+      "per_capture_rms_range_rad": [
+        1.015017593453214,
+        1.4269239795248763
+      ]
+    },
+    {
+      "band_hz": [
+        100000.0,
+        1000000.0
+      ],
+      "phase_variance_rad2": 0.4890967645876205,
+      "phase_rms_rad": 0.6993545342582834,
+      "phase_rms_deg": 40.07006319633698,
+      "per_capture_rms_range_rad": [
+        0.6019815403461659,
+        0.7902901113716299
+      ]
+    },
+    {
+      "band_hz": [
+        1000.0,
+        1000000.0
+      ],
+      "phase_variance_rad2": 1.798880251885576,
+      "phase_rms_rad": 1.341223416096504,
+      "phase_rms_deg": 76.84644112644835,
+      "per_capture_rms_range_rad": [
+        1.2451566131760916,
+        1.5880255690555478
+      ]
+    }
+  ],
+  "integration": "sum PSD*df for low <= f < high; includes lines and broadband noise",
+  "limitations": [
+    "8x noise acquisition is not matched to the exported 4x FRA.",
+    "Measured beat includes both lasers and detection noise; not absolute laser noise.",
+    "No detector noise-floor, monitor boxcar or alias correction applied.",
+    "Short captures do not establish rare-slip rate or long-term stability.",
+    "Phase extraction suppresses direct AM dependence but not every AM-to-PM effect."
+  ]
+}

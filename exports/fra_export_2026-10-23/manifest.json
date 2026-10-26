@@ -1,0 +1,264 @@
+{
+  "export_date": "2026-10-23",
+  "scope": "Latest 4x closed-loop FRA, both loopbacks, ideal discriminator model, and recent 8x FRA-off phase-noise PSD",
+  "csv_count": 6,
+  "original_sources_preserved": true,
+  "model_source_audit": [
+    {
+      "project_relative_path": "docs/laser_pll.md",
+      "sha256": "b1eba87f01bbdeca3f430ddf7026560bb417dcc530018deb56b06ea8a7b832e8"
+    },
+    {
+      "project_relative_path": "docs/laser_pll_loopback_A8.md",
+      "sha256": "da79ff57225001b870e03170215ec06cbcd711e080b159213e46ca2703a86247"
+    },
+    {
+      "project_relative_path": "TransportPhaseLockFF.srcs/sources_1/new/laser_pll_error.sv",
+      "sha256": "7789bad7d1c1ba96a7ea1643f2fc3b400ddfa31d666904fad269a92d97b7f661"
+    },
+    {
+      "project_relative_path": "TransportPhaseLockFF.srcs/sources_1/new/laser_pll_tracking.sv",
+      "sha256": "80d5402126f757608a19c22308fe6a1b0fa26a632a035725102a1bab535f005b"
+    }
+  ],
+  "verification": {
+    "copied_csv_bytes_identical": true,
+    "latest_metrics_match_prior_analysis": true,
+    "loopback_aggregate_and_sem_match_individual_blocks": true,
+    "ideal_model_dc_gain_and_delay_checked": true,
+    "phase_noise_band_metrics_match_prior_analysis": true
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 20328,
+      "sha256": "e359e2544d27e2611e8c62b9474f6f7a492ef5c36ff204e2d0872194582a0b95",
+      "origin": "Created or recomputed for this narrowed export; see README."
+    },
+    {
+      "path": "analyze_export.py",
+      "bytes": 9819,
+      "sha256": "484b7aa87ae4657974bf5fc4f964b07d5c39e7d4b07f465af59a33b5cd4f6018",
+      "origin": "Created or recomputed for this narrowed export; see README."
+    },
+    {
+      "path": "analyze_phase_noise.py",
+      "bytes": 5558,
+      "sha256": "a64fe53b9da6ec17330ee69329120114b32307c74cbe8e7e91b74af28fe4c892",
+      "origin": "Derived from recent 8x FRA-off FPGA phase-noise spectra; see README section 6."
+    },
+    {
+      "path": "data/closed_loop/laser_loop_20261014_053953.csv",
+      "bytes": 24133,
+      "sha256": "aec6000fe2483b8c6e286b0c815142b093179e595e7a5ded86fdb978baea4dd6",
+      "source_project_relative_path": "ILAData/10-13FRA/Discriminator/laser_loop_20261014_053953.csv",
+      "source_copy_verified": true,
+      "rows": 61,
+      "columns": [
+        "requested_hz",
+        "frequency_hz",
+        "amplitude_codes",
+        "repeats",
+        "attempts",
+        "allow_clipping",
+        "clipped",
+        "clipped_repeats",
+        "settle_s",
+        "measure_s",
+        "measure_clocks",
+        "pll_control_word",
+        "acquisition_word",
+        "tracking_coefficient",
+        "iir_control_word",
+        "iir_b0_word",
+        "iir_b1_word",
+        "iir_pole_word",
+        "error_re",
+        "error_im",
+        "drive_re",
+        "drive_im",
+        "injection_re",
+        "injection_im",
+        "loop_re",
+        "loop_im",
+        "sensitivity_re",
+        "sensitivity_im",
+        "error_stderr_codes",
+        "drive_stderr_codes",
+        "dac_clip_samples",
+        "detector_saturated_samples",
+        "outside_clip_samples",
+        "repeat_consistent",
+        "reliable"
+      ]
+    },
+    {
+      "path": "data/loopback/loopback_mixer_20261013_192701_849567.csv",
+      "bytes": 13119,
+      "sha256": "77cb1627473cf2e9d5dfb19e703d0f6a568be4f731e26e789b30ce9807231e14",
+      "source_project_relative_path": "ILAData/10-13FRA/Loopback/loopback_mixer_20261013_192701_849567.csv",
+      "source_copy_verified": true,
+      "rows": 61,
+      "columns": [
+        "frequency_hz",
+        "h_real",
+        "h_imag",
+        "magnitude_db",
+        "phase_deg",
+        "complex_sem",
+        "snr",
+        "repeats",
+        "reliable",
+        "perpendicular_real",
+        "perpendicular_imag",
+        "integration_s",
+        "amplitude_codes"
+      ]
+    },
+    {
+      "path": "data/loopback/loopback_mixer_20261013_192701_849567_blocks.csv",
+      "bytes": 98951,
+      "sha256": "3569ce2e4305f453f05bd64739e07435695b6f7ddf53f99a580325640603f15b",
+      "source_project_relative_path": "ILAData/10-13FRA/Loopback/loopback_mixer_20261013_192701_849567_blocks.csv",
+      "source_copy_verified": true,
+      "rows": 488,
+      "columns": [
+        "frequency_hz",
+        "repeat",
+        "polarity",
+        "integration_s",
+        "amplitude_codes",
+        "i_real",
+        "i_imag",
+        "q_real",
+        "q_imag",
+        "mean_i",
+        "mean_q",
+        "h_real",
+        "h_imag"
+      ]
+    },
+    {
+      "path": "data/loopback/loopback_rf_20261013_194213_316127.csv",
+      "bytes": 12928,
+      "sha256": "3630a634ec78ee7ccc1757e2a861d9a5486ca2b49a861f0faa94d963fc311906",
+      "source_project_relative_path": "ILAData/10-13FRA/Loopback/loopback_rf_20261013_194213_316127.csv",
+      "source_copy_verified": true,
+      "rows": 61,
+      "columns": [
+        "frequency_hz",
+        "h_real",
+        "h_imag",
+        "magnitude_db",
+        "phase_deg",
+        "complex_sem",
+        "snr",
+        "repeats",
+        "reliable",
+        "perpendicular_real",
+        "perpendicular_imag",
+        "integration_s",
+        "amplitude_codes"
+      ]
+    },
+    {
+      "path": "data/loopback/loopback_rf_20261013_194213_316127_blocks.csv",
+      "bytes": 102130,
+      "sha256": "0b01249300cd122ba51d005d4833419c2e293faf4c1a60a45096362ac0997d6c",
+      "source_project_relative_path": "ILAData/10-13FRA/Loopback/loopback_rf_20261013_194213_316127_blocks.csv",
+      "source_copy_verified": true,
+      "rows": 488,
+      "columns": [
+        "frequency_hz",
+        "repeat",
+        "polarity",
+        "integration_s",
+        "amplitude_codes",
+        "i_real",
+        "i_imag",
+        "q_real",
+        "q_imag",
+        "mean_i",
+        "mean_q",
+        "h_real",
+        "h_imag"
+      ]
+    },
+    {
+      "path": "data/phase_noise/shortest_iq_phase_psd.csv",
+      "bytes": 9011768,
+      "sha256": "f23e90133bdff9e69abea06d1c1aff127d497445d65f15dc627e3f65c5234b2d",
+      "source_project_relative_path": "ILAData/10-13-IQ/shortest_iq_phase_psd.csv",
+      "source_copy_verified": true,
+      "rows": 32769,
+      "columns": [
+        "frequency_hz",
+        "capture_0_phase_rad2_per_hz",
+        "capture_1_phase_rad2_per_hz",
+        "capture_2_phase_rad2_per_hz",
+        "capture_3_phase_rad2_per_hz",
+        "capture_4_phase_rad2_per_hz",
+        "capture_5_phase_rad2_per_hz",
+        "capture_6_phase_rad2_per_hz",
+        "capture_7_phase_rad2_per_hz",
+        "capture_8_phase_rad2_per_hz",
+        "capture_9_phase_rad2_per_hz"
+      ]
+    },
+    {
+      "path": "discriminator_model.py",
+      "bytes": 1498,
+      "sha256": "a13332a1739a6321594f668864b7f61852c8be3b5895643b182c9bd7527db846",
+      "origin": "Created or recomputed for this narrowed export; see README."
+    },
+    {
+      "path": "figures/latest_loop.png",
+      "bytes": 169362,
+      "sha256": "c9f6d362884e308d94de011cd3ea0de2eff5d67c31aade6101d1abe483f182bd",
+      "origin": "Created or recomputed for this narrowed export; see README."
+    },
+    {
+      "path": "figures/loopback_mixer_20261013_192701_849567.png",
+      "bytes": 92277,
+      "sha256": "a875027d072298ceb150170a67e631fe7f5d9536786b22d938400633f47006dc",
+      "source_project_relative_path": "ILAData/10-13FRA/Loopback/loopback_mixer_20261013_192701_849567.png"
+    },
+    {
+      "path": "figures/loopback_rf_20261013_194213_316127.png",
+      "bytes": 94293,
+      "sha256": "353fa571b4381dd3fc309e05f73b5c387a257b1548752c36016fe727b2d74c87",
+      "source_project_relative_path": "ILAData/10-13FRA/Loopback/loopback_rf_20261013_194213_316127.png"
+    },
+    {
+      "path": "figures/phase_noise_8x.png",
+      "bytes": 325482,
+      "sha256": "184818bfe1fed68aa07dcca68c14e04b4f5da61debd19a784a9d95a9cb293ba1",
+      "origin": "Derived from recent 8x FRA-off FPGA phase-noise spectra; see README section 6."
+    },
+    {
+      "path": "results/discriminator_model.json",
+      "bytes": 1413,
+      "sha256": "fd2d8b5b6aec633002319584b8b63a133af8c2033ef04c250bc46b9c17fea8a2",
+      "origin": "Created or recomputed for this narrowed export; see README."
+    },
+    {
+      "path": "results/phase_noise_capture_conditions.json",
+      "bytes": 4387,
+      "sha256": "4b29ded8c6b17fee9943bb5ab8b44984d449dbb45849937bd786195be5859247",
+      "origin": "Derived from recent 8x FRA-off FPGA phase-noise spectra; see README section 6."
+    },
+    {
+      "path": "results/phase_noise_summary.json",
+      "bytes": 2236,
+      "sha256": "e78ddfa5c63ca195cca39b248559891e015b1b6fe179a6210ac0b81bb3fa4bed",
+      "origin": "Derived from recent 8x FRA-off FPGA phase-noise spectra; see README section 6."
+    },
+    {
+      "path": "results/recomputed_summary.json",
+      "bytes": 2002,
+      "sha256": "62a3127b52ce2ad3e815369afbf2f88aa594f806dd78ed3d79981e6c240dedf7",
+      "origin": "Created or recomputed for this narrowed export; see README."
+    }
+  ],
+  "phase_noise_condition_note": "8x tracking gain and FRA off, distinct from the exported 4x transfer-function measurement."
+}

@@ -1,0 +1,52 @@
+{
+  "source": "10-13FRA/Discriminator/laser_loop_20261014_050122.csv",
+  "sha256": "1f982bf7b99a5208da77c3a3762a3e1fc2f1fd5e5d59fcb914a7e73b30d14a51",
+  "points": 61,
+  "reliable_points": 30,
+  "first_reliable_frequency_hz": 3734.43603515625,
+  "tracking_gain_relative_to_stage3": 2.0,
+  "iir_enabled": false,
+  "acquisition_stage": 4,
+  "probe_amplitude_codes": 32,
+  "accepted_clipping_points": 0,
+  "rejected_clipped_blocks": 44,
+  "actual_dac_clip_samples_all_attempts": 5805922,
+  "internal_saturated_samples_all_attempts": 11618331,
+  "max_injection_phasor_error_codes": 0.06765919217017277,
+  "conditional_gain_predictions": {
+    "1.0": {
+      "crossover_hz": 32191.28958277233,
+      "phase_at_crossover_deg": -151.65241129032876,
+      "local_phase_margin_deg": 28.347588709671243,
+      "peak_sensitivity_db": 6.6677387213266694,
+      "peak_sensitivity_frequency_hz": 38932.34252929688
+    },
+    "0.5": {
+      "crossover_hz": 20012.941418086382,
+      "phase_at_crossover_deg": -144.85562583281703,
+      "local_phase_margin_deg": 35.144374167182974,
+      "peak_sensitivity_db": 5.104620441213273,
+      "peak_sensitivity_frequency_hz": 22665.252685546875
+    },
+    "0.25": {
+      "crossover_hz": 11534.702800138646,
+      "phase_at_crossover_deg": -146.8187619581145,
+      "local_phase_margin_deg": 33.18123804188551,
+      "peak_sensitivity_db": 5.033118266376523,
+      "peak_sensitivity_frequency_hz": 13195.037841796877
+    }
+  },
+  "low_frequency_example": {
+    "frequency_hz": 20.1416015625,
+    "residual_drive_codes": 0.014863980372079809,
+    "drive_standard_error_codes": 0.1048893781063066
+  },
+  "limitations": [
+    "Only aggregate CSV supplied; individual accepted/rejected blocks cannot be re-examined.",
+    "Local phase margin assumes the linear negative-feedback convention L=-E/U.",
+    "Unreliable low-frequency ratios do not establish phase or global stability margins.",
+    "Gain-change prediction scales both feedback branches and assumes the plant is unchanged.",
+    "Clipping/slips rejected during acquisition can still indicate a nonstationary operating point.",
+    "A repeat at a second probe amplitude is needed to check linearity."
+  ]
+}
