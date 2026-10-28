@@ -300,7 +300,14 @@
       "intensity_limits": "",
       "intensity_counts": "",
       "intensity_dma": "",
-      "intensity_fifo": ""
+      "intensity_fifo": "",
+      "intensity_rx_lowpass_0": "",
+      "intensity_cal_q": "",
+      "intensity_cal_i_slice": "",
+      "intensity_cal_q_slice": "",
+      "intensity_cal_iq": "",
+      "intensity_cal_i_scale": "",
+      "intensity_cal_q_scale": ""
     },
     "interface_ports": {
       "sysref_in": {
@@ -1709,7 +1716,7 @@
             "value": "0"
           },
           "ADC_Nyquist11": {
-            "value": "0"
+            "value": "1"
           },
           "ADC_Slice01_Enable": {
             "value": "true"
@@ -7778,8 +7785,8 @@
           "tier2_xbar_0": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_0_36",
-            "xci_path": "ip/design_1_tier2_xbar_0_36/design_1_tier2_xbar_0_36.xci",
+            "xci_name": "design_1_tier2_xbar_0_46",
+            "xci_path": "ip/design_1_tier2_xbar_0_46/design_1_tier2_xbar_0_46.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_0",
             "parameters": {
               "NUM_MI": {
@@ -7809,8 +7816,8 @@
           "tier2_xbar_1": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_1_36",
-            "xci_path": "ip/design_1_tier2_xbar_1_36/design_1_tier2_xbar_1_36.xci",
+            "xci_name": "design_1_tier2_xbar_1_46",
+            "xci_path": "ip/design_1_tier2_xbar_1_46/design_1_tier2_xbar_1_46.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_1",
             "parameters": {
               "NUM_MI": {
@@ -7840,8 +7847,8 @@
           "tier2_xbar_2": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_2_36",
-            "xci_path": "ip/design_1_tier2_xbar_2_36/design_1_tier2_xbar_2_36.xci",
+            "xci_name": "design_1_tier2_xbar_2_46",
+            "xci_path": "ip/design_1_tier2_xbar_2_46/design_1_tier2_xbar_2_46.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_2",
             "parameters": {
               "NUM_MI": {
@@ -7871,8 +7878,8 @@
           "tier2_xbar_3": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_3_36",
-            "xci_path": "ip/design_1_tier2_xbar_3_36/design_1_tier2_xbar_3_36.xci",
+            "xci_name": "design_1_tier2_xbar_3_46",
+            "xci_path": "ip/design_1_tier2_xbar_3_46/design_1_tier2_xbar_3_46.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_3",
             "parameters": {
               "NUM_MI": {
@@ -13686,13 +13693,13 @@
             "value": "3"
           },
           "Output_Data_Width": {
-            "value": "16"
+            "value": "55"
           },
           "Passband_Max": {
             "value": "0.0001"
           },
           "Quantization": {
-            "value": "Truncation"
+            "value": "Full_Precision"
           },
           "SamplePeriod": {
             "value": "1"
@@ -13986,20 +13993,24 @@
                 "value": [
                   "xilinx.com:interface:datatypes:1.0 {",
                   "TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {}",
-                  "maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} array_type {name {attribs {resolve_type immediate dependency {} format string",
-                  "minimum {} maximum {}} value chan} size {attribs {resolve_type generated dependency chan_size format long minimum {} maximum {}} value 1} stride {attribs {resolve_type generated dependency chan_stride",
-                  "format long minimum {} maximum {}} value 16} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated",
-                  "dependency data_width format long minimum {} maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs",
-                  "{resolve_type generated dependency data_fractwidth format long minimum {} maximum {}} value 0} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value",
-                  "true}}}}}}} TDATA_WIDTH 16 TUSER {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {}",
-                  "format long minimum {} maximum {}} value 0} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} struct {field_chan_out {name {attribs {resolve_type",
-                  "immediate dependency {} format string minimum {} maximum {}} value chan_out} enabled {attribs {resolve_type generated dependency enabled format bool minimum {} maximum {}} value false} datatype {name",
-                  "{attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated dependency chan_out_width format long minimum {} maximum {}}",
-                  "value 0} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {}",
-                  "maximum {}} value false}}}} field_chan_sync {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value chan_sync} enabled {attribs {resolve_type generated",
-                  "dependency enabled format bool minimum {} maximum {}} value false} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs",
-                  "{resolve_type generated dependency chan_sync_width format long minimum {} maximum {}} value 0} bitoffset {attribs {resolve_type generated dependency chan_sync_offset format long minimum {} maximum {}}",
-                  "value 0}}}}}} TUSER_WIDTH 0",
+                  "maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} struct {field_real {name {attribs {resolve_type immediate dependency {}",
+                  "format string minimum {} maximum {}} value real} enabled {attribs {resolve_type generated dependency polar_mag_enabled format bool minimum {} maximum {}} value false} datatype {name {attribs",
+                  "{resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated dependency polar_mag_width format long minimum {} maximum {}} value 0}",
+                  "bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs {resolve_type generated dependency polar_mag_fractwidth format",
+                  "long minimum {} maximum {}} value -2} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true}}}}} field_phase {name {attribs {resolve_type immediate",
+                  "dependency {} format string minimum {} maximum {}} value phase} enabled {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true} datatype {name {attribs",
+                  "{resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated dependency polar_phase_width format long minimum {} maximum {}} value 16}",
+                  "bitoffset {attribs {resolve_type generated dependency polar_phase_offset format long minimum {} maximum {}} value 0} real {fixed {fractwidth {attribs {resolve_type generated dependency",
+                  "polar_phase_fractwidth format long minimum {} maximum {}} value 13} signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}}} TDATA_WIDTH 16 TUSER",
+                  "{datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {} maximum {}}",
+                  "value 0} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} struct {field_cartesian_tuser {name {attribs {resolve_type immediate dependency {} format",
+                  "string minimum {} maximum {}} value cartesian_tuser} enabled {attribs {resolve_type generated dependency cart_enabled format bool minimum {} maximum {}} value false} datatype {name {attribs",
+                  "{resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated dependency cart_width format long minimum {} maximum {}} value 0}",
+                  "bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}}",
+                  "value false}}}} field_phase_tuser {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value phase_tuser} enabled {attribs {resolve_type generated dependency",
+                  "phase_enabled format bool minimum {} maximum {}} value false} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs",
+                  "{resolve_type generated dependency phase_width format long minimum {} maximum {}} value 0} bitoffset {attribs {resolve_type generated dependency phase_offset format long minimum {} maximum {}} value",
+                  "0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}}} TUSER_WIDTH 0",
                   "}"
                 ],
                 "value_src": "ip_prop"
@@ -17203,8 +17214,8 @@
           "tier2_xbar_0": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_0_37",
-            "xci_path": "ip/design_1_tier2_xbar_0_37/design_1_tier2_xbar_0_37.xci",
+            "xci_name": "design_1_tier2_xbar_0_47",
+            "xci_path": "ip/design_1_tier2_xbar_0_47/design_1_tier2_xbar_0_47.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_0",
             "parameters": {
               "NUM_MI": {
@@ -17234,8 +17245,8 @@
           "tier2_xbar_1": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_1_37",
-            "xci_path": "ip/design_1_tier2_xbar_1_37/design_1_tier2_xbar_1_37.xci",
+            "xci_name": "design_1_tier2_xbar_1_47",
+            "xci_path": "ip/design_1_tier2_xbar_1_47/design_1_tier2_xbar_1_47.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_1",
             "parameters": {
               "NUM_MI": {
@@ -17265,8 +17276,8 @@
           "tier2_xbar_2": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_2_37",
-            "xci_path": "ip/design_1_tier2_xbar_2_37/design_1_tier2_xbar_2_37.xci",
+            "xci_name": "design_1_tier2_xbar_2_47",
+            "xci_path": "ip/design_1_tier2_xbar_2_47/design_1_tier2_xbar_2_47.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_2",
             "parameters": {
               "NUM_MI": {
@@ -17296,8 +17307,8 @@
           "tier2_xbar_3": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_3_37",
-            "xci_path": "ip/design_1_tier2_xbar_3_37/design_1_tier2_xbar_3_37.xci",
+            "xci_name": "design_1_tier2_xbar_3_47",
+            "xci_path": "ip/design_1_tier2_xbar_3_47/design_1_tier2_xbar_3_47.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_3",
             "parameters": {
               "NUM_MI": {
@@ -21669,6 +21680,11 @@
             "left": "63",
             "right": "0"
           },
+          "adc_rail_bus": {
+            "direction": "I",
+            "left": "63",
+            "right": "0"
+          },
           "adc_valid": {
             "direction": "I"
           },
@@ -21956,6 +21972,212 @@
             "bridges": [
               "M_AXIS"
             ]
+          }
+        }
+      },
+      "intensity_rx_lowpass_0": {
+        "vlnv": "xilinx.com:module_ref:intensity_rx_lowpass_wrapper:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_intensity_rx_lowpass_0_0",
+        "xci_path": "ip/design_1_intensity_rx_lowpass_0_0/design_1_intensity_rx_lowpass_0_0.xci",
+        "inst_hier_path": "intensity_rx_lowpass_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "intensity_rx_lowpass_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst_n",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "245760000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_usp_rf_data_converter_0_0_clk_adc1",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "rst_n": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
+          },
+          "i_data": {
+            "direction": "I",
+            "left": "63",
+            "right": "0"
+          },
+          "q_data": {
+            "direction": "I",
+            "left": "63",
+            "right": "0"
+          },
+          "sample_valid": {
+            "direction": "I"
+          },
+          "filtered_i": {
+            "direction": "O",
+            "left": "63",
+            "right": "0"
+          },
+          "filtered_q": {
+            "direction": "O",
+            "left": "63",
+            "right": "0"
+          },
+          "filtered_valid": {
+            "direction": "O"
+          }
+        }
+      },
+      "intensity_cal_q": {
+        "vlnv": "xilinx.com:ip:cic_compiler:4.0",
+        "ip_revision": "19",
+        "xci_name": "design_1_intensity_cal_q_0",
+        "xci_path": "ip/design_1_intensity_cal_q_0/design_1_intensity_cal_q_0.xci",
+        "inst_hier_path": "intensity_cal_q",
+        "parameters": {
+          "Clock_Frequency": {
+            "value": "245.76"
+          },
+          "Filter_Type": {
+            "value": "Decimation"
+          },
+          "Fixed_Or_Initial_Rate": {
+            "value": "8192"
+          },
+          "Input_Data_Width": {
+            "value": "16"
+          },
+          "Input_Sample_Frequency": {
+            "value": "245.76"
+          },
+          "Number_Of_Stages": {
+            "value": "3"
+          },
+          "Output_Data_Width": {
+            "value": "55"
+          },
+          "Quantization": {
+            "value": "Full_Precision"
+          },
+          "Sample_Rate_Changes": {
+            "value": "Fixed"
+          }
+        }
+      },
+      "intensity_cal_i_slice": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "ip_revision": "4",
+        "xci_name": "design_1_intensity_cal_i_slice_0",
+        "xci_path": "ip/design_1_intensity_cal_i_slice_0/design_1_intensity_cal_i_slice_0.xci",
+        "inst_hier_path": "intensity_cal_i_slice",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "15"
+          },
+          "DIN_TO": {
+            "value": "0"
+          },
+          "DIN_WIDTH": {
+            "value": "32"
+          },
+          "DOUT_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "intensity_cal_q_slice": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "ip_revision": "4",
+        "xci_name": "design_1_intensity_cal_q_slice_0",
+        "xci_path": "ip/design_1_intensity_cal_q_slice_0/design_1_intensity_cal_q_slice_0.xci",
+        "inst_hier_path": "intensity_cal_q_slice",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "31"
+          },
+          "DIN_TO": {
+            "value": "16"
+          },
+          "DIN_WIDTH": {
+            "value": "32"
+          },
+          "DOUT_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "intensity_cal_iq": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "ip_revision": "6",
+        "xci_name": "design_1_intensity_cal_iq_0",
+        "xci_path": "ip/design_1_intensity_cal_iq_0/design_1_intensity_cal_iq_0.xci",
+        "inst_hier_path": "intensity_cal_iq",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "16"
+          },
+          "IN1_WIDTH": {
+            "value": "16"
+          },
+          "NUM_PORTS": {
+            "value": "2"
+          }
+        }
+      },
+      "intensity_cal_i_scale": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "ip_revision": "4",
+        "xci_name": "design_1_intensity_cal_i_scale_0",
+        "xci_path": "ip/design_1_intensity_cal_i_scale_0/design_1_intensity_cal_i_scale_0.xci",
+        "inst_hier_path": "intensity_cal_i_scale",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "54"
+          },
+          "DIN_TO": {
+            "value": "39"
+          },
+          "DIN_WIDTH": {
+            "value": "56"
+          },
+          "DOUT_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "intensity_cal_q_scale": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "ip_revision": "4",
+        "xci_name": "design_1_intensity_cal_q_scale_0",
+        "xci_path": "ip/design_1_intensity_cal_q_scale_0/design_1_intensity_cal_q_scale_0.xci",
+        "inst_hier_path": "intensity_cal_q_scale",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "54"
+          },
+          "DIN_TO": {
+            "value": "39"
+          },
+          "DIN_WIDTH": {
+            "value": "56"
+          },
+          "DOUT_WIDTH": {
+            "value": "16"
           }
         }
       }
@@ -22390,35 +22612,13 @@
           "fir_compiler_1/S_AXIS_DATA"
         ]
       },
-      "cic_compiler_2_M_AXIS_DATA": {
-        "interface_ports": [
-          "cic_compiler_2/M_AXIS_DATA",
-          "axis_tlast_gen_3/s_axis",
-          "system_ila_0/SLOT_5_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
-      },
       "cordic_0_M_AXIS_DOUT": {
         "interface_ports": [
           "cordic_0/M_AXIS_DOUT",
-          "cic_compiler_2/S_AXIS_DATA",
-          "system_ila_0/SLOT_0_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+          "axis_tlast_gen_3/s_axis",
+          "system_ila_0/SLOT_0_AXIS",
+          "system_ila_0/SLOT_5_AXIS"
+        ]
       },
       "cordic_1_M_AXIS_DOUT": {
         "interface_ports": [
@@ -22429,17 +22629,8 @@
       "cordic_average_0_m_axis_cartesian": {
         "interface_ports": [
           "cordic_average_0/m_axis_cartesian",
-          "cordic_0/S_AXIS_CARTESIAN",
           "system_ila_0/SLOT_1_AXIS"
-        ],
-        "hdl_attributes": {
-          "DEBUG": {
-            "value": "true"
-          },
-          "MARK_DEBUG": {
-            "value": "true"
-          }
-        }
+        ]
       },
       "cordic_phase_helper_0_m_axis_phase": {
         "interface_ports": [
@@ -22483,16 +22674,9 @@
           "intensity_fifo/S_AXIS"
         ]
       },
-      "iq_split_0_m_axis_i": {
-        "interface_ports": [
-          "iq_split_0/m_axis_i",
-          "cordic_average_0/s_axis_i"
-        ]
-      },
       "iq_split_0_m_axis_q": {
         "interface_ports": [
           "iq_split_0/m_axis_q",
-          "cordic_average_0/s_axis_q",
           "system_ila_0/SLOT_7_AXIS"
         ],
         "hdl_attributes": {
@@ -23366,12 +23550,50 @@
           "system_ila_0/probe3"
         ]
       },
+      "cic_compiler_2_m_axis_data_tdata": {
+        "ports": [
+          "cic_compiler_2/m_axis_data_tdata",
+          "intensity_cal_i_scale/Din"
+        ]
+      },
+      "cic_compiler_2_m_axis_data_tvalid": {
+        "ports": [
+          "cic_compiler_2/m_axis_data_tvalid",
+          "cordic_0/s_axis_cartesian_tvalid"
+        ]
+      },
       "clk_wiz_0_clk_out1": {
         "ports": [
           "clk_wiz_0/clk_out1",
           "axis_data_fifo_0/s_axis_aclk",
           "proc_sys_reset_1/slowest_sync_clk",
           "pmod_ad1_adc_0/clk"
+        ]
+      },
+      "cordic_0_m_axis_dout_tdata": {
+        "ports": [
+          "cordic_0/m_axis_dout_tdata",
+          "axis_tlast_gen_3/s_axis_tdata"
+        ]
+      },
+      "cordic_0_m_axis_dout_tvalid": {
+        "ports": [
+          "cordic_0/m_axis_dout_tvalid",
+          "axis_tlast_gen_3/s_axis_tvalid"
+        ]
+      },
+      "cordic_average_0_m_axis_cartesian_tdata": {
+        "ports": [
+          "cordic_average_0/m_axis_cartesian_tdata",
+          "intensity_cal_i_slice/Din",
+          "intensity_cal_q_slice/Din"
+        ]
+      },
+      "cordic_average_0_m_axis_cartesian_tvalid": {
+        "ports": [
+          "cordic_average_0/m_axis_cartesian_tvalid",
+          "cic_compiler_2/s_axis_data_tvalid",
+          "intensity_cal_q/s_axis_data_tvalid"
         ]
       },
       "dwell_fcw_streamer_64_0_fcw_out": {
@@ -23442,6 +23664,42 @@
           }
         }
       },
+      "intensity_cal_i_scale_Dout": {
+        "ports": [
+          "intensity_cal_i_scale/Dout",
+          "intensity_cal_iq/In0"
+        ]
+      },
+      "intensity_cal_i_slice_Dout": {
+        "ports": [
+          "intensity_cal_i_slice/Dout",
+          "cic_compiler_2/s_axis_data_tdata"
+        ]
+      },
+      "intensity_cal_iq_dout": {
+        "ports": [
+          "intensity_cal_iq/dout",
+          "cordic_0/s_axis_cartesian_tdata"
+        ]
+      },
+      "intensity_cal_q_m_axis_data_tdata": {
+        "ports": [
+          "intensity_cal_q/m_axis_data_tdata",
+          "intensity_cal_q_scale/Din"
+        ]
+      },
+      "intensity_cal_q_scale_Dout": {
+        "ports": [
+          "intensity_cal_q_scale/Dout",
+          "intensity_cal_iq/In1"
+        ]
+      },
+      "intensity_cal_q_slice_Dout": {
+        "ports": [
+          "intensity_cal_q_slice/Dout",
+          "intensity_cal_q/s_axis_data_tdata"
+        ]
+      },
       "intensity_control_gpio_io_o": {
         "ports": [
           "intensity_control/gpio_io_o",
@@ -23490,6 +23748,28 @@
           "intensity_control/gpio2_io_i"
         ]
       },
+      "intensity_rx_lowpass_0_filtered_i": {
+        "ports": [
+          "intensity_rx_lowpass_0/filtered_i",
+          "fast_servo_controller_0/adc_bus",
+          "cordic_average_0/s_axis_i_tdata",
+          "intensity_probe_0/adc_bus"
+        ]
+      },
+      "intensity_rx_lowpass_0_filtered_q": {
+        "ports": [
+          "intensity_rx_lowpass_0/filtered_q",
+          "cordic_average_0/s_axis_q_tdata"
+        ]
+      },
+      "intensity_rx_lowpass_0_filtered_valid": {
+        "ports": [
+          "intensity_rx_lowpass_0/filtered_valid",
+          "cordic_average_0/s_axis_i_tvalid",
+          "cordic_average_0/s_axis_q_tvalid",
+          "intensity_probe_0/adc_valid"
+        ]
+      },
       "intensity_tone_gpio2_io_o": {
         "ports": [
           "intensity_tone/gpio2_io_o",
@@ -23506,14 +23786,25 @@
         "ports": [
           "iq_split_0/adc_bus",
           "system_ila_0/probe4",
-          "fast_servo_controller_0/adc_bus",
-          "intensity_probe_0/adc_bus"
+          "intensity_probe_0/adc_rail_bus"
+        ]
+      },
+      "iq_split_0_m_axis_i_tdata": {
+        "ports": [
+          "iq_split_0/m_axis_i_tdata",
+          "intensity_rx_lowpass_0/i_data"
         ]
       },
       "iq_split_0_m_axis_i_tvalid": {
         "ports": [
           "iq_split_0/m_axis_i_tvalid",
-          "intensity_probe_0/adc_valid"
+          "intensity_rx_lowpass_0/sample_valid"
+        ]
+      },
+      "iq_split_0_m_axis_q_tdata": {
+        "ports": [
+          "iq_split_0/m_axis_q_tdata",
+          "intensity_rx_lowpass_0/q_data"
         ]
       },
       "laser_pll_0_acquisition_status": {
@@ -24125,6 +24416,7 @@
           "pll_extension_axi/M29_ARESETN",
           "intensity_dma/axi_resetn",
           "pll_extension_axi/M30_ARESETN",
+          "intensity_rx_lowpass_0/rst_n",
           "intensity_probe_0/rst_n",
           "laser_pll_0/rst_n",
           "laser_pll_1/rst_n"
@@ -24381,6 +24673,8 @@
           "intensity_dma/m_axi_s2mm_aclk",
           "pll_extension_axi/M30_ACLK",
           "intensity_fifo/s_axis_aclk",
+          "intensity_rx_lowpass_0/clk",
+          "intensity_cal_q/aclk",
           "intensity_probe_0/clk",
           "laser_pll_0/clk",
           "laser_pll_1/clk"

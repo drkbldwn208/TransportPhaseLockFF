@@ -7,7 +7,7 @@ module intensity_probe_tb;
     reg [31:0] control=0,frequency_word=32'h01000000,amplitude_word=1000,limits=32'h7fff0000;
     wire [15:0] command_out; wire [31:0] status,version,clips,invalids;
     wire fifo_rst_n,valid,last; wire [127:0] data;
-    intensity_probe dut(.clk(clk),.rst_n(rst_n),.adc_bus(adc_bus),.adc_valid(adc_valid),
+    intensity_probe dut(.clk(clk),.rst_n(rst_n),.adc_bus(adc_bus),.adc_rail_bus(adc_bus),.adc_valid(adc_valid),
         .dac_ready(dac_ready),.controller_command(controller_command),.manual_command(manual_command),
         .manual_enable(manual_enable),.command_out(command_out),.control(control),
         .frequency_word(frequency_word),.amplitude_word(amplitude_word),.limits(limits),

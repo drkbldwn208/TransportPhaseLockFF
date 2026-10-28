@@ -38,6 +38,9 @@ def run():
     hq[15:17] += (131072-hq.sum())//2
     h = hq / 131072
     scenarios = [
+        ('rf3g5_phase', 3.5e9, 18000, .7, False),
+        ('rf3g5_plus100', 3.6e9, 18000, .1, True),
+        ('rf3g5_minus100', 3.4e9, 18000, .1, True),
         ('rf4g4_phase', 4.4e9, 18000, .7, False),
         ('rf4g4_plus100', 4.5e9, 18000, .1, True),
         ('rf4g4_minus100', 4.3e9, 18000, .1, True),
@@ -62,7 +65,7 @@ def run():
         for local in range(650):
             reset = local >= 3
             valid = local >= 5
-            reference_rf = 4.4e9 if name.startswith('rf4g4') else 800e6
+            reference_rf = 3.5e9 if name.startswith('rf3g5') else 4.4e9 if name.startswith('rf4g4') else 800e6
             reference_alias = reference_rf % FS
             word = round(reference_alias/FS*TURN)
             high=(word>>32) | (1<<16)

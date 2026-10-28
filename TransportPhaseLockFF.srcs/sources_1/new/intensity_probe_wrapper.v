@@ -4,7 +4,7 @@ module intensity_probe_wrapper (
     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF m_axis, ASSOCIATED_RESET rst_n:fifo_rst_n" *)
     input wire clk,
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *) input wire rst_n,
-    input wire [63:0] adc_bus,
+    input wire [63:0] adc_bus, adc_rail_bus,
     input wire adc_valid, dac_ready,
     input wire signed [15:0] controller_command, manual_command,
     input wire manual_enable,
@@ -21,6 +21,7 @@ module intensity_probe_wrapper (
         .clk(clk),
         .rst_n(rst_n),
         .adc_bus(adc_bus),
+        .adc_rail_bus(adc_rail_bus),
         .adc_valid(adc_valid),
         .dac_ready(dac_ready),
         .controller_command(controller_command),

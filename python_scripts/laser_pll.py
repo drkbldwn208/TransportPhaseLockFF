@@ -21,7 +21,7 @@ def channel(ol, number=1):
     """Return the GPIO/DMA handles for one independent loop; no hardware writes.
 
     0: ADC 224/3 -> DAC 229/1 (800 MHz default).
-    1: ADC 225/1 -> DAC 229/3 (4.4 GHz default, odd Nyquist zone 5).
+    1: ADC 225/1 -> DAC 229/3 (3.5 GHz default, even Nyquist zone 4).
     Pass the returned namespace to the same control, capture and FRA functions.
     """
     if number not in (0, 1):
@@ -37,7 +37,9 @@ def channel(ol, number=1):
                            ip_dict=ol.ip_dict, usp_rf_data_converter_0=ol.usp_rf_data_converter_0,
                            adc_tile=1, adc_block=1, dac_block=3,
                            rf_band_base_hz=2*ADC_SAMPLE_RATE_HZ,
-                           reference_default_hz=4.4e9)
+                           reference_default_hz=3.5e9,
+                           signed_reference_supported=(hasattr(ol, "intensity_limits") and
+                               ol.intensity_limits.read(8) == 0x494E5402))
 
 def _check_version(overlay):
     actual = overlay.pll_acquisition_status.read(0x08) >> 24
@@ -59,13 +61,25 @@ def set_reference_frequency(overlay, frequency_hz, *, restart_phase=False):
     software timed; deterministic ramps need a hardware trajectory source here.
     """
     band_base_hz = getattr(overlay, "rf_band_base_hz", 0.0)
-    frequency_hz = float(frequency_hz) - band_base_hz
-    if not math.isfinite(frequency_hz) or not 0 < frequency_hz < ADC_SAMPLE_RATE_HZ / 2:
-        raise ValueError(f"Reference must be in the selected odd Nyquist band: "
-                         f"{band_base_hz/1e9:g} < RF/GHz < {(band_base_hz+ADC_SAMPLE_RATE_HZ/2)/1e9:g}.")
-    if restart_phase and overlay.pll_control.read(0x00) & 1:
+    alias_hz = float(frequency_hz) - band_base_hz
+    signed_supported = getattr(overlay, 'signed_reference_supported', False)
+    low_hz = -ADC_SAMPLE_RATE_HZ/2 if signed_supported else 0.0
+    if not math.isfinite(alias_hz) or not low_hz < alias_hz < ADC_SAMPLE_RATE_HZ/2 or alias_hz == 0:
+        raise ValueError("Reference is outside the selected RF band or on a folding boundary.")
+    enabled = bool(overlay.pll_control.read(0x00) & 1)
+    old_negative = bool(overlay.pll_frequency.read(8) & 0x8000)
+    if restart_phase and enabled:
         raise ValueError("Disable the error output before restarting reference phase.")
-    word = round(frequency_hz / ADC_SAMPLE_RATE_HZ * (1 << 48))
+    if enabled and old_negative != (alias_hz < 0):
+        raise ValueError("Mute and reconfigure before changing Nyquist-zone parity.")
+    # Two's-complement DDS frequency selects the physical RF phase direction.
+    signed_word = round(alias_hz / ADC_SAMPLE_RATE_HZ * (1 << 48))
+    word = signed_word & ((1 << 48)-1)
+    if signed_supported and not enabled:
+        adc = overlay.usp_rf_data_converter_0.adc_tiles[overlay.adc_tile].blocks[overlay.adc_block]
+        zone = 2 if alias_hz < 0 else 1  # driver means even/odd, not literal 4/5
+        if adc.NyquistZone != zone:
+            adc.NyquistZone = zone
     gpio = overlay.pll_frequency
     toggle = ((gpio.read(0x08) >> 16) ^ 1) & 1
     gpio.write(0x00, word & 0xFFFFFFFF)
@@ -74,7 +88,7 @@ def set_reference_frequency(overlay, frequency_hz, *, restart_phase=False):
     while ((overlay.pll_status.read(0x00) >> 22) & 1) != toggle:
         if time.monotonic() > deadline:
             raise TimeoutError("PLL frequency commit was not acknowledged; check RF clock/reset.")
-    return band_base_hz + word * ADC_SAMPLE_RATE_HZ / (1 << 48)
+    return band_base_hz + signed_word * ADC_SAMPLE_RATE_HZ / (1 << 48)
 
 
 def configure(overlay, *, reference_frequency_hz=None, phase_offset_rad=0.0,
@@ -115,8 +129,9 @@ def configure(overlay, *, reference_frequency_hz=None, phase_offset_rad=0.0,
     adc_suffix, dac_suffix = f'{adc_tile}{adc_block}', f'1{dac_block}'
     expected = {'ADC_Data_Type'+adc_suffix: 0, 'ADC_Decimation_Mode'+adc_suffix: 1,
                 'ADC_Data_Width'+adc_suffix: 8, 'ADC_Mixer_Type'+adc_suffix: 1,
-                'ADC_Nyquist'+adc_suffix: 0,
                 'DAC_Data_Width'+dac_suffix: 14, 'DAC_Interpolation_Mode'+dac_suffix: 4}
+    if adc_tile == 0:
+        expected['ADC_Nyquist'+adc_suffix] = 0
     for name, value in expected.items():
         if int(p[name]) != value:
             raise ValueError(f"Incompatible RFDC configuration: {name} must equal {value}.")
@@ -227,10 +242,11 @@ def acquisition_status(overlay):
     f = overlay.pll_acquisition_status.read(0x08)
     if f >> 24 != FPGA_VERSION:
         raise ValueError("Acquisition register version mismatch.")
+    direction = -1 if overlay.pll_frequency.read(8) & 0x8000 else 1
     return dict(stage=a&7, dc_test=(a&7)==5, transitioning=bool(a&8),
                 pending=bool(a&16), near_ready=bool(a&32), fine_ready=bool(a&64),
                 output_valid=bool(a&128), remembered_turns=_signed(a>>8,24),
-                fft_frequency_hz=getattr(overlay, 'rf_band_base_hz', 0.0)+(f&1023)*ADC_SAMPLE_RATE_HZ/1024,
+                fft_frequency_hz=getattr(overlay, 'rf_band_base_hz', 0.0)+direction*(f&1023)*ADC_SAMPLE_RATE_HZ/1024,
                 fft_valid=bool(f&(1<<10)), fft_weak=bool(f&(1<<11)),
                 fft_overflow_seen=bool(f&(1<<12)), fft_protocol_fault=bool(f&(1<<13)),
                 fft_frame=(f>>16)&255)

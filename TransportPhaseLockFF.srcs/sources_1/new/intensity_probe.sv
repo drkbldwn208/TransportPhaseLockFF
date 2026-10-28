@@ -6,7 +6,7 @@
 // precede averaging in Python. Frame interval is 2^D / 245.76 MHz.
 module intensity_probe (
     input wire clk, rst_n,
-    input wire [63:0] adc_bus,
+    input wire [63:0] adc_bus, adc_rail_bus,
     input wire adc_valid, dac_ready,
     input wire signed [15:0] controller_command, manual_command,
     input wire manual_enable,
@@ -44,7 +44,7 @@ module intensity_probe (
     // At idle the command is unchanged in value, delayed by the boundary clock.
     assign command_out=!tone_active ? selected : sum<minimum ? limits[15:0] :
                        sum>maximum ? limits[31:16] : sum[15:0];
-    assign feature_version=32'h494e5401; // INT, measurement ABI 1
+    assign feature_version=32'h494e5402; // INT2: image-filtered I, replicated lanes
     wire armed=control[1];
     assign fifo_rst_n=rst_n && armed;
     reg started, collecting, done;
@@ -60,7 +60,7 @@ module intensity_probe (
     reg rail_window;
     always @(posedge clk) begin
         if (!rst_n) begin adc_for_rail<=0; rail_window<=0; end
-        else begin adc_for_rail<=adc_bus; rail_window<=armed && collecting; end
+        else begin adc_for_rail<=adc_rail_bus; rail_window<=armed && collecting; end
     end
     wire adc_rail=($signed(adc_for_rail[15:0])>=32752 || $signed(adc_for_rail[15:0])<=-32752 ||
                   $signed(adc_for_rail[31:16])>=32752 || $signed(adc_for_rail[31:16])<=-32752 ||

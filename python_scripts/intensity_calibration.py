@@ -1,7 +1,8 @@
 """Intensity-branch sample-resolved FRA and drift-normalized AOM calibration.
 
 ADC224/1 -> unchanged PI -> DAC228/3. No calibration table is applied to feedback.
-Raw ADC I lanes are calibrated individually BEFORE averaging/fitting. The saved
+The image-filtered I sample is replicated in four lanes for format compatibility.
+Sensor calibration is applied after RF image removal and before fitting. The saved
 record contains actual total command u, selected controller command c, and DDS
 phase; d=u-c, return ratio L=-C/U, and K=Q/(P0*U) has units 1/DAC-code.
 """
@@ -15,7 +16,7 @@ from pathlib import Path
 import numpy as np
 
 FS_HZ = 245.76e6
-FEATURE_VERSION = 0x494E5401
+FEATURE_VERSION = 0x494E5402
 FAULT_NAMES = {
     2: 'capture overflow',
     3: 'ADC invalid/DAC stall',
@@ -142,7 +143,7 @@ def plan(frequency_hz, *, cycles=16, minimum_measure_s=0.02, decimation_log2=Non
 
 
 def capture(ol, *, samples=32768, decimation_log2=8):
-    """Raw finite capture. Returns fault flags even for dark/rail calibration records."""
+    """Filtered finite capture; four identical I lanes, in original ADC-count units."""
     check(ol)
     if not isinstance(samples, int) or not 1 <= samples <= 1048575:
         raise ValueError('samples must be in [1,1048575].')
@@ -176,6 +177,9 @@ def capture(ol, *, samples=32768, decimation_log2=8):
             raise RuntimeError('Incomplete intensity capture.')
         return dict(
             raw=np.array(buffer),
+            feature_version=FEATURE_VERSION,
+            receiver_filter="15-tap FIR after four-lane mean; replicated I",
+            receiver_added_delay_s=11/FS_HZ,
             sample_rate_hz=FS_HZ / 2**decimation_log2,
             decimation_log2=decimation_log2,
             status=word,

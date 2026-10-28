@@ -33,7 +33,25 @@ def check_connections(hwh):
             linked((source, source_bus + '_' + signal), (sink, sink_bus + '_' + signal))
 
     stream('usp_rf_data_converter_0', 'm01_axis', 'iq_split_0', 's_axis')
-    linked(('iq_split_0', 'adc_bus'), ('fast_servo_controller_0', 'adc_bus'))
+    filtered = 'intensity_rx_lowpass_0' in modules
+    sensor = ('intensity_rx_lowpass_0', 'filtered_i') if filtered else ('iq_split_0', 'adc_bus')
+    sensor_valid = ('intensity_rx_lowpass_0', 'filtered_valid') if filtered else ('iq_split_0', 'm_axis_i_tvalid')
+    linked(sensor, ('fast_servo_controller_0', 'adc_bus'))
+    if filtered:
+        linked(('iq_split_0', 'm_axis_i_tdata'), ('intensity_rx_lowpass_0', 'i_data'))
+        linked(('iq_split_0', 'm_axis_q_tdata'), ('intensity_rx_lowpass_0', 'q_data'))
+        linked(sensor, ('cordic_average_0', 's_axis_i_tdata'))
+        linked(('intensity_rx_lowpass_0', 'filtered_q'), ('cordic_average_0', 's_axis_q_tdata'))
+        linked(('iq_split_0', 'adc_bus'), ('intensity_probe_0', 'adc_rail_bus'))
+        for axis, cic in [('i','cic_compiler_2'),('q','intensity_cal_q')]:
+            linked(('intensity_cal_'+axis+'_slice', 'Dout'), (cic, 's_axis_data_tdata'))
+            linked((cic, 'm_axis_data_tdata'), ('intensity_cal_'+axis+'_scale', 'Din'))
+            linked(('intensity_cal_'+axis+'_scale', 'Dout'), ('intensity_cal_iq', 'In0' if axis=='i' else 'In1'))
+            params={p.get('NAME'):p.get('VALUE') for p in modules[cic].findall('./PARAMETERS/PARAMETER')}
+            assert params['Quantization']=='Full_Precision' and int(params['C_OUTPUT_WIDTH'])==55
+            assert int(params['C_RATE'])==8192 and int(params['C_NUM_STAGES'])==3
+        linked(('intensity_cal_iq', 'dout'), ('cordic_0', 's_axis_cartesian_tdata'))
+        linked(('cordic_0', 'm_axis_dout_tdata'), ('axis_tlast_gen_3', 's_axis_tdata'))
     stream('axi_dma_6', 'm_axis_mm2s', 'dwell_fcw_streamer_32_0', 's_axis_cmd')
     linked(('dwell_fcw_streamer_32_0', 's_axis_cmd_tready'), ('axi_dma_6', 'm_axis_mm2s_tready'))
     linked(('dwell_fcw_streamer_32_0', 'fcw_out'), ('setpoint_switch_0', 'serial_setpoint'))
@@ -41,8 +59,8 @@ def check_connections(hwh):
     if 'intensity_probe_0' in modules:
         linked(('fast_servo_controller_0', 'dac_out'), ('intensity_probe_0', 'controller_command'))
         linked(('intensity_probe_0', 'command_out'), ('sync_axis_power_mod_0', 'sync_in'))
-        linked(('iq_split_0', 'adc_bus'), ('intensity_probe_0', 'adc_bus'))
-        linked(('iq_split_0', 'm_axis_i_tvalid'), ('intensity_probe_0', 'adc_valid'))
+        linked(sensor, ('intensity_probe_0', 'adc_bus'))
+        linked(sensor_valid, ('intensity_probe_0', 'adc_valid'))
         linked(('pll_fra_one', 'dout'), ('intensity_probe_0', 'dac_ready'))
         ready = {p.get('NAME'): p.get('VALUE') for p in modules['pll_fra_one'].findall('./PARAMETERS/PARAMETER')}
         assert int(ready['CONST_VAL'], 0) == 1 and int(ready['CONST_WIDTH']) == 1

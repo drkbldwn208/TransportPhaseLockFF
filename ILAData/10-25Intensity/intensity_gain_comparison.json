@@ -1,0 +1,160 @@
+{
+  "intensity_no_dither.npz": {
+    "configuration": {
+      "pi_registers": {
+        "0x10": 1,
+        "0x18": 0,
+        "0x20": 0,
+        "0x28": 268173312,
+        "0x30": 268434145
+      },
+      "gpio": {
+        "9": [
+          0,
+          27851
+        ],
+        "10": [
+          291,
+          0
+        ],
+        "11": [
+          1,
+          5000
+        ],
+        "12": [
+          8191,
+          0
+        ]
+      },
+      "adc_mixer": {
+        "Freq": 89.99999999998603,
+        "PhaseOffset": 0.0,
+        "EventSource": 2,
+        "CoarseMixFreq": 0,
+        "MixerMode": 3,
+        "FineMixerScale": 0,
+        "MixerType": 2
+      },
+      "lo_mixer": {
+        "Freq": 89.99999999998603,
+        "PhaseOffset": 0.0,
+        "EventSource": 2,
+        "CoarseMixFreq": 0,
+        "MixerMode": 2,
+        "FineMixerScale": 0,
+        "MixerType": 2
+      },
+      "aom_mixer": {
+        "Freq": 79.99999999999535,
+        "PhaseOffset": 0.0,
+        "EventSource": 2,
+        "CoarseMixFreq": 0,
+        "MixerMode": 2,
+        "FineMixerScale": 0,
+        "MixerType": 2
+      },
+      "limits_word": 2147418112
+    },
+    "status_hex": "0x20000022",
+    "duration_s": 0.008533333333333334,
+    "welch_bin_hz": 234.375,
+    "pi_mean_codes": 6082.1154861450195,
+    "pi_range_codes": [
+      0.0,
+      12332.0
+    ],
+    "pi_zero_fraction": 0.192138671875,
+    "pi_std_codes": 4474.508441924235,
+    "adc_mean_counts": 5000.105670928955,
+    "raw_lane_std_counts": [
+      5761.194453036181,
+      5760.690639056386,
+      5760.903371721236,
+      5760.917778353837
+    ],
+    "raw_adc_outside_table_fraction": 0.5178413391113281,
+    "mean_adc_recorded_below_1MHz_rms_counts": 4390.920252138811,
+    "pi_recorded_below_1MHz_rms_codes": 4447.06665484897,
+    "pi_image_band_rms_codes": 222.445679453928,
+    "raw_lane_image_variance_fraction": 0.218393110020935
+  },
+  "intensity_no_dither (1).npz": {
+    "configuration": {
+      "pi_registers": {
+        "0x10": 1,
+        "0x18": 0,
+        "0x20": 0,
+        "0x28": 268330598,
+        "0x30": 268435063
+      },
+      "gpio": {
+        "9": [
+          0,
+          27851
+        ],
+        "10": [
+          291,
+          0
+        ],
+        "11": [
+          1,
+          5000
+        ],
+        "12": [
+          8191,
+          0
+        ]
+      },
+      "adc_mixer": {
+        "Freq": 89.99999999998603,
+        "PhaseOffset": 0.0,
+        "EventSource": 2,
+        "CoarseMixFreq": 0,
+        "MixerMode": 3,
+        "FineMixerScale": 0,
+        "MixerType": 2
+      },
+      "lo_mixer": {
+        "Freq": 89.99999999998603,
+        "PhaseOffset": 0.0,
+        "EventSource": 2,
+        "CoarseMixFreq": 0,
+        "MixerMode": 2,
+        "FineMixerScale": 0,
+        "MixerType": 2
+      },
+      "aom_mixer": {
+        "Freq": 79.99999999999535,
+        "PhaseOffset": 0.0,
+        "EventSource": 2,
+        "CoarseMixFreq": 0,
+        "MixerMode": 2,
+        "FineMixerScale": 0,
+        "MixerType": 2
+      },
+      "limits_word": 2147418112
+    },
+    "status_hex": "0x20000002",
+    "duration_s": 0.008533333333333334,
+    "welch_bin_hz": 234.375,
+    "pi_mean_codes": 7240.3395919799805,
+    "pi_range_codes": [
+      6959.0,
+      7482.0
+    ],
+    "pi_zero_fraction": 0.0,
+    "pi_std_codes": 154.5340060101006,
+    "adc_mean_counts": 5000.019046783447,
+    "raw_lane_std_counts": [
+      2645.527236468459,
+      2645.5550299743936,
+      2645.786265516827,
+      2645.6578643168045
+    ],
+    "raw_adc_outside_table_fraction": 7.62939453125e-06,
+    "mean_adc_recorded_below_1MHz_rms_counts": 8.382716709028667,
+    "pi_recorded_below_1MHz_rms_codes": 4.533296612246466,
+    "pi_image_band_rms_codes": 151.86091267421773,
+    "raw_lane_image_variance_fraction": 0.9520245616537701
+  }
+}

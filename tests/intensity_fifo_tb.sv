@@ -9,7 +9,7 @@ module intensity_fifo_tb;
     wire [127:0] tx_data,rx_data;
     wire tx_valid,tx_ready,tx_last,rx_valid,rx_last,fifo_reset;
     wire [31:0] status;
-    intensity_probe probe(.clk(clk),.rst_n(rst_n),.adc_bus({4{tag}}),.adc_valid(1'b1),
+    intensity_probe probe(.clk(clk),.rst_n(rst_n),.adc_bus({4{tag}}),.adc_rail_bus({4{tag}}),.adc_valid(1'b1),
         .dac_ready(1'b1),.controller_command(16'd10000),.manual_command(16'd0),.manual_enable(1'b0),
         .command_out(),.control(control),.frequency_word(32'd0),.amplitude_word(32'd0),
         .limits(32'h7fff0000),.status(status),.feature_version(),.clip_samples(),.invalid_samples(),

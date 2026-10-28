@@ -5,7 +5,9 @@ intensity servo. The user specified an 80 MHz AOM carrier and approximately the
 full positive DAC-amplitude range. The existing RFDC configuration, PI algorithm,
 32-bit setpoint streamer, both laser PLLs, their FRAs, and their I/Q captures remain
 present. No sensor or actuator compensation table is applied to live feedback.
-The separate feature signature is `0x494E5401`; the laser PLL ABI remains A7.
+The current INT2 feature signature is `0x494E5402`; the laser PLL ABI remains A7.
+See [the receiver update](intensity_filtered_R7.md) for filter specifications,
+phase calibration and 3.5 GHz operation.
 
 ## What to connect
 
@@ -13,7 +15,7 @@ The separate feature signature is `0x494E5401`; the laser PLL ABI remains A7.
 DAC228/3, existing 80 MHz carrier → RF amplifier → AOM
 stabilized optical output → PDA36A2 → ZAD-1+ IF
 DAC228/1, existing mixer LO (normally 90 MHz) → ZAD-1+ LO
-ZAD-1+ RF → ADC224/1 → RFDC I/Q demodulation → existing fast PI
+ZAD-1+ RF → ADC224/1 → RFDC I/Q demodulation → image-rejection FIR → existing fast PI
 ```
 
 Use a power meter on that output or a fixed pickoff for the sensor calibration.
@@ -42,7 +44,7 @@ S = U/D                    sensitivity
 Q/U                        calibrated optical plant response, power/code
 ```
 
-L includes the current raw-sensor PI, digital filtering, converters, RF driver,
+L includes the current sensor-count PI, digital filtering, converters, RF driver,
 AOM, detector and mixer. Q/U includes the actuator and sensor/receive dynamics
 between the digital injection and observation points. Static sensor correction
 does not remove detector/mixer bandwidth. No propagation delay is silently
@@ -58,7 +60,7 @@ integrated into a single F. This measurement alone cannot prove those assumption
 
 ## Acquisition, nonlinear sensor correction and averaging
 
-The new diagnostic adds a ramped cosine after the existing PI/manual selection
+The diagnostic adds a ramped cosine after the existing PI/manual selection
 and before the existing DAC formatter. It clamps the total command to programmable
 limits while the tone is active; the default is 0…32767. A boundary register after
 the existing PI/manual selection adds **one feedback clock, 4.069 ns**, in both
@@ -68,26 +70,25 @@ HLS PI's output saturation and the new add/limit logic were in the same clock.
 The register separates those operations without changing the PI arithmetic.
 Its extra phase lag is 0.146° at 100 kHz and 1.465° at 1 MHz. Measured L includes
 this delay; no software delay correction is needed or silently applied.
+This output register was already present in INT1; it is not an additional
+change when upgrading from INT1 to INT2.
 The PI's original four-I-lane average, one-pole IIR, gains, anti-windup and limits
 are unchanged. Its integrator does not know about the diagnostic adder's limits,
 so clipped records are rejected and large dither should be avoided.
 
-The DMA records four raw I samples from the same ADC word, C, U and the aligned
-DDS phase. There is **no new temporal averaging or antialias filter before this
-capture**. Frames are selected once every 2^D fabric clocks. This deliberate
-choice permits applying a nonlinear sensor calibration to each individual lane
-before any new averaging, as required by the calibration method. Correcting an
-already-averaged nonlinear sensor signal generally gives a different answer.
+The INT2 DMA records four identical copies of the image-filtered I sample,
+C, U and the aligned DDS phase. A unity-gain 15-tap receiver FIR removes the
+180 MHz mixer product before the PI and before nonlinear sensor conversion.
+It adds 44.759 ns to feedback and has less than 0.035 dB droop through 1.5 MHz.
+The original PI arithmetic is unchanged. The added receiver delay is included
+in measured L and K; software does not subtract it.
 
-Python interpolates the calibrated sensor map on every raw lane, then averages
-the four corrected samples in that word. Their total span is about 3.05 ns at
-the existing 983.04 MS/s complex ADC output. At these modulation frequencies
-they represent a single observation; the small fixed timestamp convention and
-the RFDC/analog delays belong to the measured response. Frame selection does
-alias out-of-band noise and harmonics. Repeat at twice the capture rate and
-nearby frequencies: long averaging does not cure systematic aliasing. The
-original RFDC decimation filter remains in place, but is not an antialias filter
-for arbitrarily large additional frame decimation.
+Python interpolates the calibrated sensor map on the filtered sensor samples,
+then fits the time series. RF image excursions must not be interpreted as
+optical power. Frames are still selected once every 2^D fabric clocks, so other
+out-of-band signals can alias. Repeat at twice the capture rate and nearby
+frequencies; long averaging does not cure a systematic alias. The four copies
+are for compatibility, not four statistically independent observations.
 
 For each of C, U and P, fit
 
@@ -162,7 +163,7 @@ record may legitimately have a rail flag; transfer measurements exclude rails.
 |---|---|---|---|
 | intensity_control | 0xA0310000 | control | status |
 | intensity_tone | 0xA0320000 | unsigned DDS frequency word | signed amplitude in low 16 bits |
-| intensity_limits | 0xA0330000 | min in low 16, max in high 16 | signature 0x494E5401 |
+| intensity_limits | 0xA0330000 | min in low 16, max in high 16 | signature 0x494E5402 |
 | intensity_counts | 0xA0340000 | actuator-clip clock count | invalid-input clock count |
 | intensity_dma | 0xA0350000 | standard AXI DMA S2MM registers | — |
 
@@ -182,13 +183,15 @@ One little-endian record is 16 bytes / four uint32 words:
 
 | Word | Bits | Meaning |
 |---|---|---|
-| 0 | 15:0 / 31:16 | signed raw I lanes 0 / 1 |
-| 1 | 15:0 / 31:16 | signed raw I lanes 2 / 3 |
+| 0 | 15:0 / 31:16 | signed filtered I, two identical copies |
+| 1 | 15:0 / 31:16 | signed filtered I, two more identical copies |
 | 2 | 15:0 / 31:16 | signed C / signed U, DAC command codes |
 | 3 | 31:0 | unsigned phase, 2^32 = one turn |
 
 Raw NPZ: `raw`, `sample_rate_hz`, `decimation_log2`, `status`, `clip_samples`,
-`invalid_samples`, `metadata_json`. Metadata includes source operating settings,
+`invalid_samples`, `metadata_json`, `feature_version`, `receiver_filter`,
+`receiver_added_delay_s`. Historical INT1 records contain four raw I lanes and
+lack these new receiver identifiers. Metadata includes source operating settings,
 calibration table and frequency plan. Every sweep creates a directory of raw
 NPZs, an aggregate CSV, `_blocks.csv`, and a setup JSON. Aggregate rows include
 actual frequency, complex C/U/Q/D/L/K as `_re`/`_im`, P0, u0, repeat counts,
@@ -225,8 +228,9 @@ stops the sweep so the calibration can be extended; no extrapolation is hidden.
   independent of frame spacing. Counters measure fabric clocks. A separate ADC
   register allows the rail comparator to meet timing; its window is delayed too,
   so it checks the exact original interval and drains the last checked sample.
-  It does not delay raw ADC capture or the feedback data.
-- At each frame boundary it packs raw lanes, simultaneous C/U and aligned phase.
+  Its input is the separate unfiltered ADC bus; it does not delay the captured
+  filtered samples or the feedback data.
+- At each frame boundary it packs filtered I copies, simultaneous C/U and aligned phase.
   It holds an unaccepted AXIS word; if a new frame cannot be queued it sets an
   overflow flag rather than stalling feedback. Such records must be rejected.
 - The last record asserts TLAST. Queued length and DMA completion are both

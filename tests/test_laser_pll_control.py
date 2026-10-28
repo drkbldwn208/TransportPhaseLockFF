@@ -239,6 +239,25 @@ class Controls(unittest.TestCase):
                                2*pll.ADC_SAMPLE_RATE_HZ+244*pll.ADC_SAMPLE_RATE_HZ/1024)
         with self.assertRaises(ValueError): pll.set_reference_frequency(self.ol,3.8e9)
 
+    def test_even_zone_3g5_phase_direction_and_fft_frequency(self):
+        self.ol.rf_band_base_hz = 2*pll.ADC_SAMPLE_RATE_HZ
+        self.ol.signed_reference_supported = True
+        self.ol.adc_tile, self.ol.adc_block = 1, 1
+        adc=SimpleNamespace(NyquistZone=1)
+        self.ol.usp_rf_data_converter_0=SimpleNamespace(adc_tiles=[None,SimpleNamespace(blocks=[None,adc])])
+        self.ol.pll_status.values[0] = 1 << 22
+        self.assertAlmostEqual(pll.set_reference_frequency(self.ol,3.5e9),3.5e9,places=4)
+        self.assertEqual(adc.NyquistZone,2)
+        word=self.ol.pll_frequency.read(0)|((self.ol.pll_frequency.read(8)&65535)<<32)
+        self.assertAlmostEqual(pll._signed(word,48)*pll.ADC_SAMPLE_RATE_HZ/2**48,-432160000,places=5)
+        self.ol.pll_acquisition_status.values[8]=0xA7000000|225|1024
+        self.assertAlmostEqual(pll.acquisition_status(self.ol)['fft_frequency_hz'],3.50016e9)
+        self.ol.pll_control.values[0]=1
+        writes=len(self.ol.pll_frequency.writes)
+        with self.assertRaisesRegex(ValueError,'Nyquist-zone parity'):
+            pll.set_reference_frequency(self.ol,4.4e9)
+        self.assertEqual(len(self.ol.pll_frequency.writes),writes)
+
     def test_independent_channel_handles(self):
         names=('frequency','control','status','acquisition','acquisition_status','tracking','monitor',
                'fra','fra_window','fra_tone','fra_error','fra_drive','fra_counts','fra_extrema',

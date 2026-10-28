@@ -40,6 +40,7 @@
         "clk": [ { "direction": "in" } ],
         "rst_n": [ { "direction": "in" } ],
         "adc_bus": [ { "direction": "in", "size_left": "63", "size_right": "0" } ],
+        "adc_rail_bus": [ { "direction": "in", "size_left": "63", "size_right": "0" } ],
         "adc_valid": [ { "direction": "in" } ],
         "dac_ready": [ { "direction": "in" } ],
         "controller_command": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],

@@ -42,9 +42,15 @@ module laser_pll_acquisition (
     reg signed [37:0] coarse_scaled;
     wire signed [37:0] coarse_dac = (control[2] ? -coarse_scaled : coarse_scaled) >>> 2;
     reg coarse_valid1, coarse_valid2;
+    // A negative DDS frequency selects the negative-frequency image of a real
+    // ADC tone (even Nyquist zones). Fine phase then has the physical RF sign.
+    // FFT reports |f_alias|, so mirror its bin before forming ref-minus-beat.
+    wire [47:0] fft_frequency = {fft_bin,38'b0};
+    wire [47:0] signed_fft_frequency = reference_frequency[47] ?
+                                      -fft_frequency : fft_frequency;
+    wire [47:0] coarse_difference = reference_frequency - signed_fft_frequency;
     always @(posedge clk) begin
-        coarse_frequency_error <= $signed({1'b0,reference_frequency[47:27]}) -
-                                  $signed({1'b0,fft_bin,11'b0});
+        coarse_frequency_error <= $signed(coarse_difference) >>> 27;
         coarse_scaled <= $signed({{16{coarse_frequency_error[21]}},coarse_frequency_error})
                          <<< acquisition_control[11:8];
         coarse_valid1 <= rst_n && fft_valid;

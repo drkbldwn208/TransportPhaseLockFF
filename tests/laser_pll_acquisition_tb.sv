@@ -6,6 +6,7 @@ module laser_pll_acquisition_tb;
     reg rst_n=0, ready=1;
     reg [31:0] cfg=32'h00200000, dc=0, control=5;
     reg [9:0] bin=104;
+    reg [47:0] reference_frequency=48'd114532461226667;
     reg fft_valid=1, valid=1;
     reg signed [15:0] legacy=800, capture=-200, unwrapped=300;
     wire signed [15:0] output_code;
@@ -13,7 +14,7 @@ module laser_pll_acquisition_tb;
     wire [31:0] status;
     laser_pll_acquisition dut(.clk(clk),.rst_n(rst_n),.ready(ready),
         .acquisition_control(cfg),.test_dc(dc),.control(control),
-        .reference_frequency(48'd114532461226667), // exactly 800 MHz to FCW rounding
+        .reference_frequency(reference_frequency), // exactly 800 MHz to FCW rounding
         .fft_bin(bin),.fft_valid(fft_valid),.error_valid(valid),
         .legacy_target(legacy),.legacy_saturated(1'b0),.capture_target(capture),.capture_saturated(1'b0),
         .unwrapped_target(unwrapped),.unwrapped_saturated(1'b0),.tracking_target(16'sd500), .tracking_saturated(1'b0), .tracking_valid(valid),
@@ -142,6 +143,15 @@ module laser_pll_acquisition_tb;
         @(negedge clk); memory.turns=24'sd32767; wrapped=-130000;
         tick;
         if (turns!=32768) $fatal(1,"Counter accidentally limited to 16 bits");
+        // A physical +100 MHz detuning reduces the positive FFT bin in zone 4.
+        // Signed DDS reference must nevertheless give ref-minus-beat < 0.
+        @(negedge clk); reference_frequency=48'd219604541156011; bin=173;
+        repeat(5) tick;
+        if(dut.coarse_frequency_error > -100000 || dut.coarse_frequency_error < -112000)
+            $fatal(1,"3.5 GHz +100 MHz coarse polarity %d",dut.coarse_frequency_error);
+        @(negedge clk); bin=277; repeat(5) tick;
+        if(dut.coarse_frequency_error < 100000 || dut.coarse_frequency_error > 112000)
+            $fatal(1,"3.5 GHz -100 MHz coarse polarity %d",dut.coarse_frequency_error);
         $display("PASS: manual fine entry without dwell/FFT gates; invalid-data rejection; handoffs; one-cycle path; DC/stalls; 24-bit slips/gaps");
         $finish;
     end

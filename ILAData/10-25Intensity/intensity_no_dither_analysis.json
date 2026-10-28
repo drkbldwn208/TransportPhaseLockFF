@@ -1,0 +1,83 @@
+{
+  "source": "intensity_no_dither.npz",
+  "sample_rate_hz": 15360000.0,
+  "duration_s": 0.008533333333333334,
+  "lane_sample_rate_hz": 983040000.0,
+  "pi_zero_fraction": 0.192138671875,
+  "adc_lane_mean_counts": [
+    4999.966163635254,
+    5000.191864013672,
+    4999.724609375,
+    5000.5400466918945
+  ],
+  "adc_lane_std_counts": [
+    5761.194453036181,
+    5760.690639056386,
+    5760.903371721236,
+    5760.917778353837
+  ],
+  "notes": [
+    "Line power integrates a +/-10 kHz band in the Welch PSD; fractions are relative to the integrated non-DC PSD.",
+    "Physical-frequency inference uses the phase slope across four adjacent ADC samples and is modulo the lane sample rate.",
+    "A matching 180 MHz image does not establish that it causes the separate low-frequency loop oscillation."
+  ],
+  "ringing": {
+    "recorded_frequency_hz": 391184.75428925984,
+    "lane_phase_relative_deg": [
+      -0.0,
+      0.14271231174079363,
+      0.2854997233536235,
+      0.4297243448324692
+    ],
+    "phase_step_deg": 0.14319604461102375,
+    "inferred_frequency_modulo_lane_rate_hz": 391020.66581783554,
+    "lane_peak_amplitude_counts": [
+      6138.957186907365,
+      6138.3904091719905,
+      6138.62185181722,
+      6138.818167451135
+    ],
+    "raw_lane": {
+      "line_rms_counts": 4341.295895033663,
+      "variance_fraction": 0.5676811278763826
+    },
+    "four_lane_mean": {
+      "line_rms_counts": 4341.070929491486,
+      "variance_fraction": 0.8973829167303295
+    },
+    "pi_command": {
+      "line_rms_counts": 4433.120812358649,
+      "variance_fraction": 0.9815240689113237
+    }
+  },
+  "mixing_image": {
+    "recorded_frequency_hz": 4320000.000027925,
+    "lane_phase_relative_deg": [
+      0.0,
+      -65.9257403229852,
+      -131.84170815281155,
+      -197.7629356807479
+    ],
+    "phase_step_deg": -65.92047748720701,
+    "inferred_frequency_modulo_lane_rate_hz": -180006850.52506658,
+    "lane_peak_amplitude_counts": [
+      3808.0224311296947,
+      3807.90700596438,
+      3807.7371755850336,
+      3807.933593895722
+    ],
+    "raw_lane": {
+      "line_rms_counts": 2692.691663000123,
+      "variance_fraction": 0.218393110020935
+    },
+    "four_lane_mean": {
+      "line_rms_counts": 921.74526853453,
+      "variance_fraction": 0.040458135805885496
+    },
+    "pi_command": {
+      "line_rms_counts": 222.445679453928,
+      "variance_fraction": 0.0024713244718926695
+    }
+  },
+  "ringing_adc_pi_coherence": 0.9999998971255221
+}

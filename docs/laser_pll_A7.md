@@ -22,6 +22,13 @@ flowchart LR
     IQ --> DMA[Raw baseband I/Q capture]
 ```
 
+## Current filtered-intensity release
+
+The INT2 package adds 3.5 GHz support and makes that the second-loop default.
+Its signed DDS handles the even-zone phase direction automatically; 4.4 GHz
+remains supported. See [the INT2 release notes](intensity_filtered_R7.md).
+The following original A7 description records the initial 4.4 GHz configuration.
+
 ## RF frequencies and channel selection
 
 | Loop | ADC | DAC | Default RF reference | Sampled reference | ADC rate |
