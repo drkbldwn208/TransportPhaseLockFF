@@ -57,7 +57,20 @@ def check_connections(hwh):
     linked(('dwell_fcw_streamer_32_0', 'fcw_out'), ('setpoint_switch_0', 'serial_setpoint'))
     linked(('setpoint_switch_0', 'setpoint_out'), ('fast_servo_controller_0', 'set_point'))
     if 'intensity_probe_0' in modules:
-        linked(('fast_servo_controller_0', 'dac_out'), ('intensity_probe_0', 'controller_command'))
+        if 'intensity_linearized_0' in modules:
+            linked(('fast_servo_controller_0', 'dac_out'), ('intensity_linearized_0', 'legacy_command'))
+            linked(('intensity_linearized_0', 'command_out'), ('intensity_probe_0', 'controller_command'))
+            linked(sensor, ('intensity_linearized_0', 'adc_bus'))
+            linked(sensor_valid, ('intensity_linearized_0', 'adc_valid'))
+            linked(('setpoint_switch_0', 'setpoint_out'), ('intensity_linearized_0', 'reference_in'))
+            linked(('dwell_fcw_streamer_32_0', 'active_r'), ('intensity_shot_capture_0', 'shot_active'))
+            for signal in ('error_q8', 'reference_power', 'measured_power', 'raw_adc', 'sample_flags'):
+                linked(('intensity_linearized_0', signal), ('intensity_shot_capture_0', signal))
+            linked(('intensity_probe_0', 'command_out'), ('intensity_shot_capture_0', 'actuator_codes'))
+            stream('intensity_shot_capture_0', 'm_axis', 'intensity_shot_fifo', 's_axis')
+            stream('intensity_shot_fifo', 'm_axis', 'intensity_shot_dma', 's_axis_s2mm')
+        else:
+            linked(('fast_servo_controller_0', 'dac_out'), ('intensity_probe_0', 'controller_command'))
         linked(('intensity_probe_0', 'command_out'), ('sync_axis_power_mod_0', 'sync_in'))
         linked(sensor, ('intensity_probe_0', 'adc_bus'))
         linked(sensor_valid, ('intensity_probe_0', 'adc_valid'))

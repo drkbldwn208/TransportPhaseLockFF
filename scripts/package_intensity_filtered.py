@@ -6,11 +6,15 @@ import hashlib
 import json
 import re
 import shutil
+import sys
 import zipfile
 import xml.etree.ElementTree as ET
 from check_intensity_servo import verify
 from package_intensity_calibration import resources
+from pynqmetadata.frontends import Metadata
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT/'python_scripts'))
+from repair_int2_hwh import ORIGINAL_SHA256, corrected_hwh
 WORK=ROOT/'build/intensity_filtered'
 OUT=ROOT/'build/intensity_filtered_R7'
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -30,7 +34,18 @@ def main():
     below=re.findall(r'^Below: (DSP48E2_X\d+Y\d+) cells=(.*)$',cic,re.M)
     assert len(below)==2 and all(not cells.strip() for site,cells in below)
     gen=ROOT/'TransportPhaseLockFF.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh'
-    assert digest(gen)==digest(OUT/'TransportPhaseLockFF.hwh')
+    # The released INT2 bitstream ties unused ILA slots to zero. Repair only
+    # that known HWH's sink-only metadata, retaining the raw export as evidence.
+    raw_hwh=gen.read_bytes()
+    metadata_repaired=digest(gen)==ORIGINAL_SHA256
+    expected_hwh=corrected_hwh(raw_hwh) if metadata_repaired else raw_hwh
+    release_hwh=OUT/'TransportPhaseLockFF.hwh'
+    assert release_hwh.read_bytes() in (raw_hwh,expected_hwh)
+    raw_copy=OUT/'source/metadata/design_1_original.hwh'
+    raw_copy.parent.mkdir(parents=True,exist_ok=True)
+    raw_copy.write_bytes(raw_hwh)
+    if release_hwh.read_bytes()!=expected_hwh:release_hwh.write_bytes(expected_hwh)
+    metadata=Metadata(input=release_hwh)
     assert digest(ROOT/'TransportPhaseLockFF.runs/impl_1/design_1_wrapper.bit')==digest(OUT/'TransportPhaseLockFF.bit')
     connections=verify()
     bd=json.loads((ROOT/'TransportPhaseLockFF.srcs/sources_1/bd/design_1/design_1.bd').read_text())['design']
@@ -52,12 +67,13 @@ def main():
         assert p['Quantization']=='Full_Precision' and int(p['C_OUTPUT_WIDTH'])==55,p
     logs=['filter_test','phase_monitor','phase_helper','pll_control','pll_acquisition','pll_tones',
           'intensity_probe','intensity_fifo','intensity_python','notebook','connectivity','dual_bd','pll_iir','pll_fra']
+    if metadata_repaired:logs.append('hwh_metadata')
     for name in logs:
         text=(WORK/(name+'.log')).read_text()
         assert ('PASS:' in text or '\nOK\n' in text) and not any(x in text for x in ['Traceback','FAILED','Fatal:']),name
     (OUT/'tests').mkdir(exist_ok=True);(OUT/'docs').mkdir(exist_ok=True)
     for name in logs:shutil.copy2(WORK/(name+'.log'),OUT/'tests')
-    for name in ['intensity_calibration.py','intensity_calibration.ipynb','intensity_phase_calibration.py',
+    for name in ['repair_int2_hwh.py','intensity_calibration.py','intensity_calibration.ipynb','intensity_phase_calibration.py',
                  'intensity_phase_calibration.ipynb','laser_pll.py','laser_pll_loop_sweep.py','laser_pll_phase_fra.py',
                  'laser_pll_bringup.ipynb','laser_pll_loop_sweep.ipynb','laser_pll_phase_fra.ipynb']:
         shutil.copy2(ROOT/'python_scripts'/name,OUT/name)
@@ -70,7 +86,13 @@ def main():
     (OUT/'tests/connectivity.json').write_text(json.dumps(connections,indent=2)+'\n')
     for name in freeze['files']:
         target=OUT/'source'/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/name,target)
-    for path in [ROOT/'scripts/add_intensity_lowpass.tcl',ROOT/'scripts/build_intensity_filtered.tcl',
+    # Preserve the as-built Tcl already archived with this bitstream. The scalar
+    # ILA wiring correction is for a future build and has not changed the .bit.
+    setup=ROOT/'scripts/add_intensity_lowpass.tcl'
+    if metadata_repaired:
+        target=OUT/'future_build'/setup.name;target.parent.mkdir(exist_ok=True);shutil.copy2(setup,target)
+    else:shutil.copy2(setup,OUT/'source/scripts'/setup.name)
+    for path in [ROOT/'scripts/build_intensity_filtered.tcl',
                  ROOT/'scripts/finish_intensity_filtered.tcl',ROOT/'scripts/check_intensity_servo_routed.tcl',Path(__file__).resolve()]:
         target=OUT/'source/scripts'/path.name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,target)
     text=(OUT/'reports/utilization.rpt').read_text();used=resources(text,'design_1_wrapper');filt=resources(text,'intensity_rx_lowpass_0')
@@ -83,7 +105,10 @@ def main():
         second_pll=dict(reference_hz=3.5e9,signed_alias_hz=-432.16e6,adc='225/1',dac='229/3',nyquist_driver_value=2),
         configuration_changes=changes,register_map_unchanged=True,rtl_freeze=freeze,
         cic_unused_below_sites=[site for site,cells in below],
-        tests=logs,limitations=['No physical optical lock or hardware programming performed.','Existing clock/external I/O constraint warnings remain.','DMA point decimation can alias signals other than the suppressed mixer image.'])
+        hwh_metadata=dict(repaired=metadata_repaired,raw_sha256=digest(gen),release_sha256=digest(release_hwh),
+                          parsed_blocks=len(metadata.blocks),parser='pynqmetadata 0.1.5 / Python 3.10'),
+        tests=logs,limitations=['No physical optical lock or hardware programming performed.','Existing clock/external I/O constraint warnings remain.','DMA point decimation can alias signals other than the suppressed mixer image.']+
+            (['ILA slots 0/1/5 are tied to zero in this bitstream; use slot 4 during a phase DMA capture.'] if metadata_repaired else []))
     result['files']={str(p.relative_to(OUT)):digest(p) for p in OUT.rglob('*') if p.is_file() and p.name!='verification.json'}
     (OUT/'verification.json').write_text(json.dumps(result,indent=2)+'\n')
     for software in (False,True):

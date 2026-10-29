@@ -1,9 +1,12 @@
 `timescale 1ns / 1ps
 // Stage 4: preserve the acquired operating point and slew detector sensitivity.
-// V = saved_DAC + (unwrapped_phase - saved_phase) * coefficient / 2^26.
+// V = saved_DAC + (unwrapped_phase - saved_phase) * coefficient / 2^(26+S),
+// where S is the per-loop stage-3 range shift. The phase origin stays full width.
 // 104858 is the stage-3 gain at shift 0; target shifts 0..8 give 1..256 times it.
 // The 24-bit slip memory remains upstream. Only the DAC representation clips.
-module laser_pll_tracking (
+module laser_pll_tracking #(
+    parameter integer STAGE3_RANGE_SHIFT = 0
+) (
     input wire clk,
     input wire rst_n,
     input wire arm,
@@ -54,6 +57,7 @@ module laser_pll_tracking (
     // Six registers: input, origin subtraction, bound, multiply, round, clip.
     // Register the wide subtraction separately from the DSP multiplier.
     reg signed [43:0] phase_delta;
+    wire signed [43:0] scaled_phase_delta = phase_delta >>> STAGE3_RANGE_SHIFT;
     reg signed [25:0] limited_phase;
     (* use_dsp = "yes" *) reg signed [51:0] product;
     reg signed [26:0] delta_dac;
@@ -70,8 +74,8 @@ module laser_pll_tracking (
             phase_reg<=phase_codes;
             phase_delta<=$signed({phase_reg[42],phase_reg}) -
                          $signed({phase_origin[42],phase_origin});
-            limited_phase<=phase_delta>33554431 ? 26'sh1ffffff :
-                           phase_delta < -33554432 ? 26'sh2000000 : phase_delta[25:0];
+            limited_phase<=scaled_phase_delta>33554431 ? 26'sh1ffffff :
+                           scaled_phase_delta < -33554432 ? 26'sh2000000 : scaled_phase_delta[25:0];
             product<=limited_phase*$signed(coefficient);
             delta_dac<=invert_pipe[3] ? -rounded : rounded;
             valid_pipe<={valid_pipe[3:0],initialized};

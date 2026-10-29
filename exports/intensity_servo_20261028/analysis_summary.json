@@ -1,0 +1,398 @@
+{
+  "sensor_maps": {
+    "low_power": {
+      "source_file": "tp_power_20261028T170653Z_8474d579.csv",
+      "adc_range_counts": [
+        20.0,
+        12000.0
+      ],
+      "power_range_mW": [
+        0.092429575,
+        46.979275
+      ]
+    },
+    "high_power": {
+      "source_file": "tp_power_20261028T164507Z_a636b153.csv",
+      "adc_range_counts": [
+        20.0,
+        4500.0
+      ],
+      "power_range_mW": [
+        1.813791,
+        167.6229
+      ]
+    }
+  },
+  "sensor_labels_confirmed": true,
+  "excluded_sensor_file": "tp_power_20261028T145105Z_02e81cf4.csv: two nearly constant dark readings, not an invertible calibration",
+  "plant_delay_windows": [
+    {
+      "range_hz": [
+        1000.0,
+        1000000.0
+      ],
+      "effective_delay_s": 1.0868567525316728e-06,
+      "formal_delay_standard_error_s": 5.170283270014087e-10,
+      "phase_offset_deg": -0.2787285769959098,
+      "phase_residual_max_deg": 0.6190330135354909
+    },
+    {
+      "range_hz": [
+        10000.0,
+        1000000.0
+      ],
+      "effective_delay_s": 1.0866058475353746e-06,
+      "formal_delay_standard_error_s": 3.5733434057861547e-10,
+      "phase_offset_deg": -0.31962118149198204,
+      "phase_residual_max_deg": 0.22524193251136637
+    },
+    {
+      "range_hz": [
+        50000.0,
+        1000000.0
+      ],
+      "effective_delay_s": 1.0871322058444349e-06,
+      "formal_delay_standard_error_s": 3.5906359762319283e-10,
+      "phase_offset_deg": -0.22667994684790926,
+      "phase_residual_max_deg": 0.1666377919756883
+    },
+    {
+      "range_hz": [
+        100000.0,
+        500000.0
+      ],
+      "effective_delay_s": 1.0873601445945274e-06,
+      "formal_delay_standard_error_s": 1.1925177428523671e-09,
+      "phase_offset_deg": -0.1629752635263344,
+      "phase_residual_max_deg": 0.13462672448349622
+    },
+    {
+      "range_hz": [
+        100000.0,
+        1000000.0
+      ],
+      "effective_delay_s": 1.0875398930541673e-06,
+      "formal_delay_standard_error_s": 3.8399814989035907e-10,
+      "phase_offset_deg": -0.15141460894241732,
+      "phase_residual_max_deg": 0.13778438163696194
+    }
+  ],
+  "effective_plant_delay_s": 1.0871322058444349e-06,
+  "delay_definition": "phase slope of K=Q/(P0*U): command tap through DAC/RF/AOM/PD/mixer/ADC/receive filter back to recorded sensor; excludes controller transfer",
+  "timing_limitations": "user confirms INT2 receive filter included; no separate pure propagation or electronics/optical delay identification",
+  "plant_static_fractional_gain_per_code": 0.00032962287322463063,
+  "gaussian_amplitude_1e_frequency_hz": 1925351.2097539061,
+  "measured_frequency_range_hz": [
+    999.9847412109376,
+    1000000.0190734864
+  ],
+  "all_points_flagged_reliable_in_csv": true,
+  "fractional_optical_modulation_peak_max": 0.5037884663423688,
+  "linearity_limitation": "500-code injection produced up to50.4% peak optical modulation. Reliable CSV flag tests scatter/drift/clipping, not small-signal linearity. Repeat at half amplitude before final tuning.",
+  "existing_loop": {
+    "gain_crossings": [
+      {
+        "frequency_hz": 178143.325650636,
+        "phase_margin_deg": 34.03683935382321,
+        "direction": "down"
+      }
+    ],
+    "phase_crossings": [
+      {
+        "frequency_hz": 283523.9103383529,
+        "gain_margin_db": 3.635611774040011
+      }
+    ]
+  },
+  "plant_phase_at_500k_deg": -195.932241120399,
+  "plant_phase_at_550k_deg": -216.89997026378487,
+  "effective_optical_scale_at_FRA_mW": 184.01497122512123,
+  "recommended_initial_target_crossover_hz": 300000,
+  "user_observation": "User reports achieving above300kHz bandwidth with PI;300kHz is the next tuning target, not contradicted by this delay fit.",
+  "requested_above_500k_supported": false,
+  "reason": "Measured plant already has ~196 degrees lag at500kHz. A single lead stage cannot be judged by local phase margin alone; its rising gain risks later unity crossings.",
+  "lead_examples": {
+    "rejected_550k": {
+      "gain": 0.1607951753858643,
+      "integrator_corner_hz": 20000.0,
+      "lead_zero_hz": 80000.0,
+      "lead_pole_hz": 2000000.0,
+      "margins_in_measured_band": {
+        "gain_crossings": [
+          {
+            "frequency_hz": 3328.631763571689,
+            "phase_margin_deg": 100.27017209400923,
+            "direction": "down"
+          },
+          {
+            "frequency_hz": 549999.9611213781,
+            "phase_margin_deg": 16.89169701362151,
+            "direction": "up"
+          }
+        ],
+        "phase_crossings": [
+          {
+            "frequency_hz": 590595.8664177362,
+            "gain_margin_db": -0.4173728447596617
+          }
+        ]
+      },
+      "gain_at_highest_measured_frequency": 1.37058167450176,
+      "approved_default": false
+    }
+  },
+  "controller_candidates": {
+    "PI": {
+      "definition": "C(s)=g*product(1+2*pi*f_i/s); optional (1+s/zero)/(1+s/pole); margins use quantized discrete recurrence",
+      "role": "requested300kHz experiment",
+      "target_crossover_hz": 300000.0,
+      "proportional_gain": 1.008400839242619,
+      "actual_quantized_proportional_gain": 1.00830078125,
+      "integrator_corner_hz": [
+        50000.0
+      ],
+      "coefficient_reference_update_rate_hz": 122880000.0,
+      "kp_Q12": 4130,
+      "integrator_Q24": [
+        42893
+      ],
+      "lead_lag_enabled": false,
+      "lead_zero_hz": null,
+      "lead_pole_hz": null,
+      "lead_gain_Q12": 4096,
+      "lead_alpha_Q30": 0,
+      "additional_fast_path_delay_s": 4.4759114583333334e-08,
+      "plant_normalization": "measured K divided by fitted DC K0; assumes exact local input/output linearization",
+      "margins_in_measured_band": {
+        "gain_crossings": [
+          {
+            "frequency_hz": 298616.5770234166,
+            "phase_margin_deg": 48.12110730621064,
+            "direction": "down"
+          }
+        ],
+        "phase_crossings": [
+          {
+            "frequency_hz": 422551.08019600465,
+            "gain_margin_db": 0.1662905619797527
+          }
+        ]
+      },
+      "maximum_sensitivity_in_measured_band": 52.583248749941035,
+      "maximum_sensitivity_frequency_hz": 422205.8874887736,
+      "gain_at_highest_measured_frequency": 0.7660950554400091,
+      "not_applied_to_hardware": true
+    },
+    "PII": {
+      "definition": "C(s)=g*product(1+2*pi*f_i/s); optional (1+s/zero)/(1+s/pole); margins use quantized discrete recurrence",
+      "role": "lower-bandwidth higher-order starting point",
+      "target_crossover_hz": 150000.0,
+      "proportional_gain": 0.3528007181160107,
+      "actual_quantized_proportional_gain": 0.352783203125,
+      "integrator_corner_hz": [
+        400000.0,
+        1000.0
+      ],
+      "coefficient_reference_update_rate_hz": 122880000.0,
+      "kp_Q12": 1445,
+      "integrator_Q24": [
+        343146,
+        858
+      ],
+      "lead_lag_enabled": false,
+      "lead_zero_hz": null,
+      "lead_pole_hz": null,
+      "lead_gain_Q12": 4096,
+      "lead_alpha_Q30": 0,
+      "additional_fast_path_delay_s": 4.4759114583333334e-08,
+      "plant_normalization": "measured K divided by fitted DC K0; assumes exact local input/output linearization",
+      "margins_in_measured_band": {
+        "gain_crossings": [
+          {
+            "frequency_hz": 149991.34451903304,
+            "phase_margin_deg": 48.42876227862856,
+            "direction": "down"
+          }
+        ],
+        "phase_crossings": [
+          {
+            "frequency_hz": 312397.4631289669,
+            "gain_margin_db": 5.047383818695042
+          }
+        ]
+      },
+      "maximum_sensitivity_in_measured_band": 2.382000556021897,
+      "maximum_sensitivity_frequency_hz": 278925.2812619,
+      "gain_at_highest_measured_frequency": 0.2861373490377405,
+      "not_applied_to_hardware": true
+    },
+    "PIII": {
+      "definition": "C(s)=g*product(1+2*pi*f_i/s); optional (1+s/zero)/(1+s/pole); margins use quantized discrete recurrence",
+      "role": "lower-bandwidth higher-order starting point",
+      "target_crossover_hz": 150000.0,
+      "proportional_gain": 0.3528015435555826,
+      "actual_quantized_proportional_gain": 0.352783203125,
+      "integrator_corner_hz": [
+        400000.0,
+        1000.0,
+        100
+      ],
+      "coefficient_reference_update_rate_hz": 122880000.0,
+      "kp_Q12": 1445,
+      "integrator_Q24": [
+        343146,
+        858,
+        86
+      ],
+      "lead_lag_enabled": false,
+      "lead_zero_hz": null,
+      "lead_pole_hz": null,
+      "lead_gain_Q12": 4096,
+      "lead_alpha_Q30": 0,
+      "additional_fast_path_delay_s": 4.4759114583333334e-08,
+      "plant_normalization": "measured K divided by fitted DC K0; assumes exact local input/output linearization",
+      "margins_in_measured_band": {
+        "gain_crossings": [
+          {
+            "frequency_hz": 149990.93772919255,
+            "phase_margin_deg": 48.39057423469347,
+            "direction": "down"
+          }
+        ],
+        "phase_crossings": [
+          {
+            "frequency_hz": 312331.1059617751,
+            "gain_margin_db": 5.046260677345768
+          }
+        ]
+      },
+      "maximum_sensitivity_in_measured_band": 2.382491392812634,
+      "maximum_sensitivity_frequency_hz": 278925.2812619,
+      "gain_at_highest_measured_frequency": 0.28613661710499,
+      "not_applied_to_hardware": true
+    },
+    "PI_lead_300k": {
+      "definition": "C(s)=g*product(1+2*pi*f_i/s); optional (1+s/zero)/(1+s/pole); margins use quantized discrete recurrence",
+      "role": "optional experimental alternative",
+      "target_crossover_hz": 300000.0,
+      "proportional_gain": 0.0865158211802558,
+      "actual_quantized_proportional_gain": 0.08642578125,
+      "integrator_corner_hz": [
+        300000.0
+      ],
+      "coefficient_reference_update_rate_hz": 122880000.0,
+      "kp_Q12": 354,
+      "integrator_Q24": [
+        257359
+      ],
+      "lead_lag_enabled": true,
+      "lead_zero_hz": 20000.0,
+      "lead_pole_hz": 200000.0,
+      "lead_gain_Q12": 40960,
+      "lead_alpha_Q30": 10924706,
+      "additional_fast_path_delay_s": 5.2897135416666664e-08,
+      "plant_normalization": "measured K divided by fitted DC K0; assumes exact local input/output linearization",
+      "margins_in_measured_band": {
+        "gain_crossings": [
+          {
+            "frequency_hz": 298402.41753084346,
+            "phase_margin_deg": 41.48683827034483,
+            "direction": "down"
+          }
+        ],
+        "phase_crossings": [
+          {
+            "frequency_hz": 405036.2305915256,
+            "gain_margin_db": 0.5513962670474652
+          }
+        ]
+      },
+      "maximum_sensitivity_in_measured_band": 16.318098936236392,
+      "maximum_sensitivity_frequency_hz": 404501.8602199379,
+      "gain_at_highest_measured_frequency": 0.6707407326934599,
+      "not_applied_to_hardware": true
+    },
+    "PI_lag_300k": {
+      "definition": "C(s)=g*product(1+2*pi*f_i/s); optional (1+s/zero)/(1+s/pole); margins use quantized discrete recurrence",
+      "role": "comparison only: less low-frequency gain",
+      "target_crossover_hz": 300000.0,
+      "proportional_gain": 1.22246093777088,
+      "actual_quantized_proportional_gain": 1.222412109375,
+      "integrator_corner_hz": [
+        5000.0
+      ],
+      "coefficient_reference_update_rate_hz": 122880000.0,
+      "kp_Q12": 5007,
+      "integrator_Q24": [
+        4289
+      ],
+      "lead_lag_enabled": true,
+      "lead_zero_hz": 400000.0,
+      "lead_pole_hz": 270000.0,
+      "lead_gain_Q12": 2765,
+      "lead_alpha_Q30": 14722035,
+      "additional_fast_path_delay_s": 5.2897135416666664e-08,
+      "plant_normalization": "measured K divided by fitted DC K0; assumes exact local input/output linearization",
+      "margins_in_measured_band": {
+        "gain_crossings": [
+          {
+            "frequency_hz": 299936.37124925543,
+            "phase_margin_deg": 44.06827970274713,
+            "direction": "down"
+          }
+        ],
+        "phase_crossings": [
+          {
+            "frequency_hz": 408464.7313064304,
+            "gain_margin_db": 0.5907221150405284
+          }
+        ]
+      },
+      "maximum_sensitivity_in_measured_band": 15.271986689548081,
+      "maximum_sensitivity_frequency_hz": 407869.51952347776,
+      "gain_at_highest_measured_frequency": 0.6499796660727156,
+      "not_applied_to_hardware": true
+    },
+    "PI_150k_fallback": {
+      "definition": "C(s)=g*product(1+2*pi*f_i/s); optional (1+s/zero)/(1+s/pole); margins use quantized discrete recurrence",
+      "role": "wider-margin fallback",
+      "target_crossover_hz": 150000.0,
+      "proportional_gain": 0.35279953940345454,
+      "actual_quantized_proportional_gain": 0.352783203125,
+      "integrator_corner_hz": [
+        400000.0
+      ],
+      "coefficient_reference_update_rate_hz": 122880000.0,
+      "kp_Q12": 1445,
+      "integrator_Q24": [
+        343146
+      ],
+      "lead_lag_enabled": false,
+      "lead_zero_hz": null,
+      "lead_pole_hz": null,
+      "lead_gain_Q12": 4096,
+      "lead_alpha_Q30": 0,
+      "additional_fast_path_delay_s": 4.4759114583333334e-08,
+      "plant_normalization": "measured K divided by fitted DC K0; assumes exact local input/output linearization",
+      "margins_in_measured_band": {
+        "gain_crossings": [
+          {
+            "frequency_hz": 149991.92500375808,
+            "phase_margin_deg": 48.810665498086905,
+            "direction": "down"
+          }
+        ],
+        "phase_crossings": [
+          {
+            "frequency_hz": 313058.7581512161,
+            "gain_margin_db": 5.058588161886352
+          }
+        ]
+      },
+      "maximum_sensitivity_in_measured_band": 2.377141650534035,
+      "maximum_sensitivity_frequency_hz": 279697.20234383957,
+      "gain_at_highest_measured_frequency": 0.2861445228067249,
+      "not_applied_to_hardware": true
+    }
+  }
+}

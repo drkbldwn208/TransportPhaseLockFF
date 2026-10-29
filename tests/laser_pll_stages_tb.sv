@@ -1,20 +1,20 @@
 `timescale 1ns/1ps
 // Real ADC tones -> vendor FFT + DDC -> all acquisition stages -> packed DAC.
 // Faster (one code/clock) handoff decay shortens simulation, not fast-path delay.
-module laser_pll_stages_tb;
+module laser_pll_stages_tb #(parameter integer SECONDARY=0);
     reg clk=0;
     always #2.034505208 clk=~clk;
     reg rst_n=0, adc_valid=0;
     reg [127:0] adc_data=0;
     reg [31:0] control=32'h00400604, acquisition_control=32'h00200001, test_dc=0, tracking_control=0, monitor_control=0;
-    localparam [47:0] FCW=48'd114532461226667;
+    localparam [47:0] FCW=SECONDARY ? 48'd219604541156011 : 48'd114532461226667;
     wire [223:0] dac_data;
     wire [31:0] tracking_status, monitor_status;
     wire [127:0] monitor_data;
     wire monitor_valid, monitor_last;
     integer monitor_received=0;
     wire [31:0] phase_status, frequency_status, acquisition_status, fft_status;
-    laser_pll dut(.clk(clk),.rst_n(rst_n),.s_axis_tdata(adc_data),
+    laser_pll #(.STAGE3_RANGE_SHIFT(SECONDARY ? 2 : 0)) dut(.clk(clk),.rst_n(rst_n),.s_axis_tdata(adc_data),
         .s_axis_tvalid(adc_valid),.s_axis_tready(),.m_axis_tdata(dac_data),
         .m_axis_tvalid(),.m_axis_tready(1'b1),.frequency_low(FCW[31:0]),
         .frequency_high({15'b0,1'b1,FCW[47:32]}),.control(control),.phase_offset(32'b0),
@@ -33,12 +33,13 @@ module laser_pll_stages_tb;
             @(negedge clk);
             rst_n=cycle>=4; adc_valid=cycle>=4 && cycle<190000;
             if (cycle==8) control[0]=1;
-            frequency_hz=cycle<50000 ? 200e6 : cycle<100000 ? 750e6 : 800e6;
+            frequency_hz=SECONDARY ? (cycle<50000 ? 3e9 : cycle<100000 ? 3.45e9 : 3.5e9) :
+                                    (cycle<50000 ? 200e6 : cycle<100000 ? 750e6 : 800e6);
             for (integer lane=0;lane<8;lane=lane+1) begin
                 sample_value=$rtoi(20000*$cos(phase_rad));
                 adc_data[16*lane +:16]=sample_value;
                 phase_rad=phase_rad+6.283185307179586*frequency_hz/1966080000.0;
-                if (phase_rad>6.283185307179586) phase_rad=phase_rad-6.283185307179586;
+                phase_rad=phase_rad-6.283185307179586*$floor(phase_rad/6.283185307179586);
             end
             if (cycle==75000) acquisition_control[1:0]=2;
             if (cycle==85000) acquisition_control[1:0]=3;
@@ -77,7 +78,8 @@ module laser_pll_stages_tb;
                 if (acquisition_status[2:0]!=3 || acquisition_status[4:3]!=0 ||
                     acquisition_status[31:8]!=0 || !phase_status[19]) $fatal(1,"Fine stage did not settle");
                 phase_code=$signed(phase_status[17:0]);
-                expected_dac=$rtoi($floor(-phase_code/640.0+0.5));
+                expected_dac=$rtoi($floor(-phase_code/(SECONDARY ? 2560.0 : 640.0)+0.5));
+                if (phase_status[26:23]!=(SECONDARY ? 2 : 0)) $fatal(1,"Phase range status");
                 if ($signed(dac_data[15:0])-expected_dac>4 ||
                     $signed(dac_data[15:0])-expected_dac < -4) $fatal(1,"Fine phase-to-DAC scaling");
             end
@@ -95,7 +97,7 @@ module laser_pll_stages_tb;
             if (cycle==220004 && $signed(dac_data[15:0])!=-12000) $fatal(1,"Negative DC code");
             if (cycle==220014 && dac_data!=0) $fatal(1,"Final mute");
         end
-        $display("PASS: real tones 200/750/800 MHz; manual fine entry at 50 MHz; retained turns; continuous handoffs; stage-4 ramp; IQ capture; no-ADC DC; final mute");
+        $display("PASS: secondary=%d real RF tones; manual fine entry at 50 MHz; retained turns; continuous handoffs; stage-4 ramp; IQ capture; no-ADC DC; final mute",SECONDARY);
         $finish;
     end
 endmodule

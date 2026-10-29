@@ -53,6 +53,20 @@ def _signed(value, bits):
     return value - (1 << bits) if value & (1 << (bits - 1)) else value
 
 
+def stage3_phase_divisor(overlay):
+    """Live full DAC span in turns at phase_gain_shift=0.
+
+    Older A7 hardware reports zero in these reserved status bits, meaning 160.
+    Wider-span hardware uses a compile-time shift per PLL; the 24-bit slip
+    memory and stage-4 relative gain/ramp registers are unchanged.
+    """
+    _check_version(overlay)
+    range_shift = (overlay.pll_status.read(0) >> 23) & 15
+    if range_shift > 2:
+        raise ValueError('Unrecognized PLL phase-range field; load the matching helper/bit/HWH.')
+    return STAGE3_PHASE_DIVISOR << range_shift
+
+
 def set_reference_frequency(overlay, frequency_hz, *, restart_phase=False):
     """Commit a 48-bit DDS word, preserving accumulated phase by default.
 
@@ -101,7 +115,8 @@ def configure(overlay, *, reference_frequency_hz=None, phase_offset_rad=0.0,
                         * 2**phase_gain_shift / 4), with optional sign inversion.
     minimum_amplitude is max(|I|,|Q|) in post-mixer ADC counts (input peak/2).
     At phase_gain_shift=0, stages 0/2 give 32768/pi DAC codes/radian.
-    Stage 3 divides that slope by 160, with full DAC span across 160 turns.
+    Stage 3 divides that slope by stage3_phase_divisor(overlay), read from
+    hardware. At phase_gain_shift=0 this is also the full DAC span in turns.
     """
     for name, value, maximum in (("phase_gain_shift", phase_gain_shift, 15),
                                   ("capture_gain_shift", capture_gain_shift, 15),
@@ -181,8 +196,9 @@ def set_gains(overlay, *, phase_gain_shift, capture_gain_shift):
     """Set both GPIO gain fields atomically, preserving enable and other flags.
 
     Each shift is 0..15. Stages 0/2 retain their original phase sensitivity.
-    Stage 3 slope is 2**phase_gain_shift/160 times that original sensitivity:
-    shifts 0/1/2 give +/-80/40/20 turns at the DAC rails. Capture gain is the
+    Stage 3 slope is 2**phase_gain_shift/stage3_phase_divisor(overlay)
+    times that sensitivity. PLL1 has 160 turns full span; the new PLL2 has
+    640 turns full span (at shift 0). Capture gain is the
     frequency term relative to phase in stages 0/2. Gain writes are immediate,
     not ramped handoffs; change at low error or between acquisition attempts.
     """
@@ -298,9 +314,13 @@ def tracking_status(overlay):
     """Actual sensitivity relative to stage-3 shift 0; all quantities are live."""
     _check_version(overlay)
     value = overlay.pll_tracking.read(0x08)
+    relative_gain = (value & 0x3ffffff) / 104858.0
+    full_span = stage3_phase_divisor(overlay)
     return dict(initialized=bool(value & (1 << 31)), ramping=bool(value & (1 << 30)),
                 saturated=bool(value & (1 << 29)), valid=bool(value & (1 << 28)),
-                gain_relative_to_stage3=(value & 0x3ffffff) / 104858.0,
+                gain_relative_to_stage3=relative_gain,
+                stage3_full_span_turns=full_span,
+                full_span_turns=full_span / relative_gain if relative_gain else None,
                 target_shift=overlay.pll_tracking.read(0x00) & 15)
 
 

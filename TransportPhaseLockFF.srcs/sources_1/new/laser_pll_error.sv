@@ -1,7 +1,9 @@
 `timescale 1ns / 1ps
 // Phase detector and optional frequency discriminator; no feedback controller.
 // All phase quantities are signed 18-bit turns (2^18 codes = 2*pi radians).
-module laser_pll_error (
+module laser_pll_error #(
+    parameter integer STAGE3_RANGE_SHIFT = 0
+) (
     input wire clk,
     input wire rst_n,
     input wire signed [17:0] measured_phase,
@@ -30,7 +32,7 @@ module laser_pll_error (
     reg signed [48:0] combined_error;
     reg signed [48:0] capture_scaled;
     wire signed [25:0] unwrapped_limited;
-    laser_pll_unwrap slip_memory (.clk(clk), .rst_n(rst_n), .arm(unwrap_arm),
+    laser_pll_unwrap #(.STAGE3_RANGE_SHIFT(STAGE3_RANGE_SHIFT)) slip_memory (.clk(clk), .rst_n(rst_n), .arm(unwrap_arm),
         .phase_valid(error_valid), .phase_error(phase_error),
         .turns(turns), .unwrapped_error(unwrapped_phase), .phase_for_dac(unwrapped_limited));
     laser_pll_phase_scale fine_scale (.clk(clk), .rst_n(rst_n),

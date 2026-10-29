@@ -1,7 +1,9 @@
 `timescale 1ns / 1ps
 // Signed 24-bit cycle memory. One whole turn is 262144 phase codes.
 // Saturate only at the numeric limits; never wrap a full counter through zero.
-module laser_pll_unwrap (
+module laser_pll_unwrap #(
+    parameter integer STAGE3_RANGE_SHIFT = 0
+) (
     input wire clk,
     input wire rst_n,
     input wire arm,
@@ -25,14 +27,18 @@ module laser_pll_unwrap (
     // Use the updated turn count on the SAME sample as the wrapped crossing.
     assign unwrapped_error = $signed({next_turns[23],next_turns,18'b0}) +
                              $signed({{25{phase_error[17]}},phase_error});
-    // The widest stage-3 linear range is +/-80 turns. Bound only the DAC
-    // representation at +/-128 turns; the full counter keeps accumulating.
-    // Counts -127..127 plus a principal phase fit safely in signed 26 bits.
-    // This avoids a 43-bit adder/multiplier in the physical output path.
-    wire signed [25:0] local_phase = $signed({next_turns[7:0],18'b0}) +
-                                    $signed({{8{phase_error[17]}},phase_error});
-    assign phase_for_dac = next_turns>=128 ? 26'sh1ffffff :
-                           next_turns<=-128 ? 26'sh2000000 : local_phase;
+    // Broaden only the DAC representation; slip memory remains 24 full turns
+    // bits, and unwrapped_error remains 2^18 codes/turn. Discarding the lowest
+    // phase bits before the existing DSP keeps its width/latency unchanged.
+    // shift=0/1/2 gives full DAC spans 160/320/640 turns at gain shift zero.
+    localparam integer LOCAL_BITS = 26 + STAGE3_RANGE_SHIFT;
+    localparam integer TURN_BOUND = 128 << STAGE3_RANGE_SHIFT;
+    wire signed [LOCAL_BITS-1:0] local_phase =
+        $signed({next_turns[7+STAGE3_RANGE_SHIFT:0],18'b0}) +
+        $signed({{(8+STAGE3_RANGE_SHIFT){phase_error[17]}},phase_error});
+    assign phase_for_dac = next_turns>=TURN_BOUND ? 26'sh1ffffff :
+                           next_turns<=-TURN_BOUND ? 26'sh2000000 :
+                           local_phase >>> STAGE3_RANGE_SHIFT;
     always @(posedge clk) begin
         if (!rst_n || !phase_valid || !arm) begin
             turns <= 0; previous_error <= 0; previous_valid <= 0;

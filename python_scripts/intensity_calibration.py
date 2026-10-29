@@ -45,7 +45,7 @@ def configuration(ol):
     """Read operating-point settings without altering any feedback controls."""
     pi = ol.fast_servo_controller_0
     rf = ol.usp_rf_data_converter_0
-    return dict(
+    result = dict(
         pi_registers={hex(a): pi.read(a) for a in (0x10, 0x18, 0x20, 0x28, 0x30)},
         gpio={str(n): [getattr(ol, f'axi_gpio_{n}').read(a) for a in (0, 8)] for n in (9, 10, 11, 12)},
         adc_mixer=dict(rf.adc_tiles[0].blocks[1].MixerSettings),
@@ -53,6 +53,14 @@ def configuration(ol):
         aom_mixer=dict(rf.dac_tiles[0].blocks[3].MixerSettings),
         limits_word=ol.intensity_limits.read(0) if 'intensity_limits' in ol.ip_dict else 0x7FFF0000,
     )
+    if 'intensity_servo_control' in ol.ip_dict:
+        import intensity_servo
+        calibrated = intensity_servo.configuration(ol)
+        # Live range/rail flags are measurement diagnostics, not settings.
+        # Including them would falsely reject an otherwise unchanged sweep.
+        calibrated.pop('status', None)
+        result['linearized_servo'] = calibrated
+    return result
 
 
 def restore_manual_configuration(ol, saved):
@@ -62,6 +70,10 @@ def restore_manual_configuration(ol, saved):
     integrator state cannot be restored; require a saved manual setpoint.
     """
     check(ol)
+    if ('intensity_servo_control' in ol.ip_dict and
+            (ol.intensity_servo_control.read(0) & 1 or saved.get('linearized_servo', {}).get('control_word', 0) & 1)):
+        raise ValueError('Legacy restore cannot interpret calibrated power codes as ADC setpoints. '
+                         'Restore the new servo using intensity_servo and its saved calibration.')
     if not saved['gpio']['11'][0] & 1 or not saved['gpio']['11'][1] & 65535:
         raise ValueError('Save a nonzero manual setpoint before reprogramming.')
     import xrfdc
@@ -229,7 +241,13 @@ def linearize(i_counts, table):
     x = np.asarray(table['adc_counts'])
     y = np.asarray(table['optical_power'])
     if np.min(i_counts) < x[0] or np.max(i_counts) > x[-1]:
-        raise ValueError('Sensor samples leave the calibrated range; extend calibration, do not extrapolate.')
+        outside = np.mean((i_counts < x[0]) | (i_counts > x[-1]))
+        raise ValueError(
+            f'Sensor samples leave calibrated range [{x[0]:g}, {x[-1]:g}] ADC counts: '
+            f'observed [{np.min(i_counts):g}, {np.max(i_counts):g}], '
+            f'{100 * outside:.3f}% outside. Use an operating point with excursion '
+            'headroom or extend the measured calibration; do not extrapolate.'
+        )
     return np.interp(i_counts, x, y).mean(axis=1)
 
 
@@ -314,7 +332,14 @@ def measure_point(
     limits = before['limits_word']
     if not 0 <= limits & 65535 < limits >> 16 <= 32767:
         raise ValueError('Dither limits must satisfy 0 <= minimum < maximum <= 32767.')
-    if not before['pi_registers']['0x10'] or before['gpio']['9'][0] & 1:
+    calibrated_ctrl = before.get('linearized_servo', {}).get('control_word', 0)
+    calibrated_feedback = (calibrated_ctrl & 3) == 3
+    if calibrated_ctrl & 1:
+        calibrated_active = bool(ol.intensity_servo_control.read(8) & 1)
+        if (not calibrated_feedback or not calibrated_active or calibrated_ctrl & (1 << 6)
+                or before['gpio']['9'][0] & 1):
+            raise ValueError('Enable calibrated feedback and release the manual DAC override before FRA.')
+    elif not before['pi_registers']['0x10'] or before['gpio']['9'][0] & 1:
         raise ValueError('Enable the existing intensity PI and select its closed-loop output first.')
     if not before['gpio']['11'][0] & 1 or not before['gpio']['11'][1] & 65535:
         raise ValueError('Select a nonzero manual optical setpoint before running this measurement.')
@@ -339,6 +364,17 @@ def measure_point(
         if configuration(ol) != before:
             raise RuntimeError('Intensity operating settings changed during measurement.')
         result = analyze(record, table)
+        if calibrated_ctrl & 1:
+            # The legacy probe's controller-rail flag recognizes 32767 only.
+            # The calibrated inverse is capped at its measured AOM command.
+            # Check captured C as well; this is sampled coverage, not a sticky
+            # counter for excursions between decimated samples.
+            _, selected_codes, _, _ = unpack(record)
+            maximum_code = before['linearized_servo']['registers']['maximum_command_codes']
+            if np.any(selected_codes <= 0) or np.any(selected_codes >= maximum_code - 1):
+                result['flags'].append('calibrated actuator at rail (captured samples)')
+            if ol.intensity_servo_control.read(8) & (1 << 5):
+                result['flags'].append('calibrated controller saturated at capture end')
         for key in ('C', 'U', 'Q', 'D'):
             result[key] *= polarity
         return {
@@ -387,6 +423,7 @@ def sweep(
     maximum_drift_fraction=0.03,
     maximum_command_drift_fraction=0.02,
     csv_path='intensity_fra.csv',
+    progress=True,
     **window,
 ):
     """Repeat short blocks; save raw NPZs, all block fits, and complex-mean FRA.
@@ -394,6 +431,7 @@ def sweep(
     Diagnostic clipping/invalid blocks are retained on disk and excluded. DMA,
     settings, and calibration failures stop. Amplitude may be a scalar or a list
     matching frequencies. No automatic gain adjustment or relocking is done.
+    Print each completed block by default; progress=False suppresses output.
     """
     frequencies = np.atleast_1d(frequencies_hz).astype(float)
     if frequencies.ndim != 1 or not len(frequencies):
@@ -439,10 +477,14 @@ def sweep(
     rows = []
     blocks = []
     for index, (f, a) in enumerate(zip(frequencies, amplitudes)):
+        if progress:
+            print(f'[{index + 1}/{len(frequencies)}] {f:g} Hz: starting, '
+                  f'need {repeats} accepted blocks; at most {max_repeats} attempts', flush=True)
         accepted = []
         snr_u = snr_q = snr_c = 0.0
         u_sem = q_sem = c_sem = float('nan')
         for attempt in range(max_repeats):
+            block_started = time.monotonic()
             if configuration(ol) != config:
                 raise RuntimeError('Operating settings changed during sweep.')
             raw_path = raw_dir / f'point_{index:03d}_block_{attempt:03d}.npz'
@@ -472,6 +514,10 @@ def sweep(
             _csv(path.with_name(path.stem + '_blocks.csv'), blocks)
             if keep:
                 accepted.append(p)
+            if progress:
+                outcome = 'accepted' if keep else 'rejected: ' + '; '.join(rejected)
+                print(f'  block {attempt + 1}/{max_repeats}: {outcome}; '
+                      f'{len(accepted)} accepted; {time.monotonic() - block_started:.1f} s', flush=True)
             if len(accepted) < 2:
                 continue
             u = np.array([b['U'] for b in accepted])
@@ -534,9 +580,11 @@ def sweep(
         )
         rows.append(row)
         _csv(path, rows)
-        print(
-            f"{row['frequency_hz']:.3f} Hz: accepted {len(accepted)}/{attempt+1}, U SNR {snr_u:.1f}, reliable={row['reliable']}"
-        )
+        if progress:
+            print(
+                f"{row['frequency_hz']:.3f} Hz: accepted {len(accepted)}/{attempt+1}, "
+                f"U SNR {snr_u:.1f}, reliable={row['reliable']}", flush=True
+            )
     return rows
 
 

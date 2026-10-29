@@ -182,6 +182,17 @@ class Controls(unittest.TestCase):
         for shift in (-1,9):
             with self.assertRaises(ValueError): pll.set_tracking_gain(self.ol,shift)
 
+    def test_live_phase_range_and_tracking_span(self):
+        for shift in (0,1,2):
+            self.ol.pll_status.values[0]=shift<<23
+            self.assertEqual(pll.stage3_phase_divisor(self.ol),160<<shift)
+            self.ol.pll_tracking.values[8]=(1<<31)|(1<<28)|(104858<<3)
+            state=pll.tracking_status(self.ol)
+            self.assertEqual(state['gain_relative_to_stage3'],8)
+            self.assertEqual(state['full_span_turns'],(160<<shift)/8)
+        self.ol.pll_status.values[0]=3<<23
+        with self.assertRaises(ValueError): pll.stage3_phase_divisor(self.ol)
+
     def test_tracking_timeout_leaves_requested_ramp_intact(self):
         self.ol.pll_acquisition_status.values[0]=4
         with patch.object(pll.time,'monotonic',side_effect=[0,2]):

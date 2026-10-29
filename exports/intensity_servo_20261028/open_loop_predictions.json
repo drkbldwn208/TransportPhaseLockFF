@@ -1,0 +1,381 @@
+{
+  "plant_source": "intensity_loop_171424_945111.csv",
+  "plant_source_sha256": "78c50c1d634dabaf3ef7ec7203fcf0d32ead8d13bc91a44da1f7477f5536776f",
+  "measured_plant_frequency_range_hz": [
+    999.9847412109376,
+    1000000.0190734864
+  ],
+  "plant_delay_s": 1.0871322058444349e-06,
+  "model": "Exact two-phase linearized RTL recurrence with quantized coefficients; arithmetic rounding and saturation omitted; fundamental response only",
+  "normalization": "K(f)/K0, assuming exact local sensor/AOM inversion and correct effective incident-power scale",
+  "extrapolation": "100Hz to first measured frequency: fitted Gaussian magnitude and pure delay; dashed/unvalidated; no extrapolation above1MHz",
+  "cases": [
+    {
+      "case": "fixed_gain_PI_bypass",
+      "family": "fixed_gain",
+      "controller": "PI",
+      "shelf_enabled": false,
+      "proportional_gain": 1.00830078125,
+      "kp_Q12": 4130,
+      "integral_corners_hz": [
+        50000.0
+      ],
+      "lead_zero_hz": null,
+      "lead_pole_hz": null,
+      "main_path_delay_s": 4.4759114583333334e-08,
+      "target_normalization_frequency_hz": null,
+      "measured_band_crossings": [
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 263954.9054389793,
+          "direction": "down",
+          "phase_margin_deg": 60.929409035939244
+        },
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 422510.1801726767,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": 0.1937016960107633
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [],
+      "magnitude_at_1MHz": 0.7636470603418013,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.0006412748059102746
+    },
+    {
+      "case": "fixed_gain_PI_lead",
+      "family": "fixed_gain",
+      "controller": "PI",
+      "shelf_enabled": true,
+      "proportional_gain": 1.00830078125,
+      "kp_Q12": 4130,
+      "integral_corners_hz": [
+        50000.0
+      ],
+      "lead_zero_hz": 20000,
+      "lead_pole_hz": 200000,
+      "main_path_delay_s": 5.2897135416666664e-08,
+      "target_normalization_frequency_hz": null,
+      "measured_band_crossings": [
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 471222.17797907506,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": -19.028538065394
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [],
+      "magnitude_at_1MHz": 7.541469515204411,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.001654717426568431
+    },
+    {
+      "case": "normalized_at_target_PI_lead",
+      "family": "normalized_at_target",
+      "controller": "PI",
+      "shelf_enabled": true,
+      "proportional_gain": 0.12060546875,
+      "kp_Q12": 494,
+      "integral_corners_hz": [
+        50000.0
+      ],
+      "lead_zero_hz": 20000,
+      "lead_pole_hz": 200000,
+      "main_path_delay_s": 5.2897135416666664e-08,
+      "target_normalization_frequency_hz": 300000.0,
+      "measured_band_crossings": [
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 6425.796820093055,
+          "direction": "down",
+          "phase_margin_deg": 110.42381151904785
+        },
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 298936.59574799647,
+          "direction": "up",
+          "phase_margin_deg": 77.10783110009356
+        },
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 471222.17797907506,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": -0.5840760107389157
+        },
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 754109.2513539272,
+          "direction": "down",
+          "phase_margin_deg": -121.51042302480177
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [],
+      "magnitude_at_1MHz": 0.9020547071455155,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.001654717426568431
+    },
+    {
+      "case": "fixed_gain_PII_bypass",
+      "family": "fixed_gain",
+      "controller": "PII",
+      "shelf_enabled": false,
+      "proportional_gain": 0.352783203125,
+      "kp_Q12": 1445,
+      "integral_corners_hz": [
+        400000.0,
+        1000.0
+      ],
+      "lead_zero_hz": null,
+      "lead_pole_hz": null,
+      "main_path_delay_s": 4.4759114583333334e-08,
+      "target_normalization_frequency_hz": null,
+      "measured_band_crossings": [
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 149435.78762245007,
+          "direction": "down",
+          "phase_margin_deg": 48.09292773645019
+        },
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 309839.62549021107,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": 5.088208574575384
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [],
+      "magnitude_at_1MHz": 0.27963532695043264,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.00491367810169508
+    },
+    {
+      "case": "fixed_gain_PII_lead",
+      "family": "fixed_gain",
+      "controller": "PII",
+      "shelf_enabled": true,
+      "proportional_gain": 0.352783203125,
+      "kp_Q12": 1445,
+      "integral_corners_hz": [
+        400000.0,
+        1000.0
+      ],
+      "lead_zero_hz": 20000,
+      "lead_pole_hz": 200000,
+      "main_path_delay_s": 5.2897135416666664e-08,
+      "target_normalization_frequency_hz": null,
+      "measured_band_crossings": [
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 381262.3775297828,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": -12.811233441785806
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [],
+      "magnitude_at_1MHz": 2.760868624607458,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.0027231353549370904
+    },
+    {
+      "case": "normalized_at_target_PII_lead",
+      "family": "normalized_at_target",
+      "controller": "PII",
+      "shelf_enabled": true,
+      "proportional_gain": 0.05810546875,
+      "kp_Q12": 238,
+      "integral_corners_hz": [
+        400000.0,
+        1000.0
+      ],
+      "lead_zero_hz": 20000,
+      "lead_pole_hz": 200000,
+      "main_path_delay_s": 5.2897135416666664e-08,
+      "target_normalization_frequency_hz": 150000.0,
+      "measured_band_crossings": [
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 149017.01214437676,
+          "direction": "down",
+          "phase_margin_deg": 93.51324968855775
+        },
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 381262.3775297828,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": 2.8545843589352873
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [],
+      "magnitude_at_1MHz": 0.45473130287652247,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.0027231353549370904
+    },
+    {
+      "case": "fixed_gain_PIII_bypass",
+      "family": "fixed_gain",
+      "controller": "PIII",
+      "shelf_enabled": false,
+      "proportional_gain": 0.352783203125,
+      "kp_Q12": 1445,
+      "integral_corners_hz": [
+        400000.0,
+        1000.0,
+        100
+      ],
+      "lead_zero_hz": null,
+      "lead_pole_hz": null,
+      "main_path_delay_s": 4.4759114583333334e-08,
+      "target_normalization_frequency_hz": null,
+      "measured_band_crossings": [
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 149434.47784012507,
+          "direction": "down",
+          "phase_margin_deg": 48.05481619045565
+        },
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 309773.30108960235,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": 5.087095154410533
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 317.48194090012566,
+          "direction": "up",
+          "interpretation": "lower gain boundary; not a gain-increase margin",
+          "phase_level_deg": -180,
+          "gain_margin_db": -63.7535645937665
+        }
+      ],
+      "magnitude_at_1MHz": 0.2796328522677896,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.00491491237111221
+    },
+    {
+      "case": "fixed_gain_PIII_lead",
+      "family": "fixed_gain",
+      "controller": "PIII",
+      "shelf_enabled": true,
+      "proportional_gain": 0.352783203125,
+      "kp_Q12": 1445,
+      "integral_corners_hz": [
+        400000.0,
+        1000.0,
+        100
+      ],
+      "lead_zero_hz": 20000,
+      "lead_pole_hz": 200000,
+      "main_path_delay_s": 5.2897135416666664e-08,
+      "target_normalization_frequency_hz": null,
+      "measured_band_crossings": [
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 381220.96060961916,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": -12.81149071728045
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 309.83424660062656,
+          "direction": "up",
+          "interpretation": "lower gain boundary; not a gain-increase margin",
+          "phase_level_deg": -180,
+          "gain_margin_db": -64.17886342044183
+        }
+      ],
+      "magnitude_at_1MHz": 2.760844020148897,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.0027243743046673247
+    },
+    {
+      "case": "normalized_at_target_PIII_lead",
+      "family": "normalized_at_target",
+      "controller": "PIII",
+      "shelf_enabled": true,
+      "proportional_gain": 0.05810546875,
+      "kp_Q12": 238,
+      "integral_corners_hz": [
+        400000.0,
+        1000.0,
+        100
+      ],
+      "lead_zero_hz": 20000,
+      "lead_pole_hz": 200000,
+      "main_path_delay_s": 5.2897135416666664e-08,
+      "target_normalization_frequency_hz": 150000.0,
+      "measured_band_crossings": [
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 149012.03859094842,
+          "direction": "down",
+          "phase_margin_deg": 93.47669197972911
+        },
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 381220.96060961916,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": 2.854327083440644
+        }
+      ],
+      "below_measurement_extrapolated_crossings": [
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 309.83424660062656,
+          "direction": "up",
+          "interpretation": "lower gain boundary; not a gain-increase margin",
+          "phase_level_deg": -180,
+          "gain_margin_db": -48.513045619720735
+        }
+      ],
+      "magnitude_at_1MHz": 0.45472725037746536,
+      "maximum_half_rate_image_amplitude_ratio_in_measured_band": 0.0027243743046673247
+    },
+    {
+      "case": "alternate_PI_300k_corner_lead",
+      "family": "alternate_PI_corner",
+      "controller": "PI",
+      "shelf_enabled": true,
+      "proportional_gain": 0.08642578125,
+      "kp_Q12": 354,
+      "integral_corners_hz": [
+        300000.0
+      ],
+      "lead_zero_hz": 20000,
+      "lead_pole_hz": 200000,
+      "main_path_delay_s": 5.2897135416666664e-08,
+      "measured_band_crossings": [
+        {
+          "kind": "unity_gain",
+          "frequency_hz": 286122.8710253702,
+          "direction": "down",
+          "phase_margin_deg": 45.59696995409888
+        },
+        {
+          "kind": "negative_real_axis",
+          "frequency_hz": 403991.9546520211,
+          "direction": "down",
+          "interpretation": "upper gain boundary",
+          "phase_level_deg": -180,
+          "gain_margin_db": 0.6422554189489795
+        }
+      ],
+      "magnitude_at_1MHz": 0.6601064983278168
+    }
+  ]
+}

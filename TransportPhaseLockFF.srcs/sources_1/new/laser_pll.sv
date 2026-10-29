@@ -1,7 +1,9 @@
 `timescale 1ns / 1ps
 // ADC 224/3 -> coherent internal quadrature mixer -> FIR -> atan2 -> error.
 // All ports, including GPIO controls, use the 245.76 MHz RF fabric clock.
-module laser_pll (
+module laser_pll #(
+    parameter integer STAGE3_RANGE_SHIFT = 0
+) (
     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_rf_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n" *)
     input wire clk,
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *) input wire rst_n,
@@ -96,7 +98,7 @@ module laser_pll (
     wire signed [42:0] unwrapped_phase;
     wire tracking_arm, tracking_valid, tracking_saturated;
     wire signed [15:0] tracking_target;
-    laser_pll_error error_detector (.clk(clk), .rst_n(detector_rst_n),
+    laser_pll_error #(.STAGE3_RANGE_SHIFT(STAGE3_RANGE_SHIFT)) error_detector (.clk(clk), .rst_n(detector_rst_n),
         .measured_phase(measured_phase), .phase_valid(phase_valid),
         .control(control), .phase_offset(phase_offset), .unwrap_arm(unwrap_arm),
         .phase_error(phase_error),
@@ -105,7 +107,7 @@ module laser_pll (
         .capture_target(capture_target), .capture_saturated(capture_saturated),
         .unwrapped_target(unwrapped_target), .unwrapped_saturated(unwrapped_saturated),
         .unwrapped_valid(unwrapped_valid), .turns(turns), .unwrapped_phase(unwrapped_phase));
-    laser_pll_tracking tracking (.clk(clk), .rst_n(detector_rst_n), .arm(tracking_arm),
+    laser_pll_tracking #(.STAGE3_RANGE_SHIFT(STAGE3_RANGE_SHIFT)) tracking (.clk(clk), .rst_n(detector_rst_n), .arm(tracking_arm),
         .phase_codes(unwrapped_phase), .phase_valid(error_valid && unwrap_arm),
         .held_dac(output_target), .initial_gain_shift(control[7:4]), .invert(control[2]),
         .tracking_control(tracking_control), .dac_target(tracking_target),
@@ -180,7 +182,10 @@ module laser_pll (
         .dac_target(driven_target), .target_valid(compensated_valid), .target_saturated(driven_saturated),
         .m_axis_tdata(m_axis_tdata), .m_axis_tvalid(m_axis_tvalid), .m_axis_tready(m_axis_tready),
         .saturated(saturated), .stalled(stalled));
-    assign phase_status = {9'b0, frequency_ack, stalled, saturated, error_valid,
+    // Previously reserved status bits expose the actual stage-3 scale. The
+    // coefficient/gain-ramp ABI stays unchanged: span = 160 * 2^shift turns.
+    localparam [3:0] RANGE_STATUS = STAGE3_RANGE_SHIFT;
+    assign phase_status = {5'b0, RANGE_STATUS, frequency_ack, stalled, saturated, error_valid,
                            enable, phase_error};
     assign frequency_status = {{14{frequency_error[17]}},frequency_error};
 endmodule

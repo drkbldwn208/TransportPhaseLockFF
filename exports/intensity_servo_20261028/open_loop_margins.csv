@@ -1,0 +1,23 @@
+case,plant_measured_band,kind,frequency_hz,direction,phase_margin_deg,interpretation,phase_level_deg,gain_margin_db
+fixed_gain_PI_bypass,True,unity_gain,263954.9054389793,down,60.929409035939244,,,
+fixed_gain_PI_bypass,True,negative_real_axis,422510.1801726767,down,,upper gain boundary,-180.0,0.1937016960107633
+fixed_gain_PI_lead,True,negative_real_axis,471222.17797907506,down,,upper gain boundary,-180.0,-19.028538065394
+normalized_at_target_PI_lead,True,unity_gain,6425.796820093055,down,110.42381151904785,,,
+normalized_at_target_PI_lead,True,unity_gain,298936.59574799647,up,77.10783110009356,,,
+normalized_at_target_PI_lead,True,negative_real_axis,471222.17797907506,down,,upper gain boundary,-180.0,-0.5840760107389157
+normalized_at_target_PI_lead,True,unity_gain,754109.2513539272,down,-121.51042302480177,,,
+fixed_gain_PII_bypass,True,unity_gain,149435.78762245007,down,48.09292773645019,,,
+fixed_gain_PII_bypass,True,negative_real_axis,309839.62549021107,down,,upper gain boundary,-180.0,5.088208574575384
+fixed_gain_PII_lead,True,negative_real_axis,381262.3775297828,down,,upper gain boundary,-180.0,-12.811233441785806
+normalized_at_target_PII_lead,True,unity_gain,149017.01214437676,down,93.51324968855775,,,
+normalized_at_target_PII_lead,True,negative_real_axis,381262.3775297828,down,,upper gain boundary,-180.0,2.8545843589352873
+fixed_gain_PIII_bypass,True,unity_gain,149434.47784012507,down,48.05481619045565,,,
+fixed_gain_PIII_bypass,True,negative_real_axis,309773.30108960235,down,,upper gain boundary,-180.0,5.087095154410533
+fixed_gain_PIII_bypass,False,negative_real_axis,317.48194090012566,up,,lower gain boundary; not a gain-increase margin,-180.0,-63.7535645937665
+fixed_gain_PIII_lead,True,negative_real_axis,381220.96060961916,down,,upper gain boundary,-180.0,-12.81149071728045
+fixed_gain_PIII_lead,False,negative_real_axis,309.83424660062656,up,,lower gain boundary; not a gain-increase margin,-180.0,-64.17886342044183
+normalized_at_target_PIII_lead,True,unity_gain,149012.03859094842,down,93.47669197972911,,,
+normalized_at_target_PIII_lead,True,negative_real_axis,381220.96060961916,down,,upper gain boundary,-180.0,2.854327083440644
+normalized_at_target_PIII_lead,False,negative_real_axis,309.83424660062656,up,,lower gain boundary; not a gain-increase margin,-180.0,-48.513045619720735
+alternate_PI_300k_corner_lead,True,unity_gain,286122.8710253702,down,45.59696995409888,,,
+alternate_PI_300k_corner_lead,True,negative_real_axis,403991.9546520211,down,,upper gain boundary,-180.0,0.6422554189489795

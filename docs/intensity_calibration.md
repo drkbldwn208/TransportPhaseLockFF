@@ -109,6 +109,18 @@ before NPZ compression (up to about 2.57 GiB at 24 blocks). Its minimum acquisit
 and settling time is about two minutes; board-side fitting, compression and DMA
 overhead add to this. Use a fresh output filename for each sweep.
 
+The helper now prints a frequency-start message and each completed block, with
+accept/reject reason and wall time (`progress=False` silences output). Earlier
+helpers printed only after finishing all repeats at a frequency, which could
+look stalled. Interrupt the notebook cell rather than restarting the kernel;
+after it stops, `intensity.stop(ol)` ensures the dither is off without resetting
+the PI. Completed CSV rows and raw blocks remain on disk. A shortened overview
+can start at 1 kHz, use 21 frequencies, 3–6 repeats, 8 cycles and a 10 ms minimum
+block. This trades statistical precision for speed; inspect the reliability
+flags before interpreting the result. For return-ratio L alone, `table=None`
+does not require an optical-power calibration. Optical K and AOM reconstruction
+still require a valid sensor table spanning all captured excursions.
+
 Use short blocks consistent with adequate cycle count; the default rejects
 fitted optical drift above 3% and fitted command drift above 2% of mean command
 per block. Feedback can hold P fixed while upstream drift changes u, so both

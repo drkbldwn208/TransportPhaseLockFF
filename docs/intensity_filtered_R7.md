@@ -27,6 +27,40 @@ Loading a bitstream resets running loops; attaching with `download=False` only
 works with the matching already-loaded image and HWH. No FPGA download is needed
 merely to refresh a helper in an attached notebook.
 
+### HWH loading correction, 2026-10-28
+
+The original INT2 HWH caused PYNQ `WrongPolarityConnection` between
+`system_ila_0/SLOT_0_AXIS` and `SLOT_5_AXIS`. These unused debug inputs were
+connected to each other in metadata, with no source; the implemented bitstream
+ties them to zero. This was a release verification omission. The preceding
+`No cached metadata present` message was not the cause.
+
+The corrected HWH in this package removes only those inactive debug connections;
+the `.bit`, register map, PI/calibration DMA paths and timing are unchanged.
+Replace the HWH beside your existing INT2 bitstream, or copy `repair_int2_hwh.py`
+to the notebook directory and run:
+
+```python
+from pathlib import Path
+from repair_int2_hwh import repair_hwh
+bit_path = Path('/home/xilinx/Bitfiles/FreqLocksBranch/overlays/TransportPhaseLockFF.bit')
+print(repair_hwh(bit_path.with_suffix('.hwh')))
+```
+
+This only edits the HWH and saves a backup; it does not touch running hardware.
+Then rerun your usual overlay-loading/setup cell. The repair accepts only the
+affected release (or its already-corrected HWH), checked by SHA-256. No package
+upgrade or cache deletion is required for the reported error. Metadata parsing
+is now tested with Python 3.10 and `pynqmetadata==0.1.5`; the original reproduces
+the exact error and the repaired file parses successfully. This is a host-side
+test, not an FPGA download.
+
+Corrected HWH SHA-256:
+`5f130cfe0e594110bb8ea1677a9fa80174caa42bdc8506ca8a4c4fcf07f6e667`.
+The raw Vivado HWH is preserved in `source/metadata/` for provenance. The user's
+shell monitor still owns `pynq_overlays`; an already-copied HWH there or on the
+board needs the same repair/replacement. No bitstream files are moved by this fix.
+
 ## Intensity filter and pipeline
 
 The existing 90 MHz LO, ADC224/1 RFDC mixing/decimation and 80 MHz AOM carrier
@@ -115,8 +149,12 @@ and valid input. Their 8192^3 gain is removed only at the output, by selecting
 bits 54:39. The old Hogenauer truncation discarded five input bits (32-count
 steps), which also biased small quadratures; it is no longer used here. The phase DMA remains 16-bit signed radians, 8192 codes/rad, at
 30 kS/s. The additional slow averaging is only in the calibration monitor,
-not in the feedback path. ILA slots 0 and 5 now observe the corrected phase;
-slot 1 observes the filtered I/Q formatter before the slow CICs.
+not in the feedback path. In the released INT2 bitstream, ILA slots 0, 1 and 5
+are tied to zero because interface connections did not override scalar wiring.
+Slot 4 observes the packetized calibration phase during an `axi_dma_4` capture;
+the calibration DMA itself is connected correctly. The setup Tcl now explicitly
+wires slots 0/5 to phase and slot 1 to filtered I/Q for the next build. The HWH
+repair does not restore those physical probes in the existing bitstream.
 
 Averaging wrapped angles after atan2 was invalid near ±π. The new averaging
 order removes that bias. Use `intensity_phase_calibration.ipynb`: a stable positive

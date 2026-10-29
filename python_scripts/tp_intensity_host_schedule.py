@@ -66,11 +66,67 @@ class RFSOCTPIntensity(IntermediateDevice):
         **kwargs,
     ):
         self.BLACS_connection = BLACS_connection
+        self._power_schedule = None
         super().__init__(name, parent_device, **kwargs)
+
+    def set_power_schedule(self, time_s, power_mW, *, sensor_mode):
+        """Set physical sample-and-hold points relative to the hardware trigger.
+
+        Call from the shot script with the original mW values, before any NI
+        voltage/ADC calibration. The final point supplies the end time; output
+        returns to zero there. Do not supply duplicate times for steps.
+        """
+        header, points = power_request(time_s, power_mW, sensor_mode=sensor_mode)
+        self._power_schedule = (header, points)
 
     def generate_code(self, h5_file):
         super().generate_code(h5_file)
-        self.init_device_group(h5_file)
+        group = self.init_device_group(h5_file)
+        if self._power_schedule is not None:
+            header, points = self._power_schedule
+            dataset = group.create_dataset('power_schedule', data=points)
+            for name in ('time_units', 'power_units', 'sensor_mode'):
+                dataset.attrs[name] = header[name]
+
+
+def power_request(time_s, power_mW, *, sensor_mode, metadata=None):
+    """Make the mW upload; no calibration or setpoint quantization on the host."""
+    t, power = np.asarray(time_s, dtype=float), np.asarray(power_mW, dtype=float)
+    if (t.ndim != 1 or t.shape != power.shape or len(t) < 2 or
+            not np.isfinite(t).all() or not np.isfinite(power).all() or
+            t[0] != 0 or np.any(np.diff(t) <= 0) or np.any(power < 0)):
+        raise ValueError('Use finite nonnegative power, paired with increasing trigger-relative times starting at zero.')
+    if sensor_mode not in ('low_power', 'high_power'):
+        raise ValueError('Declare physical attenuation as low_power or high_power.')
+    points = np.ascontiguousarray(np.column_stack((t, power)), dtype='<f8')
+    header = dict(cmd='load_tp_intensity_power', dtype='<f8', shape=list(points.shape),
+                  time_units='s', power_units='mW', sensor_mode=sensor_mode,
+                  metadata=dict(metadata or {}))
+    return header, points
+
+
+def read_power_schedule(h5_path, device_name):
+    """Read the explicit mW dataset, or None for the legacy compiled-AO path."""
+    with h5py.File(h5_path, 'r') as h5file:
+        path = f'/devices/{device_name}/power_schedule'
+        if path not in h5file:
+            return None
+        dataset = h5file[path]
+        if dataset.attrs.get('time_units') != 's' or dataset.attrs.get('power_units') != 'mW':
+            raise ValueError('Physical schedule must declare seconds and mW.')
+        points = dataset[:]
+        if points.ndim != 2 or points.shape[1] != 2:
+            raise ValueError('Physical schedule must have [time_s, power_mW] columns.')
+        return power_request(points[:, 0], points[:, 1],
+                             sensor_mode=dataset.attrs['sensor_mode'],
+                             metadata=dict(h5_path=str(h5_path), device_name=device_name))
+
+
+def send_power_to_rfsoc(time_s, power_mW, *, sensor_mode, metadata=None,
+                       endpoint=DEFAULT_RFSoC_ENDPOINT, timeout_s=DEFAULT_TIMEOUT_S):
+    """Upload mW points. The RFSoC performs conversion before the trigger."""
+    header, points = power_request(time_s, power_mW, sensor_mode=sensor_mode, metadata=metadata)
+    return _send_payload(header, points.tobytes(), endpoint=endpoint, timeout_s=timeout_s)
 
 
 class RFSOCTPIntensityTab(DeviceTab):
@@ -239,9 +295,14 @@ def send_words_to_rfsoc(
         "dtype": "uint32",
         "shape": list(words.shape),
         "num_words": int(words.size),
-        "metadata": metadata,
+        "metadata": dict(metadata, command_units=metadata.get("command_units", "adc_counts")),
     }
 
+    return _send_payload(header, words.astype('<u4', copy=False).tobytes(),
+                         endpoint=endpoint, timeout_s=timeout_s)
+
+
+def _send_payload(header, payload, *, endpoint, timeout_s):
     context = zmq.Context.instance()
     socket = context.socket(zmq.REQ)
     socket.setsockopt(zmq.RCVTIMEO, int(timeout_s * 1000))
@@ -251,7 +312,7 @@ def send_words_to_rfsoc(
 
     try:
         socket.send_json(header, flags=zmq.SNDMORE)
-        socket.send(words.tobytes())
+        socket.send(payload)
         reply = socket.recv_json()
     finally:
         socket.close(0)
@@ -367,34 +428,43 @@ class TpIntensityStreamerWorker(Worker):
                 if status.get("status") != "ok" or not status.get("dma_idle", False):
                     raise RuntimeError(f"TP intensity RFSoC is not ready: {status}")
 
-            words, metadata = compiled_h5_to_streamer_words(
-                h5_filepath,
-                pl_clk_Hz=pl_clk_Hz,
-                intensity_scale=intensity_scale,
-            )
-            if self._dummy:
-                reply = {
-                    "status": "ok",
-                    "message": "dummy TP intensity load",
-                    "num_words": int(words.size),
-                    "num_bytes": int(words.nbytes),
-                }
+            physical = read_power_schedule(h5_filepath, device_name)
+            if physical is not None:
+                header, points = physical
+                metadata = dict(header['metadata'], source_power_units='mW',
+                                sensor_mode=header['sensor_mode'], num_power_points=len(points),
+                                duration_s=float(points[-1, 0]))
+                if self._dummy:
+                    reply = dict(status='ok', message='dummy mW upload; no RFSoC conversion',
+                                 num_words=0, num_bytes=0)
+                else:
+                    reply = send_power_to_rfsoc(points[:, 0], points[:, 1],
+                        sensor_mode=header['sensor_mode'], metadata=metadata, endpoint=endpoint)
             else:
-                reply = send_words_to_rfsoc(words, metadata, endpoint=endpoint)
+                # Compiled NI analog outputs are already converted to volts.
+                # Retain their explicit legacy scaling; never label them mW.
+                words, metadata = compiled_h5_to_streamer_words(
+                    h5_filepath, pl_clk_Hz=pl_clk_Hz, intensity_scale=intensity_scale)
+                metadata['command_units'] = 'adc_counts'
+                if self._dummy:
+                    reply = dict(status='ok', message='dummy legacy TP load',
+                                 num_words=int(words.size), num_bytes=int(words.nbytes))
+                else:
+                    reply = send_words_to_rfsoc(words, metadata, endpoint=endpoint)
 
             with h5py.File(h5_filepath, "r+") as h5file:
                 results = h5file.require_group("/results/tp_intensity_streamer")
                 results.attrs["loaded"] = True
-                results.attrs["num_words"] = int(words.size)
-                results.attrs["num_bytes"] = int(words.nbytes)
+                results.attrs["num_words"] = int(reply["num_words"])
+                results.attrs["num_bytes"] = int(reply["num_bytes"])
                 results.attrs["rfsoc_reply"] = json.dumps(reply)
                 for key, value in metadata.items():
                     if value is not None:
                         results.attrs[key] = value
 
             print(
-                f"TP intensity streamer loaded {words.size} words "
-                f"({words.nbytes / 1e6:.3f} MB)"
+                f"TP intensity streamer loaded {reply['num_words']} words "
+                f"({reply['num_bytes'] / 1e6:.3f} MB)"
             )
 
         except Exception as exc:
@@ -416,6 +486,12 @@ class TpIntensityStreamerWorker(Worker):
                 print(f"TP intensity RFSoC did not report done: {reply}")
             else:
                 print(f"TP intensity RFSoC done: {reply}")
+                if 'shot_record' in reply and self._shot_h5_path is not None:
+                    # Data remain on the RFSoC; retain an unambiguous per-shot
+                    # path and quality flags in the existing host shot file.
+                    with h5py.File(self._shot_h5_path, 'r+') as h5file:
+                        results = h5file.require_group('/results/tp_intensity_streamer')
+                        results.attrs['shot_record_json'] = json.dumps(reply['shot_record'])
         self._enabled_for_shot = False
         return True
 

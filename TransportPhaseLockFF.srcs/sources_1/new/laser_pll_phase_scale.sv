@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
-// Stage 3: full DAC span = 160 turns / 2^gain_shift (approximately).
-// Input phase has 2^18 codes/turn and is bounded to +/-128 turns upstream.
+// Stage 3: upstream range shift S gives full DAC span = 160*2^S / 2^gain_shift
+// turns. Input has 2^(18-S) codes/turn and is bounded to signed 26 bits.
 // Three registers: phase/control, reciprocal product, rounded/clipped DAC.
 module laser_pll_phase_scale (
     input wire clk,

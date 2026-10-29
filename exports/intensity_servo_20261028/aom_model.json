@@ -1,0 +1,31 @@
+{
+  "model": "F(u)=sin(alpha*u)**2; K=dln(F)/du=2*alpha*cot(alpha*u)",
+  "alpha_rad_per_code": 4.721560469794474e-05,
+  "offset_codes": 0,
+  "alpha_bootstrap_95_percentile_rad_per_code": [
+    4.6096801267289525e-05,
+    4.8477072694660747e-05
+  ],
+  "bootstrap_limitation": "bin-resampling repeatability only; excludes calibration/model error",
+  "measured_command_range_codes": [
+    1119.3908788776484,
+    21335.004696358144
+  ],
+  "predicted_first_maximum_codes": 33268.584334434505,
+  "F_at_largest_measured_command": 0.7147296509858989,
+  "fit_fractional_rms": 0.07473704003463456,
+  "fit_fractional_rms_above_4000_codes": 0.03455955121235337,
+  "fit_fractional_maximum_error": 0.31583388031823045,
+  "integrated_shape_comparison_anchor_codes": 6000,
+  "integrated_shape_fractional_error_range_all": [
+    -0.19122615858350098,
+    0.007878324539623723
+  ],
+  "integrated_shape_fractional_error_range_above_4000": [
+    -0.007010107819839434,
+    0.007878324539623723
+  ],
+  "normalization": "F is an ideal-model efficiency coordinate, NOT measured absolute diffraction efficiency",
+  "identifiable_power": "P=A_eff*F(u); A_eff includes actual incident power, maximum efficiency and collection losses",
+  "not_calibrated": "below minimum measured command, beyond maximum, dark optical offset, RF-amplifier saturation"
+}

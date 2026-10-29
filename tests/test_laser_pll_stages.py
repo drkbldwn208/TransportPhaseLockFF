@@ -22,15 +22,19 @@ def run():
     commands=[['xvhdl',str(wrapper)],
               ['xvlog','--sv','-i',str(SRC),*map(str,sources),str(SRC/'laser_pll_dac.v'),str(ROOT/'tests/laser_pll_stages_tb.sv')],
               ['xelab','-L','xfft_v9_1_12','laser_pll_stages_tb','-s','stages_sim'],
-              ['xsim','stages_sim','-runall']]
+              ['xsim','stages_sim','-runall'],
+              ['xelab','-L','xfft_v9_1_12','laser_pll_stages_tb', '-generic_top', 'SECONDARY=1','-s','stages_3g5_sim'],
+              ['xsim','stages_3g5_sim','-runall']]
     for command in commands:
         result=subprocess.run([str(BIN/command[0]),*command[1:]],cwd=WORK,text=True,
                               stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-        (WORK/f'{command[0]}.txt').write_text(result.stdout)
+        label = Path(command[-1] if command[0]=='xelab' else command[1]).name
+        (WORK/f'{command[0]}_{label}.txt').write_text(result.stdout)
         if result.returncode or 'Fatal:' in result.stdout:
             raise RuntimeError(result.stdout[-5000:])
-    assert 'PASS:' in result.stdout
-    print(next(line for line in result.stdout.splitlines() if line.startswith('PASS:')))
+        if command[0]=='xsim':
+            assert 'PASS:' in result.stdout
+            print(next(line for line in result.stdout.splitlines() if line.startswith('PASS:')))
 
 
 if __name__=='__main__': run()

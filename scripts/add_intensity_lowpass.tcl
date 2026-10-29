@@ -89,6 +89,24 @@ connect_bd_intf_net [get_bd_intf_pins cordic_average_0/m_axis_cartesian] [get_bd
 foreach sink {axis_tlast_gen_3/s_axis system_ila_0/SLOT_0_AXIS system_ila_0/SLOT_5_AXIS} {
     connect_bd_intf_net [get_bd_intf_pins cordic_0/M_AXIS_DOUT] [get_bd_intf_pins $sink]
 }
+# Scalar connections above override interface wiring in Vivado. Explicitly join
+# the monitor pins too; otherwise slots 0/5 form a sink-only net and PYNQ's HWH
+# parser rejects it. Slot 1 would also be tied to zero in the generated RTL.
+foreach {source sink} {
+    cordic_0/m_axis_dout_tdata system_ila_0/SLOT_0_AXIS_tdata
+    cordic_0/m_axis_dout_tvalid system_ila_0/SLOT_0_AXIS_tvalid
+    cordic_0/m_axis_dout_tdata system_ila_0/SLOT_5_AXIS_tdata
+    cordic_0/m_axis_dout_tvalid system_ila_0/SLOT_5_AXIS_tvalid
+    cordic_average_0/m_axis_cartesian_tdata system_ila_0/SLOT_1_AXIS_tdata
+    cordic_average_0/m_axis_cartesian_tvalid system_ila_0/SLOT_1_AXIS_tvalid
+} {
+    rx_link $source $sink
+    set source_net [get_bd_nets -of_objects [get_bd_pins $source]]
+    set sink_net [get_bd_nets -of_objects [get_bd_pins $sink]]
+    if {[llength $source_net] != 1 || $source_net ne $sink_net} {
+        error "Calibration ILA scalar connection failed: $source -> $sink"
+    }
+}
 # Same rates, raw ADC interface and tile neighbours. Only the new RF band's
 # parity is changed; helper uses a negative DDS frequency to retain RF phase sign.
 set_property CONFIG.ADC_Nyquist11 1 [get_bd_cells usp_rf_data_converter_0]
