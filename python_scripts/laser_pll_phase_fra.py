@@ -16,6 +16,7 @@ import laser_pll
 import laser_pll_loop_sweep as fra
 
 FEATURE_VERSION = 0x52463701
+PDH_FEATURE_VERSION = 0x52463702  # Closed-loop FRA only; DAC229/2 is the PDH source.
 PHASE_CODES_PER_RAD = (1 << 18)/(2*math.pi)
 
 
@@ -25,7 +26,7 @@ def check_helpers(ol):
         raise ValueError('Reload the matching R7 control, loop-sweep and phase-FRA helpers together.')
     if ol.pll_acquisition_status.read(8) >> 24 != 0xA7:
         raise ValueError('Load the R7 FRA bitstream/HWH, not the A8 DAC-loopback image.')
-    if not hasattr(ol, 'pll_rf_source') or ol.pll_rf_source.read(8) != FEATURE_VERSION:
+    if not hasattr(ol, 'pll_rf_source') or ol.pll_rf_source.read(8) not in (FEATURE_VERSION, PDH_FEATURE_VERSION):
         raise ValueError('This requires the R7 RF-FRA extension, not the original R7 bitstream/HWH.')
 
 
@@ -51,6 +52,8 @@ def setup_rf(ol, *, carrier_hz=800.01e6, carrier_amplitude_codes=8192):
     Carrier frequency is controlled by the same RFDC mixer used previously.
     """
     check_helpers(ol)
+    if ol.pll_rf_source.read(8) == PDH_FEATURE_VERSION:
+        raise ValueError('RF-chain FRA is removed in the PDH build; DAC229/2 drives the summed tones. Closed-loop FRA remains available.')
     if not math.isfinite(carrier_hz) or not 200e6 <= carrier_hz <= 900e6:
         raise ValueError('Use a first-zone carrier in 200..900 MHz, normally 800.01 MHz.')
     if not isinstance(carrier_amplitude_codes, int) or not 1 <= carrier_amplitude_codes <= 32767:
@@ -93,6 +96,8 @@ def _ready(ol, mode):
     if mode == 'closed':
         fra._ready(ol)
     elif mode == 'rf':
+        if ol.pll_rf_source.read(8) == PDH_FEATURE_VERSION:
+            raise ValueError('RF-chain FRA is unavailable in the PDH build; use mode="closed".')
         state = laser_pll.acquisition_status(ol)
         if (state['stage'] != 5 or state['transitioning'] or not state['output_valid']
                 or not ol.pll_control.read(0) & 1 or ol.pll_acquisition.read(8) & 65535

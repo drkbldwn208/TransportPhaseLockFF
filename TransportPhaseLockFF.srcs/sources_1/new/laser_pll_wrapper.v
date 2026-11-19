@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 // Vivado 2024.1 block-design module references require a Verilog top file.
 module laser_pll_wrapper #(
-    parameter integer STAGE3_RANGE_SHIFT = 0
+    parameter integer STAGE3_RANGE_SHIFT = 0,
+    parameter integer ENABLE_RF_SOURCE = 1
 ) (
     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_rf_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n:monitor_fifo_rst_n" *)
     input wire clk,
@@ -61,7 +62,7 @@ module laser_pll_wrapper #(
     output wire [31:0] acquisition_status,
     output wire [31:0] fft_status
 );
-    laser_pll #(.STAGE3_RANGE_SHIFT(STAGE3_RANGE_SHIFT)) detector (
+    laser_pll #(.STAGE3_RANGE_SHIFT(STAGE3_RANGE_SHIFT), .ENABLE_RF_SOURCE(ENABLE_RF_SOURCE)) detector (
         .clk(clk), .rst_n(rst_n), .s_axis_tdata(s_axis_tdata),
         .s_axis_tvalid(s_axis_tvalid), .s_axis_tready(s_axis_tready),
         .m_axis_tdata(m_axis_tdata), .m_axis_tvalid(m_axis_tvalid),

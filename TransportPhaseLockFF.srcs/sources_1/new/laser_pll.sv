@@ -2,7 +2,8 @@
 // ADC 224/3 -> coherent internal quadrature mixer -> FIR -> atan2 -> error.
 // All ports, including GPIO controls, use the 245.76 MHz RF fabric clock.
 module laser_pll #(
-    parameter integer STAGE3_RANGE_SHIFT = 0
+    parameter integer STAGE3_RANGE_SHIFT = 0,
+    parameter integer ENABLE_RF_SOURCE = 1
 ) (
     (* X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF s_axis:m_axis:m_rf_axis:m_monitor:s_fra_tone:s_fra_ref:m_fra_error:m_fra_drive:m_fra_error_ref:m_fra_drive_ref, ASSOCIATED_RESET rst_n" *)
     input wire clk,
@@ -147,10 +148,17 @@ module laser_pll #(
     wire driven_saturated;
     wire signed [19:0] rf_phase_command;
     wire signed [17:0] rf_applied_phase;
-    assign rf_source_status=32'h52463701; // RF7 feature layout revision 1, separate from A7 PLL ABI.
+    // RF72 keeps the closed-loop phase FRA but reserves DAC229/2 for PDH.
+    assign rf_source_status=ENABLE_RF_SOURCE ? 32'h52463701 : 32'h52463702;
+    generate if (ENABLE_RF_SOURCE) begin : rf_enabled
     laser_pll_rf_pm rf_stimulus (.clk(clk), .rst_n(rst_n), .phase_command(rf_phase_command),
         .amplitude(rf_source_control[15:0]), .m_axis_tdata(m_rf_axis_tdata),
         .m_axis_tvalid(m_rf_axis_tvalid), .m_axis_tready(m_rf_axis_tready), .applied_phase(rf_applied_phase));
+    end else begin : rf_disabled
+        assign m_rf_axis_tdata=224'd0;
+        assign m_rf_axis_tvalid=1'b0;
+        assign rf_applied_phase=18'sd0;
+    end endgenerate
     // Register each lane's diagnostic near the ADC, avoiding a long path from
     // the converter through eight comparisons into the FRA counter enables.
     reg [7:0] adc_lane_clipped;
@@ -166,7 +174,7 @@ module laser_pll #(
         .error_code(compensated_target), .error_valid(compensated_valid), .error_saturated(compensated_saturated),
         .dac_ready(m_axis_tready), .phase_valid(error_valid),
         .measured_phase(measured_phase), .measured_phase_valid(phase_valid), .raw_adc_clipped(raw_adc_clipped),
-        .rf_applied_phase(rf_applied_phase), .rf_ready(m_rf_axis_tready), .rf_phase_command(rf_phase_command),
+        .rf_applied_phase(rf_applied_phase), .rf_ready(ENABLE_RF_SOURCE ? m_rf_axis_tready : 1'b0), .rf_phase_command(rf_phase_command),
         .control(fra_control), .settle_clocks(fra_settle_clocks), .measure_clocks(fra_measure_clocks),
         .clip_samples(fra_clip_samples), .saturated_samples(fra_saturated_samples),
         .outside_clip_samples(fra_outside_clip_samples), .measured_samples(fra_measured_samples),

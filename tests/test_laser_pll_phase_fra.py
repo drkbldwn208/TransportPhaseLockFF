@@ -67,6 +67,17 @@ class PhaseFRA(unittest.TestCase):
             self.assertEqual(self.ol.pll_fra.read(0),0)
             self.assertEqual(self.ol.pll_fra_tone.read(0x18),0)
 
+    def test_pdh_build_preserves_closed_fra_and_rejects_rf_before_writes(self):
+        self.ol.pll_rf_source.values[8]=pf.PDH_FEATURE_VERSION
+        p=pf.measure_point(self.ol,100e3)
+        self.assertTrue(abs(p['response'])>0)
+        writes=len(self.ol.pll_fra.writes)
+        with self.assertRaisesRegex(ValueError,'removed'):
+            pf.setup_rf(self.ol)
+        with self.assertRaisesRegex(ValueError,'unavailable'):
+            pf.measure_point(self.ol,1000,mode='rf')
+        self.assertEqual(len(self.ol.pll_fra.writes),writes)
+
     def test_rf_setup_correct_channel_dc_zero_and_known_delay(self):
         old_adc=dict(self.ol.usp_rf_data_converter_0.adc_tiles[0].blocks[3].MixerSettings)
         info=pf.setup_rf(self.ol)
