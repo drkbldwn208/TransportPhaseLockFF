@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Nov 18 17:30:18 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Nov 19 17:52:08 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2" />
 
@@ -139,6 +139,16 @@
         <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="vout13_p" />
       </CONNECTIONS>
     </PORT>
+    <PORT DIR="O" NAME="vout20_v_n" SIGIS="undef" SIGNAME="usp_rf_data_converter_0_vout20_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="vout20_n" />
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="vout20_v_p" SIGIS="undef" SIGNAME="usp_rf_data_converter_0_vout20_p">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="vout20_p" />
+      </CONNECTIONS>
+    </PORT>
   </EXTERNALPORTS>
 
   <EXTERNALINTERFACES>
@@ -221,6 +231,12 @@
       <PORTMAPS>
         <PORTMAP LOGICAL="V_N" PHYSICAL="vout13_v_n" />
         <PORTMAP LOGICAL="V_P" PHYSICAL="vout13_v_p" />
+      </PORTMAPS>
+    </BUSINTERFACE>
+    <BUSINTERFACE BUSNAME="usp_rf_data_converter_0_vout20" NAME="vout20" TYPE="INITIATOR">
+      <PORTMAPS>
+        <PORTMAP LOGICAL="V_N" PHYSICAL="vout20_v_n" />
+        <PORTMAP LOGICAL="V_P" PHYSICAL="vout20_v_p" />
       </PORTMAPS>
     </BUSINTERFACE>
   </EXTERNALINTERFACES>
@@ -35402,13 +35418,21 @@
             <CONNECTION INSTANCE="pll_iq_fifo" PORT="s_axis_tvalid" />
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="223" NAME="m_rf_axis_tdata" RIGHT="0" SIGIS="undef" />
-        <PORT DIR="I" NAME="m_rf_axis_tready" SIGIS="undef" SIGNAME="pll_fra_one_dout">
+        <PORT DIR="O" LEFT="223" NAME="m_rf_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_0_m_rf_axis_tdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="pll_fra_one" PORT="dout" />
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s12_axis_tdata" />
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="m_rf_axis_tvalid" SIGIS="undef" />
+        <PORT DIR="I" NAME="m_rf_axis_tready" SIGIS="undef" SIGNAME="laser_pll_0_m_rf_axis_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s12_axis_tready" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_rf_axis_tvalid" SIGIS="undef" SIGNAME="laser_pll_0_m_rf_axis_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s12_axis_tvalid" />
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" LEFT="31" NAME="monitor_control" RIGHT="0" SIGIS="undef" SIGNAME="pll_monitor_gpio_io_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="pll_monitor" PORT="gpio_io_o" />
@@ -35511,7 +35535,7 @@
         </PORT>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="__NOC__" NAME="m_rf_axis" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+        <BUSINTERFACE BUSNAME="laser_pll_0_m_rf_axis" NAME="m_rf_axis" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1" />
           <PARAMETER NAME="FREQ_HZ" VALUE="245760000" />
           <PARAMETER NAME="HAS_TKEEP" VALUE="0" />
@@ -37017,17 +37041,17 @@
         </PORT>
         <PORT DIR="O" LEFT="223" NAME="m_sum_tdata" RIGHT="0" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s12_axis_tdata" />
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s20_axis_tdata" />
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="m_sum_tready" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s12_axis_tready" />
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s20_axis_tready" />
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_sum_tvalid" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s12_axis_tvalid" />
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s20_axis_tvalid" />
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="reference_coefficients" RIGHT="0" SIGIS="undef" SIGNAME="pdh_amplitudes_gpio2_io_o">
@@ -53759,7 +53783,6 @@
             <CONNECTION INSTANCE="pll_fra_tone" PORT="perturb_nco_out_TREADY" />
             <CONNECTION INSTANCE="pll2_fra_tone" PORT="perturb_nco_out_TREADY" />
             <CONNECTION INSTANCE="intensity_probe_0" PORT="dac_ready" />
-            <CONNECTION INSTANCE="laser_pll_0" PORT="m_rf_axis_tready" />
             <CONNECTION INSTANCE="laser_pll_1" PORT="m_rf_axis_tready" />
           </CONNECTIONS>
         </PORT>
@@ -58476,13 +58499,14 @@
             <CONNECTION INSTANCE="intensity_shot_dma" PORT="axi_resetn" />
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M05_ARESETN" />
             <CONNECTION INSTANCE="intensity_linearized_0" PORT="rst_n" />
-            <CONNECTION INSTANCE="pdh_tones_0" PORT="rst_n" />
             <CONNECTION INSTANCE="pdh_control" PORT="s_axi_aresetn" />
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M06_ARESETN" />
             <CONNECTION INSTANCE="pdh_amplitudes" PORT="s_axi_aresetn" />
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M07_ARESETN" />
             <CONNECTION INSTANCE="pdh_version" PORT="s_axi_aresetn" />
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M08_ARESETN" />
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s2_axis_aresetn" />
+            <CONNECTION INSTANCE="pdh_tones_0" PORT="rst_n" />
             <CONNECTION INSTANCE="laser_pll_0" PORT="rst_n" />
             <CONNECTION INSTANCE="laser_pll_1" PORT="rst_n" />
           </CONNECTIONS>
@@ -67899,20 +67923,20 @@
         <PARAMETER NAME="C_DAC1_Vco" VALUE="13762.560000000001" />
         <PARAMETER NAME="C_DAC2_Band" VALUE="0" />
         <PARAMETER NAME="C_DAC2_Clock_Dist" VALUE="0" />
-        <PARAMETER NAME="C_DAC2_Clock_Source" VALUE="6" />
+        <PARAMETER NAME="C_DAC2_Clock_Source" VALUE="5" />
         <PARAMETER NAME="C_DAC2_Clock_Source_MX" VALUE="6" />
-        <PARAMETER NAME="C_DAC2_Enable" VALUE="0" />
+        <PARAMETER NAME="C_DAC2_Enable" VALUE="1" />
         <PARAMETER NAME="C_DAC2_FBDIV" VALUE="28" />
-        <PARAMETER NAME="C_DAC2_Fabric_Freq" VALUE="0.0" />
-        <PARAMETER NAME="C_DAC2_Fs_Max" VALUE="10.000" />
-        <PARAMETER NAME="C_DAC2_Interpolation" VALUE="0" />
-        <PARAMETER NAME="C_DAC2_Link_Coupling" VALUE="0" />
+        <PARAMETER NAME="C_DAC2_Fabric_Freq" VALUE="245.760" />
+        <PARAMETER NAME="C_DAC2_Fs_Max" VALUE="7.000" />
+        <PARAMETER NAME="C_DAC2_Interpolation" VALUE="2" />
+        <PARAMETER NAME="C_DAC2_Link_Coupling" VALUE="1" />
         <PARAMETER NAME="C_DAC2_Multi_Tile_Sync" VALUE="false" />
-        <PARAMETER NAME="C_DAC2_OutDiv" VALUE="1" />
+        <PARAMETER NAME="C_DAC2_OutDiv" VALUE="2" />
         <PARAMETER NAME="C_DAC2_Outclk_Freq" VALUE="215.040" />
-        <PARAMETER NAME="C_DAC2_PLL_Enable" VALUE="false" />
+        <PARAMETER NAME="C_DAC2_PLL_Enable" VALUE="true" />
         <PARAMETER NAME="C_DAC2_Refclk_Div" VALUE="1" />
-        <PARAMETER NAME="C_DAC2_Refclk_Freq" VALUE="6881.280" />
+        <PARAMETER NAME="C_DAC2_Refclk_Freq" VALUE="491.520" />
         <PARAMETER NAME="C_DAC2_Sampling_Rate" VALUE="6.88128" />
         <PARAMETER NAME="C_DAC2_Slices" VALUE="4" />
         <PARAMETER NAME="C_DAC2_VOP" VALUE="20.0" />
@@ -68010,7 +68034,7 @@
         <PARAMETER NAME="C_DAC_Interpolation_Mode11" VALUE="4" />
         <PARAMETER NAME="C_DAC_Interpolation_Mode12" VALUE="4" />
         <PARAMETER NAME="C_DAC_Interpolation_Mode13" VALUE="4" />
-        <PARAMETER NAME="C_DAC_Interpolation_Mode20" VALUE="0" />
+        <PARAMETER NAME="C_DAC_Interpolation_Mode20" VALUE="2" />
         <PARAMETER NAME="C_DAC_Interpolation_Mode21" VALUE="0" />
         <PARAMETER NAME="C_DAC_Interpolation_Mode22" VALUE="0" />
         <PARAMETER NAME="C_DAC_Interpolation_Mode23" VALUE="0" />
@@ -68059,7 +68083,7 @@
         <PARAMETER NAME="C_DAC_Mixer_Type11" VALUE="2" />
         <PARAMETER NAME="C_DAC_Mixer_Type12" VALUE="2" />
         <PARAMETER NAME="C_DAC_Mixer_Type13" VALUE="2" />
-        <PARAMETER NAME="C_DAC_Mixer_Type20" VALUE="3" />
+        <PARAMETER NAME="C_DAC_Mixer_Type20" VALUE="1" />
         <PARAMETER NAME="C_DAC_Mixer_Type21" VALUE="3" />
         <PARAMETER NAME="C_DAC_Mixer_Type22" VALUE="3" />
         <PARAMETER NAME="C_DAC_Mixer_Type23" VALUE="3" />
@@ -68174,7 +68198,7 @@
         <PARAMETER NAME="C_DAC_Slice11_Enable" VALUE="true" />
         <PARAMETER NAME="C_DAC_Slice12_Enable" VALUE="true" />
         <PARAMETER NAME="C_DAC_Slice13_Enable" VALUE="true" />
-        <PARAMETER NAME="C_DAC_Slice20_Enable" VALUE="false" />
+        <PARAMETER NAME="C_DAC_Slice20_Enable" VALUE="true" />
         <PARAMETER NAME="C_DAC_Slice21_Enable" VALUE="false" />
         <PARAMETER NAME="C_DAC_Slice22_Enable" VALUE="false" />
         <PARAMETER NAME="C_DAC_Slice23_Enable" VALUE="false" />
@@ -68628,16 +68652,16 @@
         <PARAMETER NAME="DAC231_En" VALUE="false" />
         <PARAMETER NAME="DAC2_Band" VALUE="0" />
         <PARAMETER NAME="DAC2_Clock_Dist" VALUE="0" />
-        <PARAMETER NAME="DAC2_Clock_Source" VALUE="6" />
+        <PARAMETER NAME="DAC2_Clock_Source" VALUE="5" />
         <PARAMETER NAME="DAC2_Clock_Source_MX" VALUE="6" />
-        <PARAMETER NAME="DAC2_Enable" VALUE="0" />
-        <PARAMETER NAME="DAC2_Fabric_Freq" VALUE="0.0" />
-        <PARAMETER NAME="DAC2_Link_Coupling" VALUE="0" />
+        <PARAMETER NAME="DAC2_Enable" VALUE="1" />
+        <PARAMETER NAME="DAC2_Fabric_Freq" VALUE="245.760" />
+        <PARAMETER NAME="DAC2_Link_Coupling" VALUE="1" />
         <PARAMETER NAME="DAC2_Multi_Tile_Sync" VALUE="false" />
         <PARAMETER NAME="DAC2_Outclk_Freq" VALUE="215.040" />
-        <PARAMETER NAME="DAC2_PLL_Enable" VALUE="false" />
+        <PARAMETER NAME="DAC2_PLL_Enable" VALUE="true" />
         <PARAMETER NAME="DAC2_Refclk_Div" VALUE="1" />
-        <PARAMETER NAME="DAC2_Refclk_Freq" VALUE="6881.280" />
+        <PARAMETER NAME="DAC2_Refclk_Freq" VALUE="491.520" />
         <PARAMETER NAME="DAC2_Sampling_Rate" VALUE="6.88128" />
         <PARAMETER NAME="DAC2_VOP" VALUE="20.0" />
         <PARAMETER NAME="DAC3_Band" VALUE="0" />
@@ -68727,7 +68751,7 @@
         <PARAMETER NAME="DAC_Interpolation_Mode11" VALUE="4" />
         <PARAMETER NAME="DAC_Interpolation_Mode12" VALUE="4" />
         <PARAMETER NAME="DAC_Interpolation_Mode13" VALUE="4" />
-        <PARAMETER NAME="DAC_Interpolation_Mode20" VALUE="0" />
+        <PARAMETER NAME="DAC_Interpolation_Mode20" VALUE="2" />
         <PARAMETER NAME="DAC_Interpolation_Mode21" VALUE="0" />
         <PARAMETER NAME="DAC_Interpolation_Mode22" VALUE="0" />
         <PARAMETER NAME="DAC_Interpolation_Mode23" VALUE="0" />
@@ -68776,7 +68800,7 @@
         <PARAMETER NAME="DAC_Mixer_Type11" VALUE="2" />
         <PARAMETER NAME="DAC_Mixer_Type12" VALUE="2" />
         <PARAMETER NAME="DAC_Mixer_Type13" VALUE="2" />
-        <PARAMETER NAME="DAC_Mixer_Type20" VALUE="3" />
+        <PARAMETER NAME="DAC_Mixer_Type20" VALUE="1" />
         <PARAMETER NAME="DAC_Mixer_Type21" VALUE="3" />
         <PARAMETER NAME="DAC_Mixer_Type22" VALUE="3" />
         <PARAMETER NAME="DAC_Mixer_Type23" VALUE="3" />
@@ -68891,7 +68915,7 @@
         <PARAMETER NAME="DAC_Slice11_Enable" VALUE="true" />
         <PARAMETER NAME="DAC_Slice12_Enable" VALUE="true" />
         <PARAMETER NAME="DAC_Slice13_Enable" VALUE="true" />
-        <PARAMETER NAME="DAC_Slice20_Enable" VALUE="false" />
+        <PARAMETER NAME="DAC_Slice20_Enable" VALUE="true" />
         <PARAMETER NAME="DAC_Slice21_Enable" VALUE="false" />
         <PARAMETER NAME="DAC_Slice22_Enable" VALUE="false" />
         <PARAMETER NAME="DAC_Slice23_Enable" VALUE="false" />
@@ -69291,13 +69315,14 @@
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M05_ACLK" />
             <CONNECTION INSTANCE="intensity_shot_fifo" PORT="s_axis_aclk" />
             <CONNECTION INSTANCE="intensity_linearized_0" PORT="clk" />
-            <CONNECTION INSTANCE="pdh_tones_0" PORT="clk" />
             <CONNECTION INSTANCE="pdh_control" PORT="s_axi_aclk" />
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M06_ACLK" />
             <CONNECTION INSTANCE="pdh_amplitudes" PORT="s_axi_aclk" />
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M07_ACLK" />
             <CONNECTION INSTANCE="pdh_version" PORT="s_axi_aclk" />
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M08_ACLK" />
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="s2_axis_aclk" />
+            <CONNECTION INSTANCE="pdh_tones_0" PORT="clk" />
             <CONNECTION INSTANCE="laser_pll_0" PORT="clk" />
             <CONNECTION INSTANCE="laser_pll_1" PORT="clk" />
           </CONNECTIONS>
@@ -69305,6 +69330,7 @@
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_adc2" SIGIS="clk" />
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_dac0" SIGIS="clk" />
         <PORT CLKFREQUENCY="215040000" DIR="O" NAME="clk_dac1" SIGIS="clk" />
+        <PORT CLKFREQUENCY="215040000" DIR="O" NAME="clk_dac2" SIGIS="clk" />
         <PORT DIR="I" NAME="dac1_clk_n" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_dac1_clk_n">
           <CONNECTIONS>
             <CONNECTION INSTANCE="design_1_imp" PORT="dac1_clk_clk_n" />
@@ -69519,19 +69545,19 @@
             <CONNECTION INSTANCE="laser_pll_0" PORT="m_axis_tvalid" />
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="223" NAME="s12_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tdata">
+        <PORT DIR="I" LEFT="223" NAME="s12_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_0_m_rf_axis_tdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="pdh_tones_0" PORT="m_sum_tdata" />
+            <CONNECTION INSTANCE="laser_pll_0" PORT="m_rf_axis_tdata" />
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="s12_axis_tready" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tready">
+        <PORT DIR="O" NAME="s12_axis_tready" SIGIS="undef" SIGNAME="laser_pll_0_m_rf_axis_tready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="pdh_tones_0" PORT="m_sum_tready" />
+            <CONNECTION INSTANCE="laser_pll_0" PORT="m_rf_axis_tready" />
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s12_axis_tvalid" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tvalid">
+        <PORT DIR="I" NAME="s12_axis_tvalid" SIGIS="undef" SIGNAME="laser_pll_0_m_rf_axis_tvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="pdh_tones_0" PORT="m_sum_tvalid" />
+            <CONNECTION INSTANCE="laser_pll_0" PORT="m_rf_axis_tvalid" />
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="223" NAME="s13_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_1_m_axis_tdata">
@@ -69555,6 +69581,31 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="s1_axis_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="223" NAME="s20_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pdh_tones_0" PORT="m_sum_tdata" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s20_axis_tready" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pdh_tones_0" PORT="m_sum_tready" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s20_axis_tvalid" SIGIS="undef" SIGNAME="pdh_tones_0_m_sum_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pdh_tones_0" PORT="m_sum_tvalid" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="245760000" DIR="I" NAME="s2_axis_aclk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s2_axis_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn" />
           </CONNECTIONS>
@@ -69742,6 +69793,16 @@
         <PORT DIR="O" NAME="vout13_p" SIGIS="undef" SIGNAME="usp_rf_data_converter_0_vout13_p">
           <CONNECTIONS>
             <CONNECTION INSTANCE="design_1_imp" PORT="vout13_v_p" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="vout20_n" SIGIS="undef" SIGNAME="usp_rf_data_converter_0_vout20_n">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="design_1_imp" PORT="vout20_v_n" />
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="vout20_p" SIGIS="undef" SIGNAME="usp_rf_data_converter_0_vout20_p">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="design_1_imp" PORT="vout20_v_p" />
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -70071,7 +70132,7 @@
             <PORTMAP LOGICAL="TVALID" PHYSICAL="s11_axis_tvalid" />
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="pdh_tones_0_m_sum" NAME="s12_axis" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+        <BUSINTERFACE BUSNAME="laser_pll_0_m_rf_axis" NAME="s12_axis" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1" />
           <PARAMETER NAME="FREQ_HZ" VALUE="245760000" />
           <PARAMETER NAME="HAS_TKEEP" VALUE="0" />
@@ -70109,6 +70170,26 @@
             <PORTMAP LOGICAL="TDATA" PHYSICAL="s13_axis_tdata" />
             <PORTMAP LOGICAL="TREADY" PHYSICAL="s13_axis_tready" />
             <PORTMAP LOGICAL="TVALID" PHYSICAL="s13_axis_tvalid" />
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="pdh_tones_0_m_sum" NAME="s20_axis" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1" />
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000" />
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0" />
+          <PARAMETER NAME="HAS_TLAST" VALUE="0" />
+          <PARAMETER NAME="HAS_TREADY" VALUE="1" />
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0" />
+          <PARAMETER NAME="INSERT_VIP" VALUE="0" />
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef" />
+          <PARAMETER NAME="PHASE" VALUE="0.0" />
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="28" />
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0" />
+          <PARAMETER NAME="TID_WIDTH" VALUE="0" />
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0" />
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="s20_axis_tdata" />
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="s20_axis_tready" />
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="s20_axis_tvalid" />
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="External_Interface_adc1_clk" NAME="adc1_clk" TYPE="TARGET" VLNV="xilinx.com:interface:diff_clock:1.0">
@@ -70221,6 +70302,12 @@
           <PORTMAPS>
             <PORTMAP LOGICAL="V_N" PHYSICAL="vout13_n" />
             <PORTMAP LOGICAL="V_P" PHYSICAL="vout13_p" />
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="usp_rf_data_converter_0_vout20" NAME="vout20" TYPE="INITIATOR" VLNV="xilinx.com:interface:diff_analog_io:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="V_N" PHYSICAL="vout20_n" />
+            <PORTMAP LOGICAL="V_P" PHYSICAL="vout20_p" />
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="External_Interface_sysref_in" NAME="sysref_in" TYPE="TARGET" VLNV="xilinx.com:display_usp_rf_data_converter:diff_pins:1.0">

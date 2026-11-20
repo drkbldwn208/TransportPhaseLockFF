@@ -1,7 +1,7 @@
-"""Exact-period 570 MHz complex and 60 MHz real waveforms at the existing rates.
+"""Exact-period real 1.2 GHz + 60 MHz waveforms for DAC230/0, and 60 MHz LO.
 
 All lanes advance together at 245.76 MHz. The complete waveform repeats after
-1024 fabric clocks, eliminating phase-accumulator frequency rounding.
+512 fabric clocks, eliminating phase-accumulator frequency rounding.
 """
 from pathlib import Path
 import math
@@ -23,5 +23,12 @@ def write_rom(name, frequency_hz, lanes, length):
 
 
 if __name__ == '__main__':
-    write_rom('offset', 570_000_000, 7, 1024)
+    for lane in range(14):
+        values = []
+        for frame in range(512):
+            time_s = (frame + lane/14) / FS_HZ
+            carrier = round(32767*math.cos(2*math.pi*1_200_000_000*time_s))
+            modulation = round(32767*math.cos(2*math.pi*60_000_000*time_s))
+            values.append(f'{((modulation & 65535) << 16) | (carrier & 65535):08x}\n')
+        (DEST / f'pdh_sum_{lane}.mem').write_text(''.join(values))
     write_rom('reference', 60_000_000, 8, 512)

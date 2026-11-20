@@ -1,6 +1,6 @@
-`timescale 1ns/1ps
+`timescale 1ns/1fs
 module pdh_tones_tb;
-    reg clk=0; always #2 clk=~clk;
+    reg clk=0; always #(1.0e9/(2.0*245760000.0)) clk=~clk;
     reg rst_n=0;
     reg [31:0] control=0, amplitudes=0, reference_coefficients=0;
     wire [31:0] status, feature_version;
@@ -26,7 +26,7 @@ module pdh_tones_tb;
     endtask
     task record_block(input integer block_id);
         begin
-            for(k=0;k<1024;k=k+1) begin
+            for(k=0;k<512;k=k+1) begin
                 $fwrite(fd,"%d %d %h %h\n",block_id,dut.frame,sum_data,ref_data);
                 @(negedge clk);
             end
@@ -36,6 +36,7 @@ module pdh_tones_tb;
         fd=$fopen("pdh_samples.txt","w");
         repeat(8) @(negedge clk); rst_n=1;
         repeat(8) @(negedge clk);
+        if(feature_version!==32'h50444802) $fatal(1,"Incorrect hardware feature version");
         if(sum_data!==0 || ref_data!==0) $fatal(1,"Not muted at reset");
         configure(12000,3000,6000,-8000); record_block(0);
         configure(0,12000,-10000,0); record_block(1);

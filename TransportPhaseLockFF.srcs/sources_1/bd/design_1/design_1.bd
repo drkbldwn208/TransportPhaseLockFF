@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x3AF6EB4567E418F8",
+      "boundary_crc": "0x765AABD6E40444CA",
       "device": "xczu49dr-ffvf1760-2-e",
       "gen_directory": "../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -551,6 +551,21 @@
           },
           "V_P": {
             "physical_name": "vout13_v_p",
+            "direction": "O"
+          }
+        }
+      },
+      "vout20": {
+        "mode": "Master",
+        "vlnv_bus_definition": "xilinx.com:interface:diff_analog_io:1.0",
+        "vlnv": "xilinx.com:interface:diff_analog_io_rtl:1.0",
+        "port_maps": {
+          "V_N": {
+            "physical_name": "vout20_v_n",
+            "direction": "O"
+          },
+          "V_P": {
+            "physical_name": "vout20_v_p",
             "direction": "O"
           }
         }
@@ -1796,6 +1811,33 @@
           "DAC1_Sampling_Rate": {
             "value": "6.88128"
           },
+          "DAC2_Clock_Dist": {
+            "value": "0"
+          },
+          "DAC2_Clock_Source": {
+            "value": "5"
+          },
+          "DAC2_Link_Coupling": {
+            "value": "1"
+          },
+          "DAC2_Outclk_Freq": {
+            "value": "215.040"
+          },
+          "DAC2_PLL_Enable": {
+            "value": "true"
+          },
+          "DAC2_Refclk_Freq": {
+            "value": "491.520"
+          },
+          "DAC2_Sampling_Rate": {
+            "value": "6.88128"
+          },
+          "DAC_Coarse_Mixer_Freq20": {
+            "value": "3"
+          },
+          "DAC_Data_Type20": {
+            "value": "0"
+          },
           "DAC_Data_Width00": {
             "value": "8"
           },
@@ -1818,6 +1860,9 @@
             "value": "14"
           },
           "DAC_Data_Width13": {
+            "value": "14"
+          },
+          "DAC_Data_Width20": {
             "value": "14"
           },
           "DAC_Interpolation_Mode00": {
@@ -1844,6 +1889,9 @@
           "DAC_Interpolation_Mode13": {
             "value": "4"
           },
+          "DAC_Interpolation_Mode20": {
+            "value": "2"
+          },
           "DAC_Mixer_Mode00": {
             "value": "2"
           },
@@ -1855,6 +1903,9 @@
           },
           "DAC_Mixer_Mode13": {
             "value": "0"
+          },
+          "DAC_Mixer_Mode20": {
+            "value": "2"
           },
           "DAC_Mixer_Type01": {
             "value": "2"
@@ -1877,7 +1928,13 @@
           "DAC_Mixer_Type13": {
             "value": "2"
           },
+          "DAC_Mixer_Type20": {
+            "value": "1"
+          },
           "DAC_Mode10": {
+            "value": "0"
+          },
+          "DAC_Mode20": {
             "value": "0"
           },
           "DAC_NCO_Freq01": {
@@ -1923,7 +1980,7 @@
             "value": "true"
           },
           "DAC_Slice20_Enable": {
-            "value": "false"
+            "value": "true"
           }
         }
       },
@@ -7828,8 +7885,8 @@
           "tier2_xbar_0": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_0_62",
-            "xci_path": "ip/design_1_tier2_xbar_0_62/design_1_tier2_xbar_0_62.xci",
+            "xci_name": "design_1_tier2_xbar_0_66",
+            "xci_path": "ip/design_1_tier2_xbar_0_66/design_1_tier2_xbar_0_66.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_0",
             "parameters": {
               "NUM_MI": {
@@ -7859,8 +7916,8 @@
           "tier2_xbar_1": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_1_62",
-            "xci_path": "ip/design_1_tier2_xbar_1_62/design_1_tier2_xbar_1_62.xci",
+            "xci_name": "design_1_tier2_xbar_1_66",
+            "xci_path": "ip/design_1_tier2_xbar_1_66/design_1_tier2_xbar_1_66.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_1",
             "parameters": {
               "NUM_MI": {
@@ -7890,8 +7947,8 @@
           "tier2_xbar_2": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_2_62",
-            "xci_path": "ip/design_1_tier2_xbar_2_62/design_1_tier2_xbar_2_62.xci",
+            "xci_name": "design_1_tier2_xbar_2_66",
+            "xci_path": "ip/design_1_tier2_xbar_2_66/design_1_tier2_xbar_2_66.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_2",
             "parameters": {
               "NUM_MI": {
@@ -7921,8 +7978,8 @@
           "tier2_xbar_3": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_3_62",
-            "xci_path": "ip/design_1_tier2_xbar_3_62/design_1_tier2_xbar_3_62.xci",
+            "xci_name": "design_1_tier2_xbar_3_66",
+            "xci_path": "ip/design_1_tier2_xbar_3_66/design_1_tier2_xbar_3_66.xci",
             "inst_hier_path": "axi_interconnect_0/tier2_xbar_3",
             "parameters": {
               "NUM_MI": {
@@ -17286,8 +17343,8 @@
           "tier2_xbar_0": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_0_63",
-            "xci_path": "ip/design_1_tier2_xbar_0_63/design_1_tier2_xbar_0_63.xci",
+            "xci_name": "design_1_tier2_xbar_0_67",
+            "xci_path": "ip/design_1_tier2_xbar_0_67/design_1_tier2_xbar_0_67.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_0",
             "parameters": {
               "NUM_MI": {
@@ -17317,8 +17374,8 @@
           "tier2_xbar_1": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_1_63",
-            "xci_path": "ip/design_1_tier2_xbar_1_63/design_1_tier2_xbar_1_63.xci",
+            "xci_name": "design_1_tier2_xbar_1_67",
+            "xci_path": "ip/design_1_tier2_xbar_1_67/design_1_tier2_xbar_1_67.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_1",
             "parameters": {
               "NUM_MI": {
@@ -17348,8 +17405,8 @@
           "tier2_xbar_2": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_2_63",
-            "xci_path": "ip/design_1_tier2_xbar_2_63/design_1_tier2_xbar_2_63.xci",
+            "xci_name": "design_1_tier2_xbar_2_67",
+            "xci_path": "ip/design_1_tier2_xbar_2_67/design_1_tier2_xbar_2_67.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_2",
             "parameters": {
               "NUM_MI": {
@@ -17379,8 +17436,8 @@
           "tier2_xbar_3": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_tier2_xbar_3_63",
-            "xci_path": "ip/design_1_tier2_xbar_3_63/design_1_tier2_xbar_3_63.xci",
+            "xci_name": "design_1_tier2_xbar_3_67",
+            "xci_path": "ip/design_1_tier2_xbar_3_67/design_1_tier2_xbar_3_67.xci",
             "inst_hier_path": "pll_extension_axi/tier2_xbar_3",
             "parameters": {
               "NUM_MI": {
@@ -24800,6 +24857,12 @@
           "pll_iq_fifo/S_AXIS"
         ]
       },
+      "laser_pll_0_m_rf_axis": {
+        "interface_ports": [
+          "laser_pll_0/m_rf_axis",
+          "usp_rf_data_converter_0/s12_axis"
+        ]
+      },
       "laser_pll_1_m_axis": {
         "interface_ports": [
           "laser_pll_1/m_axis",
@@ -24845,7 +24908,7 @@
       "pdh_tones_0_m_sum": {
         "interface_ports": [
           "pdh_tones_0/m_sum",
-          "usp_rf_data_converter_0/s12_axis"
+          "usp_rf_data_converter_0/s20_axis"
         ]
       },
       "perturbation_gen_0_perturb_err_out": {
@@ -25326,6 +25389,12 @@
         "interface_ports": [
           "vout13",
           "usp_rf_data_converter_0/vout13"
+        ]
+      },
+      "usp_rf_data_converter_0_vout20": {
+        "interface_ports": [
+          "vout20",
+          "usp_rf_data_converter_0/vout20"
         ]
       },
       "vin00_1": {
@@ -26375,7 +26444,6 @@
           "pll_fra_tone/perturb_nco_out_TREADY",
           "pll2_fra_tone/perturb_nco_out_TREADY",
           "intensity_probe_0/dac_ready",
-          "laser_pll_0/m_rf_axis_tready",
           "laser_pll_1/m_rf_axis_tready"
         ]
       },
@@ -26674,13 +26742,14 @@
           "intensity_shot_dma/axi_resetn",
           "intensity_servo_axi/M05_ARESETN",
           "intensity_linearized_0/rst_n",
-          "pdh_tones_0/rst_n",
           "pdh_control/s_axi_aresetn",
           "intensity_servo_axi/M06_ARESETN",
           "pdh_amplitudes/s_axi_aresetn",
           "intensity_servo_axi/M07_ARESETN",
           "pdh_version/s_axi_aresetn",
           "intensity_servo_axi/M08_ARESETN",
+          "usp_rf_data_converter_0/s2_axis_aresetn",
+          "pdh_tones_0/rst_n",
           "laser_pll_0/rst_n",
           "laser_pll_1/rst_n"
         ]
@@ -26959,13 +27028,14 @@
           "intensity_servo_axi/M05_ACLK",
           "intensity_shot_fifo/s_axis_aclk",
           "intensity_linearized_0/clk",
-          "pdh_tones_0/clk",
           "pdh_control/s_axi_aclk",
           "intensity_servo_axi/M06_ACLK",
           "pdh_amplitudes/s_axi_aclk",
           "intensity_servo_axi/M07_ACLK",
           "pdh_version/s_axi_aclk",
           "intensity_servo_axi/M08_ACLK",
+          "usp_rf_data_converter_0/s2_axis_aclk",
+          "pdh_tones_0/clk",
           "laser_pll_0/clk",
           "laser_pll_1/clk"
         ]

@@ -7,7 +7,7 @@ import shutil
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'build/PDH_1200_60'
+OUT = ROOT / 'build/PDH_DAC230_1200_60'
 
 
 def main():
@@ -40,27 +40,35 @@ def main():
     pdh_doc.write_text(pdh_doc.read_text().replace('../python_scripts/pdh_tones.ipynb', '../pdh_tones.ipynb'))
     shutil.copy2(ROOT / 'docs/blacs_intensity_servo_handoff.md', OUT / 'docs/blacs_intensity_servo_handoff.md')
     (OUT / 'tests').mkdir(exist_ok=True)
-    for name in ('xvlog.log', 'xelab.log', 'xsim.log', 'python_tests.log', 'phase_fra_notebook.log'):
+    for name in ('xvlog.log', 'xelab.log', 'xsim.log', 'python_tests.log', 'phase_fra_notebook.log', 'phase_fra_tests.log', 'spectral_check.log', 'pdh_notebook.log'):
         shutil.copy2(ROOT / 'build/pdh_tests' / name, OUT / 'tests' / name)
 
     (OUT / 'README.md').write_text(f'''# PDH summed tones, retaining R7 PLLs and IS03 intensity servo
 
 Use `TransportPhaseLockFF.bit` and its matching `.hwh` together. This build
-drives DAC229/2 with 1.2 GHz + 60 MHz and DAC228/2 with a phase-adjustable
+drives DAC230/0 with 1.2 GHz + 60 MHz and DAC228/2 with a phase-adjustable
 60 MHz reference. Start with `pdh_tones.ipynb`; the frequency plan and register
 map are in [docs/pdh_tones.md](docs/pdh_tones.md).
+
+Import `xrfdc` before constructing `Overlay`, including when using
+`download=False`. The notebook repairs an existing generic RFDC binding by
+reattaching to the same matching bit/HWH without downloading or restarting clocks.
 
 The default 60 MHz/carrier voltage ratio is 0.587654. `set_levels(ol)` uses
 carrier amplitude 0.55, sideband amplitude about 0.3232, reference 0.10.
 Hardware reset and `configure(ol)` default to zero output. Digital amplitudes
 are not calibrated EOM volts; calibrate sideband powers and reference phase.
-DAC229/2's RFDC mixer must be **630 MHz**, as configured by the helper.
+DAC230/0 runs at **6.88128 GS/s**, ×2 interpolation and R2R mixer bypass;
+DAC229 distributes its 491.52 MHz reference. Both tones are real RTL samples,
+with no NCO translation. DAC229/2 receives zeros. The reference remains on
+DAC228/2 with ×2 interpolation and bypass. The helper starts the new tile when
+needed; it does not restart the previously active tiles.
 
 Both feedback PLLs, the /640 secondary-PLL range, intensity servo, calibration,
 shot capture and closed-loop FRA remain. RF-chain FRA and DAC228/2's former
 GPIO/DMA tone path are replaced. Use the updated `laser_pll_phase_fra.py`;
 `mode='closed'` works, while `mode='rf'` is rejected before hardware writes.
-The PLL firmware byte is still A7. PDH feature ID is 0x50444801; the phase-FRA
+The PLL firmware byte is still A7. PDH feature ID is 0x50444802; the phase-FRA
 feature ID is now 0x52463702.
 
 Full routed timing: WNS {wns_ns:+.3f} ns, WHS {whs_ns:+.3f} ns, WPWS
@@ -69,7 +77,7 @@ analog spectra, relative phase and EOM behavior still require bench checks.
 This directory is independent of the user's `pynq_overlays/` export monitor.
 ''')
     verification = dict(
-        release='PDH-1200-60-R7-IS03-PLL640',
+        release='PDH2-DAC230-1200-60-R7-IS03-PLL640',
         wns_ns=wns_ns, whs_ns=whs_ns, wpws_ns=wpws_ns,
         pdh_setup_slack_ns=pdh_setup_slack_ns,
         programmed_hardware=False,
@@ -78,7 +86,7 @@ This directory is independent of the user's `pynq_overlays/` export monitor.
         sha256={}, source_sha256={},
     )
     source_dir = ROOT / 'TransportPhaseLockFF.srcs/sources_1/new'
-    sources = list(source_dir.glob('pdh_*')) + [source_dir / 'laser_pll.sv', source_dir / 'laser_pll_wrapper.v',
+    sources = [p for p in source_dir.glob('pdh_*') if not p.name.startswith('pdh_offset_')] + [source_dir / 'laser_pll.sv', source_dir / 'laser_pll_wrapper.v',
         ROOT / 'TransportPhaseLockFF.srcs/sources_1/bd/design_1/design_1.bd']
     for path in sorted(sources):
         verification['source_sha256'][str(path.relative_to(ROOT))] = hashlib.sha256(path.read_bytes()).hexdigest()

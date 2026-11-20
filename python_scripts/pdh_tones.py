@@ -1,6 +1,6 @@
 """Summed 1.2 GHz + 60 MHz EOM drive and coherent, phase-adjustable 60 MHz LO.
 
-DAC229/2 (tile 1 block 2): seven complex samples/clock, RFDC mixer +630 MHz.
+DAC230/0 (tile 2 block 0): fourteen real samples/clock, RFDC x2, mixer bypass.
 DAC228/2 (tile 0 block 2): eight real samples/clock, RFDC mixer bypass.
 Amplitudes are fractions of signed digital full scale, NOT calibrated volts.
 These fixed frequencies assume the existing common 245.76 MHz fabric clock.
@@ -8,8 +8,8 @@ These fixed frequencies assume the existing common 245.76 MHz fabric clock.
 import math
 import time
 
-FEATURE_VERSION = 0x50444801
-RF_MIXER_HZ = 630e6
+FEATURE_VERSION = 0x50444802
+HELPER_VERSION = '2026-11-19.3'
 CARRIER_HZ = 1.2e9
 MODULATION_HZ = 60e6
 # beta_PDH / beta_offset at their ideal PDH-slope maxima; assumes equal Vpi
@@ -21,11 +21,12 @@ def check(ol):
     if not hasattr(ol, 'pdh_version') or ol.pdh_version.read(0) != FEATURE_VERSION:
         raise ValueError('Load the matching PDH bitstream/HWH and pdh_tones.py helper.')
     parameters = ol.ip_dict['usp_rf_data_converter_0']['parameters']
-    for name, expected in {'DAC_Data_Width12':14, 'DAC_Interpolation_Mode12':4,
+    for name, expected in {'DAC_Data_Width20':14, 'DAC_Interpolation_Mode20':2,
+                           'DAC2_Clock_Source':5,
                            'DAC_Data_Width02':8, 'DAC_Interpolation_Mode02':2}.items():
         if int(parameters[name]) != expected:
             raise ValueError(f'{name} must be {expected} for this waveform generator.')
-    for name, expected in {'DAC0_Sampling_Rate':3.93216, 'DAC1_Sampling_Rate':6.88128}.items():
+    for name, expected in {'DAC0_Sampling_Rate':3.93216, 'DAC2_Sampling_Rate':6.88128}.items():
         if abs(float(parameters[name])-expected) > 1e-9:
             raise ValueError(f'{name} must be {expected} GS/s.')
 
@@ -79,19 +80,38 @@ def _coefficients(carrier_amplitude, sideband_amplitude, reference_amplitude, re
     return carrier, sideband, ref_cos, ref_sin
 
 
-def _check_mixers(ol):
+def _rfdc(ol):
+    """Check driver binding before changing either PDH output."""
     import xrfdc
     rf = ol.usp_rf_data_converter_0
-    source = rf.dac_tiles[1].blocks[2]
-    reference = rf.dac_tiles[0].blocks[2]
-    a, b = source.MixerSettings, reference.MixerSettings
-    if (abs(a['Freq']-630.0)>1e-6 or a['MixerType'] != xrfdc.MIXER_TYPE_FINE or
-            a['MixerMode'] != xrfdc.MIXER_MODE_C2R or a['FineMixerScale'] != xrfdc.MIXER_SCALE_1P0 or
-            b['MixerType'] != xrfdc.MIXER_TYPE_COARSE or b['MixerMode'] != xrfdc.MIXER_MODE_R2R or
-            b['CoarseMixFreq'] != xrfdc.COARSE_MIX_BYPASS):
-        raise ValueError('PDH RFDC settings changed; call configure() with outputs muted first.')
-    if source.InterpolationFactor != 4 or reference.InterpolationFactor != 2:
-        raise ValueError('PDH DAC interpolation factors must remain 4 and 2.')
+    if not hasattr(rf, 'dac_tiles'):
+        ip_type = ol.ip_dict['usp_rf_data_converter_0'].get('type', 'unknown')
+        raise RuntimeError(
+            f'RFDC is bound to {type(rf).__name__}, not xrfdc.RFdc (HWH IP: {ip_type}). '
+            'Import xrfdc BEFORE creating ol. For the already running matching image, '
+            'reattach with ol = Overlay(ol.bitfile_name, download=False); do not reload '
+            'the bitstream or restart clocks. If still unbound, compare the HWH IP type '
+            'with xrfdc.RFdc.bindto.')
+    return rf
+
+
+def _check_mixers(ol):
+    import xrfdc
+    rf = _rfdc(ol)
+    problems = []
+    for name, block in (('DAC230/0', rf.dac_tiles[2].blocks[0]),
+                        ('DAC228/2', rf.dac_tiles[0].blocks[2])):
+        settings = dict(block.MixerSettings)
+        # Fine-mixer scale and frequency are irrelevant when coarse bypass is
+        # selected. Do not test the driver's shared AUTO-scale software flag.
+        if (settings['MixerType'] != xrfdc.MIXER_TYPE_COARSE or
+                settings['MixerMode'] != xrfdc.MIXER_MODE_R2R or
+                settings['CoarseMixFreq'] != xrfdc.COARSE_MIX_BYPASS):
+            problems.append(f'{name} must use coarse R2R bypass; readback={settings}')
+        if block.InterpolationFactor != 2:
+            problems.append(f'{name} interpolation must be 2; readback={block.InterpolationFactor}')
+    if problems:
+        raise ValueError('PDH converter check: '+ '; '.join(problems))
 
 
 def set_levels(ol, *, carrier_amplitude=0.55, sideband_amplitude=None, reference_amplitude=0.10,
@@ -123,34 +143,32 @@ def set_levels(ol, *, carrier_amplitude=0.55, sideband_amplitude=None, reference
 
 def configure(ol, *, carrier_amplitude=0.0, sideband_amplitude=None,
               reference_amplitude=0.0, reference_phase_deg=0.0):
-    """Mute, configure ONLY DAC229/2 and DAC228/2, then apply requested levels.
+    """Mute, configure DAC230/0 and DAC228/2, then apply requested levels.
 
-    Run the usual RFSoC clock and tile startup first. This does not download a
-    bitstream or initialize/restart other channels. Resetting the source NCO
-    changes the absolute analog reference phase; calibrate after this call.
+    Import xrfdc before creating ol; run the usual reference-clock startup first.
+    Starts tile230 only if it is not ready; never resets/restarts existing tiles.
+    Recalibrate physical reference phase after a converter/bitstream restart.
     """
     check(ol)
     _coefficients(carrier_amplitude, sideband_amplitude, reference_amplitude, reference_phase_deg)
     import xrfdc
+    rf = _rfdc(ol)
     stop(ol)
-    rf = ol.usp_rf_data_converter_0
-    source = rf.dac_tiles[1].blocks[2]
-    reference = rf.dac_tiles[0].blocks[2]
-    source_config = dict(source.MixerSettings)
-    source_config.update(Freq=630.0, PhaseOffset=0.0, EventSource=xrfdc.EVNT_SRC_IMMEDIATE,
-                         MixerType=xrfdc.MIXER_TYPE_FINE, MixerMode=xrfdc.MIXER_MODE_C2R,
-                         CoarseMixFreq=xrfdc.COARSE_MIX_BYPASS, FineMixerScale=xrfdc.MIXER_SCALE_1P0)
-    reference_config = dict(reference.MixerSettings)
-    reference_config.update(Freq=0.0, PhaseOffset=0.0, EventSource=xrfdc.EVNT_SRC_IMMEDIATE,
-                            MixerType=xrfdc.MIXER_TYPE_COARSE, MixerMode=xrfdc.MIXER_MODE_R2R,
-                            CoarseMixFreq=xrfdc.COARSE_MIX_BYPASS)
-    source.MixerSettings = source_config
-    source.ResetNCOPhase()
-    source.UpdateEvent(xrfdc.EVENT_MIXER)
-    reference.MixerSettings = reference_config
-    reference.UpdateEvent(xrfdc.EVENT_MIXER)
-    source.NyquistZone = 1
-    reference.NyquistZone = 1
+    # Normal board initialization already starts tiles228/229. This formerly
+    # unused tile uses the refclk distributed by tile229, which must be running.
+    if rf.IPStatus['DACTileStatus'][2]['TileState'] != 15:
+        rf.dac_tiles[2].StartUp()
+    if rf.IPStatus['DACTileStatus'][2]['TileState'] != 15:
+        raise RuntimeError('DAC230 did not start. Check the 491.52 MHz reference and tile229 clock distribution.')
+    for block in (rf.dac_tiles[2].blocks[0], rf.dac_tiles[0].blocks[2]):
+        settings = dict(block.MixerSettings)
+        settings.update(Freq=0.0, PhaseOffset=0.0, EventSource=xrfdc.EVNT_SRC_IMMEDIATE,
+                        MixerType=xrfdc.MIXER_TYPE_COARSE, MixerMode=xrfdc.MIXER_MODE_R2R,
+                        CoarseMixFreq=xrfdc.COARSE_MIX_BYPASS,
+                        FineMixerScale=xrfdc.MIXER_SCALE_1P0)
+        block.MixerSettings = settings
+        block.UpdateEvent(xrfdc.EVENT_MIXER)
+        block.NyquistZone = 1
     _check_mixers(ol)
     _commit(ol, False, False, clear_faults=True)
     return set_levels(ol, carrier_amplitude=carrier_amplitude, sideband_amplitude=sideband_amplitude,

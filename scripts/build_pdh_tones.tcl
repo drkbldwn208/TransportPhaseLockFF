@@ -1,6 +1,6 @@
 # Full build and timing check. Never programs hardware or writes pynq_overlays/.
 set root [file normalize [file join [file dirname [info script]] ..]]
-set package $root/build/PDH_1200_60
+set package $root/build/PDH_DAC230_1200_60
 file mkdir $package/reports
 file mkdir $package/backup
 if {[catch {
@@ -43,6 +43,7 @@ if {[catch {
             source $root/scripts/report_laser_pll_timing.tcl
         } else {source $root/scripts/check_full_project_timing.tcl}
         source $root/scripts/check_intensity_servo_routed.tcl
+        puts [exec python3 $root/scripts/check_pdh_dac230.py]
         report_route_status -file $package/reports/route_status.rpt
         report_bus_skew -warn_on_violation -file $package/reports/bus_skew.rpt
         set pdh_registers [get_cells -hierarchical -filter {NAME =~ *pdh_tones* && IS_SEQUENTIAL}]
