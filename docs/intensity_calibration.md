@@ -1,5 +1,10 @@
 # Intensity calibration and frequency response — measurement release
 
+Current build: [lean PLL cleanup](pll_lean_build.md). Intensity measurements remain
+available; only the separate laser-PLL diagnostics are removed. The receiver
+FIR now has one extra pipeline clock (4.069 ns), with unchanged gain and rejection.
+The following release description is historical.
+
 This release adds measurements to the existing ADC224/1 → fast PI → DAC228/3
 intensity servo. The user specified an 80 MHz AOM carrier and approximately the
 full positive DAC-amplitude range. The existing RFDC configuration, PI algorithm,

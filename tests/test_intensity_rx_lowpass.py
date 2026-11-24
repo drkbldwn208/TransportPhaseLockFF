@@ -35,8 +35,8 @@ for name,block in zip(names,blocks):
  for _ in range(4):rows.append('0 0 0 0\n');expected.append([0,0,0]);offset+=1
  sums=vals.sum(axis=1)*valid[:,None]
  conv=np.stack([np.convolve(sums[:,j],H)[:len(vals)] for j in range(2)],axis=1)
- y=np.zeros_like(conv);y[3:]=(conv[:-3]+2**19)//2**20
- good=np.convolve(valid,np.ones(18,dtype=int))[:len(vals)]==18
+ y=np.zeros_like(conv);y[4:]=(conv[:-4]+2**19)//2**20
+ good=np.convolve(valid,np.ones(19,dtype=int))[:len(vals)]==19
  for k,v in enumerate(vals):
   packed=[sum((int(v[lane,j])&65535)<<(16*lane) for lane in range(4)) for j in range(2)]
   rows.append(f'1 {valid[k]} {packed[0]:016x} {packed[1]:016x}\n')
@@ -62,6 +62,6 @@ for name,(a,b) in ranges.items():
   assert residuals[name]<1.6,residuals[name]
   assert abs(np.angle(np.mean(z)*np.exp(-1j*phase)))<1e-4
 report=dict(passband_droop_db=float(max(abs(db[f<=1.5e6]))),stopband_max_db=float(max(db[f>=55e6])),
- added_delay_s=11/FS,dc_gain=1.,image_residual_counts=residuals,bit_exact_samples=len(actual))
+ added_delay_s=12/FS,dc_gain=1.,image_residual_counts=residuals,bit_exact_samples=len(actual))
 (WORK/'result.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2));print('PASS: FIR convolution, DC signs/rails, image rejection, +/-pi calibration, valid gaps')

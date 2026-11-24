@@ -27,3 +27,8 @@ set_property IOSTANDARD LVCMOS18 [get_ports pmod_digital_in_0]
 set_property PACKAGE_PIN M17 [get_ports pmod_digital_in_1]
 set_property IOSTANDARD LVCMOS18 [get_ports pmod_digital_in_1]
 
+set_property PACKAGE_PIN M14 [get_ports pmod_photon_counter_pulses]
+set_property IOSTANDARD LVCMOS18 [get_ports pmod_photon_counter_pulses]
+
+set_property PACKAGE_PIN N14 [get_ports pmod_photon_counter_trigger]
+set_property IOSTANDARD LVCMOS18 [get_ports pmod_photon_counter_trigger]

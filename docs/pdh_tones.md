@@ -1,3 +1,6 @@
+> Current tunable build: see [pdh_tunable_photon.md](pdh_tunable_photon.md).
+> The fixed-frequency PDH2 implementation below is retained as historical documentation.
+
 # Summed-tone offset PDH: DAC230/0 and DAC228/2
 
 This build moves the independently weighted **1.2 GHz + 60 MHz** sum to

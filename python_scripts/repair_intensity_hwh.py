@@ -30,8 +30,15 @@ def corrected_hwh(data, generated_rtl):
             raise ValueError(f'Expected IS03 block {instance}; HWH left unchanged.')
     ila = tree.find(".//MODULE[@INSTANCE='system_ila_0']")
     cordic = tree.find(".//MODULE[@INSTANCE='cordic_0']")
-    if ila is None or cordic is None:
-        raise ValueError('Required ILA/CORDIC block is missing.')
+    if cordic is None:
+        raise ValueError('Required intensity CORDIC block is missing.')
+    if ila is None:
+        # The lean build deliberately removes ILA. Its redundant monitor
+        # connections cannot occur; do not rewrite already-correct metadata.
+        if re.search(r'\bsystem_ila_0\s*\(', generated_rtl):
+            raise ValueError('HWH omits ILA but generated RTL still contains it.')
+        _instance_ports(generated_rtl, 'cordic_0')
+        return data
     ila_ports = _instance_ports(generated_rtl, 'system_ila_0')
     cordic_ports = _instance_ports(generated_rtl, 'cordic_0')
     source_bus = cordic.find("./BUSINTERFACES/BUSINTERFACE[@NAME='M_AXIS_DOUT']")

@@ -52,6 +52,9 @@ def _configuration(ol):
 
 
 def _ready(ol):
+    if not hasattr(ol, 'pll_fra'):
+        raise ValueError('This build has no laser-PLL FRA engine. The lean build removes '
+                         'PLL diagnostics; the original transport/intensity measurements remain.')
     # Jupyter can retain an older control helper after files are replaced.
     if getattr(laser_pll, 'FPGA_VERSION', None) != 0xA7:
         path = getattr(laser_pll, '__file__', '<unknown path>')

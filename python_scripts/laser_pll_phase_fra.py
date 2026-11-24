@@ -21,6 +21,8 @@ PHASE_CODES_PER_RAD = (1 << 18)/(2*math.pi)
 
 
 def check_helpers(ol):
+    if not hasattr(ol, 'pll_fra'):
+        raise ValueError('Laser-PLL FRA is removed in the lean build; use a saved FRA build for this measurement.')
     if (getattr(laser_pll, 'FPGA_VERSION', None) != 0xA7 or fra.laser_pll is not laser_pll
             or not callable(getattr(fra, 'diagnostics', None))):
         raise ValueError('Reload the matching R7 control, loop-sweep and phase-FRA helpers together.')

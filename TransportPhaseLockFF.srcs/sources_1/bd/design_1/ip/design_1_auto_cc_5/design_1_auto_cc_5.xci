@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "design_1_auto_cc_5",
-    "cell_name": "axi_interconnect_0/m16_couplers/auto_cc",
+    "cell_name": "axi_interconnect_0/m15_couplers/auto_cc",
     "component_reference": "xilinx.com:ip:axi_clock_converter:2.1",
     "ip_revision": "30",
     "gen_directory": "../../../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_auto_cc_5",

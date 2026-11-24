@@ -62,6 +62,8 @@ class PDHHelper(unittest.TestCase):
         tiles[2].StartUp.side_effect = lambda: tile_status[2].update(TileState=15)
         self.ol = SimpleNamespace(pdh_version=GPIO({0:pdh.FEATURE_VERSION}),
             pdh_control=GPIO({0:0,8:128}), pdh_amplitudes=GPIO(),
+            pdh_carrier_frequency=GPIO({0:98170681051429&0xffffffff,8:98170681051429>>32}),
+            pdh_modulation_frequency=GPIO({0:4908534052571&0xffffffff,8:4908534052571>>32}),
             usp_rf_data_converter_0=SimpleNamespace(dac_tiles=tiles, IPStatus={'DACTileStatus':tile_status},
                 read=Mock(side_effect=lambda address: {0xA888:
                     0xC03 | (0x10 if tiles[1].blocks[2].hardware_scale == 1 else 0)}[address])),
@@ -75,11 +77,25 @@ class PDHHelper(unittest.TestCase):
             self.ol.pdh_control.values[8]=128|(value&7)
         self.ol.pdh_control.write=acknowledge
 
+    def test_frequency_commands_preserve_levels_and_rf_mixers(self):
+        pdh.configure(self.ol,carrier_amplitude=.4,reference_amplitude=.2)
+        before=dict(self.ol.pdh_amplitudes.values)
+        blocks=[self.ol.usp_rf_data_converter_0.dac_tiles[t].blocks[b] for t,b in ((2,0),(0,2))]
+        for block in blocks:block.UpdateEvent.reset_mock()
+        for hz in (.8e9,1e9,1.2e9+1,1.3e9):
+            result=pdh.set_frequency(self.ol,carrier_hz=hz)
+            self.assertLess(abs(result['carrier_target_hz']-hz),1e-5)
+            self.assertEqual(before,self.ol.pdh_amplitudes.values)
+        for block in blocks:block.UpdateEvent.assert_not_called()
+        self.assertAlmostEqual(pdh.SLEW_HZ_PER_S,3076171.875)
+        with self.assertRaises(ValueError):pdh.set_fcw(self.ol,carrier_fcw=2**48)
+        with self.assertRaises(ValueError):pdh.set_frequency(self.ol,carrier_hz=1.4e9)
+
     def test_configure_only_two_requested_channels(self):
         result=pdh.configure(self.ol,carrier_amplitude=.6,sideband_amplitude=.15,
                              reference_amplitude=.4,reference_phase_deg=90)
-        self.assertEqual(result['carrier_hz'],1.2e9)
-        self.assertEqual(result['sideband_hz'],60e6)
+        self.assertAlmostEqual(result['carrier_target_hz'],1.2e9,places=4)
+        self.assertAlmostEqual(result['modulation_target_hz'],60e6,places=4)
         self.assertAlmostEqual(result['reference_phase_deg'],90)
         tiles=self.ol.usp_rf_data_converter_0.dac_tiles
         self.assertEqual(tiles[2].blocks[0].MixerSettings['Freq'],0)
@@ -115,6 +131,12 @@ class PDHHelper(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'coarse R2R bypass'):
             pdh.set_levels(self.ol)
         self.assertEqual(self.ol.pdh_amplitudes.writes, [])
+
+    def test_old_hwh_rejected_before_any_writes(self):
+        del self.ol.pdh_carrier_frequency
+        with self.assertRaisesRegex(ValueError, "absent from the HWH"):
+            pdh.configure(self.ol)
+        self.assertEqual(self.ol.pdh_control.writes, [])
 
     def test_old_bitstream_rejected_before_any_writes(self):
         self.ol.pdh_version.values[0]=0x50444801

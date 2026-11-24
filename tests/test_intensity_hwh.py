@@ -16,6 +16,22 @@ from repair_intensity_hwh import corrected_hwh, repair_hwh
 
 source = ROOT / 'TransportPhaseLockFF.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh'
 rtl_path = ROOT / 'TransportPhaseLockFF.gen/sources_1/bd/design_1/synth/design_1.v'
+current = source.read_bytes()
+if ET.fromstring(current).find(".//MODULE[@INSTANCE='system_ila_0']") is None:
+    assert corrected_hwh(current, rtl_path.read_text()) == current
+    metadata = Metadata(input=source)
+    for name in ('intensity_linearized_0', 'intensity_shot_dma', 'intensity_dma',
+                 'axi_dma_4', 'pll_control', 'pll2_control'):
+        assert name in metadata.blocks
+    assert 'system_ila_0' not in metadata.blocks
+    try:
+        corrected_hwh(current, rtl_path.read_text() + '\nsystem_ila_0 ();\n')
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Accepted inconsistent ILA-free HWH/RTL.')
+    print(f'PASS: ILA-free metadata unchanged; all {len(metadata.blocks)} blocks parse; RTL mismatch rejected.')
+    sys.exit(0)
 backup = source.with_suffix('.hwh.before_is03_fix')
 original = (backup if backup.exists() else source).read_bytes()
 rtl = rtl_path.read_text()

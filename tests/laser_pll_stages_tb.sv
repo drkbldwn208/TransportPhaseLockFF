@@ -6,23 +6,17 @@ module laser_pll_stages_tb #(parameter integer SECONDARY=0);
     always #2.034505208 clk=~clk;
     reg rst_n=0, adc_valid=0;
     reg [127:0] adc_data=0;
-    reg [31:0] control=32'h00400604, acquisition_control=32'h00200001, test_dc=0, tracking_control=0, monitor_control=0;
+    reg [31:0] control=32'h00400604, acquisition_control=32'h00200001, test_dc=0, tracking_control=0;
     localparam [47:0] FCW=SECONDARY ? 48'd219604541156011 : 48'd114532461226667;
     wire [223:0] dac_data;
-    wire [31:0] tracking_status, monitor_status;
-    wire [127:0] monitor_data;
-    wire monitor_valid, monitor_last;
-    integer monitor_received=0;
+    wire [31:0] tracking_status;
     wire [31:0] phase_status, frequency_status, acquisition_status, fft_status;
     laser_pll #(.STAGE3_RANGE_SHIFT(SECONDARY ? 2 : 0)) dut(.clk(clk),.rst_n(rst_n),.s_axis_tdata(adc_data),
         .s_axis_tvalid(adc_valid),.s_axis_tready(),.m_axis_tdata(dac_data),
         .m_axis_tvalid(),.m_axis_tready(1'b1),.frequency_low(FCW[31:0]),
         .frequency_high({15'b0,1'b1,FCW[47:32]}),.control(control),.phase_offset(32'b0),
-        .tracking_control(tracking_control), .monitor_control(monitor_control), .iir_control(32'b0),.iir_b0(32'b0),.iir_b1(32'b0),.iir_pole(32'b0),.fra_control(32'd0), .fra_settle_clocks(32'd0), .fra_measure_clocks(32'd0),
-        .s_fra_tone_tdata(160'd0), .s_fra_tone_tvalid(1'b1), .s_fra_ref_tdata(272'd0), .s_fra_ref_tvalid(1'b1),
-        .m_fra_error_tready(1'b1), .m_fra_drive_tready(1'b1), .m_fra_error_ref_tready(1'b1), .m_fra_drive_ref_tready(1'b1), .m_monitor_tready(1'b1),
-        .tracking_status(tracking_status), .monitor_status(monitor_status),
-        .m_monitor_tdata(monitor_data), .m_monitor_tvalid(monitor_valid), .m_monitor_tlast(monitor_last),
+        .tracking_control(tracking_control), .iir_control(32'b0),.iir_b0(32'b0),.iir_b1(32'b0),.iir_pole(32'b0),
+        .tracking_status(tracking_status),
         .acquisition_control(acquisition_control),.test_dc(test_dc),
         .phase_status(phase_status),.frequency_status(frequency_status),
         .acquisition_status(acquisition_status),.fft_status(fft_status));
@@ -48,14 +42,9 @@ module laser_pll_stages_tb #(parameter integer SECONDARY=0);
             if (cycle==120000) acquisition_control[1:0]=3;
             if (cycle==170000) acquisition_control[3]=1;
             if (cycle==175000) tracking_control=3;
-            if (cycle==180000) monitor_control=(256<<12)|(4<<1)|1;
             if (cycle==190000) begin acquisition_control[2]=1; test_dc=12000; end
             if (cycle==220000) test_dc=-12000;
             if (cycle==220010) control[0]=0;
-            if (monitor_valid) begin
-                if (monitor_last!=(monitor_received==255)) $fatal(1,"Integrated monitor TLAST");
-                monitor_received=monitor_received+1;
-            end
             previous_target=$signed(dut.output_target); previous_mode=acquisition_status[2:0];
             @(posedge clk); #0.1;
             if (rst_n && control[0] && acquisition_status[2:0]!=previous_mode &&
@@ -87,9 +76,7 @@ module laser_pll_stages_tb #(parameter integer SECONDARY=0);
                 if (acquisition_status[2:0]!=4 || acquisition_status[4:3]!=0 ||
                     !tracking_status[28] || tracking_status[30] || tracking_status[25:0]!=(104858<<3))
                     $fatal(1,"Integrated tracking did not settle");
-                if (monitor_received!=256 || monitor_status[3:0]!=2 || monitor_status[31:12]!=256)
-                    $fatal(1,"Integrated monitor incomplete/invalid");
-                if (phase_status[20] || !phase_status[19]) $fatal(1,"IQ capture disturbed detector");
+                if (phase_status[20] || !phase_status[19]) $fatal(1,"Tracking detector invalid");
             end
             if (cycle==219000 && (acquisition_status[2:0]!=5 || !acquisition_status[7] ||
                 phase_status[19] || fft_status[10] || $signed(dac_data[15:0])!=12000))
@@ -97,7 +84,7 @@ module laser_pll_stages_tb #(parameter integer SECONDARY=0);
             if (cycle==220004 && $signed(dac_data[15:0])!=-12000) $fatal(1,"Negative DC code");
             if (cycle==220014 && dac_data!=0) $fatal(1,"Final mute");
         end
-        $display("PASS: secondary=%d real RF tones; manual fine entry at 50 MHz; retained turns; continuous handoffs; stage-4 ramp; IQ capture; no-ADC DC; final mute",SECONDARY);
+        $display("PASS: secondary=%d real RF tones; manual fine entry at 50 MHz; retained turns; continuous handoffs; stage-4 ramp; no-ADC DC; final mute",SECONDARY);
         $finish;
     end
 endmodule

@@ -191,7 +191,7 @@ def capture(ol, *, samples=32768, decimation_log2=8):
             raw=np.array(buffer),
             feature_version=FEATURE_VERSION,
             receiver_filter="15-tap FIR after four-lane mean; replicated I",
-            receiver_added_delay_s=11/FS_HZ,
+            receiver_added_delay_s=12/FS_HZ,
             sample_rate_hz=FS_HZ / 2**decimation_log2,
             decimation_log2=decimation_log2,
             status=word,

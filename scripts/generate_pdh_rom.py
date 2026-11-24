@@ -1,34 +1,18 @@
-"""Exact-period real 1.2 GHz + 60 MHz waveforms for DAC230/0, and 60 MHz LO.
+"""Generate the quarter-wave table shared by all direct PDH DDS ROM copies.
 
-All lanes advance together at 245.76 MHz. The complete waveform repeats after
-512 fabric clocks, eliminating phase-accumulator frequency rounding.
+4096 midpoint samples in [0, pi/2], signed 16-bit amplitude with peak 32767.
+The RTL handles quadrants and signs; it reads the same data file into 18 copies.
 """
 from pathlib import Path
 import math
 
-ROOT = Path(__file__).resolve().parents[1]
-DEST = ROOT / 'TransportPhaseLockFF.srcs/sources_1/new'
-FS_HZ = 245_760_000
-
-
-def write_rom(name, frequency_hz, lanes, length):
-    for lane in range(lanes):
-        values = []
-        for frame in range(length):
-            angle = 2 * math.pi * frequency_hz / FS_HZ * (frame + lane / lanes)
-            cosine = round(32767 * math.cos(angle))
-            sine = round(32767 * math.sin(angle))
-            values.append(f'{((sine & 65535) << 16) | (cosine & 65535):08x}\n')
-        (DEST / f'pdh_{name}_{lane}.mem').write_text(''.join(values))
-
-
-if __name__ == '__main__':
-    for lane in range(14):
-        values = []
-        for frame in range(512):
-            time_s = (frame + lane/14) / FS_HZ
-            carrier = round(32767*math.cos(2*math.pi*1_200_000_000*time_s))
-            modulation = round(32767*math.cos(2*math.pi*60_000_000*time_s))
-            values.append(f'{((modulation & 65535) << 16) | (carrier & 65535):08x}\n')
-        (DEST / f'pdh_sum_{lane}.mem').write_text(''.join(values))
-    write_rom('reference', 60_000_000, 8, 512)
+root = Path(__file__).resolve().parents[1]
+output = root / 'TransportPhaseLockFF.srcs/sources_1/new/pdh_quarter_cos.mem'
+values = [round(32767 * math.cos((k + 0.5) * math.pi / 8192)) for k in range(4096)]
+assert all(a >= b for a, b in zip(values, values[1:]))
+assert values[0] == 32767 and values[-1] >= 0
+text = ''.join(f'{value:04x}\n' for value in values)
+# Do not touch the file during a build when the contents already match.
+if not output.exists() or output.read_text() != text:
+    output.write_text(text)
+print(f'{output}: {len(values)} words, 16 bits; 18 dual-port RTL copies')

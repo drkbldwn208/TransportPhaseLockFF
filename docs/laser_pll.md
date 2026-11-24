@@ -1,6 +1,6 @@
 # Laser phase-error outputs: ADC 224/3 → DAC 229/1 and ADC 225/1 → DAC 229/3
 
-Current source revision: [R7 RF-FRA guide](laser_pll_rf_fra_R7.md), restoring the normal A7 dual PLL and adding closed-loop raw-phase measurement and DAC229/2 RF phase modulation. PLL signature is `0xA7`, with separate feature ID `0x52463701`. Use the matching R7 RF-FRA bit/HWH/helpers. The archived [A8 loopback package](laser_pll_loopback_A8.md) remains available separately for direct RF and D2S/mixer fixtures on DAC229/1 → ADC224/3.
+Current source revision: [lean PLL build](pll_lean_build.md). Both laser PLL control paths remain; their FRA and I/Q diagnostics and the system ILA are removed. The original 2:1 transport PLL, intensity servo and PDH generator are preserved. The A7 register ABI is unchanged. The R7/A8 descriptions below document historical measurement builds.
 
 **Base revision: A7 (`0xA7`, October 12, 2026).** See [the A7 guide](laser_pll_A7.md) for the independent 4.4 GHz PLL, selectable lead–lag filters, updated FRA averaging/clipping diagnostics, pipeline timing and Jupyter examples. Historical A4–A6 descriptions below explain the inherited detector stages.
 

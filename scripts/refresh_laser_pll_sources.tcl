@@ -1,9 +1,15 @@
 # Refresh the RTL dependency list of the existing PLL block without changing
-# its ports, GPIO settings or BD wiring. Requires an open project and BD.
+# active source files. Retired diagnostic RTL stays on disk for reference.
+# Requires an open project and BD.
 set pll_source_root [file normalize [file join [file dirname [info script]] ..]]
 set pll_source_dir $pll_source_root/TransportPhaseLockFF.srcs/sources_1/new
 foreach pll_source_file [glob $pll_source_dir/laser_pll*.sv $pll_source_dir/laser_pll*.v \
     $pll_source_dir/laser_pll*.vh $pll_source_dir/laser_pll*.mem] {
+    if {[file tail $pll_source_file] in {laser_pll_monitor.sv laser_pll_fra.sv laser_pll_phase_probe.sv laser_pll_rf_pm.sv}} {
+        set retired [get_files -quiet $pll_source_file]
+        if {[llength $retired]} {remove_files $retired}
+        continue
+    }
     if {![llength [get_files -quiet $pll_source_file]]} {
         add_files -norecurse $pll_source_file
     }

@@ -1,17 +1,22 @@
-"""Summed 1.2 GHz + 60 MHz EOM drive and coherent, phase-adjustable 60 MHz LO.
+"""Tunable summed carrier + modulation EOM drive and coherent, phase-adjustable 60 MHz LO.
 
 DAC230/0 (tile 2 block 0): fourteen real samples/clock, RFDC x2, mixer bypass.
 DAC228/2 (tile 0 block 2): eight real samples/clock, RFDC mixer bypass.
 Amplitudes are fractions of signed digital full scale, NOT calibrated volts.
-These fixed frequencies assume the existing common 245.76 MHz fabric clock.
+Two 48-bit phase accumulators; FCW slews by 1024 counts per 245.76 MHz clock.
 """
 import math
 import time
 
-FEATURE_VERSION = 0x50444802
-HELPER_VERSION = '2026-11-19.3'
+FEATURE_VERSION = 0x50444803
+HELPER_VERSION = '2026-11-23.1'
+# Reset defaults, not live frequency readbacks. Use status() for targets/ramp flags.
 CARRIER_HZ = 1.2e9
 MODULATION_HZ = 60e6
+FABRIC_CLOCK_HZ = 245.76e6
+DDS_SAMPLE_RATE_HZ = 14 * FABRIC_CLOCK_HZ
+SLEW_STEP = 1024
+SLEW_HZ_PER_S = SLEW_STEP * DDS_SAMPLE_RATE_HZ / 2**48 * FABRIC_CLOCK_HZ
 # beta_PDH / beta_offset at their ideal PDH-slope maxima; assumes equal Vpi
 # and RF voltage transfer at 60 MHz and 1.2 GHz. Calibrate on the optical setup.
 DEFAULT_SIDEBAND_RATIO = 1.081979112658792 / 1.8411848682178047
@@ -20,6 +25,8 @@ DEFAULT_SIDEBAND_RATIO = 1.081979112658792 / 1.8411848682178047
 def check(ol):
     if not hasattr(ol, 'pdh_version') or ol.pdh_version.read(0) != FEATURE_VERSION:
         raise ValueError('Load the matching PDH bitstream/HWH and pdh_tones.py helper.')
+    if not all(hasattr(ol, name) for name in ('pdh_carrier_frequency', 'pdh_modulation_frequency')):
+        raise ValueError('PDH3 frequency GPIOs are absent from the HWH; copy the matching bit/HWH pair.')
     parameters = ol.ip_dict['usp_rf_data_converter_0']['parameters']
     for name, expected in {'DAC_Data_Width20':14, 'DAC_Interpolation_Mode20':2,
                            'DAC2_Clock_Source':5,
@@ -38,7 +45,8 @@ def status(ol):
                 commit_ack=bool(word&4), invalid_amplitudes=bool(word&8),
                 sum_stalled=bool(word&16), reference_stalled=bool(word&32),
                 clipped=bool(word&64), reset_released=bool(word&128),
-                fault=bool(word&0x78))
+                fault=bool(word&0x78), carrier_ramping=bool(word&256),
+                modulation_ramping=bool(word&512), **frequencies(ol))
 
 
 def _commit(ol, sum_enabled, reference_enabled, *, clear_faults=False):
@@ -73,11 +81,10 @@ def _coefficients(carrier_amplitude, sideband_amplitude, reference_amplitude, re
     sideband = round(sideband_amplitude*32767)
     if carrier+sideband > 32767:
         raise ValueError('Rounded summed amplitude exceeds signed DAC headroom.')
-    angle = math.radians(reference_phase_deg % 360)
-    # r(t)=A*cos(omega*t+phase) = A*cos(phase)*cos(omega*t) - A*sin(phase)*sin(omega*t).
-    ref_cos = round(reference_amplitude*32767*math.cos(angle))
-    ref_sin = round(-reference_amplitude*32767*math.sin(angle))
-    return carrier, sideband, ref_cos, ref_sin
+    reference = round(reference_amplitude*32767)
+    phase = round((reference_phase_deg % 360) / 360 * 65536) & 65535
+    return carrier, sideband, reference, phase
+
 
 
 def _rfdc(ol):
@@ -125,20 +132,20 @@ def set_levels(ol, *, carrier_amplitude=0.55, sideband_amplitude=None, reference
     explicitly pass zero to measure the carrier alone.
     """
     check(ol)
-    carrier, sideband, rc, rs = _coefficients(carrier_amplitude, sideband_amplitude,
+    carrier, sideband, ref, phase = _coefficients(carrier_amplitude, sideband_amplitude,
                                              reference_amplitude, reference_phase_deg)
     _check_mixers(ol)
     if status(ol)['fault']:
         raise RuntimeError('PDH has a sticky fault; inspect status() and rerun configure() to rearm.')
     ol.pdh_amplitudes.write(0, carrier | (sideband << 16))
-    ol.pdh_amplitudes.write(8, (rc & 65535) | ((rs & 65535) << 16))
+    ol.pdh_amplitudes.write(8, ref | (phase << 16))
     state = _commit(ol, sum_enabled, reference_enabled)
     if state['fault']:
         raise RuntimeError(f'PDH output muted by hardware: {state}')
-    return dict(carrier_hz=CARRIER_HZ, sideband_hz=MODULATION_HZ,
+    return dict(**frequencies(ol),
                 carrier_amplitude=carrier/32767, sideband_amplitude=sideband/32767,
-                reference_amplitude=math.hypot(rc,rs)/32767,
-                reference_phase_deg=math.degrees(math.atan2(-rs,rc)), status=state)
+                reference_amplitude=ref/32767,
+                reference_phase_deg=phase*360/65536, status=state)
 
 
 def configure(ol, *, carrier_amplitude=0.0, sideband_amplitude=None,
@@ -179,10 +186,74 @@ def set_reference_phase(ol, phase_deg):
     """Rotate just the 60 MHz reference; retain all amplitudes and enable bits."""
     check(ol)
     a, r = ol.pdh_amplitudes.read(0), ol.pdh_amplitudes.read(8)
-    signed = lambda word: word-65536 if word&32768 else word
-    rc, rs = signed(r&65535), signed(r>>16)
     state = status(ol)
     return set_levels(ol, carrier_amplitude=(a&65535)/32767, sideband_amplitude=(a>>16)/32767,
-                      reference_amplitude=min(1.0, math.hypot(rc,rs)/32767),
+                      reference_amplitude=(r&65535)/32767,
                       reference_phase_deg=phase_deg, sum_enabled=state['sum_enabled'],
                       reference_enabled=state['reference_enabled'])
+
+
+def frequency_word(frequency_hz):
+    """48-bit FCW; units are turns per 3.44064-GS/s sample for BOTH tones."""
+    if not math.isfinite(frequency_hz) or not 0 <= frequency_hz < DDS_SAMPLE_RATE_HZ/2:
+        raise ValueError('Frequency must be finite, nonnegative and below 1.72032 GHz.')
+    return round(frequency_hz / DDS_SAMPLE_RATE_HZ * 2**48)
+
+
+def frequencies(ol):
+    """Read TARGET frequencies, not the instantaneous frequency during a ramp."""
+    c = ol.pdh_carrier_frequency.read(0) | ((ol.pdh_carrier_frequency.read(8)&65535)<<32)
+    m = ol.pdh_modulation_frequency.read(0) | ((ol.pdh_modulation_frequency.read(8)&65535)<<32)
+    return dict(carrier_target_fcw=c, modulation_target_fcw=m,
+                carrier_target_hz=c*DDS_SAMPLE_RATE_HZ/2**48,
+                modulation_target_hz=m*DDS_SAMPLE_RATE_HZ/2**48)
+
+
+def set_fcw(ol, *, carrier_fcw=None, modulation_fcw=None, wait=False):
+    """Commit 48-bit targets. Slew is 1024 FCW counts/clock, about 3.077 MHz/s.
+
+    Phase is never reset, including when muted. Reset defaults are 1.2 GHz and
+    60 MHz. Updating either target during a ramp immediately redirects that ramp.
+    Python commands provide at least 1-Hz resolution; FCW LSB is 12.224 microHz.
+    """
+    check(ol)
+    _check_mixers(ol)
+    commands = ((ol.pdh_carrier_frequency, carrier_fcw, .8e9, 1.3e9),
+                (ol.pdh_modulation_frequency, modulation_fcw, 1., 100e6))
+    for gpio, word, low_hz, high_hz in commands:
+        if word is not None:
+            if isinstance(word, bool) or int(word) != word or not 0 <= word < 2**48:
+                raise ValueError('FCW must be an unsigned 48-bit integer.')
+            if not frequency_word(low_hz) <= word <= frequency_word(high_hz):
+                raise ValueError(f'Requested frequency is outside {low_hz:g}..{high_hz:g} Hz.')
+    state = status(ol)
+    if state['fault']:
+        raise RuntimeError(f'PDH fault: {state}')
+    for gpio, word, _, _ in commands:
+        if word is not None:
+            gpio.write(0, int(word)&0xffffffff)
+            gpio.write(8, int(word)>>32)
+    _commit(ol, state['sum_enabled'], state['reference_enabled'])
+    if wait:
+        wait_frequency(ol)
+    return status(ol)
+
+
+def set_frequency(ol, *, carrier_hz=None, modulation_hz=None, wait=False):
+    """Hz convenience wrapper for set_fcw(); does not change amplitude or phase."""
+    return set_fcw(ol, carrier_fcw=None if carrier_hz is None else frequency_word(carrier_hz),
+                   modulation_fcw=None if modulation_hz is None else frequency_word(modulation_hz), wait=wait)
+
+
+def wait_frequency(ol, timeout_s=600):
+    """Wait for both slews to settle. Interrupting this wait leaves the ramp running."""
+    deadline=time.monotonic()+timeout_s
+    while True:
+        state=status(ol)
+        if state['fault']:
+            raise RuntimeError(f'PDH fault: {state}')
+        if not state['carrier_ramping'] and not state['modulation_ramping']:
+            return state
+        if time.monotonic()>deadline:
+            raise TimeoutError('PDH frequency ramp is still running; inspect status().')
+        time.sleep(.05)

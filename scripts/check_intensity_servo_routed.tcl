@@ -61,3 +61,13 @@ foreach cell [get_cells -hierarchical -filter {REF_NAME == DSP48E2 && (NAME =~ *
     }
 }
 close $cic_report
+
+# Report both sides of the receive-filter registers. This distinguishes an
+# improvement at the newly pipelined ADC input from a new global worst path.
+set filter_registers [get_cells -quiet -hierarchical -filter {NAME =~ *intensity_rx_lowpass_0* && IS_SEQUENTIAL}]
+if {[llength $filter_registers]} {
+    report_timing -to $filter_registers -delay_type max -max_paths 10 \
+        -file $root/build/full_project/intensity_filter_setup.rpt
+    report_timing -from $filter_registers -delay_type max -max_paths 10 \
+        -append -file $root/build/full_project/intensity_filter_setup.rpt
+}

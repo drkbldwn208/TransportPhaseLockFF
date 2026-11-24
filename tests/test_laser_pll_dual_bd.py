@@ -17,16 +17,11 @@ linked('laser_pll_0/m_axis','usp_rf_data_converter_0/s11_axis')
 linked('laser_pll_1/m_axis','usp_rf_data_converter_0/s13_axis')
 linked('usp_rf_data_converter_0/m10_axis','axis_broadcaster_2/S_AXIS')
 linked('usp_rf_data_converter_0/m12_axis','axis_broadcaster_3/S_AXIS')
-linked('laser_pll_1/m_monitor','pll2_iq_fifo/S_AXIS')
-linked('pll2_iq_fifo/M_AXIS','pll2_iq_dma/S_AXIS_S2MM')
-linked('pll2_iq_dma/M_AXI_S2MM','smartconnect_0/S08_AXI')
 for i,prefix in enumerate(('pll','pll2')):
     block=f'laser_pll_{i}'
-    linked(prefix+'_fra_tone/perturb_err_out',block+'/s_fra_tone')
-    for name in ('error','drive'):
-        linked(block+'/m_fra_'+name,prefix+'_fra_'+name+'/probe_in')
-        linked(block+'/m_fra_'+name+'_ref',prefix+'_fra_'+name+'/ref_in')
     scalar_nets=[set(n['ports']) for n in p['nets'].values()]
     for suffix,pin in (('iir','iir_control'),('iir_feed','iir_b0'),('iir_pole','iir_pole')):
         assert any({prefix+'_'+suffix+'/gpio_io_o',block+'/'+pin}<=n for n in scalar_nets)
-print('PASS: independent dual PLL/FRA/DMA/IIR wiring; old ADC225/0,2 paths/rates retained')
+assert all(name not in c for name in ('pll_monitor', 'pll2_monitor', 'axi_dma_3', 'pll2_iq_dma',
+                                     'pll_fra', 'pll2_fra', 'system_ila_0'))
+print('PASS: independent dual PLL/IIR wiring; old ADC225/0,2 paths/rates retained; diagnostics removed')

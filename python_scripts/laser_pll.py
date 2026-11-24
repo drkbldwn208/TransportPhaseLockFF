@@ -1,5 +1,6 @@
 """A7 PYNQ controls for two independent optical PLLs. Frequencies are in Hz.
 
+Lean builds omit laser-PLL FRA and I/Q recording; the controls remain A7.
 Use ol for ADC 224/3 -> DAC 229/1; channel(ol,1) for ADC 225/1 -> DAC 229/3.
 
 The FPGA supplies an error to an external analog controller. Load the rebuilt,
@@ -22,7 +23,8 @@ def channel(ol, number=1):
 
     0: ADC 224/3 -> DAC 229/1 (800 MHz default).
     1: ADC 225/1 -> DAC 229/3 (3.5 GHz default, even Nyquist zone 4).
-    Pass the returned namespace to the same control, capture and FRA functions.
+    Pass the returned namespace to the same controls. Capture/FRA functions
+    require a measurement build that includes those optional peripherals.
     """
     if number not in (0, 1):
         raise ValueError("PLL channel must be 0 or 1.")
@@ -32,8 +34,11 @@ def channel(ol, number=1):
              'tracking', 'monitor', 'fra', 'fra_window', 'fra_tone', 'fra_error',
              'fra_drive', 'fra_counts', 'fra_extrema', 'fra_samples',
              'iir', 'iir_feed', 'iir_pole')
-    handles = {'pll_'+name: getattr(ol, 'pll2_'+name) for name in names}
-    return SimpleNamespace(**handles, axi_dma_3=ol.pll2_iq_dma,
+    handles = {'pll_'+name: getattr(ol, 'pll2_'+name) for name in names
+               if hasattr(ol, 'pll2_'+name)}
+    if hasattr(ol, 'pll2_iq_dma'):
+        handles['axi_dma_3'] = ol.pll2_iq_dma
+    return SimpleNamespace(**handles,
                            ip_dict=ol.ip_dict, usp_rf_data_converter_0=ol.usp_rf_data_converter_0,
                            adc_tile=1, adc_block=1, dac_block=3,
                            rf_band_base_hz=2*ADC_SAMPLE_RATE_HZ,
@@ -130,7 +135,7 @@ def configure(overlay, *, reference_frequency_hz=None, phase_offset_rad=0.0,
     # A version register cannot verify the HWH loaded by this Overlay object.
     # Resolve every control used below before muting an operating loop.
     required = ('pll_frequency', 'pll_control', 'pll_status', 'pll_acquisition',
-                'pll_tracking', 'pll_monitor', 'pll_fra', 'pll_iir')
+                'pll_tracking', 'pll_iir')
     missing = [name for name in required if not hasattr(overlay, name)]
     if missing:
         raise ValueError(f"Overlay metadata is missing: {', '.join(missing)}. "
@@ -156,8 +161,9 @@ def configure(overlay, *, reference_frequency_hz=None, phase_offset_rad=0.0,
         reference_frequency_hz = getattr(overlay, 'reference_default_hz', 800e6)
     overlay.pll_control.write(0x00, 0)
     overlay.pll_tracking.write(0x00, 14 << 4)
-    overlay.pll_monitor.write(0x00, 0)
-    overlay.pll_fra.write(0x00, 0)
+    for name in ('pll_monitor', 'pll_fra'):
+        if hasattr(overlay, name):
+            getattr(overlay, name).write(0x00, 0)
     overlay.pll_iir.write(0, overlay.pll_iir.read(0) & ~1)
     configure_acquisition(overlay)
     import xrfdc
@@ -368,6 +374,9 @@ def capture_iq(overlay, samples=65536, *, decimation_log2=4, timeout_s=None):
     or invalid samples raise an error rather than silently distorting a PSD.
     Separate captures have gaps; do not concatenate them as one uniform record.
     """
+    if not hasattr(overlay, 'pll_monitor') or not hasattr(overlay, 'axi_dma_3'):
+        raise ValueError("This build omits laser-PLL I/Q capture; the lean build retains only "
+                         "the original transport/intensity captures.")
     for name, value, low, high in (("samples",samples,1,1048575),
                                    ("decimation_log2",decimation_log2,0,16)):
         if not isinstance(value,int) or not low <= value <= high:
@@ -448,7 +457,7 @@ def set_iir_coefficients(ol, *, b0, b1, a1):
     _check_version(ol)
     if ol.pll_iir.read(0) & 1:
         raise ValueError("Select IIR bypass before changing coefficients.")
-    if ol.pll_fra.read(0) & 1:
+    if hasattr(ol, 'pll_fra') and ol.pll_fra.read(0) & 1:
         raise ValueError("Stop the FRA before changing the compensator.")
     if not all(math.isfinite(v) for v in (b0,b1,a1)) or not abs(a1)<1:
         raise ValueError("Coefficients must be finite, with abs(a1)<1 for stability.")
@@ -507,7 +516,7 @@ def enable_iir(ol, enabled=True):
     still step at selection; coefficient writes and gain changes are not slewed.
     """
     _check_version(ol)
-    if ol.pll_fra.read(0) & 1:
+    if hasattr(ol, 'pll_fra') and ol.pll_fra.read(0) & 1:
         raise ValueError("Stop the FRA before changing the compensator.")
     if enabled and ol.pll_control.read(0) & 1 and not ol.pll_iir.read(8) & 8:
         raise ValueError("Wait for valid data to warm the filter before selecting it.")
