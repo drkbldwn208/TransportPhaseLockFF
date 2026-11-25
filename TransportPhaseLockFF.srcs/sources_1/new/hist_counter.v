@@ -27,6 +27,7 @@ module hist_counter(
     input wire gpio_clk,
     input wire [31:0] gpio_nbins,
     input wire [31:0] gpio_ncycles,
+    input wire gpio_arm,
     
     input wire trigger,
     input wire input_edge,
@@ -37,6 +38,7 @@ module hist_counter(
     input wire m_axis_tready
     );
     
+    wire arm;
     wire [31:0] nbins;
     wire [31:0] ncycles;
     
@@ -57,72 +59,77 @@ module hist_counter(
         .pl_word(ncycles)
     );
     
+    gpio_word_cdc #(
+        .WIDTH(1),
+        .INITIAL_WORD(0)
+        ) arm_cdc (
+        .gpio_clk(gpio_clk),
+        .gpio_word(gpio_arm),
+        .clk(clk),
+        .pl_word(arm)
+    );
+    
     reg is_active = 1'b0;
-    reg overflow_pending = 1'b0;
+    reg is_armed = 1'b1;
     reg [31:0] cycles_counter = 32'd1;
-    reg [31:0] bins_counter = 32'd1;
-    reg [31:0] counts = 32'd0;
+    reg [31:0] bins_counter = 32'd1; 
+    reg [31:0] counts = 32'b0;
+    
     wire [31:0] counts_next = counts + input_edge;
-    wire output_free = !m_axis_tvalid || m_axis_tready;
-
-    // Bins measure wall-clock time: never stretch them to wait for a DMA.
-    // The downstream 4096-word FIFO absorbs stalls. If it fills, finish with
-    // an explicit 0x80000000 invalid-record marker rather than lose bins silently.
-    // At one event/clock, valid counts cannot exceed 0x7fffffff because ncycles
-    // is restricted to that value. A record is retriggered only after TLAST drains.
+    
     always @(posedge clk) begin
         if (!rst_n) begin
             is_active <= 1'b0;
-            overflow_pending <= 1'b0;
-            cycles_counter <= 32'd1;
+            is_armed <= 1'b0;
+            cycles_counter <= 32'd1;        
             bins_counter <= 32'd1;
             nbins_stable <= 32'd100;
             ncycles_stable <= 32'd100;
-            counts <= 0;
-            m_axis_tdata <= 0;
-            m_axis_tvalid <= 0;
-            m_axis_tlast <= 0;
+            counts <= 32'b0;
+            m_axis_tdata <= 32'd0;
+            m_axis_tvalid <= 1'b0;
+            m_axis_tlast <= 1'b0;
         end else begin
-            if (m_axis_tvalid && m_axis_tready) begin
-                m_axis_tvalid <= 0;
-                m_axis_tlast <= 0;
-            end
-            if (!is_active && !overflow_pending) begin
+        
+            if (!is_active) begin
                 nbins_stable <= nbins;
                 ncycles_stable <= ncycles;
-                if (!m_axis_tvalid && trigger && nbins_stable != 0 &&
-                    ncycles_stable != 0 && !ncycles_stable[31]) begin
-                    is_active <= 1;
-                    cycles_counter <= 1;
-                    bins_counter <= 1;
-                    counts <= 0;
-                end
-            end
+                m_axis_tlast <= 1'b0;
+                m_axis_tvalid <= 1'b0;
+            end 
+            
+            if (arm & ~is_armed) 
+                is_armed <= 1'b1;
+            
+            if (!is_active && m_axis_tready && trigger && is_armed)
+                is_active <= 1'b1;
+                
             if (is_active) begin
+                
                 if (cycles_counter == ncycles_stable) begin
-                    cycles_counter <= 1;
-                    counts <= 0;
-                    if (output_free) begin
-                        m_axis_tdata <= counts_next;
-                        m_axis_tvalid <= 1;
-                        m_axis_tlast <= bins_counter == nbins_stable;
-                        bins_counter <= bins_counter + 1;
-                        if (bins_counter == nbins_stable) is_active <= 0;
-                    end else begin
-                        is_active <= 0;
-                        overflow_pending <= 1;
+                    m_axis_tdata <= counts_next;
+                    m_axis_tvalid <= 1'b1;
+                    
+                    counts <= 32'd0;
+                    bins_counter <= bins_counter + 32'd1;
+                    cycles_counter <= 32'd1;
+                    if (bins_counter == nbins_stable) begin
+                        m_axis_tlast <= 1'b1;
+                        is_active <= 1'b0; 
+                        is_armed <= 1'b0;
+                        bins_counter <= 32'd1;
                     end
-                end else begin
-                    cycles_counter <= cycles_counter + 1;
+                    
+                end else begin 
+                    m_axis_tdata <= 32'd0;
+                    m_axis_tvalid <= 1'b0;
+                    m_axis_tlast <= 1'b0;
+                    
                     counts <= counts_next;
+                    cycles_counter <= cycles_counter + 32'd1;
                 end
-            end
-            if (overflow_pending && output_free) begin
-                m_axis_tdata <= 32'h80000000;
-                m_axis_tvalid <= 1;
-                m_axis_tlast <= 1;
-                overflow_pending <= 0;
-            end
-        end
-    end
+            end 
+        end 
+   end   
+             
 endmodule

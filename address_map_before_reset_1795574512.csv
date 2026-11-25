@@ -1,0 +1,150 @@
+######################################################################################
+# This is a generated CSV file representing the addressing in design design_1
+#
+# Format:
+# Master Segment Name, Address Space, Slave Segment, Offset, Range ...
+#      Excluded (optional), Included (optional), Unassigned (optional)
+######################################################################################
+
+# 
+# Assignments in Address Space /axi_dma_0/Data_S2MM
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/axi_dma_0/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x0000,1,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/axi_dma_0/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/axi_dma_0/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/axi_dma_0/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+# 
+# Assignments in Address Space /axi_dma_1/Data_S2MM
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/axi_dma_1/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x0000,1,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/axi_dma_1/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/axi_dma_1/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/axi_dma_1/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,4M,Excluded
+# 
+# Assignments in Address Space /axi_dma_2/Data_S2MM
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/axi_dma_2/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x0000,1,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/axi_dma_2/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/axi_dma_2/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/axi_dma_2/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,4M,Excluded
+# 
+# Assignments in Address Space /axi_dma_4/Data_S2MM
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/axi_dma_4/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x0000,1,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/axi_dma_4/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/axi_dma_4/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/axi_dma_4/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+# 
+# Assignments in Address Space /axi_dma_5/Data_MM2S
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/axi_dma_5/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x0000,1,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/axi_dma_5/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/axi_dma_5/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/axi_dma_5/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+# 
+# Assignments in Address Space /axi_dma_6/Data_MM2S
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/axi_dma_6/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x0000,1,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/axi_dma_6/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/axi_dma_6/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/axi_dma_6/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+# 
+# Assignments in Address Space /axi_dma_7/Data_MM2S
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/axi_dma_7/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x0000,1,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/axi_dma_7/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/axi_dma_7/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/axi_dma_7/Data_MM2S,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+# 
+# Assignments in Address Space /intensity_dma/Data_S2MM
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/intensity_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/intensity_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/intensity_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/intensity_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x800000000,32G
+# 
+# Assignments in Address Space /intensity_shot_dma/Data_S2MM
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/intensity_shot_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/intensity_shot_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/intensity_shot_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/intensity_shot_dma/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x800000000,32G
+# 
+# Assignments in Address Space /photon_counting/axi_dma_3/Data_S2MM
+#
+SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW,/photon_counting/axi_dma_3/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW,0x00000000,2G
+SEG_zynq_ultra_ps_e_0_HP0_DDR_HIGH,/photon_counting/axi_dma_3/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH,0x800000000,32G
+SEG_zynq_ultra_ps_e_0_HP0_QSPI,/photon_counting/axi_dma_3/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI,0xC0000000,512M
+SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM,/photon_counting/axi_dma_3/Data_S2MM,/zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM,0xFF000000,16M,Excluded
+# 
+# Assignments in Address Space /zynq_ultra_ps_e_0/Data
+#
+SEG_usp_rf_data_converter_0_Reg,/zynq_ultra_ps_e_0/Data,/usp_rf_data_converter_0/s_axi/Reg,0xA0000000,256K
+SEG_axi_gpio_0_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_0/S_AXI/Reg,0xA0040000,64K
+SEG_axi_gpio_1_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_1/S_AXI/Reg,0xA0050000,64K
+SEG_axi_gpio_2_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_2/S_AXI/Reg,0xA0060000,64K
+SEG_axi_gpio_3_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_3/S_AXI/Reg,0xA0070000,64K
+SEG_axi_gpio_4_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_4/S_AXI/Reg,0xA0080000,64K
+SEG_axi_dma_0_Reg,/zynq_ultra_ps_e_0/Data,/axi_dma_0/S_AXI_LITE/Reg,0xA0090000,64K
+SEG_axi_dma_1_Reg,/zynq_ultra_ps_e_0/Data,/axi_dma_1/S_AXI_LITE/Reg,0xA00A0000,64K
+SEG_axi_dma_2_Reg,/zynq_ultra_ps_e_0/Data,/axi_dma_2/S_AXI_LITE/Reg,0xA00B0000,64K
+SEG_axi_gpio_5_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_5/S_AXI/Reg,0xA00C0000,64K
+SEG_axi_gpio_6_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_6/S_AXI/Reg,0xA00D0000,64K
+SEG_axi_gpio_7_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_7/S_AXI/Reg,0xA00E0000,64K
+SEG_axi_gpio_13_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_13/S_AXI/Reg,0xA00F0000,64K
+SEG_axi_gpio_1_Reg_1,/zynq_ultra_ps_e_0/Data,/photon_counting/axi_gpio_1/S_AXI/Reg,0xA0100000,64K
+SEG_axi_dma_4_Reg,/zynq_ultra_ps_e_0/Data,/axi_dma_4/S_AXI_LITE/Reg,0xA0110000,64K
+SEG_fast_servo_controller_0_Reg,/zynq_ultra_ps_e_0/Data,/fast_servo_controller_0/s_axi_ctrl/Reg,0xA0120000,64K
+SEG_axi_gpio_8_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_8/S_AXI/Reg,0xA0130000,64K
+SEG_axi_gpio_12_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_12/S_AXI/Reg,0xA0140000,64K
+SEG_axi_gpio_9_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_9/S_AXI/Reg,0xA0150000,64K
+SEG_axi_gpio_10_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_10/S_AXI/Reg,0xA0160000,64K
+SEG_axi_gpio_11_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_11/S_AXI/Reg,0xA0170000,64K
+SEG_axi_gpio_14_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_14/S_AXI/Reg,0xA0180000,64K
+SEG_axi_dma_5_Reg,/zynq_ultra_ps_e_0/Data,/axi_dma_5/S_AXI_LITE/Reg,0xA0190000,64K
+SEG_axi_dma_6_Reg,/zynq_ultra_ps_e_0/Data,/axi_dma_6/S_AXI_LITE/Reg,0xA01A0000,64K
+SEG_axi_gpio_15_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_15/S_AXI/Reg,0xA01B0000,64K
+SEG_axi_dma_7_Reg,/zynq_ultra_ps_e_0/Data,/axi_dma_7/S_AXI_LITE/Reg,0xA01C0000,64K
+SEG_axi_gpio_16_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_16/S_AXI/Reg,0xA01D0000,64K
+SEG_pll_frequency_Reg,/zynq_ultra_ps_e_0/Data,/pll_frequency/S_AXI/Reg,0xA01E0000,64K
+SEG_pll_control_Reg,/zynq_ultra_ps_e_0/Data,/pll_control/S_AXI/Reg,0xA01F0000,64K
+SEG_pll_status_Reg,/zynq_ultra_ps_e_0/Data,/pll_status/S_AXI/Reg,0xA0200000,64K
+SEG_pll_acquisition_Reg,/zynq_ultra_ps_e_0/Data,/pll_acquisition/S_AXI/Reg,0xA0210000,64K
+SEG_pll_acquisition_status_Reg,/zynq_ultra_ps_e_0/Data,/pll_acquisition_status/S_AXI/Reg,0xA0220000,64K
+SEG_pll_tracking_Reg,/zynq_ultra_ps_e_0/Data,/pll_tracking/S_AXI/Reg,0xA0230000,64K
+SEG_axi_gpio_17_Reg,/zynq_ultra_ps_e_0/Data,/axi_gpio_17/S_AXI/Reg,0xA0240000,64K
+SEG_pll_iir_Reg,/zynq_ultra_ps_e_0/Data,/pll_iir/S_AXI/Reg,0xA02D0000,64K
+SEG_pll_iir_feed_Reg,/zynq_ultra_ps_e_0/Data,/pll_iir_feed/S_AXI/Reg,0xA02E0000,64K
+SEG_pll_iir_pole_Reg,/zynq_ultra_ps_e_0/Data,/pll_iir_pole/S_AXI/Reg,0xA02F0000,64K
+SEG_intensity_control_Reg,/zynq_ultra_ps_e_0/Data,/intensity_control/S_AXI/Reg,0xA0310000,64K
+SEG_intensity_tone_Reg,/zynq_ultra_ps_e_0/Data,/intensity_tone/S_AXI/Reg,0xA0320000,64K
+SEG_intensity_limits_Reg,/zynq_ultra_ps_e_0/Data,/intensity_limits/S_AXI/Reg,0xA0330000,64K
+SEG_intensity_counts_Reg,/zynq_ultra_ps_e_0/Data,/intensity_counts/S_AXI/Reg,0xA0340000,64K
+SEG_intensity_dma_Reg,/zynq_ultra_ps_e_0/Data,/intensity_dma/S_AXI_LITE/Reg,0xA0350000,64K
+SEG_intensity_servo_control_Reg,/zynq_ultra_ps_e_0/Data,/intensity_servo_control/S_AXI/Reg,0xA0360000,64K
+SEG_intensity_servo_write_Reg,/zynq_ultra_ps_e_0/Data,/intensity_servo_write/S_AXI/Reg,0xA0370000,64K
+SEG_intensity_servo_read_Reg,/zynq_ultra_ps_e_0/Data,/intensity_servo_read/S_AXI/Reg,0xA0380000,64K
+SEG_intensity_shot_control_Reg,/zynq_ultra_ps_e_0/Data,/intensity_shot_control/S_AXI/Reg,0xA0390000,64K
+SEG_intensity_shot_tail_Reg,/zynq_ultra_ps_e_0/Data,/intensity_shot_tail/S_AXI/Reg,0xA03A0000,64K
+SEG_intensity_shot_dma_Reg,/zynq_ultra_ps_e_0/Data,/intensity_shot_dma/S_AXI_LITE/Reg,0xA03B0000,64K
+SEG_pdh_control_Reg,/zynq_ultra_ps_e_0/Data,/pdh_control/S_AXI/Reg,0xA03C0000,64K
+SEG_pdh_amplitudes_Reg,/zynq_ultra_ps_e_0/Data,/pdh_amplitudes/S_AXI/Reg,0xA03D0000,64K
+SEG_pdh_version_Reg,/zynq_ultra_ps_e_0/Data,/pdh_version/S_AXI/Reg,0xA03E0000,64K
+SEG_pdh_carrier_frequency_Reg,/zynq_ultra_ps_e_0/Data,/pdh_carrier_frequency/S_AXI/Reg,0xA0400000,64K
+SEG_pdh_modulation_frequency_Reg,/zynq_ultra_ps_e_0/Data,/pdh_modulation_frequency/S_AXI/Reg,0xA0410000,64K
+SEG_pll2_frequency_Reg,/zynq_ultra_ps_e_0/Data,/pll2_frequency/S_AXI/Reg,0xA1000000,64K
+SEG_pll2_control_Reg,/zynq_ultra_ps_e_0/Data,/pll2_control/S_AXI/Reg,0xA1010000,64K
+SEG_pll2_status_Reg,/zynq_ultra_ps_e_0/Data,/pll2_status/S_AXI/Reg,0xA1020000,64K
+SEG_pll2_acquisition_Reg,/zynq_ultra_ps_e_0/Data,/pll2_acquisition/S_AXI/Reg,0xA1030000,64K
+SEG_pll2_acquisition_status_Reg,/zynq_ultra_ps_e_0/Data,/pll2_acquisition_status/S_AXI/Reg,0xA1040000,64K
+SEG_pll2_tracking_Reg,/zynq_ultra_ps_e_0/Data,/pll2_tracking/S_AXI/Reg,0xA1050000,64K
+SEG_pll2_iir_Reg,/zynq_ultra_ps_e_0/Data,/pll2_iir/S_AXI/Reg,0xA1100000,64K
+SEG_pll2_iir_feed_Reg,/zynq_ultra_ps_e_0/Data,/pll2_iir_feed/S_AXI/Reg,0xA1110000,64K
+SEG_pll2_iir_pole_Reg,/zynq_ultra_ps_e_0/Data,/pll2_iir_pole/S_AXI/Reg,0xA1120000,64K
+SEG_axi_dma_3_Reg,/zynq_ultra_ps_e_0/Data,/photon_counting/axi_dma_3/S_AXI_LITE/Reg,0xA1130000,64K
+SEG_axi_gpio_0_Reg_1,/zynq_ultra_ps_e_0/Data,/photon_counting/axi_gpio_0/S_AXI/Reg,0xA1140000,64K
+SEG_demod_ctrl_0_Reg,/zynq_ultra_ps_e_0/Data,/demod_ctrl_0/s_axi_ctrl/Reg,0xB0000000,64K
+SEG_perturbation_gen_0_Reg,/zynq_ultra_ps_e_0/Data,/perturbation_gen_0/s_axi_ctrl/Reg,0xB0010000,64K
+SEG_demod_err_0_Reg,/zynq_ultra_ps_e_0/Data,/demod_err_0/s_axi_ctrl/Reg,0xB0020000,64K
+SEG_demod_err_1_Reg,/zynq_ultra_ps_e_0/Data,/demod_err_1/s_axi_ctrl/Reg,0xB0030000,64K
+SEG_photon_counter_contr_0_Reg,/zynq_ultra_ps_e_0/Data,/photon_counter_contr_0/s_axi_ctrl/Reg,0xB0040000,64K

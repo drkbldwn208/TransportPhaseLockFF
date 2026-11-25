@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Nov 23 10:49:26 2026" VIVADOVERSION="2024.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Nov 25 09:37:37 2026" VIVADOVERSION="2024.1">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="xilinx.com:zcu216:part0:2.0" DEVICE="xczu49dr" NAME="design_1" PACKAGE="ffvf1760" SPEEDGRADE="-2"/>
 
@@ -2367,8 +2367,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0090000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA009FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0000000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA000FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -3582,8 +3582,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00A0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00AFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0010000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA001FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -4797,8 +4797,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00B0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00BFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0020000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA002FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -6012,8 +6012,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0110000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA011FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0030000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA003FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -7227,8 +7227,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0190000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA019FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0040000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA004FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -8432,8 +8432,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01A0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01AFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0050000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA005FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -9637,8 +9637,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01C0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01CFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0060000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA006FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -10153,8 +10153,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0040000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA004FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0070000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA007FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_gpio_io_o">
@@ -10509,8 +10509,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0050000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA005FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0080000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA008FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="15" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_1_gpio2_io_o">
@@ -10875,8 +10875,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0160000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA016FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0090000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA009FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="15" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_10_gpio_io_o">
@@ -11231,8 +11231,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0170000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA017FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00A0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00AFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="15" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_11_gpio2_io_o">
@@ -11597,8 +11597,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0140000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA014FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00B0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00BFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="15" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_12_gpio_io_o">
@@ -11953,8 +11953,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00F0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00FFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00C0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00CFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_13_gpio2_io_o">
@@ -12315,8 +12315,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0180000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA018FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00D0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00DFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="0" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef"/>
@@ -12677,8 +12677,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01B0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01BFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00E0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00EFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="15" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="fast_servo_controller_0_adc_out">
@@ -13033,8 +13033,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01D0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01DFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00F0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00FFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_16_gpio_io_o">
@@ -13194,6 +13194,372 @@
         <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio_io_o"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE COREREVISION="33" FULLNAME="/axi_gpio_17" HWVERSION="2.0" INSTANCE="axi_gpio_17" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_gpio" VLNV="xilinx.com:ip:axi_gpio:2.0">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_gpio;v=v2_0;d=pg144-axi-gpio.pdf"/>
+      </DOCUMENTS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="read-write" INTERFACE="S_AXI" NAME="Reg" RANGE="4096" USAGE="register">
+          <REGISTERS>
+            <REGISTER NAME="GPIO_DATA">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO Data register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_DATA">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO Data Register.&#xA;For each I/O bit programmed as input&#xA;  R - Reads value on the input pin.&#xA;  W - No effect.&#xA;For each I/O bit programmed as output&#xA;  R - Reads value on GPIO_O pins&#xA;  W - Writes value to the corresponding AXI GPIO &#xA;      data register bit and output pin&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GPIO_TRI">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO 3-State Control register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_TRI">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO 3-State Control Register&#xA;Each I/O pin of the AXI GPIO is individually programmable as an input or output   For each of the bits     0 - I/O pin configured as output     1 - I/O pin configured as input&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GPIO2_DATA">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO Data register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x8"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH2_DATA">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO Data Register.&#xA;For each I/O bit programmed as input&#xA;  R - Reads value on the input pin.&#xA;  W - No effect.&#xA;For each I/O bit programmed as output&#xA;  R - Reads value on GPIO_O pins&#xA;  W - Writes value to the corresponding AXI GPIO &#xA;      data register bit and output pin&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="32"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GPIO2_TRI">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO 3-State Control register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0xC"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH2_TRI">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO 3-State Control Register&#xA;Each I/O pin of the AXI GPIO is individually programmable as an input or output   For each of the bits     0 - I/O pin configured as output     1 - I/O pin configured as input&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="32"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GIER">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Global_Interrupt_Enable register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x11C"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="INT_EN">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Master enable for the device interrupt output&#xA;  0 - Disabled&#xA;  1 - Enabled&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="31"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="31"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="IP_IER">
+              <PROPERTY NAME="DESCRIPTION" VALUE="IP Interrupt Enable register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x128"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_INT_EN">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Enable Channel 1 Interrupt&#xA;  0 - Disabled (masked)&#xA;  1 - Enabled&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+                <FIELD NAME="CH2_INT_EN">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Enable Channel 2 Interrupt&#xA;  0 - Disabled (masked)&#xA;  1 - Enabled&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="IP_ISR">
+              <PROPERTY NAME="DESCRIPTION" VALUE="IP Interrupt Status register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x120"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_INT_S">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 1 Interrupt Status&#xA;  0 - No Channel 1 input interrupt&#xA;  1 - Channel 1 input interrupt&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE="oneToToggle"/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+                <FIELD NAME="CH2_INT_S">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 2 Interrupt Status&#xA;  0 - No Channel 2 input interrupt&#xA;  1 - Channel 2 input interrupt&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE="oneToToggle"/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+          </REGISTERS>
+        </ADDRESSBLOCK>
+      </ADDRESSBLOCKS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_ALL_INPUTS" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS" VALUE="1"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="1"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000064"/>
+        <PARAMETER NAME="C_FAMILY" VALUE="zynquplus"/>
+        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
+        <PARAMETER NAME="C_IS_DUAL" VALUE="1"/>
+        <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
+        <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="C_TRI_DEFAULT_2" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_axi_gpio_17_0"/>
+        <PARAMETER NAME="GPIO2_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0100000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA010FFFF"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_gpio2_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="gpio_dur"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="gpio_sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="99999001" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_arready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_arvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_awready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_awvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_bready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_bvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="s_axi_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_rready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_rvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="s_axi_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_wready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="s_axi_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_wvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_AXI_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="pll_extension_axi_M21_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="9"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_zynq_ultra_ps_e_0_0_pl_clk0"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="99999001"/>
+          <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_BURST" VALUE="0"/>
+          <PARAMETER NAME="HAS_CACHE" VALUE="0"/>
+          <PARAMETER NAME="HAS_LOCK" VALUE="0"/>
+          <PARAMETER NAME="HAS_PROT" VALUE="0"/>
+          <PARAMETER NAME="HAS_QOS" VALUE="0"/>
+          <PARAMETER NAME="HAS_REGION" VALUE="0"/>
+          <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="2"/>
+          <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
+          <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="WUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="s_axi_araddr"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="s_axi_arready"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="s_axi_arvalid"/>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="s_axi_awaddr"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="s_axi_awready"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="s_axi_awvalid"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="s_axi_bready"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="s_axi_bresp"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="s_axi_bvalid"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="s_axi_rdata"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="s_axi_rready"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="s_axi_rresp"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="s_axi_rvalid"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="s_axi_wdata"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="s_axi_wready"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="s_axi_wstrb"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="s_axi_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio_io_o"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO2" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio2_io_o"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -13389,8 +13755,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0060000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA006FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0110000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA011FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="4" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_2_gpio2_io_o">
@@ -13755,8 +14121,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="true"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0070000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA007FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0120000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA012FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_3_gpio2_io_o">
@@ -14121,8 +14487,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0080000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA008FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0130000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA013FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="0" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_4_gpio2_io_o">
@@ -14487,8 +14853,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00C0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00CFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0140000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA014FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_5_gpio_io_o">
@@ -14843,8 +15209,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00D0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00DFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0150000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA015FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_6_gpio_io_o">
@@ -15199,8 +15565,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA00E0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA00EFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0160000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA016FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_7_gpio_io_o">
@@ -15555,8 +15921,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0130000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA013FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0170000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA017FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_8_gpio_io_o">
@@ -15911,8 +16277,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0150000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA015FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0180000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA018FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="15" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_9_gpio2_io_o">
@@ -22881,8 +23247,8 @@
         <PARAMETER NAME="latency" VALUE="4"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0020000"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB002FFFF"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0010000"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB001FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT CLKFREQUENCY="245760000" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
@@ -23384,8 +23750,8 @@
         <PARAMETER NAME="latency" VALUE="4"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0030000"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB003FFFF"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0020000"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB002FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT CLKFREQUENCY="245760000" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
@@ -24041,8 +24407,8 @@
         <PARAMETER NAME="latency" VALUE="8"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xA0120000"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xA012FFFF"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0030000"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB003FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="63" NAME="adc_bus" RIGHT="0" SIGIS="data" SIGNAME="intensity_rx_lowpass_0_filtered_i">
@@ -24067,7 +24433,7 @@
         </PORT>
         <PORT DIR="O" LEFT="15" NAME="dac_out" RIGHT="0" SIGIS="data" SIGNAME="fast_servo_controller_0_dac_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="intensity_linearized_0" PORT="legacy_command"/>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="dac_command_1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="5" NAME="s_axi_ctrl_ARADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_araddr">
@@ -25281,8 +25647,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0310000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA031FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0190000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA019FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="intensity_probe_0_status">
@@ -25647,8 +26013,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0340000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA034FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01A0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01AFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="intensity_probe_0_invalid_samples">
@@ -26702,8 +27068,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0350000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA035FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01B0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01BFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
@@ -27374,8 +27740,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0330000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA033FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01C0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01CFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="intensity_probe_0_feature_version">
@@ -27591,9 +27957,9 @@
             <CONNECTION INSTANCE="intensity_servo_read" PORT="gpio2_io_i"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="legacy_command" RIGHT="0" SIGIS="undef" SIGNAME="fast_servo_controller_0_dac_out">
+        <PORT DIR="I" LEFT="15" NAME="legacy_command" RIGHT="0" SIGIS="undef" SIGNAME="servo_mux_0_dac_command_muxed">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="fast_servo_controller_0" PORT="dac_out"/>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="dac_command_muxed"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="15" NAME="measured_power" RIGHT="0" SIGIS="undef" SIGNAME="intensity_linearized_0_measured_power">
@@ -29785,8 +30151,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0360000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA036FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01D0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01DFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="intensity_linearized_0_status">
@@ -30151,8 +30517,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0380000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA038FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01E0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01EFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="intensity_linearized_0_feature_version">
@@ -30517,8 +30883,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0370000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA037FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01F0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01FFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="intensity_servo_write_gpio2_io_o">
@@ -31010,8 +31376,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0390000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA039FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0200000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA020FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="intensity_shot_capture_0_status">
@@ -32065,8 +32431,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03B0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03BFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0210000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA021FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
@@ -32737,8 +33103,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03A0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03AFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0220000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA022FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="intensity_shot_capture_0_feature_version">
@@ -33103,8 +33469,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0320000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA032FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0230000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA023FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="intensity_tone_gpio2_io_o">
@@ -33928,8 +34294,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03D0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03DFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0240000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA024FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pdh_amplitudes_gpio2_io_o">
@@ -34294,8 +34660,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0400000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA040FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0250000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA025FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pdh_carrier_frequency_gpio2_io_o">
@@ -34660,8 +35026,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03C0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03CFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0260000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA026FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="pdh_tones_0_status">
@@ -35026,8 +35392,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0410000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA041FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0270000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA027FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pdh_modulation_frequency_gpio2_io_o">
@@ -35533,8 +35899,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03E0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03EFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0280000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA028FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio_io_i" RIGHT="0" SIGIS="undef" SIGNAME="pdh_tones_0_feature_version">
@@ -35976,8 +36342,8 @@
         <PARAMETER NAME="latency" VALUE="6"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0010000"/>
-        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB001FFFF"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0040000"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB004FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT CLKFREQUENCY="245760000" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
@@ -36232,6 +36598,404 @@
             <PORTMAP LOGICAL="TDATA" PHYSICAL="ref_out_TDATA"/>
             <PORTMAP LOGICAL="TREADY" PHYSICAL="ref_out_TREADY"/>
             <PORTMAP LOGICAL="TVALID" PHYSICAL="ref_out_TVALID"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE COREREVISION="2114888229" FULLNAME="/photon_counter_contr_0" HWVERSION="1.0" INSTANCE="photon_counter_contr_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="photon_counter_controller" VLNV="xilinx.com:hls:photon_counter_controller:1.0">
+      <DOCUMENTS/>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="read-write" INTERFACE="s_axi_ctrl" NAME="Reg" RANGE="65536" USAGE="register">
+          <REGISTERS>
+            <REGISTER NAME="loop_en">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of loop_en"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
+              <FIELDS>
+                <FIELD NAME="loop_en">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 15 to 0 of loop_en"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+                <FIELD NAME="RESERVED">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="16"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="set_point">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of set_point"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="24"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
+              <FIELDS>
+                <FIELD NAME="set_point">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 15 to 0 of set_point"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+                <FIELD NAME="RESERVED">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="16"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="Kp">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of Kp"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="32"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
+              <FIELDS>
+                <FIELD NAME="Kp">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 27 to 0 of Kp"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="28"/>
+                </FIELD>
+                <FIELD NAME="RESERVED">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="28"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="28"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="4"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="Ki">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of Ki"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="40"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
+              <FIELDS>
+                <FIELD NAME="Ki">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 27 to 0 of Ki"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="28"/>
+                </FIELD>
+                <FIELD NAME="RESERVED">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="28"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="28"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="4"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="dac_max_slew">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of dac_max_slew"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="48"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
+              <FIELDS>
+                <FIELD NAME="dac_max_slew">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 15 to 0 of dac_max_slew"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="write-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+                <FIELD NAME="RESERVED">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Reserved.  0s on read."/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-only"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE="modify"/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="16"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+          </REGISTERS>
+        </ADDRESSBLOCK>
+      </ADDRESSBLOCKS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_S_AXI_CTRL_ADDR_WIDTH" VALUE="6"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_photon_counter_contr_0_0"/>
+        <PARAMETER NAME="II" VALUE="1"/>
+        <PARAMETER NAME="clk_period" VALUE="4.069"/>
+        <PARAMETER NAME="combinational" VALUE="0"/>
+        <PARAMETER NAME="latency" VALUE="8"/>
+        <PARAMETER NAME="machine" VALUE="64"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_BASEADDR" VALUE="0xB0050000"/>
+        <PARAMETER NAME="C_S_AXI_CTRL_HIGHADDR" VALUE="0xB005FFFF"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="245760000" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ap_rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="counts_in_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_counts_in_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="m_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="counts_in_TREADY" SIGIS="undef" SIGNAME="photon_counter_contr_0_counts_in_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="m_axis_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="counts_in_TVALID" SIGIS="undef" SIGNAME="photon_counter_contr_0_counts_in_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="m_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="dac_out_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_dac_out_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="s_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="dac_out_TREADY" SIGIS="undef" SIGNAME="photon_counter_contr_0_dac_out_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="s_axis_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="dac_out_TVALID" SIGIS="undef" SIGNAME="photon_counter_contr_0_dac_out_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="s_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="5" NAME="s_axi_ctrl_ARADDR" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_ARADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_ctrl_ARREADY" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_ARREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_ctrl_ARVALID" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_ARVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="5" NAME="s_axi_ctrl_AWADDR" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_AWADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_ctrl_AWREADY" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_AWREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_ctrl_AWVALID" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_AWVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_ctrl_BREADY" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_BREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_ctrl_BRESP" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_BRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_ctrl_BVALID" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_BVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="s_axi_ctrl_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_ctrl_RREADY" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_ctrl_RRESP" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_ctrl_RVALID" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="s_axi_ctrl_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_ctrl_WREADY" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="s_axi_ctrl_WSTRB" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WSTRB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_ctrl_WVALID" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_AXI_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="shot_active" SIGIS="data" SIGNAME="servo_mux_0_photon_active">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="photon_active"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="pll_extension_axi_M22_AXI" DATAWIDTH="32" NAME="s_axi_ctrl" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="6"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
+          <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_BURST" VALUE="0"/>
+          <PARAMETER NAME="HAS_CACHE" VALUE="0"/>
+          <PARAMETER NAME="HAS_LOCK" VALUE="0"/>
+          <PARAMETER NAME="HAS_PROT" VALUE="0"/>
+          <PARAMETER NAME="HAS_QOS" VALUE="0"/>
+          <PARAMETER NAME="HAS_REGION" VALUE="0"/>
+          <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="WUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="s_axi_ctrl_ARADDR"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="s_axi_ctrl_ARREADY"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="s_axi_ctrl_ARVALID"/>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="s_axi_ctrl_AWADDR"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="s_axi_ctrl_AWREADY"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="s_axi_ctrl_AWVALID"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="s_axi_ctrl_BREADY"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="s_axi_ctrl_BRESP"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="s_axi_ctrl_BVALID"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="s_axi_ctrl_RDATA"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="s_axi_ctrl_RREADY"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="s_axi_ctrl_RRESP"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="s_axi_ctrl_RVALID"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="s_axi_ctrl_WDATA"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="s_axi_ctrl_WREADY"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="s_axi_ctrl_WSTRB"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="s_axi_ctrl_WVALID"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="photon_counting_counts_average_0_m_axis" NAME="counts_in" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="2"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="counts_in_TDATA"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="counts_in_TREADY"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="counts_in_TVALID"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="photon_counter_contr_0_dac_out" NAME="dac_out" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="2"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="dac_out_TDATA"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="dac_out_TREADY"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="dac_out_TVALID"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -37116,8 +37880,8 @@
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
         <PARAMETER NAME="c_single_interface" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1130000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA113FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0290000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA029FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="axi_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
@@ -37445,6 +38209,7 @@
       </BUSINTERFACES>
       <MEMORYMAP>
         <MEMRANGE ADDRESSBLOCK="HP0_DDR_LOW" BASENAME="C_BASEADDR" BASEVALUE="0x00000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0x7FFFFFFF" INSTANCE="zynq_ultra_ps_e_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_S2MM" MEMTYPE="MEMORY" SLAVEBUSINTERFACE="S_AXI_HP0_FPD"/>
+        <MEMRANGE ADDRESSBLOCK="HP0_QSPI" BASENAME="C_BASEADDR" BASEVALUE="0xC0000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xDFFFFFFF" INSTANCE="zynq_ultra_ps_e_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_S2MM" MEMTYPE="MEMORY" SLAVEBUSINTERFACE="S_AXI_HP0_FPD"/>
         <MEMRANGE ADDRESSBLOCK="HP0_DDR_HIGH" BASENAME="C_BASEADDR" BASEVALUE="0x800000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xFFFFFFFFF" INSTANCE="zynq_ultra_ps_e_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_S2MM" MEMTYPE="MEMORY" SLAVEBUSINTERFACE="S_AXI_HP0_FPD"/>
       </MEMORYMAP>
       <PERIPHERALS>
@@ -37642,8 +38407,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1140000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA114FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02A0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02AFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_0_gpio2_io_o">
@@ -37754,6 +38519,372 @@
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="pll_extension_axi_M19_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="9"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_zynq_ultra_ps_e_0_0_pl_clk0"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="99999001"/>
+          <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_BURST" VALUE="0"/>
+          <PARAMETER NAME="HAS_CACHE" VALUE="0"/>
+          <PARAMETER NAME="HAS_LOCK" VALUE="0"/>
+          <PARAMETER NAME="HAS_PROT" VALUE="0"/>
+          <PARAMETER NAME="HAS_QOS" VALUE="0"/>
+          <PARAMETER NAME="HAS_REGION" VALUE="0"/>
+          <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="WUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="s_axi_araddr"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="s_axi_arready"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="s_axi_arvalid"/>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="s_axi_awaddr"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="s_axi_awready"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="s_axi_awvalid"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="s_axi_bready"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="s_axi_bresp"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="s_axi_bvalid"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="s_axi_rdata"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="s_axi_rready"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="s_axi_rresp"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="s_axi_rvalid"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="s_axi_wdata"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="s_axi_wready"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="s_axi_wstrb"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="s_axi_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio_io_o"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO2" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio2_io_o"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE COREREVISION="33" FULLNAME="/photon_counting/axi_gpio_1" HWVERSION="2.0" INSTANCE="photon_counting_axi_gpio_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_gpio" VLNV="xilinx.com:ip:axi_gpio:2.0">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_gpio;v=v2_0;d=pg144-axi-gpio.pdf"/>
+      </DOCUMENTS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="read-write" INTERFACE="S_AXI" NAME="Reg" RANGE="4096" USAGE="register">
+          <REGISTERS>
+            <REGISTER NAME="GPIO_DATA">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO Data register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_DATA">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO Data Register.&#xA;For each I/O bit programmed as input&#xA;  R - Reads value on the input pin.&#xA;  W - No effect.&#xA;For each I/O bit programmed as output&#xA;  R - Reads value on GPIO_O pins&#xA;  W - Writes value to the corresponding AXI GPIO &#xA;      data register bit and output pin&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GPIO_TRI">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO 3-State Control register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_TRI">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO 3-State Control Register&#xA;Each I/O pin of the AXI GPIO is individually programmable as an input or output   For each of the bits     0 - I/O pin configured as output     1 - I/O pin configured as input&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GPIO2_DATA">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO Data register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x8"/>
+              <PROPERTY NAME="SIZE" VALUE="16"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH2_DATA">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO Data Register.&#xA;For each I/O bit programmed as input&#xA;  R - Reads value on the input pin.&#xA;  W - No effect.&#xA;For each I/O bit programmed as output&#xA;  R - Reads value on GPIO_O pins&#xA;  W - Writes value to the corresponding AXI GPIO &#xA;      data register bit and output pin&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GPIO2_TRI">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO 3-State Control register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0xC"/>
+              <PROPERTY NAME="SIZE" VALUE="16"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH2_TRI">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="AXI GPIO 3-State Control Register&#xA;Each I/O pin of the AXI GPIO is individually programmable as an input or output   For each of the bits     0 - I/O pin configured as output     1 - I/O pin configured as input&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="16"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="GIER">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Global_Interrupt_Enable register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x11C"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="INT_EN">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Master enable for the device interrupt output&#xA;  0 - Disabled&#xA;  1 - Enabled&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="31"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="31"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="IP_IER">
+              <PROPERTY NAME="DESCRIPTION" VALUE="IP Interrupt Enable register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x128"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_INT_EN">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Enable Channel 1 Interrupt&#xA;  0 - Disabled (masked)&#xA;  1 - Enabled&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+                <FIELD NAME="CH2_INT_EN">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Enable Channel 2 Interrupt&#xA;  0 - Disabled (masked)&#xA;  1 - Enabled&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+            <REGISTER NAME="IP_ISR">
+              <PROPERTY NAME="DESCRIPTION" VALUE="IP Interrupt Status register"/>
+              <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x120"/>
+              <PROPERTY NAME="SIZE" VALUE="32"/>
+              <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+              <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
+              <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
+              <FIELDS>
+                <FIELD NAME="CH1_INT_S">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 1 Interrupt Status&#xA;  0 - No Channel 1 input interrupt&#xA;  1 - Channel 1 input interrupt&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE="oneToToggle"/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+                <FIELD NAME="CH2_INT_S">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Channel 2 Interrupt Status&#xA;  0 - No Channel 2 input interrupt&#xA;  1 - Channel 2 input interrupt&#xA;"/>
+                  <PROPERTY NAME="ADDRESS_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="ACCESS" VALUE="read-write"/>
+                  <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE="oneToToggle"/>
+                  <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
+                  <PROPERTY NAME="READ_ACTION" VALUE=""/>
+                  <PROPERTY NAME="BIT_OFFSET" VALUE="1"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                </FIELD>
+              </FIELDS>
+            </REGISTER>
+          </REGISTERS>
+        </ADDRESSBLOCK>
+      </ADDRESSBLOCKS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_ALL_INPUTS" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS" VALUE="1"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="1"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000064"/>
+        <PARAMETER NAME="C_FAMILY" VALUE="zynquplus"/>
+        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
+        <PARAMETER NAME="C_IS_DUAL" VALUE="1"/>
+        <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
+        <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="C_TRI_DEFAULT_2" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_axi_gpio_1_1"/>
+        <PARAMETER NAME="GPIO2_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02B0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02BFFFF"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="15" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_gpio2_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="gpio_ncycles"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_hist_counter_0" PORT="gpio_arm"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="99999001" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_araddr" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_arready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_arvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_awready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_awvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_bready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_bresp" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_bvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="s_axi_rdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_rready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_rresp" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_rvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="s_axi_wdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_wready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="s_axi_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_wvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_AXI_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="pll_extension_axi_M20_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="ADDR_WIDTH" VALUE="9"/>
           <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -37962,6 +39093,77 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/photon_counting/counts_average_0" HWVERSION="1.0" INSTANCE="photon_counting_counts_average_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="counts_average" VLNV="xilinx.com:module_ref:counts_average:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_counts_average_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="245760000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="99999001" DIR="I" NAME="gpio_clk" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="gpio_ncycles" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_gpio2_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="gpio2_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="input_edge" SIGIS="undef" SIGNAME="photon_counting_pmod_sync_edge_0_sync_edge">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_pmod_sync_edge_0" PORT="sync_edge"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_counts_in_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="counts_in_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="m_axis_tready" SIGIS="undef" SIGNAME="photon_counter_contr_0_counts_in_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="counts_in_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_axis_tvalid" SIGIS="undef" SIGNAME="photon_counter_contr_0_counts_in_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="counts_in_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="photon_counting_counts_average_0_m_axis" NAME="m_axis" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="2"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="m_axis_tdata"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="m_axis_tready"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="m_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
     <MODULE COREREVISION="1" FULLNAME="/photon_counting/hist_counter_0" HWVERSION="1.0" INSTANCE="photon_counting_hist_counter_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hist_counter" VLNV="xilinx.com:module_ref:hist_counter:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -37972,6 +39174,11 @@
         <PORT CLKFREQUENCY="245760000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="gpio_arm" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="gpio_io_o"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="99999001" DIR="I" NAME="gpio_clk" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
@@ -38113,6 +39320,7 @@
         </PORT>
         <PORT DIR="O" NAME="sync_edge" SIGIS="undef" SIGNAME="photon_counting_pmod_sync_edge_0_sync_edge">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="input_edge"/>
             <CONNECTION INSTANCE="photon_counting_hist_counter_0" PORT="input_edge"/>
           </CONNECTIONS>
         </PORT>
@@ -38310,8 +39518,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1030000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA103FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02C0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02CFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll2_acquisition_gpio2_io_o">
@@ -38676,8 +39884,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1040000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA104FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02D0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02DFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_1_fft_status">
@@ -39042,8 +40250,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1010000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA101FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02E0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02EFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll2_control_gpio2_io_o">
@@ -39408,8 +40616,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1000000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA100FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02F0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02FFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll2_frequency_gpio2_io_o">
@@ -39774,8 +40982,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1100000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA110FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0300000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA030FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_1_iir_status">
@@ -40140,8 +41348,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1110000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA111FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0310000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA031FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll2_iir_feed_gpio2_io_o">
@@ -40506,8 +41714,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1120000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA112FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0320000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA032FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef"/>
@@ -40868,8 +42076,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1020000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA102FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0330000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA033FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_1_frequency_status">
@@ -41234,8 +42442,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA1050000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA105FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0340000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA034FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_1_tracking_status">
@@ -41600,8 +42808,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0210000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA021FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0350000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA035FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll_acquisition_gpio2_io_o">
@@ -41966,8 +43174,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0220000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA022FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0360000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA036FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_0_fft_status">
@@ -42332,8 +43540,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01F0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01FFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0370000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA037FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll_control_gpio2_io_o">
@@ -42771,7 +43979,7 @@
         <PARAMETER NAME="M63_HAS_REGSLICE" VALUE="0"/>
         <PARAMETER NAME="M63_ISSUANCE" VALUE="0"/>
         <PARAMETER NAME="M63_SECURE" VALUE="0"/>
-        <PARAMETER NAME="NUM_MI" VALUE="20"/>
+        <PARAMETER NAME="NUM_MI" VALUE="23"/>
         <PARAMETER NAME="NUM_SI" VALUE="1"/>
         <PARAMETER NAME="PCHK_MAX_RD_BURSTS" VALUE="2"/>
         <PARAMETER NAME="PCHK_MAX_WR_BURSTS" VALUE="2"/>
@@ -44740,6 +45948,291 @@
             <CONNECTION INSTANCE="photon_counting_axi_gpio_0" PORT="s_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" NAME="M20_ACLK" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M20_ARESETN" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M20_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M20_AXI_arready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M20_AXI_arvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M20_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M20_AXI_awready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M20_AXI_awvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M20_AXI_bready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M20_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M20_AXI_bvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M20_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M20_AXI_rready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M20_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M20_AXI_rvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M20_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M20_AXI_wready" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M20_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M20_AXI_wvalid" SIGIS="undef" SIGNAME="photon_counting_axi_gpio_1_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_ACLK" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_ARESETN" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M21_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_arready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_arvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M21_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_awready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_awvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_bready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M21_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_bvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M21_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_rready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M21_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_rvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M21_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_wready" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M21_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_wvalid" SIGIS="undef" SIGNAME="axi_gpio_17_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_ACLK" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="39" NAME="M22_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_ARADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_ARADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_arready" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_ARREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_ARREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_arvalid" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_ARVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_ARVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="39" NAME="M22_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_AWADDR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_AWADDR"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_awready" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_AWREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_AWREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_awvalid" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_AWVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_AWVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_bready" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_BREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_BREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M22_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_BRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_BRESP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_bvalid" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_BVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_BVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M22_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_RDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_rready" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_RREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M22_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RRESP">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_RRESP"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_rvalid" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_RVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_RVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M22_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_WDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_wready" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_WREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M22_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WSTRB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_WSTRB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_wvalid" SIGIS="undef" SIGNAME="photon_counter_contr_0_s_axi_ctrl_WVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="s_axi_ctrl_WVALID"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
@@ -45290,6 +46783,69 @@
             <PORTMAP LOGICAL="WVALID" PHYSICAL="M19_AXI_wvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="pll_extension_axi_M20_AXI" DATAWIDTH="32" NAME="M20_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M20_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M20_AXI_arready"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M20_AXI_arvalid"/>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="M20_AXI_awaddr"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M20_AXI_awready"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="M20_AXI_awvalid"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="M20_AXI_bready"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="M20_AXI_bresp"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="M20_AXI_bvalid"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="M20_AXI_rdata"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="M20_AXI_rready"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="M20_AXI_rresp"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="M20_AXI_rvalid"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="M20_AXI_wdata"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="M20_AXI_wready"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M20_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="M20_AXI_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="pll_extension_axi_M21_AXI" DATAWIDTH="32" NAME="M21_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M21_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M21_AXI_arready"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M21_AXI_arvalid"/>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="M21_AXI_awaddr"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M21_AXI_awready"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="M21_AXI_awvalid"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="M21_AXI_bready"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="M21_AXI_bresp"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="M21_AXI_bvalid"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="M21_AXI_rdata"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="M21_AXI_rready"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="M21_AXI_rresp"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="M21_AXI_rvalid"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="M21_AXI_wdata"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="M21_AXI_wready"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M21_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="M21_AXI_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="pll_extension_axi_M22_AXI" DATAWIDTH="32" NAME="M22_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M22_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M22_AXI_arready"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M22_AXI_arvalid"/>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="M22_AXI_awaddr"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M22_AXI_awready"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="M22_AXI_awvalid"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="M22_AXI_bready"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="M22_AXI_bresp"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="M22_AXI_bvalid"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="M22_AXI_rdata"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="M22_AXI_rready"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="M22_AXI_rresp"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="M22_AXI_rvalid"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="M22_AXI_wdata"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="M22_AXI_wready"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M22_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="M22_AXI_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
     <MODULE COREREVISION="9" FULLNAME="/pll_fra_one" HWVERSION="1.1" INSTANCE="pll_fra_one" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
@@ -45500,8 +47056,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA01E0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA01EFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0380000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA038FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll_frequency_gpio2_io_o">
@@ -45866,8 +47422,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02D0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02DFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0390000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA039FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_0_iir_status">
@@ -46232,8 +47788,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02E0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02EFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03A0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03AFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="pll_iir_feed_gpio2_io_o">
@@ -46598,8 +48154,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA02F0000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA02FFFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03B0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03BFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef"/>
@@ -46960,8 +48516,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0200000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA020FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03C0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03CFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_0_frequency_status">
@@ -47326,8 +48882,8 @@
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0230000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA023FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA03D0000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA03DFFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" LEFT="31" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="laser_pll_0_tracking_status">
@@ -47656,6 +49212,7 @@
         <PORT DIR="O" NAME="event_pulse" SIGIS="undef" SIGNAME="pmod_debounce_sync_0_event_pulse">
           <CONNECTIONS>
             <CONNECTION INSTANCE="dwell_fcw_streamer_32_0" PORT="start_r"/>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="trigger"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
@@ -47858,8 +49415,9 @@
             <CONNECTION INSTANCE="intensity_rx_lowpass_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="photon_counting_pmod_debounce_sync_2" PORT="rst_n"/>
             <CONNECTION INSTANCE="photon_counting_axis_data_fifo_1" PORT="s_axis_aresetn"/>
-            <CONNECTION INSTANCE="photon_counting_hist_counter_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="photon_counting_pmod_sync_edge_0" PORT="rst_n"/>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="rst_n"/>
+            <CONNECTION INSTANCE="photon_counting_hist_counter_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="pdh_tones_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="pdh_carrier_frequency" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M09_ARESETN"/>
@@ -47867,6 +49425,9 @@
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M10_ARESETN"/>
             <CONNECTION INSTANCE="laser_pll_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="laser_pll_1" PORT="rst_n"/>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_ARESETN"/>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="ap_rst_n"/>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="rst_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
@@ -50675,7 +52236,11 @@
             <CONNECTION INSTANCE="pll_extension_axi" PORT="M18_ARESETN"/>
             <CONNECTION INSTANCE="photon_counting_axi_dma_3" PORT="axi_resetn"/>
             <CONNECTION INSTANCE="photon_counting_axi_gpio_0" PORT="s_axi_aresetn"/>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="pll_extension_axi" PORT="M19_ARESETN"/>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_ARESETN"/>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_ARESETN"/>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
@@ -50686,6 +52251,97 @@
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/servo_mux_0" HWVERSION="1.0" INSTANCE="servo_mux_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="servo_mux" VLNV="xilinx.com:module_ref:servo_mux:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_servo_mux_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="245760000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_clk_adc1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="usp_rf_data_converter_0" PORT="clk_adc1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="dac_command_1" RIGHT="0" SIGIS="undef" SIGNAME="fast_servo_controller_0_dac_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="fast_servo_controller_0" PORT="dac_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="dac_command_muxed" RIGHT="0" SIGIS="undef" SIGNAME="servo_mux_0_dac_command_muxed">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="intensity_linearized_0" PORT="legacy_command"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="99999001" DIR="I" NAME="gpio_clk" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="gpio_dur" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_17_gpio2_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="gpio2_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="gpio_sel" SIGIS="undef" SIGNAME="axi_gpio_17_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="gpio_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="photon_active" SIGIS="undef" SIGNAME="servo_mux_0_photon_active">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="shot_active"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="photon_counter_contr_0_dac_out_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="dac_out_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axis_tready" SIGIS="undef" SIGNAME="photon_counter_contr_0_dac_out_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="dac_out_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axis_tvalid" SIGIS="undef" SIGNAME="photon_counter_contr_0_dac_out_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="dac_out_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="trigger" SIGIS="undef" SIGNAME="pmod_debounce_sync_0_event_pulse">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pmod_debounce_sync_0" PORT="event_pulse"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="photon_counter_contr_0_dac_out" NAME="s_axis" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_usp_rf_data_converter_0_0_clk_adc1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="245760000"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="PHASE" VALUE="0.0"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="2"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="s_axis_tdata"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="s_axis_tready"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="s_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
     </MODULE>
     <MODULE COREREVISION="1" FULLNAME="/setpoint_switch_0" HWVERSION="1.0" INSTANCE="setpoint_switch_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="setpoint_switch" VLNV="xilinx.com:module_ref:setpoint_switch:1.0">
       <DOCUMENTS/>
@@ -54140,8 +55796,8 @@
         <PARAMETER NAME="mDAC_TDD_RTS03" VALUE="0"/>
         <PARAMETER NAME="mDAC_VOP" VALUE="20.0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0000000"/>
-        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA003FFFF"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0xA0400000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0xA043FFFF"/>
       </PARAMETERS>
       <PORTS>
         <PORT DIR="I" NAME="adc1_clk_n" SIGIS="clk" SIGNAME="usp_rf_data_converter_0_adc1_clk_n">
@@ -54316,8 +55972,9 @@
             <CONNECTION INSTANCE="photon_counting_axi_dma_3" PORT="m_axi_s2mm_aclk"/>
             <CONNECTION INSTANCE="photon_counting_axis_data_fifo_1" PORT="s_axis_aclk"/>
             <CONNECTION INSTANCE="photon_counting_pmod_debounce_sync_2" PORT="clk"/>
-            <CONNECTION INSTANCE="photon_counting_hist_counter_0" PORT="clk"/>
             <CONNECTION INSTANCE="photon_counting_pmod_sync_edge_0" PORT="clk"/>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="clk"/>
+            <CONNECTION INSTANCE="photon_counting_hist_counter_0" PORT="clk"/>
             <CONNECTION INSTANCE="pdh_tones_0" PORT="clk"/>
             <CONNECTION INSTANCE="pdh_tones_0" PORT="gpio_clk"/>
             <CONNECTION INSTANCE="pdh_carrier_frequency" PORT="s_axi_aclk"/>
@@ -54326,6 +55983,9 @@
             <CONNECTION INSTANCE="intensity_servo_axi" PORT="M10_ACLK"/>
             <CONNECTION INSTANCE="laser_pll_0" PORT="clk"/>
             <CONNECTION INSTANCE="laser_pll_1" PORT="clk"/>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M22_ACLK"/>
+            <CONNECTION INSTANCE="photon_counter_contr_0" PORT="ap_clk"/>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="245760000" DIR="O" NAME="clk_adc2" SIGIS="clk"/>
@@ -55335,19 +56995,6 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="9" FULLNAME="/xlconstant_1" HWVERSION="1.1" INSTANCE="xlconstant_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="CONST_VAL" VALUE="0x00000000"/>
-        <PARAMETER NAME="CONST_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_xlconstant_1_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="O" LEFT="31" NAME="dout" RIGHT="0" SIGIS="undef"/>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
     <MODULE COREREVISION="9" FULLNAME="/xlconstant_2" HWVERSION="1.1" INSTANCE="xlconstant_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -55577,10 +57224,16 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_HIGH" RANGE="0x800000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
+      </ADDRESSBLOCKS>
+      <ADDRESSBLOCKS>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <PARAMETERS>
         <PARAMETER NAME="C_DP_USE_AUDIO" VALUE="0"/>
@@ -57763,8 +59416,14 @@
             <CONNECTION INSTANCE="pll_extension_axi" PORT="M18_ACLK"/>
             <CONNECTION INSTANCE="photon_counting_axi_dma_3" PORT="s_axi_lite_aclk"/>
             <CONNECTION INSTANCE="photon_counting_axi_gpio_0" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="photon_counting_axi_gpio_1" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="photon_counting_counts_average_0" PORT="gpio_clk"/>
             <CONNECTION INSTANCE="photon_counting_hist_counter_0" PORT="gpio_clk"/>
             <CONNECTION INSTANCE="pll_extension_axi" PORT="M19_ACLK"/>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M20_ACLK"/>
+            <CONNECTION INSTANCE="pll_extension_axi" PORT="M21_ACLK"/>
+            <CONNECTION INSTANCE="axi_gpio_17" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="servo_mux_0" PORT="gpio_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="pl_ps_irq0" RIGHT="0" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT"/>
@@ -58161,140 +59820,146 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
       <MEMORYMAP>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA003FFFF" INSTANCE="usp_rf_data_converter_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0040000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA004FFFF" INSTANCE="axi_gpio_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0050000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA005FFFF" INSTANCE="axi_gpio_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0060000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA006FFFF" INSTANCE="axi_gpio_2" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0070000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA007FFFF" INSTANCE="axi_gpio_3" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0080000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA008FFFF" INSTANCE="axi_gpio_4" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0090000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA009FFFF" INSTANCE="axi_dma_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00A0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00AFFFF" INSTANCE="axi_dma_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00BFFFF" INSTANCE="axi_dma_2" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00CFFFF" INSTANCE="axi_gpio_5" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00DFFFF" INSTANCE="axi_gpio_6" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00E0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00EFFFF" INSTANCE="axi_gpio_7" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00F0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00FFFFF" INSTANCE="axi_gpio_13" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0110000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA011FFFF" INSTANCE="axi_dma_4" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xA0120000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xA012FFFF" INSTANCE="fast_servo_controller_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0130000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA013FFFF" INSTANCE="axi_gpio_8" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0140000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA014FFFF" INSTANCE="axi_gpio_12" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0150000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA015FFFF" INSTANCE="axi_gpio_9" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0160000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA016FFFF" INSTANCE="axi_gpio_10" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0170000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA017FFFF" INSTANCE="axi_gpio_11" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0180000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA018FFFF" INSTANCE="axi_gpio_14" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0190000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA019FFFF" INSTANCE="axi_dma_5" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01A0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01AFFFF" INSTANCE="axi_dma_6" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01BFFFF" INSTANCE="axi_gpio_15" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01CFFFF" INSTANCE="axi_dma_7" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01DFFFF" INSTANCE="axi_gpio_16" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01E0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01EFFFF" INSTANCE="pll_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01F0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01FFFFF" INSTANCE="pll_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0200000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA020FFFF" INSTANCE="pll_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0210000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA021FFFF" INSTANCE="pll_acquisition" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0220000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA022FFFF" INSTANCE="pll_acquisition_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0230000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA023FFFF" INSTANCE="pll_tracking" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02DFFFF" INSTANCE="pll_iir" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02E0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02EFFFF" INSTANCE="pll_iir_feed" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02F0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02FFFFF" INSTANCE="pll_iir_pole" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0310000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA031FFFF" INSTANCE="intensity_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0320000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA032FFFF" INSTANCE="intensity_tone" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0330000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA033FFFF" INSTANCE="intensity_limits" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0340000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA034FFFF" INSTANCE="intensity_counts" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0350000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA035FFFF" INSTANCE="intensity_dma" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0360000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA036FFFF" INSTANCE="intensity_servo_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0370000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA037FFFF" INSTANCE="intensity_servo_write" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0380000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA038FFFF" INSTANCE="intensity_servo_read" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0390000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA039FFFF" INSTANCE="intensity_shot_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03A0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03AFFFF" INSTANCE="intensity_shot_tail" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03BFFFF" INSTANCE="intensity_shot_dma" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03CFFFF" INSTANCE="pdh_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03DFFFF" INSTANCE="pdh_amplitudes" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03E0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03EFFFF" INSTANCE="pdh_version" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0400000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA040FFFF" INSTANCE="pdh_carrier_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0410000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA041FFFF" INSTANCE="pdh_modulation_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA100FFFF" INSTANCE="pll2_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1010000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA101FFFF" INSTANCE="pll2_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1020000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA102FFFF" INSTANCE="pll2_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1030000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA103FFFF" INSTANCE="pll2_acquisition" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1040000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA104FFFF" INSTANCE="pll2_acquisition_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1050000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA105FFFF" INSTANCE="pll2_tracking" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1100000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA110FFFF" INSTANCE="pll2_iir" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1110000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA111FFFF" INSTANCE="pll2_iir_feed" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1120000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA112FFFF" INSTANCE="pll2_iir_pole" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1130000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA113FFFF" INSTANCE="photon_counting_axi_dma_3" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA1140000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA114FFFF" INSTANCE="photon_counting_axi_gpio_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA000FFFF" INSTANCE="axi_dma_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0010000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA001FFFF" INSTANCE="axi_dma_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0020000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA002FFFF" INSTANCE="axi_dma_2" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0030000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA003FFFF" INSTANCE="axi_dma_4" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0040000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA004FFFF" INSTANCE="axi_dma_5" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0050000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA005FFFF" INSTANCE="axi_dma_6" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0060000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA006FFFF" INSTANCE="axi_dma_7" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0070000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA007FFFF" INSTANCE="axi_gpio_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0080000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA008FFFF" INSTANCE="axi_gpio_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0090000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA009FFFF" INSTANCE="axi_gpio_10" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00A0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00AFFFF" INSTANCE="axi_gpio_11" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00BFFFF" INSTANCE="axi_gpio_12" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00CFFFF" INSTANCE="axi_gpio_13" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00DFFFF" INSTANCE="axi_gpio_14" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00E0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00EFFFF" INSTANCE="axi_gpio_15" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA00F0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA00FFFFF" INSTANCE="axi_gpio_16" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0100000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA010FFFF" INSTANCE="axi_gpio_17" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0110000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA011FFFF" INSTANCE="axi_gpio_2" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0120000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA012FFFF" INSTANCE="axi_gpio_3" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0130000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA013FFFF" INSTANCE="axi_gpio_4" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0140000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA014FFFF" INSTANCE="axi_gpio_5" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0150000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA015FFFF" INSTANCE="axi_gpio_6" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0160000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA016FFFF" INSTANCE="axi_gpio_7" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0170000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA017FFFF" INSTANCE="axi_gpio_8" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0180000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA018FFFF" INSTANCE="axi_gpio_9" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0190000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA019FFFF" INSTANCE="intensity_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01A0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01AFFFF" INSTANCE="intensity_counts" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01BFFFF" INSTANCE="intensity_dma" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01CFFFF" INSTANCE="intensity_limits" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01DFFFF" INSTANCE="intensity_servo_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01E0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01EFFFF" INSTANCE="intensity_servo_read" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA01F0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA01FFFFF" INSTANCE="intensity_servo_write" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0200000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA020FFFF" INSTANCE="intensity_shot_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0210000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA021FFFF" INSTANCE="intensity_shot_dma" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0220000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA022FFFF" INSTANCE="intensity_shot_tail" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0230000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA023FFFF" INSTANCE="intensity_tone" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0240000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA024FFFF" INSTANCE="pdh_amplitudes" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0250000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA025FFFF" INSTANCE="pdh_carrier_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0260000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA026FFFF" INSTANCE="pdh_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0270000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA027FFFF" INSTANCE="pdh_modulation_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0280000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA028FFFF" INSTANCE="pdh_version" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0290000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA029FFFF" INSTANCE="photon_counting_axi_dma_3" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02A0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02AFFFF" INSTANCE="photon_counting_axi_gpio_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02BFFFF" INSTANCE="photon_counting_axi_gpio_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02CFFFF" INSTANCE="pll2_acquisition" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02DFFFF" INSTANCE="pll2_acquisition_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02E0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02EFFFF" INSTANCE="pll2_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA02F0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA02FFFFF" INSTANCE="pll2_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0300000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA030FFFF" INSTANCE="pll2_iir" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0310000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA031FFFF" INSTANCE="pll2_iir_feed" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0320000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA032FFFF" INSTANCE="pll2_iir_pole" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0330000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA033FFFF" INSTANCE="pll2_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0340000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA034FFFF" INSTANCE="pll2_tracking" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0350000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA035FFFF" INSTANCE="pll_acquisition" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0360000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA036FFFF" INSTANCE="pll_acquisition_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0370000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA037FFFF" INSTANCE="pll_control" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0380000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA038FFFF" INSTANCE="pll_frequency" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0390000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA039FFFF" INSTANCE="pll_iir" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03A0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03AFFFF" INSTANCE="pll_iir_feed" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03B0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03BFFFF" INSTANCE="pll_iir_pole" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03C0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03CFFFF" INSTANCE="pll_status" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA03D0000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA03DFFFF" INSTANCE="pll_tracking" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0xA0400000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0xA043FFFF" INSTANCE="usp_rf_data_converter_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0000000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB000FFFF" INSTANCE="demod_ctrl_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0010000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB001FFFF" INSTANCE="perturbation_gen_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0020000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB002FFFF" INSTANCE="demod_err_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
-        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0030000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB003FFFF" INSTANCE="demod_err_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0010000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB001FFFF" INSTANCE="demod_err_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0020000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB002FFFF" INSTANCE="demod_err_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0030000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB003FFFF" INSTANCE="fast_servo_controller_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0040000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB004FFFF" INSTANCE="perturbation_gen_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_S_AXI_CTRL_BASEADDR" BASEVALUE="0xB0050000" HIGHNAME="C_S_AXI_CTRL_HIGHADDR" HIGHVALUE="0xB005FFFF" INSTANCE="photon_counter_contr_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_HPM1_FPD" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="s_axi_ctrl"/>
       </MEMORYMAP>
       <PERIPHERALS>
-        <PERIPHERAL INSTANCE="usp_rf_data_converter_0"/>
-        <PERIPHERAL INSTANCE="axi_gpio_0"/>
-        <PERIPHERAL INSTANCE="axi_gpio_1"/>
-        <PERIPHERAL INSTANCE="axi_gpio_2"/>
-        <PERIPHERAL INSTANCE="axi_gpio_3"/>
-        <PERIPHERAL INSTANCE="axi_gpio_4"/>
         <PERIPHERAL INSTANCE="axi_dma_0"/>
         <PERIPHERAL INSTANCE="axi_dma_1"/>
         <PERIPHERAL INSTANCE="axi_dma_2"/>
+        <PERIPHERAL INSTANCE="axi_dma_4"/>
+        <PERIPHERAL INSTANCE="axi_dma_5"/>
+        <PERIPHERAL INSTANCE="axi_dma_6"/>
+        <PERIPHERAL INSTANCE="axi_dma_7"/>
+        <PERIPHERAL INSTANCE="axi_gpio_0"/>
+        <PERIPHERAL INSTANCE="axi_gpio_1"/>
+        <PERIPHERAL INSTANCE="axi_gpio_10"/>
+        <PERIPHERAL INSTANCE="axi_gpio_11"/>
+        <PERIPHERAL INSTANCE="axi_gpio_12"/>
+        <PERIPHERAL INSTANCE="axi_gpio_13"/>
+        <PERIPHERAL INSTANCE="axi_gpio_14"/>
+        <PERIPHERAL INSTANCE="axi_gpio_15"/>
+        <PERIPHERAL INSTANCE="axi_gpio_16"/>
+        <PERIPHERAL INSTANCE="axi_gpio_17"/>
+        <PERIPHERAL INSTANCE="axi_gpio_2"/>
+        <PERIPHERAL INSTANCE="axi_gpio_3"/>
+        <PERIPHERAL INSTANCE="axi_gpio_4"/>
         <PERIPHERAL INSTANCE="axi_gpio_5"/>
         <PERIPHERAL INSTANCE="axi_gpio_6"/>
         <PERIPHERAL INSTANCE="axi_gpio_7"/>
-        <PERIPHERAL INSTANCE="axi_gpio_13"/>
-        <PERIPHERAL INSTANCE="axi_dma_4"/>
-        <PERIPHERAL INSTANCE="fast_servo_controller_0"/>
         <PERIPHERAL INSTANCE="axi_gpio_8"/>
-        <PERIPHERAL INSTANCE="axi_gpio_12"/>
         <PERIPHERAL INSTANCE="axi_gpio_9"/>
-        <PERIPHERAL INSTANCE="axi_gpio_10"/>
-        <PERIPHERAL INSTANCE="axi_gpio_11"/>
-        <PERIPHERAL INSTANCE="axi_gpio_14"/>
-        <PERIPHERAL INSTANCE="axi_dma_5"/>
-        <PERIPHERAL INSTANCE="axi_dma_6"/>
-        <PERIPHERAL INSTANCE="axi_gpio_15"/>
-        <PERIPHERAL INSTANCE="axi_dma_7"/>
-        <PERIPHERAL INSTANCE="axi_gpio_16"/>
-        <PERIPHERAL INSTANCE="pll_frequency"/>
-        <PERIPHERAL INSTANCE="pll_control"/>
-        <PERIPHERAL INSTANCE="pll_status"/>
-        <PERIPHERAL INSTANCE="pll_acquisition"/>
-        <PERIPHERAL INSTANCE="pll_acquisition_status"/>
-        <PERIPHERAL INSTANCE="pll_tracking"/>
-        <PERIPHERAL INSTANCE="pll_iir"/>
-        <PERIPHERAL INSTANCE="pll_iir_feed"/>
-        <PERIPHERAL INSTANCE="pll_iir_pole"/>
         <PERIPHERAL INSTANCE="intensity_control"/>
-        <PERIPHERAL INSTANCE="intensity_tone"/>
-        <PERIPHERAL INSTANCE="intensity_limits"/>
         <PERIPHERAL INSTANCE="intensity_counts"/>
         <PERIPHERAL INSTANCE="intensity_dma"/>
+        <PERIPHERAL INSTANCE="intensity_limits"/>
         <PERIPHERAL INSTANCE="intensity_servo_control"/>
-        <PERIPHERAL INSTANCE="intensity_servo_write"/>
         <PERIPHERAL INSTANCE="intensity_servo_read"/>
+        <PERIPHERAL INSTANCE="intensity_servo_write"/>
         <PERIPHERAL INSTANCE="intensity_shot_control"/>
-        <PERIPHERAL INSTANCE="intensity_shot_tail"/>
         <PERIPHERAL INSTANCE="intensity_shot_dma"/>
-        <PERIPHERAL INSTANCE="pdh_control"/>
+        <PERIPHERAL INSTANCE="intensity_shot_tail"/>
+        <PERIPHERAL INSTANCE="intensity_tone"/>
         <PERIPHERAL INSTANCE="pdh_amplitudes"/>
-        <PERIPHERAL INSTANCE="pdh_version"/>
         <PERIPHERAL INSTANCE="pdh_carrier_frequency"/>
+        <PERIPHERAL INSTANCE="pdh_control"/>
         <PERIPHERAL INSTANCE="pdh_modulation_frequency"/>
-        <PERIPHERAL INSTANCE="pll2_frequency"/>
-        <PERIPHERAL INSTANCE="pll2_control"/>
-        <PERIPHERAL INSTANCE="pll2_status"/>
+        <PERIPHERAL INSTANCE="pdh_version"/>
+        <PERIPHERAL INSTANCE="photon_counting_axi_dma_3"/>
+        <PERIPHERAL INSTANCE="photon_counting_axi_gpio_0"/>
+        <PERIPHERAL INSTANCE="photon_counting_axi_gpio_1"/>
         <PERIPHERAL INSTANCE="pll2_acquisition"/>
         <PERIPHERAL INSTANCE="pll2_acquisition_status"/>
-        <PERIPHERAL INSTANCE="pll2_tracking"/>
+        <PERIPHERAL INSTANCE="pll2_control"/>
+        <PERIPHERAL INSTANCE="pll2_frequency"/>
         <PERIPHERAL INSTANCE="pll2_iir"/>
         <PERIPHERAL INSTANCE="pll2_iir_feed"/>
         <PERIPHERAL INSTANCE="pll2_iir_pole"/>
-        <PERIPHERAL INSTANCE="photon_counting_axi_dma_3"/>
-        <PERIPHERAL INSTANCE="photon_counting_axi_gpio_0"/>
+        <PERIPHERAL INSTANCE="pll2_status"/>
+        <PERIPHERAL INSTANCE="pll2_tracking"/>
+        <PERIPHERAL INSTANCE="pll_acquisition"/>
+        <PERIPHERAL INSTANCE="pll_acquisition_status"/>
+        <PERIPHERAL INSTANCE="pll_control"/>
+        <PERIPHERAL INSTANCE="pll_frequency"/>
+        <PERIPHERAL INSTANCE="pll_iir"/>
+        <PERIPHERAL INSTANCE="pll_iir_feed"/>
+        <PERIPHERAL INSTANCE="pll_iir_pole"/>
+        <PERIPHERAL INSTANCE="pll_status"/>
+        <PERIPHERAL INSTANCE="pll_tracking"/>
+        <PERIPHERAL INSTANCE="usp_rf_data_converter_0"/>
         <PERIPHERAL INSTANCE="demod_ctrl_0"/>
-        <PERIPHERAL INSTANCE="perturbation_gen_0"/>
         <PERIPHERAL INSTANCE="demod_err_0"/>
         <PERIPHERAL INSTANCE="demod_err_1"/>
+        <PERIPHERAL INSTANCE="fast_servo_controller_0"/>
+        <PERIPHERAL INSTANCE="perturbation_gen_0"/>
+        <PERIPHERAL INSTANCE="photon_counter_contr_0"/>
       </PERIPHERALS>
     </MODULE>
   </MODULES>

@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "design_1_hist_counter_0_0",
-    "cell_name": "hist_counter_0",
+    "cell_name": "photon_counting/hist_counter_0",
     "component_reference": "xilinx.com:module_ref:hist_counter:1.0",
     "ip_revision": "1",
     "gen_directory": "../../../../../../TransportPhaseLockFF.gen/sources_1/bd/design_1/ip/design_1_hist_counter_0_0",
@@ -42,6 +42,7 @@
         "gpio_clk": [ { "direction": "in" } ],
         "gpio_nbins": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
         "gpio_ncycles": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "gpio_arm": [ { "direction": "in" } ],
         "trigger": [ { "direction": "in" } ],
         "input_edge": [ { "direction": "in" } ],
         "m_axis_tdata": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
